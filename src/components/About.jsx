@@ -248,6 +248,9 @@ export default function About() {
         .terminal-code {
           color: var(--text-light);
           line-height: 1.5;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          overflow-x: auto;
         }
         .terminal-code code {
           background: transparent;

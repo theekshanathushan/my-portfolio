@@ -142,8 +142,24 @@ export default function Skills() {
         }
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 24px;
+        }
+        @media (max-width: 480px) {
+          .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+          .skills-tab-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            border-radius: 8px;
+            width: 100%;
+            justify-content: center;
+          }
+          .skills-tabs-container {
+            gap: 10px;
+          }
         }
         .skill-card {
           padding: 24px;

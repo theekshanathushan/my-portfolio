@@ -337,10 +337,11 @@ export default function Projects() {
         .project-modal-container {
           width: 100%;
           max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
           background: var(--bg-card);
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 20px;
-          overflow: hidden;
           position: relative;
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
           animation: slide-up-scale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -470,6 +471,30 @@ export default function Projects() {
           flex-grow: 1;
           justify-content: center;
           padding: 10px 20px;
+        }
+
+        @media (max-width: 768px) {
+          .projects-grid {
+            gap: 20px;
+          }
+          .modal-visual-header {
+            height: 160px;
+            padding: 0 24px;
+          }
+          .modal-body {
+            padding: 24px;
+          }
+          .modal-info-grid {
+            gap: 24px;
+          }
+        }
+        @media (max-width: 480px) {
+          .projects-grid {
+            grid-template-columns: 1fr;
+          }
+          .modal-ctas {
+            flex-direction: column;
+          }
         }
 
         @keyframes fade-in {

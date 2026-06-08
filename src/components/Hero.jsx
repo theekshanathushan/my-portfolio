@@ -277,7 +277,7 @@ export default function Hero() {
           )}
 
           <div className={`hero-profile-image-container glass-card ${isSpeaking ? 'speaking' : ''}`}>
-            <img src="/profile.png" alt="Theekshana Thushan Profile" className="hero-profile-image" />
+            <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Theekshana Thushan Profile" className="hero-profile-image" />
 
             {/* Sound indicator overlay (shown when NOT speaking) */}
             {!isSpeaking && (
@@ -507,6 +507,10 @@ export default function Hero() {
             width: 220px;
             height: 220px;
             margin-top: 10px;
+          }
+          .audio-visualizer-rings {
+            width: 220px;
+            height: 220px;
           }
         }
 
