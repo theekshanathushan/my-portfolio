@@ -198,7 +198,7 @@ Error generating stack: `+e.message+`
             transform: translateY(0);
           }
         }
-      `})]})}var Oe=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,k.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]}),ke=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,k.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,k.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]}),Ae=e=>(0,k.jsx)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:(0,k.jsx)(`path`,{d:`M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z`})}),je=[`Full-Stack Developer`,`Creative Engineer`,`UI/UX Practitioner`,`Problem Solver`],Me=100,Ne=50,Pe=2e3;function Fe(){let e=(0,_.useRef)(null),[t,n]=(0,_.useState)(``),[r,i]=(0,_.useState)(0),[a,o]=(0,_.useState)(!1),[s,c]=(0,_.useState)(!1);return(0,_.useEffect)(()=>{let e,s=je[r];return a?t.length>0?e=setTimeout(()=>{n(s.substring(0,t.length-1))},Ne):(o(!1),i(e=>(e+1)%je.length)):e=t.length<s.length?setTimeout(()=>{n(s.substring(0,t.length+1))},Me):setTimeout(()=>{o(!0)},Pe),()=>clearTimeout(e)},[t,a,r]),(0,_.useEffect)(()=>{let t=e.current;if(!t)return;let n=t.getContext(`2d`),r,i=t.width=t.offsetWidth,a=t.height=t.offsetHeight,o=[],s=Math.min(60,Math.floor(i*a/2e4)),c={x:null,y:null,radius:150};class l{constructor(){this.x=Math.random()*i,this.y=Math.random()*a,this.vx=(Math.random()-.5)*.6,this.vy=(Math.random()-.5)*.6,this.size=Math.random()*2+1}update(){if(this.x+=this.vx,this.y+=this.vy,(this.x<0||this.x>i)&&(this.vx*=-1),(this.y<0||this.y>a)&&(this.vy*=-1),c.x!=null&&c.y!=null){let e=c.x-this.x,t=c.y-this.y,n=Math.hypot(e,t);if(n<c.radius){let r=(c.radius-n)/c.radius;this.x-=e/n*r*.8,this.y-=t/n*r*.8}}}draw(){n.beginPath(),n.arc(this.x,this.y,this.size,0,Math.PI*2),n.fillStyle=getComputedStyle(document.body).getPropertyValue(`--accent`).trim()||`#00f2fe`,n.fill()}}for(let e=0;e<s;e++)o.push(new l);let u=e=>{let n=t.getBoundingClientRect();c.x=e.clientX-n.left,c.y=e.clientY-n.top},d=()=>{c.x=null,c.y=null},f=()=>{t&&(i=t.width=t.offsetWidth,a=t.height=t.offsetHeight)};window.addEventListener(`mousemove`,u),window.addEventListener(`mouseleave`,d),window.addEventListener(`resize`,f);let p=()=>{n.clearRect(0,0,i,a),o.forEach(e=>{e.update(),e.draw()});let e=getComputedStyle(document.body).getPropertyValue(`--accent-rgb`).trim()||`0, 242, 254`;for(let t=0;t<o.length;t++)for(let r=t+1;r<o.length;r++){let i=Math.hypot(o[t].x-o[r].x,o[t].y-o[r].y);if(i<120){let a=(1-i/120)*.12;n.beginPath(),n.moveTo(o[t].x,o[t].y),n.lineTo(o[r].x,o[r].y),n.strokeStyle=`rgba(${e}, ${a})`,n.lineWidth=1,n.stroke()}}r=requestAnimationFrame(p)};return p(),()=>{cancelAnimationFrame(r),window.removeEventListener(`mousemove`,u),window.removeEventListener(`mouseleave`,d),window.removeEventListener(`resize`,f)}},[]),(0,k.jsxs)(`section`,{id:`home`,className:`hero-section`,children:[(0,k.jsx)(`canvas`,{ref:e,className:`hero-particles-canvas`}),(0,k.jsxs)(`div`,{className:`container hero-container`,children:[(0,k.jsxs)(`div`,{className:`hero-content`,children:[(0,k.jsxs)(`div`,{className:`hero-badge glass-card`,children:[(0,k.jsx)(`span`,{className:`badge-pulse`}),`Available for new opportunities`]}),(0,k.jsxs)(`h1`,{className:`hero-title`,children:[`Hi `,(0,k.jsx)(`span`,{className:`waving-hand`,children:`👋`}),`, I'm `,(0,k.jsx)(`span`,{className:`text-glow-accent`,children:`Theekshana Thushan`})]}),(0,k.jsxs)(`div`,{className:`hero-subtitle`,children:[`I build `,(0,k.jsx)(`span`,{className:`typing-text`,children:t}),(0,k.jsx)(`span`,{className:`cursor-blink`,children:`|`})]}),(0,k.jsx)(`p`,{className:`hero-description`,children:`Crafting premium interactive digital experiences where cutting-edge technology meets beautiful, clean interfaces. Specializing in highly performant React web apps and creative animations.`}),(0,k.jsxs)(`div`,{className:`hero-actions`,children:[(0,k.jsxs)(`a`,{href:`#contact`,className:`btn btn-primary`,children:[`Let's Collaborate `,(0,k.jsx)(ie,{size:18})]}),(0,k.jsx)(`a`,{href:`#projects`,className:`btn btn-secondary`,children:`View Work`})]}),(0,k.jsxs)(`div`,{className:`hero-socials`,children:[(0,k.jsx)(`a`,{href:`https://github.com/G-T-Thushan`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`GitHub`,children:(0,k.jsx)(Oe,{size:20})}),(0,k.jsx)(`a`,{href:`https://www.linkedin.com/in/theekshana-thushan-57b866328`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`LinkedIn`,children:(0,k.jsx)(ke,{size:20})}),(0,k.jsx)(`a`,{href:`https://twitter.com`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`Twitter`,children:(0,k.jsx)(Ae,{size:20})}),(0,k.jsx)(`a`,{href:`mailto:theekshanathushan89@gmail.com`,className:`social-icon-btn glass-card`,title:`Email`,children:(0,k.jsx)(pe,{size:20})})]})]}),(0,k.jsxs)(`div`,{className:`hero-image-wrap`,onClick:()=>{window.speechSynthesis.cancel();let e=new SpeechSynthesisUtterance(`Hi, I am Theekshana. Welcome to my portfolio!`),t=window.speechSynthesis.getVoices(),n=t.find(e=>e.lang.startsWith(`en`)&&(e.name.includes(`Natural`)||e.name.includes(`Google`)||e.name.includes(`Microsoft`)))||t.find(e=>e.lang.startsWith(`en`))||t[0];n&&(e.voice=n),e.rate=.92,e.onstart=()=>c(!0),e.onend=()=>c(!1),e.onerror=()=>c(!1),window.speechSynthesis.speak(e)},style:{cursor:`pointer`},title:`Click to hear me say hi!`,children:[(0,k.jsx)(`div`,{className:`hero-image-glow-ring ${s?`speaking`:``}`}),s&&(0,k.jsxs)(`div`,{className:`audio-visualizer-rings`,children:[(0,k.jsx)(`div`,{className:`ring ring-1`}),(0,k.jsx)(`div`,{className:`ring ring-2`}),(0,k.jsx)(`div`,{className:`ring ring-3`})]}),(0,k.jsxs)(`div`,{className:`hero-profile-image-container glass-card ${s?`speaking`:``}`,children:[(0,k.jsx)(`img`,{src:`/profile.png`,alt:`Theekshana Thushan Profile`,className:`hero-profile-image`}),!s&&(0,k.jsxs)(`div`,{className:`profile-audio-overlay`,children:[(0,k.jsx)(`div`,{className:`overlay-pulse-circle`,children:(0,k.jsx)(`span`,{className:`speaker-emoji`,children:`🔊`})}),(0,k.jsx)(`span`,{className:`audio-overlay-text`,children:`Listen Intro`})]}),s&&(0,k.jsxs)(`div`,{className:`speaking-audio-bars`,children:[(0,k.jsx)(`span`,{className:`equalizer-bar bar-1`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-2`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-3`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-4`})]})]})]})]}),(0,k.jsx)(`style`,{children:`
+      `})]})}var Oe=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,k.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]}),ke=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,k.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,k.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]}),Ae=e=>(0,k.jsx)(`svg`,{viewBox:`0 0 24 24`,width:e.size||24,height:e.size||24,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:(0,k.jsx)(`path`,{d:`M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z`})}),je=[`Full-Stack Developer`,`Creative Engineer`,`UI/UX Practitioner`,`Problem Solver`],Me=100,Ne=50,Pe=2e3;function Fe(){let e=(0,_.useRef)(null),[t,n]=(0,_.useState)(``),[r,i]=(0,_.useState)(0),[a,o]=(0,_.useState)(!1),[s,c]=(0,_.useState)(!1);return(0,_.useEffect)(()=>{let e,s=je[r];return a?t.length>0?e=setTimeout(()=>{n(s.substring(0,t.length-1))},Ne):(o(!1),i(e=>(e+1)%je.length)):e=t.length<s.length?setTimeout(()=>{n(s.substring(0,t.length+1))},Me):setTimeout(()=>{o(!0)},Pe),()=>clearTimeout(e)},[t,a,r]),(0,_.useEffect)(()=>{let t=e.current;if(!t)return;let n=t.getContext(`2d`),r,i=t.width=t.offsetWidth,a=t.height=t.offsetHeight,o=[],s=Math.min(60,Math.floor(i*a/2e4)),c={x:null,y:null,radius:150};class l{constructor(){this.x=Math.random()*i,this.y=Math.random()*a,this.vx=(Math.random()-.5)*.6,this.vy=(Math.random()-.5)*.6,this.size=Math.random()*2+1}update(){if(this.x+=this.vx,this.y+=this.vy,(this.x<0||this.x>i)&&(this.vx*=-1),(this.y<0||this.y>a)&&(this.vy*=-1),c.x!=null&&c.y!=null){let e=c.x-this.x,t=c.y-this.y,n=Math.hypot(e,t);if(n<c.radius){let r=(c.radius-n)/c.radius;this.x-=e/n*r*.8,this.y-=t/n*r*.8}}}draw(){n.beginPath(),n.arc(this.x,this.y,this.size,0,Math.PI*2),n.fillStyle=getComputedStyle(document.body).getPropertyValue(`--accent`).trim()||`#00f2fe`,n.fill()}}for(let e=0;e<s;e++)o.push(new l);let u=e=>{let n=t.getBoundingClientRect();c.x=e.clientX-n.left,c.y=e.clientY-n.top},d=()=>{c.x=null,c.y=null},f=()=>{t&&(i=t.width=t.offsetWidth,a=t.height=t.offsetHeight)};window.addEventListener(`mousemove`,u),window.addEventListener(`mouseleave`,d),window.addEventListener(`resize`,f);let p=()=>{n.clearRect(0,0,i,a),o.forEach(e=>{e.update(),e.draw()});let e=getComputedStyle(document.body).getPropertyValue(`--accent-rgb`).trim()||`0, 242, 254`;for(let t=0;t<o.length;t++)for(let r=t+1;r<o.length;r++){let i=Math.hypot(o[t].x-o[r].x,o[t].y-o[r].y);if(i<120){let a=(1-i/120)*.12;n.beginPath(),n.moveTo(o[t].x,o[t].y),n.lineTo(o[r].x,o[r].y),n.strokeStyle=`rgba(${e}, ${a})`,n.lineWidth=1,n.stroke()}}r=requestAnimationFrame(p)};return p(),()=>{cancelAnimationFrame(r),window.removeEventListener(`mousemove`,u),window.removeEventListener(`mouseleave`,d),window.removeEventListener(`resize`,f)}},[]),(0,k.jsxs)(`section`,{id:`home`,className:`hero-section`,children:[(0,k.jsx)(`canvas`,{ref:e,className:`hero-particles-canvas`}),(0,k.jsxs)(`div`,{className:`container hero-container`,children:[(0,k.jsxs)(`div`,{className:`hero-content`,children:[(0,k.jsxs)(`div`,{className:`hero-badge glass-card`,children:[(0,k.jsx)(`span`,{className:`badge-pulse`}),`Available for new opportunities`]}),(0,k.jsxs)(`h1`,{className:`hero-title`,children:[`Hi `,(0,k.jsx)(`span`,{className:`waving-hand`,children:`👋`}),`, I'm `,(0,k.jsx)(`span`,{className:`text-glow-accent`,children:`Theekshana Thushan`})]}),(0,k.jsxs)(`div`,{className:`hero-subtitle`,children:[`I build `,(0,k.jsx)(`span`,{className:`typing-text`,children:t}),(0,k.jsx)(`span`,{className:`cursor-blink`,children:`|`})]}),(0,k.jsx)(`p`,{className:`hero-description`,children:`Crafting premium interactive digital experiences where cutting-edge technology meets beautiful, clean interfaces. Specializing in highly performant React web apps and creative animations.`}),(0,k.jsxs)(`div`,{className:`hero-actions`,children:[(0,k.jsxs)(`a`,{href:`#contact`,className:`btn btn-primary`,children:[`Let's Collaborate `,(0,k.jsx)(ie,{size:18})]}),(0,k.jsx)(`a`,{href:`#projects`,className:`btn btn-secondary`,children:`View Work`})]}),(0,k.jsxs)(`div`,{className:`hero-socials`,children:[(0,k.jsx)(`a`,{href:`https://github.com/G-T-Thushan`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`GitHub`,children:(0,k.jsx)(Oe,{size:20})}),(0,k.jsx)(`a`,{href:`https://www.linkedin.com/in/theekshana-thushan-57b866328`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`LinkedIn`,children:(0,k.jsx)(ke,{size:20})}),(0,k.jsx)(`a`,{href:`https://twitter.com`,target:`_blank`,rel:`noreferrer`,className:`social-icon-btn glass-card`,title:`Twitter`,children:(0,k.jsx)(Ae,{size:20})}),(0,k.jsx)(`a`,{href:`mailto:theekshanathushan89@gmail.com`,className:`social-icon-btn glass-card`,title:`Email`,children:(0,k.jsx)(pe,{size:20})})]})]}),(0,k.jsxs)(`div`,{className:`hero-image-wrap`,onClick:()=>{window.speechSynthesis.cancel();let e=new SpeechSynthesisUtterance(`Hi, I am Theekshana. Welcome to my portfolio!`),t=window.speechSynthesis.getVoices(),n=t.find(e=>e.lang.startsWith(`en`)&&(e.name.includes(`Natural`)||e.name.includes(`Google`)||e.name.includes(`Microsoft`)))||t.find(e=>e.lang.startsWith(`en`))||t[0];n&&(e.voice=n),e.rate=.92,e.onstart=()=>c(!0),e.onend=()=>c(!1),e.onerror=()=>c(!1),window.speechSynthesis.speak(e)},style:{cursor:`pointer`},title:`Click to hear me say hi!`,children:[(0,k.jsx)(`div`,{className:`hero-image-glow-ring ${s?`speaking`:``}`}),s&&(0,k.jsxs)(`div`,{className:`audio-visualizer-rings`,children:[(0,k.jsx)(`div`,{className:`ring ring-1`}),(0,k.jsx)(`div`,{className:`ring ring-2`}),(0,k.jsx)(`div`,{className:`ring ring-3`})]}),(0,k.jsxs)(`div`,{className:`hero-profile-image-container glass-card ${s?`speaking`:``}`,children:[(0,k.jsx)(`img`,{src:`/my-portfolio/profile.png`,alt:`Theekshana Thushan Profile`,className:`hero-profile-image`}),!s&&(0,k.jsxs)(`div`,{className:`profile-audio-overlay`,children:[(0,k.jsx)(`div`,{className:`overlay-pulse-circle`,children:(0,k.jsx)(`span`,{className:`speaker-emoji`,children:`🔊`})}),(0,k.jsx)(`span`,{className:`audio-overlay-text`,children:`Listen Intro`})]}),s&&(0,k.jsxs)(`div`,{className:`speaking-audio-bars`,children:[(0,k.jsx)(`span`,{className:`equalizer-bar bar-1`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-2`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-3`}),(0,k.jsx)(`span`,{className:`equalizer-bar bar-4`})]})]})]})]}),(0,k.jsx)(`style`,{children:`
         .hero-section {
           position: relative;
           min-height: 100vh;
@@ -402,6 +402,10 @@ Error generating stack: `+e.message+`
             width: 220px;
             height: 220px;
             margin-top: 10px;
+          }
+          .audio-visualizer-rings {
+            width: 220px;
+            height: 220px;
           }
         }
 
@@ -681,6 +685,9 @@ Error generating stack: `+e.message+`
         .terminal-code {
           color: var(--text-light);
           line-height: 1.5;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          overflow-x: auto;
         }
         .terminal-code code {
           background: transparent;
@@ -800,8 +807,24 @@ Error generating stack: `+e.message+`
         }
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 24px;
+        }
+        @media (max-width: 480px) {
+          .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+          .skills-tab-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            border-radius: 8px;
+            width: 100%;
+            justify-content: center;
+          }
+          .skills-tabs-container {
+            gap: 10px;
+          }
         }
         .skill-card {
           padding: 24px;
@@ -981,10 +1004,11 @@ Error generating stack: `+e.message+`
         .project-modal-container {
           width: 100%;
           max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
           background: var(--bg-card);
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 20px;
-          overflow: hidden;
           position: relative;
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
           animation: slide-up-scale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1114,6 +1138,30 @@ Error generating stack: `+e.message+`
           flex-grow: 1;
           justify-content: center;
           padding: 10px 20px;
+        }
+
+        @media (max-width: 768px) {
+          .projects-grid {
+            gap: 20px;
+          }
+          .modal-visual-header {
+            height: 160px;
+            padding: 0 24px;
+          }
+          .modal-body {
+            padding: 24px;
+          }
+          .modal-info-grid {
+            gap: 24px;
+          }
+        }
+        @media (max-width: 480px) {
+          .projects-grid {
+            grid-template-columns: 1fr;
+          }
+          .modal-ctas {
+            flex-direction: column;
+          }
         }
 
         @keyframes fade-in {
