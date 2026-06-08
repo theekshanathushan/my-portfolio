@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Mail, ArrowUpRight, Download } from 'lucide-react';
+import profileImg from '../assets/profile.png';
 
 const Github = (props) => (
   <svg viewBox="0 0 24 24" width={props.size || 24} height={props.size || 24} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -41,17 +42,17 @@ export default function Hero() {
 
     const text = "Hi, I am Theekshana. Welcome to my portfolio!";
     const utterance = new SpeechSynthesisUtterance(text);
-    
+
     // Choose appropriate voice
     const voices = window.speechSynthesis.getVoices();
-    const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Microsoft'))) || 
-                     voices.find(v => v.lang.startsWith('en')) || 
-                     voices[0];
-    
+    const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Microsoft'))) ||
+      voices.find(v => v.lang.startsWith('en')) ||
+      voices[0];
+
     if (engVoice) {
       utterance.voice = engVoice;
     }
-    
+
     utterance.rate = 0.92;
     utterance.onstart = () => setIsSpeaking(true);
     utterance.onend = () => setIsSpeaking(false);
@@ -224,7 +225,7 @@ export default function Hero() {
             <span className="badge-pulse"></span>
             Available for new opportunities
           </div>
-          
+
           <h1 className="hero-title">
             Hi <span className="waving-hand">👋</span>, I'm <span className="text-glow-accent">Theekshana Thushan</span>
           </h1>
@@ -266,7 +267,7 @@ export default function Hero() {
         {/* Right Column: Dynamic Profile Frame */}
         <div className="hero-image-wrap" onClick={speakIntro} style={{ cursor: 'pointer' }} title="Click to hear me say hi!">
           <div className={`hero-image-glow-ring ${isSpeaking ? 'speaking' : ''}`}></div>
-          
+
           {/* Dynamic Audio Visualizer Waves */}
           {isSpeaking && (
             <div className="audio-visualizer-rings">
@@ -277,8 +278,8 @@ export default function Hero() {
           )}
 
           <div className={`hero-profile-image-container glass-card ${isSpeaking ? 'speaking' : ''}`}>
-            <img src="/profile.png" alt="Theekshana Thushan Profile" className="hero-profile-image" />
-            
+            <img src={profileImg} alt="Theekshana Thushan Profile" className="hero-profile-image" />
+
             {/* Sound indicator overlay (shown when NOT speaking) */}
             {!isSpeaking && (
               <div className="profile-audio-overlay">
