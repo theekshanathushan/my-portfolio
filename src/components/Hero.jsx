@@ -39,17 +39,18 @@ export default function Hero() {
     // Cancel currently active utterance
     window.speechSynthesis.cancel();
 
-    const text = "Hi, I am Theekshana. Welcome to my portfolio!";
+    const text = "Hi, I am Theek-sha-nah. Welcome to my portfolio!";
     const utterance = new SpeechSynthesisUtterance(text);
 
-    // Choose appropriate voice
+    // Choose appropriate male voice
     const voices = window.speechSynthesis.getVoices();
-    const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Microsoft'))) ||
+    const maleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.toLowerCase().includes('david') || v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('guy') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('james'))) ||
+      voices.find(v => v.lang.startsWith('en') && (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('microsoft'))) ||
       voices.find(v => v.lang.startsWith('en')) ||
       voices[0];
 
-    if (engVoice) {
-      utterance.voice = engVoice;
+    if (maleVoice) {
+      utterance.voice = maleVoice;
     }
 
     utterance.rate = 0.92;
