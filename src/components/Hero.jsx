@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Mail, ArrowUpRight, Download } from 'lucide-react';
-import profileImg from '../assets/profile.png';
 
 const Github = (props) => (
   <svg viewBox="0 0 24 24" width={props.size || 24} height={props.size || 24} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -278,7 +277,7 @@ export default function Hero() {
           )}
 
           <div className={`hero-profile-image-container glass-card ${isSpeaking ? 'speaking' : ''}`}>
-            <img src={profileImg} alt="Theekshana Thushan Profile" className="hero-profile-image" />
+            <img src="/profile.png" alt="Theekshana Thushan Profile" className="hero-profile-image" />
 
             {/* Sound indicator overlay (shown when NOT speaking) */}
             {!isSpeaking && (
