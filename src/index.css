@@ -54,13 +54,18 @@ body[data-accent="gold"] {
   /* Hide default cursor to use custom magnetic cursor */
 }
 
-/* Ensure default cursors are shown on mobile/touch interfaces or when user disables custom cursor */
-@media (hover: none) {
+/* Ensure default cursors are shown on mobile/touch interfaces or screen widths <= 768px */
+@media (hover: none), (max-width: 768px) {
   * {
     cursor: auto !important;
   }
 
-  .custom-cursor {
+  a, button, select, input, textarea, [role="button"] {
+    cursor: pointer !important;
+  }
+
+  .custom-cursor,
+  .custom-cursor-ring {
     display: none !important;
   }
 }
