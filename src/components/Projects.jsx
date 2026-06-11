@@ -73,55 +73,55 @@ const FALLBACK_REPOS = [
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "Zenith Business Dashboard",
+    title: "CareConnect Application",
     category: "web",
-    tags: ["React", "Node.js", "MongoDB", "Chart.js"],
-    description: "A comprehensive business analytics portal featuring live dashboard tracking, client data grids, and report exports.",
-    detailedDesc: "Zenith Dashboard is a custom portal engineered for small-to-medium businesses. It bridges the gap between MongoDB data streams and frontend chart representations, rendering real-time business statistics.",
-    features: ["MongoDB data collections integration", "Dynamic bar/line charts rendering", "Express REST API backend flow", "Visual report PDF exports"],
+    tags: ["Spring Boot", "Java", "HTML5", "CSS3", "JavaScript"],
+    description: "A full-stack medical consulting and care management web platform.",
+    detailedDesc: "CareConnect is a robust healthcare management system designed to coordinate care. It couples a secure Spring Boot MVC backend engine with custom HTML/CSS responsive user screens, enabling medical history tracking and service coordination.",
+    features: ["Spring Boot MVC backend architecture", "Custom semantic HTML/CSS styling structures", "Secure session handling and record storage", "Database persistence for patient data integration"],
     visualIcon: <Laptop size={40} />,
     color: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
-    demoLink: "https://example.com",
-    codeLink: "https://github.com/theekshanathushan"
+    demoLink: "https://github.com/theekshanathushan/CareConnect-application",
+    codeLink: "https://github.com/theekshanathushan/CareConnect-application"
   },
   {
     id: 2,
-    title: "Nova Care Medical Portal",
-    category: "web",
-    tags: ["React", "Express", "Node.js", "MongoDB"],
-    description: "A telemedicine consultation system connecting patients with doctors, offering scheduling and record storage.",
-    detailedDesc: "Nova Care is a full-stack medical consulting system. It enables secure patient registration, medical history management, and direct scheduling with specialist doctors.",
-    features: ["Secure JWT session validation", "Direct specialist scheduling calendar", "Document storage integration", "Doctor notes history feed"],
+    title: "Beacon Mobile Utility",
+    category: "mobile",
+    tags: ["Android", "BLE Proximity", "Kotlin/Java", "Mobile Services"],
+    description: "A proximity scanning mobile app that detects and interacts with BLE beacons.",
+    detailedDesc: "Beacon App is a lightweight native Android service environment engineered to interface with Bluetooth Low Energy (BLE) transmitters. It scans proximity beacons, processes signal indicators (RSSI), and handles notifications.",
+    features: ["Bluetooth Low Energy signal scanning", "Real-time proximity and distance estimations", "Custom action handlers for device event triggers", "Optimized background location performance"],
     visualIcon: <Smartphone size={40} />,
     color: "linear-gradient(135deg, #ff007f 0%, #7f00ff 100%)",
-    demoLink: "https://example.com",
-    codeLink: "https://github.com/theekshanathushan"
+    demoLink: "https://github.com/theekshanathushan/Beacon_App",
+    codeLink: "https://github.com/theekshanathushan/Beacon_App"
   },
   {
     id: 3,
-    title: "Ceylon Heritage Branding",
-    category: "creative",
-    tags: ["Figma", "Adobe Illustrator", "Branding", "UI/UX"],
-    description: "A comprehensive rebranding project and mobile guide app prototype for Sri Lankan heritage tourism.",
-    detailedDesc: "This project showcases brand guidelines, print collateral, and a fully interactive Figma mobile application mockup designed to promote Sri Lankan tourism destinations.",
-    features: ["Vector logo family guidelines", "Brand color palettes and typography", "Interactive mobile high-fidelity UI prototypes", "Print collateral and posters layout"],
-    visualIcon: <AudioLines size={40} />,
+    title: "Business Showcase Web Platform",
+    category: "web",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+    description: "A professional service presentation website featuring custom interactive components.",
+    detailedDesc: "This is a premium, high-fidelity landing page system built from the ground up using clean CSS structure and custom JavaScript interactions. It serves to showcase corporate services, improve online conversion rates, and run smoothly across all modern screen resolutions.",
+    features: ["Fully responsive layouts and responsive grid maps", "Clean typography hierarchy and structural grids", "Interactive CSS glassmorphism cards and visual headers", "Vanilla JS animations and navigation helpers"],
+    visualIcon: <Laptop size={40} />,
     color: "linear-gradient(135deg, #ffb703 0%, #fb8500 100%)",
-    demoLink: "https://example.com",
-    codeLink: "https://github.com/theekshanathushan"
+    demoLink: "https://github.com/theekshanathushan/Business-web-page",
+    codeLink: "https://github.com/theekshanathushan/Business-web-page"
   },
   {
     id: 4,
-    title: "Vapor E-Commerce Shop",
-    category: "web",
-    tags: ["Next.js", "Stripe", "Framer Motion", "MongoDB"],
-    description: "A high-performance headless streetwear storefront featuring dynamic cart drawers and Stripe checkouts.",
-    detailedDesc: "Vapor Storefront uses Next.js server components to render catalog pages instantly. It connects to a custom Node.js/MongoDB inventory database and handles secure checkouts using Stripe.",
-    features: ["Headless inventory database synchronization", "Stripe checkout secure redirects", "Animated product cart drawer", "Search filters by size and tag"],
-    visualIcon: <ShoppingCart size={40} />,
+    title: "Web Course Final Capstone",
+    category: "creative",
+    tags: ["Web Design", "UI/UX Layout", "HTML5", "CSS3 Canvas"],
+    description: "A creative design capstone showcasing semantic front-end fundamentals.",
+    detailedDesc: "Representing the cumulative final design project for the Web Design for Beginners course, this project demonstrates clean semantic document layouts, interactive grids, fluid design structures, and creative styling components.",
+    features: ["Semantic HTML5 standard design frameworks", "Pixel-perfect CSS styling templates", "Interactive media query adaptions for modern viewing", "Intuitive user experience focus and navigation grids"],
+    visualIcon: <AudioLines size={40} />,
     color: "linear-gradient(135deg, #b5179e 0%, #7209b7 100%)",
-    demoLink: "https://example.com",
-    codeLink: "https://github.com/theekshanathushan"
+    demoLink: "https://github.com/theekshanathushan/Final-assignment-web-course",
+    codeLink: "https://github.com/theekshanathushan/Final-assignment-web-course"
   }
 ];
 
