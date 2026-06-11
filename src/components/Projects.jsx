@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ExternalLink, X, Laptop, Smartphone, Eye, AudioLines, ShoppingCart } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ExternalLink, X, Laptop, Smartphone, Eye, AudioLines, ShoppingCart, Search, GitFork, Star, Folder, AlertCircle } from 'lucide-react';
 
 const Github = (props) => (
   <svg viewBox="0 0 24 24" width={props.size || 24} height={props.size || 24} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -8,6 +8,67 @@ const Github = (props) => (
   </svg>
 );
 
+const LANGUAGE_COLORS = {
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Java: "#b07219",
+  Python: "#3572A5",
+  "C++": "#f34b7d",
+  C: "#555555",
+  "C#": "#178600",
+  Ruby: "#701516",
+  Go: "#00ADD8",
+  PHP: "#4F5D95",
+  Swift: "#F05138",
+  Kotlin: "#A97BFF",
+  Rust: "#dea584",
+  Shell: "#89e051"
+};
+
+const FALLBACK_REPOS = [
+  {
+    id: 1263633291,
+    name: "CareConnect-application",
+    description: "A full-stack web application built with a Spring Boot backend and a custom HTML/CSS frontend.",
+    html_url: "https://github.com/theekshanathushan/CareConnect-application",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-06-09T08:11:58Z"
+  },
+  {
+    id: 1262641401,
+    name: "my-portfolio",
+    description: "Modern glassmorphism portfolio built with React and Vite showing interactive 3D particle elements.",
+    html_url: "https://github.com/theekshanathushan/my-portfolio",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-06-08T10:21:03Z"
+  },
+  {
+    id: 1074059326,
+    name: "Business-web-page",
+    description: "A professional business web page built using HTML, CSS, and JavaScript to promote business services.",
+    html_url: "https://github.com/theekshanathushan/Business-web-page",
+    language: "CSS",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2025-10-11T09:39:05Z"
+  },
+  {
+    id: 1074531327,
+    name: "Final-assignment-web-course",
+    description: "This is my final assignment in the Web Design for Beginners course.",
+    html_url: "https://github.com/theekshanathushan/Final-assignment-web-course",
+    language: "CSS",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-05-25T14:44:48Z"
+  }
+];
 
 const PROJECTS_DATA = [
   {
@@ -21,7 +82,7 @@ const PROJECTS_DATA = [
     visualIcon: <Laptop size={40} />,
     color: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
     demoLink: "https://example.com",
-    codeLink: "https://github.com/G-T-Thushan"
+    codeLink: "https://github.com/theekshanathushan"
   },
   {
     id: 2,
@@ -34,7 +95,7 @@ const PROJECTS_DATA = [
     visualIcon: <Smartphone size={40} />,
     color: "linear-gradient(135deg, #ff007f 0%, #7f00ff 100%)",
     demoLink: "https://example.com",
-    codeLink: "https://github.com/G-T-Thushan"
+    codeLink: "https://github.com/theekshanathushan"
   },
   {
     id: 3,
@@ -47,7 +108,7 @@ const PROJECTS_DATA = [
     visualIcon: <AudioLines size={40} />,
     color: "linear-gradient(135deg, #ffb703 0%, #fb8500 100%)",
     demoLink: "https://example.com",
-    codeLink: "https://github.com/G-T-Thushan"
+    codeLink: "https://github.com/theekshanathushan"
   },
   {
     id: 4,
@@ -60,17 +121,74 @@ const PROJECTS_DATA = [
     visualIcon: <ShoppingCart size={40} />,
     color: "linear-gradient(135deg, #b5179e 0%, #7209b7 100%)",
     demoLink: "https://example.com",
-    codeLink: "https://github.com/G-T-Thushan"
+    codeLink: "https://github.com/theekshanathushan"
   }
 ];
 
 export default function Projects() {
+  const [projectType, setProjectType] = useState('featured'); // 'featured' | 'github'
   const [filter, setFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // GitHub integration state
+  const [repos, setRepos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOfflineMode, setIsOfflineMode] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('updated');
+
+  const fetchGitHubRepos = async () => {
+    setIsLoading(true);
+    setIsOfflineMode(false);
+    try {
+      const res = await fetch('https://api.github.com/users/theekshanathushan/repos?sort=updated&per_page=100');
+      if (!res.ok) {
+        throw new Error('Failed to fetch repositories');
+      }
+      const data = await res.json();
+      // Filter out own profile readme (theekshanathushan)
+      const cleanData = data.filter(repo => repo.name.toLowerCase() !== 'theekshanathushan');
+      setRepos(cleanData);
+    } catch (err) {
+      console.error('Error fetching repositories: ', err);
+      // Fallback to static cache
+      setRepos(FALLBACK_REPOS);
+      setIsOfflineMode(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Trigger fetch once when switching to GitHub tab
+  useEffect(() => {
+    if (projectType === 'github' && repos.length === 0) {
+      fetchGitHubRepos();
+    }
+  }, [projectType]);
 
   const filteredProjects = filter === 'all' 
     ? PROJECTS_DATA 
     : PROJECTS_DATA.filter(p => p.category === filter);
+
+  // GitHub filter and sort logic
+  const filteredRepos = repos
+    .filter(repo => {
+      const term = searchQuery.toLowerCase();
+      const nameMatch = repo.name?.toLowerCase().includes(term) || false;
+      const descMatch = repo.description?.toLowerCase().includes(term) || false;
+      const langMatch = repo.language?.toLowerCase().includes(term) || false;
+      return nameMatch || descMatch || langMatch;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'stars') {
+        return b.stargazers_count - a.stargazers_count;
+      } else if (sortBy === 'name') {
+        return a.name.localeCompare(b.name);
+      } else {
+        // default: updated
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      }
+    });
 
   return (
     <section id="projects" className="section">
@@ -78,55 +196,203 @@ export default function Projects() {
         
         <div className="section-title-wrap">
           <span className="section-subtitle">My Works</span>
-          <h2 className="section-title">Featured Projects</h2>
+          <h2 className="section-title">
+            {projectType === 'featured' ? 'Featured Projects' : 'GitHub Repositories'}
+          </h2>
         </div>
 
-        {/* Filter Navigation */}
-        <div className="project-filters">
-          {['all', 'web', 'mobile', 'creative'].map((cat) => (
-            <button
-              key={cat}
-              className={`filter-btn ${filter === cat ? 'active' : ''}`}
-              onClick={() => setFilter(cat)}
+        {/* Top Toggle Switch */}
+        <div className="project-type-toggle-container">
+          <div className="project-type-toggle glass-card">
+            <button 
+              className={`type-toggle-btn ${projectType === 'featured' ? 'active' : ''}`}
+              onClick={() => setProjectType('featured')}
             >
-              {cat.toUpperCase()}
+              Featured Works
             </button>
-          ))}
+            <button 
+              className={`type-toggle-btn ${projectType === 'github' ? 'active' : ''}`}
+              onClick={() => setProjectType('github')}
+            >
+              GitHub Repositories
+            </button>
+          </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="projects-grid">
-          {filteredProjects.map((project) => (
-            <div 
-              key={project.id} 
-              className="project-card glass-card"
-              onClick={() => setSelectedProject(project)}
-            >
-              {/* Creative Project Visual Banner */}
-              <div className="project-visual-header" style={{ background: project.color }}>
-                <div className="project-mesh-blob"></div>
-                <div className="project-card-icon">{project.visualIcon}</div>
-                <div className="project-hover-overlay">
-                  <div className="overlay-btn glass-card">
-                    <Eye size={20} />
-                    <span>View Details</span>
+        {projectType === 'featured' ? (
+          <>
+            {/* Filter Navigation */}
+            <div className="project-filters">
+              {['all', 'web', 'mobile', 'creative'].map((cat) => (
+                <button
+                  key={cat}
+                  className={`filter-btn ${filter === cat ? 'active' : ''}`}
+                  onClick={() => setFilter(cat)}
+                >
+                  {cat.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Projects Grid */}
+            <div className="projects-grid">
+              {filteredProjects.map((project) => (
+                <div 
+                  key={project.id} 
+                  className="project-card glass-card"
+                  onClick={() => setSelectedProject(project)}
+                >
+                  {/* Creative Project Visual Banner */}
+                  <div className="project-visual-header" style={{ background: project.color }}>
+                    <div className="project-mesh-blob"></div>
+                    <div className="project-card-icon">{project.visualIcon}</div>
+                    <div className="project-hover-overlay">
+                      <div className="overlay-btn glass-card">
+                        <Eye size={20} />
+                        <span>View Details</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="project-card-body">
+                    <div className="project-tags">
+                      {project.tags.slice(0, 3).map((t, i) => (
+                        <span key={i} className="project-tag-pill">{t}</span>
+                      ))}
+                    </div>
+                    <h4 className="project-title-text">{project.title}</h4>
+                    <p className="project-desc-short">{project.description}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="github-section">
+            {/* Offline/Error Notification */}
+            {isOfflineMode && (
+              <div className="github-alert glass-card">
+                <div className="alert-content">
+                  <AlertCircle size={18} className="alert-icon" />
+                  <span className="alert-text">
+                    Showing cached repositories. Latest live sync failed (rate limit reached or offline).
+                  </span>
+                </div>
+                <button onClick={fetchGitHubRepos} className="alert-retry-btn" disabled={isLoading}>
+                  {isLoading ? 'Retrying...' : 'Retry Sync'}
+                </button>
+              </div>
+            )}
+
+            {/* Search & Sort Panel */}
+            <div className="github-controls glass-card">
+              <div className="github-search-wrap">
+                <Search size={18} className="github-search-icon" />
+                <input 
+                  type="text"
+                  placeholder="Search repository names or languages..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="github-search-input"
+                />
               </div>
 
-              {/* Card Body */}
-              <div className="project-card-body">
-                <div className="project-tags">
-                  {project.tags.slice(0, 3).map((t, i) => (
-                    <span key={i} className="project-tag-pill">{t}</span>
-                  ))}
-                </div>
-                <h4 className="project-title-text">{project.title}</h4>
-                <p className="project-desc-short">{project.description}</p>
+              <div className="github-sort-wrap">
+                <span className="github-sort-label">Sort By:</span>
+                <select 
+                  value={sortBy} 
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="github-sort-select"
+                >
+                  <option value="updated">Recent Update</option>
+                  <option value="stars">Stars Count</option>
+                  <option value="name">Repo Name</option>
+                </select>
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Loader / Empty / Grid */}
+            {isLoading ? (
+              <div className="github-repos-grid">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="repo-card-skeleton glass-card">
+                    <div className="skeleton-title"></div>
+                    <div className="skeleton-desc-line-1"></div>
+                    <div className="skeleton-desc-line-2"></div>
+                    <div className="skeleton-footer">
+                      <div className="skeleton-badge"></div>
+                      <div className="skeleton-badge"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : filteredRepos.length === 0 ? (
+              <div className="github-empty glass-card">
+                <p>No repositories found matching your criteria.</p>
+                <button className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '13px', marginTop: '12px' }} onClick={() => { setSearchQuery(''); setSortBy('updated'); }}>
+                  Reset Search
+                </button>
+              </div>
+            ) : (
+              <div className="github-repos-grid">
+                {filteredRepos.map((repo) => {
+                  const langColor = LANGUAGE_COLORS[repo.language] || "#8b5cf6";
+                  return (
+                    <div key={repo.id} className="github-repo-card glass-card">
+                      <div className="repo-header">
+                        <Folder size={18} className="repo-folder-icon" />
+                        <h4 className="repo-title" title={repo.name}>{repo.name}</h4>
+                      </div>
+                      
+                      <p className="repo-description">
+                        {repo.description || "No description provided. Click below to view code."}
+                      </p>
+
+                      <div className="repo-tags-wrap">
+                        {repo.language && (
+                          <span className="repo-lang-badge">
+                            <span className="lang-color-circle" style={{ backgroundColor: langColor }}></span>
+                            {repo.language}
+                          </span>
+                        )}
+                        <span className="repo-stat-badge" title="Stars">
+                          <Star size={12} fill={repo.stargazers_count > 0 ? "currentColor" : "none"} /> {repo.stargazers_count}
+                        </span>
+                        <span className="repo-stat-badge" title="Forks">
+                          <GitFork size={12} /> {repo.forks_count}
+                        </span>
+                      </div>
+
+                      <div className="repo-footer">
+                        <a 
+                          href={repo.html_url} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="repo-link-btn"
+                          title="View Source Code"
+                        >
+                          Code <Github size={12} />
+                        </a>
+                        {repo.homepage && (
+                          <a 
+                            href={repo.homepage} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="repo-link-btn demo-btn"
+                            title="View Live Demo"
+                          >
+                            Live <ExternalLink size={12} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Project Details Modal */}
         {selectedProject && (
@@ -509,6 +775,326 @@ export default function Projects() {
           to {
             opacity: 1;
             transform: translateY(0) scale(1);
+          }
+        }
+
+        /* Sliding Toggle Switch for Projects View */
+        .project-type-toggle-container {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 40px;
+        }
+        .project-type-toggle {
+          display: flex;
+          padding: 4px;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 30px;
+        }
+        .type-toggle-btn {
+          background: transparent;
+          border: none;
+          color: var(--text-muted);
+          font-family: var(--font-heading);
+          font-size: 14px;
+          font-weight: 600;
+          padding: 10px 24px;
+          border-radius: 26px;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: none;
+        }
+        .type-toggle-btn:hover {
+          color: var(--text-white);
+        }
+        .type-toggle-btn.active {
+          color: var(--bg-dark);
+          background: var(--gradient-accent);
+          box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
+        }
+
+        /* GitHub Repos Section */
+        .github-section {
+          animation: fade-in 0.4s ease-out;
+        }
+
+        /* Alert and notification */
+        .github-alert {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 24px;
+          margin-bottom: 24px;
+          border-color: rgba(239, 68, 68, 0.2);
+          background: rgba(239, 68, 68, 0.03);
+          border-radius: 12px;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .alert-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .alert-icon {
+          color: #ef4444;
+          flex-shrink: 0;
+        }
+        .alert-text {
+          font-size: 14px;
+          color: var(--text-light);
+          text-align: left;
+        }
+        .alert-retry-btn {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: var(--text-white);
+          padding: 6px 14px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: none;
+          transition: all 0.2s;
+        }
+        .alert-retry-btn:hover:not(:disabled) {
+          border-color: var(--accent);
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.05);
+        }
+
+        /* Search and Sort controls */
+        .github-controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 24px;
+          gap: 20px;
+          margin-bottom: 30px;
+          flex-wrap: wrap;
+        }
+        .github-search-wrap {
+          position: relative;
+          flex-grow: 1;
+          max-width: 500px;
+          display: flex;
+          align-items: center;
+        }
+        .github-search-icon {
+          position: absolute;
+          left: 16px;
+          color: var(--text-muted);
+          pointer-events: none;
+        }
+        .github-search-input {
+          width: 100%;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          padding: 12px 16px 12px 48px;
+          border-radius: 10px;
+          color: var(--text-white);
+          font-size: 14px;
+          outline: none;
+          transition: all 0.3s;
+        }
+        .github-search-input:focus {
+          border-color: var(--accent);
+          box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.15);
+          background: rgba(0, 0, 0, 0.4);
+        }
+        .github-sort-wrap {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .github-sort-label {
+          font-size: 13px;
+          color: var(--text-muted);
+          font-family: var(--font-heading);
+          font-weight: 600;
+        }
+        .github-sort-select {
+          background: rgba(8, 8, 14, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          color: var(--text-white);
+          padding: 10px 16px;
+          border-radius: 10px;
+          font-size: 13px;
+          outline: none;
+          transition: all 0.3s;
+          cursor: none;
+        }
+        .github-sort-select:focus {
+          border-color: var(--accent);
+        }
+
+        /* Repo Cards Grid */
+        .github-repos-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 24px;
+        }
+
+        /* Repo Card */
+        .github-repo-card {
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+          height: 100%;
+          min-height: 220px;
+        }
+        .repo-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        .repo-folder-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+        }
+        .repo-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--text-white);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .repo-description {
+          font-size: 14px;
+          color: var(--text-muted);
+          line-height: 1.5;
+          margin-bottom: 20px;
+          flex-grow: 1;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .repo-tags-wrap {
+          display: flex;
+          gap: 14px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-muted);
+        }
+        .repo-lang-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .lang-color-circle {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .repo-stat-badge {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        .repo-footer {
+          display: flex;
+          gap: 12px;
+          border-top: 1px solid rgba(255, 255, 255, 0.04);
+          padding-top: 16px;
+        }
+        .repo-link-btn {
+          flex-grow: 1;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          color: var(--text-light);
+          padding: 8px 16px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 600;
+          font-family: var(--font-heading);
+          text-decoration: none;
+          transition: all 0.2s;
+          cursor: none;
+        }
+        .repo-link-btn:hover {
+          color: var(--accent);
+          border-color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.04);
+        }
+        .repo-link-btn.demo-btn:hover {
+          color: var(--text-white);
+          background: var(--gradient-accent);
+          border-color: transparent;
+          box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.2);
+        }
+
+        /* Repo Empty State */
+        .github-empty {
+          padding: 60px 40px;
+          text-align: center;
+          color: var(--text-muted);
+          font-size: 15px;
+        }
+
+        /* Skeletons */
+        .repo-card-skeleton {
+          padding: 24px;
+          height: 220px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          animation: skeleton-pulse 1.5s infinite ease-in-out;
+        }
+        .skeleton-title {
+          height: 18px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 4px;
+          width: 60%;
+        }
+        .skeleton-desc-line-1, .skeleton-desc-line-2 {
+          height: 12px;
+          background: rgba(255, 255, 255, 0.04);
+          border-radius: 3px;
+        }
+        .skeleton-desc-line-1 { width: 90%; margin-top: 10px; }
+        .skeleton-desc-line-2 { width: 75%; }
+        .skeleton-footer {
+          margin-top: auto;
+          display: flex;
+          gap: 10px;
+        }
+        .skeleton-badge {
+          height: 16px;
+          background: rgba(255, 255, 255, 0.06);
+          border-radius: 4px;
+          width: 50px;
+        }
+
+        @keyframes skeleton-pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 0.9; }
+        }
+
+        @media (max-width: 768px) {
+          .github-controls {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            padding: 16px;
+          }
+          .github-search-wrap {
+            max-width: 100%;
+          }
+          .github-sort-wrap {
+            justify-content: space-between;
+          }
+          .github-sort-select {
+            flex-grow: 1;
+            text-align-last: right;
           }
         }
       `}</style>

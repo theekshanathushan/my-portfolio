@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-socials">
-            <a href="https://github.com/G-T-Thushan" target="_blank" rel="noreferrer" className="footer-social-icon" title="GitHub">
+            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="footer-social-icon" title="GitHub">
               <Github size={18} />
             </a>
             <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="footer-social-icon" title="LinkedIn">

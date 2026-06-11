@@ -52,7 +52,7 @@ export default function About() {
       case 'contact':
         return JSON.stringify({
           email: "theekshanathushan89@gmail.com",
-          github: "github.com/G-T-Thushan",
+          github: "github.com/theekshanathushan",
           linkedin: "linkedin.com/in/theekshana-thushan-57b866328",
           status: "Available for freelance projects & full-time roles"
         }, null, 2);

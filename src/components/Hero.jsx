@@ -249,7 +249,7 @@ export default function Hero() {
 
           {/* Social Links */}
           <div className="hero-socials">
-            <a href="https://github.com/G-T-Thushan" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="GitHub">
+            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="GitHub">
               <Github size={20} />
             </a>
             <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="LinkedIn">
