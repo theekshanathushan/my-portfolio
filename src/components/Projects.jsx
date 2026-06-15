@@ -39,6 +39,16 @@ const FALLBACK_REPOS = [
     updated_at: "2026-06-09T08:11:58Z"
   },
   {
+    id: 1268861203,
+    name: "Moodmirror",
+    description: "An interactive, mood-reflective application designed to gauge and mirror emotions.",
+    html_url: "https://github.com/theekshanathushan/Moodmirror",
+    language: "TypeScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-06-14T06:17:52Z"
+  },
+  {
     id: 1262641401,
     name: "my-portfolio",
     description: "Modern glassmorphism portfolio built with React and Vite showing interactive 3D particle elements.",
@@ -46,12 +56,32 @@ const FALLBACK_REPOS = [
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
-    updated_at: "2026-06-08T10:21:03Z"
+    updated_at: "2026-06-15T15:16:01Z"
+  },
+  {
+    id: 1258042809,
+    name: "profile-readme-generator",
+    description: "Enhance your GitHub profile with this amazing tool, which allows you to create a personalized README quickly and easily.",
+    html_url: "https://github.com/theekshanathushan/profile-readme-generator",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-06-03T08:21:00Z"
+  },
+  {
+    id: 1240854412,
+    name: "Beacon_App",
+    description: "A proximity scanning mobile app that detects and interacts with BLE beacons.",
+    html_url: "https://github.com/theekshanathushan/Beacon_App",
+    language: "Kotlin",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-05-16T17:03:05Z"
   },
   {
     id: 1074059326,
     name: "Business-web-page",
-    description: "A professional business web page built using HTML, CSS, and JavaScript to promote business services.",
+    description: "A professional business web page built using HTML, CSS, and JavaScript to promote business services and improve online presence.",
     html_url: "https://github.com/theekshanathushan/Business-web-page",
     language: "CSS",
     stargazers_count: 0,
@@ -67,6 +97,16 @@ const FALLBACK_REPOS = [
     stargazers_count: 0,
     forks_count: 0,
     updated_at: "2026-05-25T14:44:48Z"
+  },
+  {
+    id: 1240656305,
+    name: "Test_API",
+    description: "RESTful API test engine for route prototyping and route debugging.",
+    html_url: "https://github.com/theekshanathushan/Test_API",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-05-16T12:29:49Z"
   }
 ];
 
@@ -86,6 +126,45 @@ const PROJECTS_DATA = [
   },
   {
     id: 2,
+    title: "Moodmirror Platform",
+    category: "web",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    description: "An interactive, mood-reflective application designed to gauge and mirror emotions.",
+    detailedDesc: "Moodmirror is a modern, responsive web application built with TypeScript and React. It utilizes interactive visual components to help users reflect on, gauge, and visualize their daily emotional trends.",
+    features: ["TypeScript type-safe system architecture", "Interactive mood selection dashboard interface", "Responsive Tailwind CSS layouts and structures", "Vite ultra-fast hot module replacement dev environment"],
+    visualIcon: <Eye size={40} />,
+    color: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+    demoLink: "https://github.com/theekshanathushan/Moodmirror",
+    codeLink: "https://github.com/theekshanathushan/Moodmirror"
+  },
+  {
+    id: 3,
+    title: "GitHub Profile README Generator",
+    category: "creative",
+    tags: ["Markdown", "HTML", "Creative Tools", "Documentation"],
+    description: "A tool to quickly build and customize a high-impact GitHub profile README.",
+    detailedDesc: "Enhance your GitHub profile visibility with this personalized README generator. It provides a simple, structured form interface to output professional markdown cards, widgets, social badges, and stats templates instantly.",
+    features: ["High-impact visual profile designs and components", "Instant markdown template copy-to-clipboard integration", "Integration helpers for custom badges and developer stats", "User-friendly form inputs with live markdown formatting"],
+    visualIcon: <Folder size={40} />,
+    color: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+    demoLink: "https://github.com/theekshanathushan/profile-readme-generator",
+    codeLink: "https://github.com/theekshanathushan/profile-readme-generator"
+  },
+  {
+    id: 4,
+    title: "Creative Developer Portfolio",
+    category: "web",
+    tags: ["React", "Vite", "Glassmorphism", "Lucide Icons"],
+    description: "A high-fidelity glassmorphic developer portfolio showcasing projects and an interactive CV.",
+    detailedDesc: "This website itself! Built with React, Vite, and custom CSS. It features custom theme accents, background grid overlay effects, custom follow cursor particles, and a print-optimized interactive CV modal.",
+    features: ["Dynamic theme accent colors selection utility", "Print-optimized dual-view CV modal integration", "Glassmorphism card UI layouts and layouts", "Interactive canvas particle physics background framework"],
+    visualIcon: <Laptop size={40} />,
+    color: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+    demoLink: "https://theekshanathushan.github.io/my-portfolio/",
+    codeLink: "https://github.com/theekshanathushan/my-portfolio"
+  },
+  {
+    id: 5,
     title: "Beacon Mobile Utility",
     category: "mobile",
     tags: ["Android", "BLE Proximity", "Kotlin/Java", "Mobile Services"],
@@ -98,7 +177,7 @@ const PROJECTS_DATA = [
     codeLink: "https://github.com/theekshanathushan/Beacon_App"
   },
   {
-    id: 3,
+    id: 6,
     title: "Business Showcase Web Platform",
     category: "web",
     tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
@@ -111,7 +190,7 @@ const PROJECTS_DATA = [
     codeLink: "https://github.com/theekshanathushan/Business-web-page"
   },
   {
-    id: 4,
+    id: 7,
     title: "Web Course Final Capstone",
     category: "creative",
     tags: ["Web Design", "UI/UX Layout", "HTML5", "CSS3 Canvas"],
@@ -122,6 +201,19 @@ const PROJECTS_DATA = [
     color: "linear-gradient(135deg, #b5179e 0%, #7209b7 100%)",
     demoLink: "https://github.com/theekshanathushan/Final-assignment-web-course",
     codeLink: "https://github.com/theekshanathushan/Final-assignment-web-course"
+  },
+  {
+    id: 8,
+    title: "RESTful API Test Harness",
+    category: "web",
+    tags: ["Node.js", "Express", "REST APIs", "JavaScript"],
+    description: "A clean API endpoint engine to prototype and run testing scripts.",
+    detailedDesc: "Test_API is a modular backend utility designed to test route handling, middleware integration, error management, and standard JSON data responses during web development.",
+    features: ["Modular Express route architectures and layouts", "Structured JSON mock response definitions", "CORS policy handling configurations", "Rapid API testing templates and utilities"],
+    visualIcon: <Laptop size={40} />,
+    color: "linear-gradient(135deg, #6b7280 0%, #4b5563 100%)",
+    demoLink: "https://github.com/theekshanathushan/Test_API",
+    codeLink: "https://github.com/theekshanathushan/Test_API"
   }
 ];
 
