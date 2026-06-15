@@ -89,7 +89,7 @@ export default function CVModal({ isOpen, onClose }) {
           <div className="cv-header">
             <div className="cv-header-text">
               <h1 className="cv-name">Theekshana Thushan</h1>
-              <p className="cv-title-sub">Full-Stack Developer & UI/UX Designer</p>
+              <p className="cv-title-sub">Undergraduate Student</p>
             </div>
             
             <div className="cv-contact-grid">
@@ -98,8 +98,12 @@ export default function CVModal({ isOpen, onClose }) {
                 <a href="mailto:theekshanathushan89@gmail.com">theekshanathushan89@gmail.com</a>
               </div>
               <div className="cv-contact-item">
+                <Phone size={14} className="cv-icon" />
+                <a href="tel:0772921684">0772921684</a>
+              </div>
+              <div className="cv-contact-item">
                 <MapPin size={14} className="cv-icon" />
-                <span>Colombo, Sri Lanka</span>
+                <span>No 62, Bategallana, Mahagama</span>
               </div>
               <div className="cv-contact-item">
                 <Github size={14} className="cv-icon" />
@@ -124,7 +128,7 @@ export default function CVModal({ isOpen, onClose }) {
               <div className="cv-section">
                 <h3 className="cv-section-title">Professional Profile</h3>
                 <p className="cv-section-text">
-                  A dedicated Full-Stack Developer and UI/UX Designer based in Sri Lanka, passionate about building performant, visually-stunning digital products. Combines a solid software engineering foundation with design system expertise to translate complex business needs into elegant, high-impact user experiences.
+                  A highly motivated Computer Science undergraduate at NSBM University (expected 2028) with a strong foundation in full-stack development. Proficient in building robust, scalable web applications using Java, Spring Boot, React, and MySQL. Experienced in delivering end-to-end solutions, from e-commerce platforms to enterprise management systems. Passionate about writing clean code and applying usability heuristics to create intuitive, user-centric digital experiences.
                 </p>
               </div>
 
@@ -133,11 +137,36 @@ export default function CVModal({ isOpen, onClose }) {
                 <h3 className="cv-section-title">
                   <GraduationCap size={16} className="cv-section-icon" /> Education
                 </h3>
-                <div className="cv-edu-item">
-                  <h4 className="cv-item-title">BSc (Hons) in Software Engineering</h4>
-                  <p className="cv-item-subtitle">NSBM Green University | 2020 - 2024</p>
-                  <p className="cv-item-desc">Focused on advanced systems design, data structures, UI/UX engineering, and modular development frameworks.</p>
+                <div className="cv-edu-item" style={{ marginBottom: '16px' }}>
+                  <h4 className="cv-item-title">BSc (Honours) in Computer Science</h4>
+                  <p className="cv-item-subtitle">NSBM Green University | 2024 - 2028</p>
                 </div>
+                <div className="cv-edu-item">
+                  <h4 className="cv-item-title">G.C.E (A/L) Examination</h4>
+                  <p className="cv-item-subtitle">Ananda Sasthralaya Mathugama | 2023</p>
+                  <ul className="cv-bullets" style={{ marginTop: '4px', fontSize: '12.5px' }}>
+                    <li>Physics - S</li>
+                    <li>Combined Mathematics - C</li>
+                    <li>Information and Communication Technology - B</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Soft Skills */}
+              <div className="cv-section">
+                <h3 className="cv-section-title">
+                  <Code size={16} className="cv-section-icon" /> Soft Skills
+                </h3>
+                <ul className="cv-bullets">
+                  <li>Project Management</li>
+                  <li>Public Relations</li>
+                  <li>Teamwork</li>
+                  <li>Time Management</li>
+                  <li>Leadership</li>
+                  <li>Effective Communication</li>
+                  <li>Critical Thinking</li>
+                  <li>Digital Marketing</li>
+                </ul>
               </div>
 
               {/* Languages */}
@@ -146,8 +175,8 @@ export default function CVModal({ isOpen, onClose }) {
                   <Globe size={16} className="cv-section-icon" /> Languages
                 </h3>
                 <ul className="cv-bullets">
-                  <li><strong>English</strong> - Professional Working Proficiency</li>
-                  <li><strong>Sinhala</strong> - Native / Bilingual Proficiency</li>
+                  <li>English (Intermediate)</li>
+                  <li>Sinhala (Fluent)</li>
                 </ul>
               </div>
 
@@ -164,27 +193,46 @@ export default function CVModal({ isOpen, onClose }) {
                 
                 <div className="cv-exp-item">
                   <div className="cv-exp-header">
-                    <h4 className="cv-item-title">Full-Stack Developer & UI/UX Designer</h4>
-                    <span className="cv-item-date">2024 - Present</span>
+                    <h4 className="cv-item-title">Teckzuno: E-Business Store Platform</h4>
+                    <span className="cv-item-date">2026 - NOW</span>
                   </div>
-                  <p className="cv-item-subtitle">Ceylon Tech Labs</p>
+                  <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
+                    Tech Stack: Java 17, Spring Boot, Spring Security (JWT), MySQL, WebSockets, Google OAuth2, Vanilla JavaScript
+                  </p>
                   <ul className="cv-exp-bullets">
-                    <li>Build and optimize React.js frontends and Node.js backend architectures.</li>
-                    <li>Design interactive, high-fidelity prototypes and UI component kits in Figma.</li>
-                    <li>Conduct code reviews and drive development best practices for client web projects.</li>
+                    <li>Built a responsive, full-stack e-commerce application featuring secure JWT-based authentication and Google OAuth2 integration for streamlined user access.</li>
+                    <li>Developed a dynamic product catalog with a real-time "in-stock" search autocomplete. Engineered a shopping cart and checkout system that automatically routes order confirmations and details through WhatsApp.</li>
+                    <li>Created a user order tracking interface equipped with printable HTML invoice generation. Implemented an interactive customer support chat widget, a dynamic dark/light theme toggle, and a dedicated Admin dashboard for managing inventory and sales analytics.</li>
                   </ul>
                 </div>
 
                 <div className="cv-exp-item">
                   <div className="cv-exp-header">
-                    <h4 className="cv-item-title">Associate Software Engineer</h4>
-                    <span className="cv-item-date">2022 - 2024</span>
+                    <h4 className="cv-item-title">CareConnect: Disaster Relief Support System</h4>
+                    <span className="cv-item-date">2025 - 2025</span>
                   </div>
-                  <p className="cv-item-subtitle">Apex Digital Solutions</p>
+                  <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
+                    Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js
+                  </p>
                   <ul className="cv-exp-bullets">
-                    <li>Developed secure, robust RESTful APIs and structured data pipelines using MongoDB.</li>
-                    <li>Collaborated on design system updates and client portal responsive layouts.</li>
-                    <li>Wrote automated unit tests and maintained comprehensive API documentation.</li>
+                    <li>Built a crisis coordination platform to efficiently connect displaced persons, donors, and government officials.</li>
+                    <li>Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active donors.</li>
+                    <li>Developed real-time chat functionality, dynamic donation processing, and a comprehensive resource allocation dashboard.</li>
+                  </ul>
+                </div>
+
+                <div className="cv-exp-item">
+                  <div className="cv-exp-header">
+                    <h4 className="cv-item-title">PharmaCare: Local Pharmacy Stock & Delivery System</h4>
+                    <span className="cv-item-date">2024 - 2025</span>
+                  </div>
+                  <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
+                    Tech Stack: Java 21, Spring Boot, Spring Security (JWT), MySQL, WebSockets
+                  </p>
+                  <ul className="cv-exp-bullets">
+                    <li>Developed a secure, multi-role e-commerce platform for local pharmacy management and delivery.</li>
+                    <li>Implemented JWT-based authentication to manage distinct access for customers, pharmacists, delivery staff, and admins.</li>
+                    <li>Engineered features for digital prescription uploads, real-time order tracking, and centralized inventory monitoring.</li>
                   </ul>
                 </div>
               </div>
@@ -195,18 +243,17 @@ export default function CVModal({ isOpen, onClose }) {
                   <Code size={16} className="cv-section-icon" /> Technical Skills
                 </h3>
                 <div className="cv-skills-grid">
-                  <div className="cv-skill-tag">React.js</div>
-                  <div className="cv-skill-tag">Node.js</div>
-                  <div className="cv-skill-tag">Express.js</div>
-                  <div className="cv-skill-tag">JavaScript (ES6+)</div>
+                  <div className="cv-skill-tag">Java</div>
+                  <div className="cv-skill-tag">Spring Boot</div>
+                  <div className="cv-skill-tag">Spring Security (JWT)</div>
+                  <div className="cv-skill-tag">React</div>
+                  <div className="cv-skill-tag">JavaScript</div>
+                  <div className="cv-skill-tag">MySQL</div>
+                  <div className="cv-skill-tag">WebSockets</div>
+                  <div className="cv-skill-tag">Google OAuth2</div>
+                  <div className="cv-skill-tag">Leaflet.js</div>
                   <div className="cv-skill-tag">HTML5 / CSS3</div>
-                  <div className="cv-skill-tag">MongoDB</div>
-                  <div className="cv-skill-tag">RESTful APIs</div>
-                  <div className="cv-skill-tag">Vite</div>
-                  <div className="cv-skill-tag">UI/UX Design (Figma)</div>
                   <div className="cv-skill-tag">Git & GitHub</div>
-                  <div className="cv-skill-tag">Responsive Layouts</div>
-                  <div className="cv-skill-tag">Tailwind CSS</div>
                 </div>
               </div>
 
