@@ -6,12 +6,16 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CVModal from './components/CVModal';
 
 export default function App() {
   // Theme Accent State ('cyan', 'pink', 'gold')
   const [accent, setAccent] = useState(() => {
     return localStorage.getItem('portfolio-accent') || 'cyan';
   });
+
+  // CV Modal State
+  const [isCVOpen, setIsCVOpen] = useState(false);
 
   // Custom Cursor Coordinates
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
@@ -108,16 +112,19 @@ export default function App() {
       <div className="grid-overlay"></div>
 
       {/* Main Pages Navigation */}
-      <Navbar currentAccent={accent} onAccentChange={setAccent} />
+      <Navbar currentAccent={accent} onAccentChange={setAccent} onOpenCV={() => setIsCVOpen(true)} />
 
       {/* Layout Grid Sections */}
       <main>
-        <Hero />
+        <Hero onOpenCV={() => setIsCVOpen(true)} />
         <About />
         <Skills />
         <Projects />
         <Contact />
       </main>
+
+      {/* Interactive CV Viewer */}
+      <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} />
 
       {/* Footer */}
       <Footer />

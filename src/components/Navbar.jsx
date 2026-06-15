@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar({ currentAccent, onAccentChange }) {
+export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
@@ -48,6 +48,9 @@ export default function Navbar({ currentAccent, onAccentChange }) {
               {link.label}
             </a>
           ))}
+          <a href="#cv" onClick={(e) => { e.preventDefault(); onOpenCV(); }} className="nav-link">
+            Resume
+          </a>
         </div>
 
         {/* Action Panel (Theme Switcher) */}
@@ -104,6 +107,17 @@ export default function Navbar({ currentAccent, onAccentChange }) {
                 {link.label}
               </a>
             ))}
+            <a 
+              href="#cv" 
+              className="mobile-nav-link"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick();
+                onOpenCV();
+              }}
+            >
+              Resume
+            </a>
           </div>
         </div>
       )}

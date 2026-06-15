@@ -28,7 +28,7 @@ const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const DELAY_BETWEEN_WORDS = 2000;
 
-export default function Hero() {
+export default function Hero({ onOpenCV }) {
   const canvasRef = useRef(null);
   const [typedText, setTypedText] = useState('');
   const [wordIdx, setWordIdx] = useState(0);
@@ -242,6 +242,9 @@ export default function Hero() {
             <a href="#contact" className="btn btn-primary">
               Let's Collaborate <ArrowUpRight size={18} />
             </a>
+            <button onClick={onOpenCV} className="btn btn-secondary">
+              View CV <Download size={18} />
+            </button>
             <a href="#projects" className="btn btn-secondary">
               View Work
             </a>
