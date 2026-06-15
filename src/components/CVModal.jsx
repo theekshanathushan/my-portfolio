@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Download, Printer, Mail, MapPin, Briefcase, GraduationCap, Code, Globe, Phone, FileText } from 'lucide-react';
 
 const Github = (props) => (
@@ -17,6 +17,8 @@ const Linkedin = (props) => (
 );
 
 export default function CVModal({ isOpen, onClose }) {
+  const [activeView, setActiveView] = useState('interactive');
+
   // Disable body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -46,12 +48,29 @@ export default function CVModal({ isOpen, onClose }) {
           <div className="modal-actions-left">
             <FileText size={18} className="text-glow-accent" />
             <span className="modal-actions-title">Curriculum Vitae</span>
+            
+            <div className="cv-view-toggle glass-card">
+              <button 
+                className={`toggle-tab ${activeView === 'interactive' ? 'active' : ''}`}
+                onClick={() => setActiveView('interactive')}
+              >
+                Interactive
+              </button>
+              <button 
+                className={`toggle-tab ${activeView === 'pdf' ? 'active' : ''}`}
+                onClick={() => setActiveView('pdf')}
+              >
+                Official PDF
+              </button>
+            </div>
           </div>
           <div className="modal-actions-right">
-            <button className="btn-action-icon" onClick={handlePrint} title="Print Resume">
-              <Printer size={16} />
-              <span>Print / Save</span>
-            </button>
+            {activeView === 'interactive' && (
+              <button className="btn-action-icon" onClick={handlePrint} title="Print Resume">
+                <Printer size={16} />
+                <span>Print / Save</span>
+              </button>
+            )}
             <a href={cvPath} download="Theekshana_Thushan_CV.pdf" className="btn-action-icon btn-action-primary" title="Download PDF">
               <Download size={16} />
               <span>Download PDF</span>
@@ -63,7 +82,8 @@ export default function CVModal({ isOpen, onClose }) {
         </div>
 
         {/* CV Display Body */}
-        <div className="cv-modal-content cv-printable-area">
+        {activeView === 'interactive' ? (
+          <div className="cv-modal-content cv-printable-area">
           
           {/* Main Top Header */}
           <div className="cv-header">
@@ -193,8 +213,26 @@ export default function CVModal({ isOpen, onClose }) {
             </div>
 
           </div>
-
         </div>
+        ) : (
+          <div className="cv-pdf-viewer">
+            <object 
+              data={cvPath} 
+              type="application/pdf" 
+              width="100%" 
+              height="100%"
+              className="cv-pdf-object"
+            >
+              <iframe 
+                src={`${cvPath}#toolbar=0`}
+                title="Theekshana Thushan CV PDF" 
+                width="100%" 
+                height="100%"
+                style={{ border: 'none' }}
+              />
+            </object>
+          </div>
+        )}
 
       </div>
 
@@ -548,6 +586,64 @@ export default function CVModal({ isOpen, onClose }) {
             opacity: 1;
             transform: scale(1) translateY(0);
           }
+        }
+
+        .cv-pdf-viewer {
+          flex-grow: 1;
+          height: calc(90vh - 70px);
+          background: #0d0d16;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .cv-pdf-object {
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
+        .cv-view-toggle {
+          display: flex;
+          padding: 2px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 20px;
+          margin-left: 20px;
+        }
+
+        @media (max-width: 576px) {
+          .cv-view-toggle {
+            margin-left: 10px;
+          }
+          .toggle-tab {
+            padding: 4px 8px !important;
+            font-size: 9px !important;
+          }
+        }
+
+        .toggle-tab {
+          background: transparent;
+          border: none;
+          color: var(--text-muted);
+          font-family: var(--font-sans);
+          font-size: 11px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          padding: 6px 14px;
+          border-radius: 18px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .toggle-tab:hover {
+          color: var(--text-white);
+        }
+
+        .toggle-tab.active {
+          background: var(--accent);
+          color: var(--bg-dark);
+          box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.3);
         }
 
         /* PRINT STYLES */
