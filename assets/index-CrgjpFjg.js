@@ -1824,7 +1824,7 @@ Error generating stack: `+e.message+`
         @keyframes beat {
           to { transform: scale(1.2); }
         }
-      `})]})}var lt=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||16,height:e.size||16,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,k.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]}),ut=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||16,height:e.size||16,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,k.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,k.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]});function dt({isOpen:e,onClose:t}){let[n,r]=(0,_.useState)(`interactive`);if((0,_.useEffect)(()=>(e?document.body.style.overflow=`hidden`:document.body.style.overflow=`unset`,()=>{document.body.style.overflow=`unset`}),[e]),!e)return null;let i=()=>{window.print()},a=`/my-portfolio/cv.pdf`;return(0,k.jsxs)(`div`,{className:`cv-modal-overlay`,onClick:t,children:[(0,k.jsxs)(`div`,{className:`cv-modal-card glass-card`,onClick:e=>e.stopPropagation(),children:[(0,k.jsxs)(`div`,{className:`modal-actions-header`,children:[(0,k.jsxs)(`div`,{className:`modal-actions-left`,children:[(0,k.jsx)(me,{size:18,className:`text-glow-accent`}),(0,k.jsx)(`span`,{className:`modal-actions-title`,children:`Curriculum Vitae`}),(0,k.jsxs)(`div`,{className:`cv-view-toggle glass-card`,children:[(0,k.jsx)(`button`,{className:`toggle-tab ${n===`interactive`?`active`:``}`,onClick:()=>r(`interactive`),children:`Interactive`}),(0,k.jsx)(`button`,{className:`toggle-tab ${n===`pdf`?`active`:``}`,onClick:()=>r(`pdf`),children:`Official PDF`})]})]}),(0,k.jsxs)(`div`,{className:`modal-actions-right`,children:[n===`interactive`&&(0,k.jsxs)(`button`,{className:`btn-action-icon`,onClick:i,title:`Print Resume`,children:[(0,k.jsx)(Ee,{size:16}),(0,k.jsx)(`span`,{children:`Print / Save`})]}),(0,k.jsxs)(`a`,{href:a,download:`Theekshana_Thushan_CV.pdf`,className:`btn-action-icon btn-action-primary`,title:`Download PDF`,children:[(0,k.jsx)(de,{size:16}),(0,k.jsx)(`span`,{children:`Download PDF`})]}),(0,k.jsx)(`button`,{className:`btn-action-close`,onClick:t,title:`Close Modal`,children:(0,k.jsx)(Fe,{size:20})})]})]}),n===`interactive`?(0,k.jsxs)(`div`,{className:`cv-modal-content cv-printable-area`,children:[(0,k.jsxs)(`div`,{className:`cv-header`,children:[(0,k.jsxs)(`div`,{className:`cv-header-text`,children:[(0,k.jsx)(`h1`,{className:`cv-name`,children:`Theekshana Thushan`}),(0,k.jsx)(`p`,{className:`cv-title-sub`,children:`Undergraduate Student`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-grid`,children:[(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(ye,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`mailto:theekshanathushan89@gmail.com`,children:`theekshanathushan89@gmail.com`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(Te,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`tel:0772921684`,children:`0772921684`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(be,{size:14,className:`cv-icon`}),(0,k.jsx)(`span`,{children:`No 62, Bategallana, Mahagama`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(lt,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`https://github.com/theekshanathushan`,target:`_blank`,rel:`noreferrer`,children:`github.com/theekshanathushan`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(ut,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`https://linkedin.com/in/theekshana-thushan-57b866328`,target:`_blank`,rel:`noreferrer`,children:`linkedin.com/in/theekshana-thushan-57b866328`})]})]})]}),(0,k.jsx)(`hr`,{className:`cv-divider`}),(0,k.jsxs)(`div`,{className:`cv-body-grid`,children:[(0,k.jsxs)(`div`,{className:`cv-body-left`,children:[(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsx)(`h3`,{className:`cv-section-title`,children:`Professional Profile`}),(0,k.jsx)(`p`,{className:`cv-section-text`,children:`A highly motivated Computer Science undergraduate at NSBM University (expected 2028) with a strong foundation in full-stack development. Proficient in building robust, scalable web applications using Java, Spring Boot, React, and MySQL. Experienced in delivering end-to-end solutions, from e-commerce platforms to enterprise management systems. Passionate about writing clean code and applying usability heuristics to create intuitive, user-centric digital experiences.`})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(ge,{size:16,className:`cv-section-icon`}),` Education`]}),(0,k.jsxs)(`div`,{className:`cv-edu-item`,style:{marginBottom:`16px`},children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`BSc (Honours) in Computer Science`}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,children:`NSBM Green University | 2024 - 2028`})]}),(0,k.jsxs)(`div`,{className:`cv-edu-item`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`G.C.E (A/L) Examination`}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,children:`Ananda Sasthralaya Mathugama | 2023`}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,style:{marginTop:`4px`,fontSize:`12.5px`},children:[(0,k.jsx)(`li`,{children:`Physics - S`}),(0,k.jsx)(`li`,{children:`Combined Mathematics - C`}),(0,k.jsx)(`li`,{children:`Information and Communication Technology - B`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(T,{size:16,className:`cv-section-icon`}),` Soft Skills`]}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,children:[(0,k.jsx)(`li`,{children:`Project Management`}),(0,k.jsx)(`li`,{children:`Public Relations`}),(0,k.jsx)(`li`,{children:`Teamwork`}),(0,k.jsx)(`li`,{children:`Time Management`}),(0,k.jsx)(`li`,{children:`Leadership`}),(0,k.jsx)(`li`,{children:`Effective Communication`}),(0,k.jsx)(`li`,{children:`Critical Thinking`}),(0,k.jsx)(`li`,{children:`Digital Marketing`})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(he,{size:16,className:`cv-section-icon`}),` Languages`]}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,children:[(0,k.jsx)(`li`,{children:`English (Intermediate)`}),(0,k.jsx)(`li`,{children:`Sinhala (Fluent)`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-body-right`,children:[(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(se,{size:16,className:`cv-section-icon`}),` Work Experience`]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`Teckzuno: E-Business Store Platform`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2026 - NOW`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 17, Spring Boot, Spring Security (JWT), MySQL, WebSockets, Google OAuth2, Vanilla JavaScript`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Built a responsive, full-stack e-commerce application featuring secure JWT-based authentication and Google OAuth2 integration for streamlined user access.`}),(0,k.jsx)(`li`,{children:`Developed a dynamic product catalog with a real-time "in-stock" search autocomplete. Engineered a shopping cart and checkout system that automatically routes order confirmations and details through WhatsApp.`}),(0,k.jsx)(`li`,{children:`Created a user order tracking interface equipped with printable HTML invoice generation. Implemented an interactive customer support chat widget, a dynamic dark/light theme toggle, and a dedicated Admin dashboard for managing inventory and sales analytics.`})]})]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`CareConnect: Disaster Relief Support System`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2025 - 2025`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Built a crisis coordination platform to efficiently connect displaced persons, donors, and government officials.`}),(0,k.jsx)(`li`,{children:`Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active donors.`}),(0,k.jsx)(`li`,{children:`Developed real-time chat functionality, dynamic donation processing, and a comprehensive resource allocation dashboard.`})]})]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`PharmaCare: Local Pharmacy Stock & Delivery System`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2024 - 2025`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 21, Spring Boot, Spring Security (JWT), MySQL, WebSockets`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Developed a secure, multi-role e-commerce platform for local pharmacy management and delivery.`}),(0,k.jsx)(`li`,{children:`Implemented JWT-based authentication to manage distinct access for customers, pharmacists, delivery staff, and admins.`}),(0,k.jsx)(`li`,{children:`Engineered features for digital prescription uploads, real-time order tracking, and centralized inventory monitoring.`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(T,{size:16,className:`cv-section-icon`}),` Technical Skills`]}),(0,k.jsxs)(`div`,{className:`cv-skills-grid`,children:[(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Java`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Spring Boot`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Spring Security (JWT)`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`React`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`JavaScript`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`MySQL`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`WebSockets`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Google OAuth2`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Leaflet.js`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`HTML5 / CSS3`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Git & GitHub`})]})]})]})]})]}):(0,k.jsx)(`div`,{className:`cv-pdf-viewer`,children:(0,k.jsx)(`object`,{data:a,type:`application/pdf`,width:`100%`,height:`100%`,className:`cv-pdf-object`,children:(0,k.jsx)(`iframe`,{src:`${a}#toolbar=0`,title:`Theekshana Thushan CV PDF`,width:`100%`,height:`100%`,style:{border:`none`}})})})]}),(0,k.jsx)(`style`,{children:`
+      `})]})}var lt=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||16,height:e.size||16,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,k.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]}),ut=e=>(0,k.jsxs)(`svg`,{viewBox:`0 0 24 24`,width:e.size||16,height:e.size||16,stroke:`currentColor`,strokeWidth:`2`,fill:`none`,strokeLinecap:`round`,strokeLinejoin:`round`,...e,children:[(0,k.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,k.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,k.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]});function dt({isOpen:e,onClose:t}){let[n,r]=(0,_.useState)(`interactive`);if((0,_.useEffect)(()=>(e?document.body.style.overflow=`hidden`:document.body.style.overflow=`unset`,()=>{document.body.style.overflow=`unset`}),[e]),!e)return null;let i=()=>{window.print()},a=`/my-portfolio/cv.pdf`;return(0,k.jsxs)(`div`,{className:`cv-modal-overlay`,onClick:t,children:[(0,k.jsxs)(`div`,{className:`cv-modal-card glass-card`,onClick:e=>e.stopPropagation(),children:[(0,k.jsxs)(`div`,{className:`modal-actions-header`,children:[(0,k.jsxs)(`div`,{className:`modal-actions-left`,children:[(0,k.jsxs)(`div`,{className:`modal-actions-brand`,children:[(0,k.jsx)(me,{size:18,className:`text-glow-accent`}),(0,k.jsx)(`span`,{className:`modal-actions-title`,children:`Curriculum Vitae`})]}),(0,k.jsxs)(`div`,{className:`cv-view-toggle glass-card`,children:[(0,k.jsx)(`button`,{className:`toggle-tab ${n===`interactive`?`active`:``}`,onClick:()=>r(`interactive`),children:`Interactive`}),(0,k.jsx)(`button`,{className:`toggle-tab ${n===`pdf`?`active`:``}`,onClick:()=>r(`pdf`),children:`Official PDF`})]})]}),(0,k.jsxs)(`div`,{className:`modal-actions-right`,children:[n===`interactive`&&(0,k.jsxs)(`button`,{className:`btn-action-icon`,onClick:i,title:`Print Resume`,children:[(0,k.jsx)(Ee,{size:16}),(0,k.jsx)(`span`,{children:`Print / Save`})]}),(0,k.jsxs)(`a`,{href:a,download:`Theekshana_Thushan_CV.pdf`,className:`btn-action-icon btn-action-primary`,title:`Download PDF`,children:[(0,k.jsx)(de,{size:16}),(0,k.jsx)(`span`,{children:`Download PDF`})]}),(0,k.jsx)(`button`,{className:`btn-action-close`,onClick:t,title:`Close Modal`,children:(0,k.jsx)(Fe,{size:20})})]})]}),n===`interactive`?(0,k.jsxs)(`div`,{className:`cv-modal-content cv-printable-area`,children:[(0,k.jsxs)(`div`,{className:`cv-header`,children:[(0,k.jsxs)(`div`,{className:`cv-header-text`,children:[(0,k.jsx)(`h1`,{className:`cv-name`,children:`Theekshana Thushan`}),(0,k.jsx)(`p`,{className:`cv-title-sub`,children:`Undergraduate Student`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-grid`,children:[(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(ye,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`mailto:theekshanathushan89@gmail.com`,children:`theekshanathushan89@gmail.com`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(Te,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`tel:0772921684`,children:`0772921684`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(be,{size:14,className:`cv-icon`}),(0,k.jsx)(`span`,{children:`No 62, Bategallana, Mahagama`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(lt,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`https://github.com/theekshanathushan`,target:`_blank`,rel:`noreferrer`,children:`github.com/theekshanathushan`})]}),(0,k.jsxs)(`div`,{className:`cv-contact-item`,children:[(0,k.jsx)(ut,{size:14,className:`cv-icon`}),(0,k.jsx)(`a`,{href:`https://linkedin.com/in/theekshana-thushan-57b866328`,target:`_blank`,rel:`noreferrer`,children:`linkedin.com/in/theekshana-thushan-57b866328`})]})]})]}),(0,k.jsx)(`hr`,{className:`cv-divider`}),(0,k.jsxs)(`div`,{className:`cv-body-grid`,children:[(0,k.jsxs)(`div`,{className:`cv-body-left`,children:[(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsx)(`h3`,{className:`cv-section-title`,children:`Professional Profile`}),(0,k.jsx)(`p`,{className:`cv-section-text`,children:`A highly motivated Computer Science undergraduate at NSBM University (expected 2028) with a strong foundation in full-stack development. Proficient in building robust, scalable web applications using Java, Spring Boot, React, and MySQL. Experienced in delivering end-to-end solutions, from e-commerce platforms to enterprise management systems. Passionate about writing clean code and applying usability heuristics to create intuitive, user-centric digital experiences.`})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(ge,{size:16,className:`cv-section-icon`}),` Education`]}),(0,k.jsxs)(`div`,{className:`cv-edu-item`,style:{marginBottom:`16px`},children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`BSc (Honours) in Computer Science`}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,children:`NSBM Green University | 2024 - 2028`})]}),(0,k.jsxs)(`div`,{className:`cv-edu-item`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`G.C.E (A/L) Examination`}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,children:`Ananda Sasthralaya Mathugama | 2023`}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,style:{marginTop:`4px`,fontSize:`12.5px`},children:[(0,k.jsx)(`li`,{children:`Physics - S`}),(0,k.jsx)(`li`,{children:`Combined Mathematics - C`}),(0,k.jsx)(`li`,{children:`Information and Communication Technology - B`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(T,{size:16,className:`cv-section-icon`}),` Soft Skills`]}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,children:[(0,k.jsx)(`li`,{children:`Project Management`}),(0,k.jsx)(`li`,{children:`Public Relations`}),(0,k.jsx)(`li`,{children:`Teamwork`}),(0,k.jsx)(`li`,{children:`Time Management`}),(0,k.jsx)(`li`,{children:`Leadership`}),(0,k.jsx)(`li`,{children:`Effective Communication`}),(0,k.jsx)(`li`,{children:`Critical Thinking`}),(0,k.jsx)(`li`,{children:`Digital Marketing`})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(he,{size:16,className:`cv-section-icon`}),` Languages`]}),(0,k.jsxs)(`ul`,{className:`cv-bullets`,children:[(0,k.jsx)(`li`,{children:`English (Intermediate)`}),(0,k.jsx)(`li`,{children:`Sinhala (Fluent)`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-body-right`,children:[(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(se,{size:16,className:`cv-section-icon`}),` Work Experience`]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`Teckzuno: E-Business Store Platform`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2026 - NOW`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 17, Spring Boot, Spring Security (JWT), MySQL, WebSockets, Google OAuth2, Vanilla JavaScript`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Built a responsive, full-stack e-commerce application featuring secure JWT-based authentication and Google OAuth2 integration for streamlined user access.`}),(0,k.jsx)(`li`,{children:`Developed a dynamic product catalog with a real-time "in-stock" search autocomplete. Engineered a shopping cart and checkout system that automatically routes order confirmations and details through WhatsApp.`}),(0,k.jsx)(`li`,{children:`Created a user order tracking interface equipped with printable HTML invoice generation. Implemented an interactive customer support chat widget, a dynamic dark/light theme toggle, and a dedicated Admin dashboard for managing inventory and sales analytics.`})]})]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`CareConnect: Disaster Relief Support System`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2025 - 2025`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Built a crisis coordination platform to efficiently connect displaced persons, donors, and government officials.`}),(0,k.jsx)(`li`,{children:`Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active donors.`}),(0,k.jsx)(`li`,{children:`Developed real-time chat functionality, dynamic donation processing, and a comprehensive resource allocation dashboard.`})]})]}),(0,k.jsxs)(`div`,{className:`cv-exp-item`,children:[(0,k.jsxs)(`div`,{className:`cv-exp-header`,children:[(0,k.jsx)(`h4`,{className:`cv-item-title`,children:`PharmaCare: Local Pharmacy Stock & Delivery System`}),(0,k.jsx)(`span`,{className:`cv-item-date`,children:`2024 - 2025`})]}),(0,k.jsx)(`p`,{className:`cv-item-subtitle`,style:{fontStyle:`italic`,fontSize:`12px`},children:`Tech Stack: Java 21, Spring Boot, Spring Security (JWT), MySQL, WebSockets`}),(0,k.jsxs)(`ul`,{className:`cv-exp-bullets`,children:[(0,k.jsx)(`li`,{children:`Developed a secure, multi-role e-commerce platform for local pharmacy management and delivery.`}),(0,k.jsx)(`li`,{children:`Implemented JWT-based authentication to manage distinct access for customers, pharmacists, delivery staff, and admins.`}),(0,k.jsx)(`li`,{children:`Engineered features for digital prescription uploads, real-time order tracking, and centralized inventory monitoring.`})]})]})]}),(0,k.jsxs)(`div`,{className:`cv-section`,children:[(0,k.jsxs)(`h3`,{className:`cv-section-title`,children:[(0,k.jsx)(T,{size:16,className:`cv-section-icon`}),` Technical Skills`]}),(0,k.jsxs)(`div`,{className:`cv-skills-grid`,children:[(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Java`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Spring Boot`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Spring Security (JWT)`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`React`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`JavaScript`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`MySQL`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`WebSockets`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Google OAuth2`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Leaflet.js`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`HTML5 / CSS3`}),(0,k.jsx)(`div`,{className:`cv-skill-tag`,children:`Git & GitHub`})]})]})]})]})]}):(0,k.jsx)(`div`,{className:`cv-pdf-viewer`,children:(0,k.jsx)(`object`,{data:a,type:`application/pdf`,width:`100%`,height:`100%`,className:`cv-pdf-object`,children:(0,k.jsx)(`iframe`,{src:`${a}#toolbar=0`,title:`Theekshana Thushan CV PDF`,width:`100%`,height:`100%`,style:{border:`none`}})})})]}),(0,k.jsx)(`style`,{children:`
         .cv-modal-overlay {
           position: fixed;
           top: 0;
@@ -1872,6 +1872,11 @@ Error generating stack: `+e.message+`
           font-weight: 600;
           color: var(--text-white);
           margin-left: 8px;
+        }
+
+        .modal-actions-brand {
+          display: flex;
+          align-items: center;
         }
 
         .modal-actions-left {
@@ -2198,13 +2203,106 @@ Error generating stack: `+e.message+`
           margin-left: 20px;
         }
 
-        @media (max-width: 576px) {
-          .cv-view-toggle {
-            margin-left: 10px;
+        @media (max-width: 640px) {
+          .cv-modal-overlay {
+            padding: 8px;
           }
+          
+          .cv-modal-card {
+            max-height: 96vh;
+            border-radius: 12px;
+          }
+
+          .modal-actions-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding: 12px 16px;
+            position: relative;
+          }
+
+          .modal-actions-left {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            width: 100%;
+          }
+
+          .modal-actions-brand {
+            margin-bottom: 2px;
+          }
+
+          .cv-view-toggle {
+            margin-left: 0;
+            width: 100%;
+            display: flex;
+          }
+
           .toggle-tab {
-            padding: 4px 8px !important;
-            font-size: 9px !important;
+            flex: 1;
+            text-align: center;
+            padding: 6px 10px;
+          }
+
+          .modal-actions-right {
+            width: 100%;
+            justify-content: stretch;
+            gap: 8px;
+          }
+
+          .btn-action-icon {
+            flex: 1;
+            justify-content: center;
+            padding: 8px 10px;
+            font-size: 11px;
+          }
+
+          .btn-action-close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            margin-left: 0;
+            padding: 6px;
+          }
+
+          .cv-modal-content {
+            padding: 20px;
+          }
+
+          .cv-contact-item {
+            word-break: break-all;
+            overflow-wrap: break-word;
+          }
+
+          .cv-contact-item a {
+            word-break: break-all;
+            overflow-wrap: break-word;
+          }
+
+          .cv-exp-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .btn-action-icon span {
+            display: none;
+          }
+          
+          .btn-action-icon {
+            padding: 8px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            flex: 0 0 auto;
+            justify-content: center;
+          }
+
+          .modal-actions-right {
+            justify-content: flex-end;
+            gap: 12px;
           }
         }
 
