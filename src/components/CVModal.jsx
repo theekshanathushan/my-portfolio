@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X, Download, Printer, Mail, MapPin, Briefcase, GraduationCap, Code, Globe, Phone, FileText } from 'lucide-react';
 
 const Github = (props) => (
@@ -46,8 +46,10 @@ export default function CVModal({ isOpen, onClose }) {
         {/* Header Action Panel */}
         <div className="modal-actions-header">
           <div className="modal-actions-left">
-            <FileText size={18} className="text-glow-accent" />
-            <span className="modal-actions-title">Curriculum Vitae</span>
+            <div className="modal-actions-brand">
+              <FileText size={18} className="text-glow-accent" />
+              <span className="modal-actions-title">Curriculum Vitae</span>
+            </div>
             
             <div className="cv-view-toggle glass-card">
               <button 
@@ -332,6 +334,11 @@ export default function CVModal({ isOpen, onClose }) {
           font-weight: 600;
           color: var(--text-white);
           margin-left: 8px;
+        }
+
+        .modal-actions-brand {
+          display: flex;
+          align-items: center;
         }
 
         .modal-actions-left {
@@ -658,13 +665,106 @@ export default function CVModal({ isOpen, onClose }) {
           margin-left: 20px;
         }
 
-        @media (max-width: 576px) {
-          .cv-view-toggle {
-            margin-left: 10px;
+        @media (max-width: 640px) {
+          .cv-modal-overlay {
+            padding: 8px;
           }
+          
+          .cv-modal-card {
+            max-height: 96vh;
+            border-radius: 12px;
+          }
+
+          .modal-actions-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding: 12px 16px;
+            position: relative;
+          }
+
+          .modal-actions-left {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            width: 100%;
+          }
+
+          .modal-actions-brand {
+            margin-bottom: 2px;
+          }
+
+          .cv-view-toggle {
+            margin-left: 0;
+            width: 100%;
+            display: flex;
+          }
+
           .toggle-tab {
-            padding: 4px 8px !important;
-            font-size: 9px !important;
+            flex: 1;
+            text-align: center;
+            padding: 6px 10px;
+          }
+
+          .modal-actions-right {
+            width: 100%;
+            justify-content: stretch;
+            gap: 8px;
+          }
+
+          .btn-action-icon {
+            flex: 1;
+            justify-content: center;
+            padding: 8px 10px;
+            font-size: 11px;
+          }
+
+          .btn-action-close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            margin-left: 0;
+            padding: 6px;
+          }
+
+          .cv-modal-content {
+            padding: 20px;
+          }
+
+          .cv-contact-item {
+            word-break: break-all;
+            overflow-wrap: break-word;
+          }
+
+          .cv-contact-item a {
+            word-break: break-all;
+            overflow-wrap: break-word;
+          }
+
+          .cv-exp-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .btn-action-icon span {
+            display: none;
+          }
+          
+          .btn-action-icon {
+            padding: 8px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            flex: 0 0 auto;
+            justify-content: center;
+          }
+
+          .modal-actions-right {
+            justify-content: flex-end;
+            gap: 12px;
           }
         }
 
