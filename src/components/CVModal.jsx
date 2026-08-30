@@ -37,7 +37,7 @@ export default function CVModal({ isOpen, onClose }) {
     window.print();
   };
 
-  const cvPath = `${import.meta.env.BASE_URL}cv.pdf`;
+  const cvPath = `${import.meta.env.BASE_URL}Theekshana_Thushan_CV.png`;
 
   return (
     <div className="cv-modal-overlay" onClick={onClose}>
@@ -59,10 +59,10 @@ export default function CVModal({ isOpen, onClose }) {
                 Interactive
               </button>
               <button 
-                className={`toggle-tab ${activeView === 'pdf' ? 'active' : ''}`}
-                onClick={() => setActiveView('pdf')}
+                className={`toggle-tab ${activeView === 'image' ? 'active' : ''}`}
+                onClick={() => setActiveView('image')}
               >
-                Official PDF
+                Original View
               </button>
             </div>
           </div>
@@ -73,9 +73,9 @@ export default function CVModal({ isOpen, onClose }) {
                 <span>Print / Save</span>
               </button>
             )}
-            <a href={cvPath} download="Theekshana_Thushan_CV.pdf" className="btn-action-icon btn-action-primary" title="Download PDF">
+            <a href={cvPath} download="Theekshana_Thushan_CV.png" className="btn-action-icon btn-action-primary" title="Download CV">
               <Download size={16} />
-              <span>Download PDF</span>
+              <span>Download CV</span>
             </a>
             <button className="btn-action-close" onClick={onClose} title="Close Modal">
               <X size={20} />
@@ -264,22 +264,12 @@ export default function CVModal({ isOpen, onClose }) {
           </div>
         </div>
         ) : (
-          <div className="cv-pdf-viewer">
-            <object 
-              data={cvPath} 
-              type="application/pdf" 
-              width="100%" 
-              height="100%"
-              className="cv-pdf-object"
-            >
-              <iframe 
-                src={`${cvPath}#toolbar=0`}
-                title="Theekshana Thushan CV PDF" 
-                width="100%" 
-                height="100%"
-                style={{ border: 'none' }}
-              />
-            </object>
+          <div className="cv-pdf-viewer" style={{ overflowY: 'auto', backgroundColor: '#fff', padding: '20px', display: 'flex', justifyContent: 'center' }}>
+            <img 
+              src={cvPath} 
+              alt="Theekshana Thushan CV" 
+              style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+            />
           </div>
         )}
 
