@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { X, Download, Printer, Mail, MapPin, Briefcase, GraduationCap, Code, Globe, Phone, FileText } from 'lucide-react';
+import { X, Download, Printer, Mail, MapPin, Briefcase, GraduationCap, Code, Globe, Phone, FileText, Calendar } from 'lucide-react';
 
 const Github = (props) => (
   <svg viewBox="0 0 24 24" width={props.size || 16} height={props.size || 16} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -91,7 +91,7 @@ export default function CVModal({ isOpen, onClose }) {
           <div className="cv-header">
             <div className="cv-header-text">
               <h1 className="cv-name">Theekshana Thushan</h1>
-              <p className="cv-title-sub">Undergraduate Student</p>
+              <p className="cv-title-sub">Computer Science Student</p>
             </div>
             
             <div className="cv-contact-grid">
@@ -114,6 +114,10 @@ export default function CVModal({ isOpen, onClose }) {
               <div className="cv-contact-item">
                 <Linkedin size={14} className="cv-icon" />
                 <a href="https://linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer">linkedin.com/in/theekshana-thushan-57b866328</a>
+              </div>
+              <div className="cv-contact-item">
+                <Calendar size={14} className="cv-icon" />
+                <span>2004.03.12</span>
               </div>
             </div>
           </div>
@@ -187,31 +191,49 @@ export default function CVModal({ isOpen, onClose }) {
             {/* Right Column: Experience & Technical Skills */}
             <div className="cv-body-right">
               
-              {/* Experience */}
+              {/* Projects */}
               <div className="cv-section">
                 <h3 className="cv-section-title">
-                  <Briefcase size={16} className="cv-section-icon" /> Work Experience
+                  <Briefcase size={16} className="cv-section-icon" /> Projects
                 </h3>
-                
+
                 <div className="cv-exp-item">
                   <div className="cv-exp-header">
-                    <h4 className="cv-item-title">Teckzuno: E-Business Store Platform</h4>
-                    <span className="cv-item-date">2026 - NOW</span>
+                    <h4 className="cv-item-title">TalentAI: AI-Powered Recruitment Platform</h4>
+                    <span className="cv-item-date">2026 - August</span>
                   </div>
                   <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
-                    Tech Stack: Java 17, Spring Boot, Spring Security (JWT), MySQL, WebSockets, Google OAuth2, Vanilla JavaScript
+                    Tech Stack: ASP.NET Core, Angular, TypeScript, MySQL, Entity Framework Core, JWT, Gemini API, Twilio, MailKit
                   </p>
                   <ul className="cv-exp-bullets">
-                    <li>Built a responsive, full-stack e-commerce application featuring secure JWT-based authentication and Google OAuth2 integration for streamlined user access.</li>
-                    <li>Developed a dynamic product catalog with a real-time "in-stock" search autocomplete. Engineered a shopping cart and checkout system that automatically routes order confirmations and details through WhatsApp.</li>
-                    <li>Created a user order tracking interface equipped with printable HTML invoice generation. Implemented an interactive customer support chat widget, a dynamic dark/light theme toggle, and a dedicated Admin dashboard for managing inventory and sales analytics.</li>
+                    <li>Developed a full-stack AI-powered recruitment platform connecting candidates, recruiters, hiring managers, and admins.</li>
+                    <li>Implemented JWT authentication and role-based access control with Candidate, Recruiter, Hiring Manager, and Admin roles.</li>
+                    <li>Built modules for job postings, applications, candidate profiles, AI-assisted screening/matching, and interview scheduling.</li>
+                    <li>Integrated Google Gemini AI for intelligent recruitment assistance and MailKit/Twilio for automated email and SMS notifications. Developed a background service for automated interview reminders and notification tracking.</li>
                   </ul>
                 </div>
 
                 <div className="cv-exp-item">
                   <div className="cv-exp-header">
+                    <h4 className="cv-item-title">MoodMirror: Full Reflection App</h4>
+                    <span className="cv-item-date">2026 - June</span>
+                  </div>
+                  <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
+                    Tech Stack: Recharts, Web Notification API, Row-Level Security (RLS), Framer Motion, TypeScript
+                  </p>
+                  <ul className="cv-exp-bullets">
+                    <li>Spearheaded the expansion of MoodMirror into a comprehensive mental health platform by architecting features for journaling, habit tracking, and guided coping exercises.</li>
+                    <li>Developed an interactive analytics dashboard using Recharts to visualize long-term mood trends, emotion distribution, and user streaks.</li>
+                    <li>Engineered client-side push notifications via the Web Notification API to drive user engagement and daily reflection habits without backend overhead.</li>
+                    <li>Designed secure database schemas with Row-Level Security (RLS) to support contextual journaling, tagging, and customizable reminder configurations.</li>
+                    <li>Built interactive UI components for guided wellness exercises (e.g., box breathing, grounding) utilizing Framer Motion for smooth, performant animations. Managed application state and routing logic via modular TypeScript functions and queries.</li>
+                  </ul>
+                </div>
+                
+                <div className="cv-exp-item">
+                  <div className="cv-exp-header">
                     <h4 className="cv-item-title">CareConnect: Disaster Relief Support System</h4>
-                    <span className="cv-item-date">2025 - 2025</span>
+                    <span className="cv-item-date">2026 - February</span>
                   </div>
                   <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
                     Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js
@@ -226,7 +248,7 @@ export default function CVModal({ isOpen, onClose }) {
                 <div className="cv-exp-item">
                   <div className="cv-exp-header">
                     <h4 className="cv-item-title">PharmaCare: Local Pharmacy Stock & Delivery System</h4>
-                    <span className="cv-item-date">2024 - 2025</span>
+                    <span className="cv-item-date">2025 - September</span>
                   </div>
                   <p className="cv-item-subtitle" style={{ fontStyle: 'italic', fontSize: '12px' }}>
                     Tech Stack: Java 21, Spring Boot, Spring Security (JWT), MySQL, WebSockets
@@ -247,6 +269,9 @@ export default function CVModal({ isOpen, onClose }) {
                 <div className="cv-skills-grid">
                   <div className="cv-skill-tag">Java</div>
                   <div className="cv-skill-tag">Spring Boot</div>
+                  <div className="cv-skill-tag">ASP.NET Core</div>
+                  <div className="cv-skill-tag">Angular</div>
+                  <div className="cv-skill-tag">TypeScript</div>
                   <div className="cv-skill-tag">Spring Security (JWT)</div>
                   <div className="cv-skill-tag">React</div>
                   <div className="cv-skill-tag">JavaScript</div>
@@ -401,6 +426,7 @@ export default function CVModal({ isOpen, onClose }) {
           padding: 40px;
           overflow-y: auto;
           flex-grow: 1;
+          min-height: 0;
           background: radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.03), transparent 60%);
           text-align: left;
         }
