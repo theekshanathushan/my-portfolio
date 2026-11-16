@@ -1,8 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, X, Laptop, Smartphone, Eye, AudioLines, ShoppingCart, Search, GitFork, Star, Folder, AlertCircle } from 'lucide-react';
+import { 
+  ExternalLink, 
+  X, 
+  Search, 
+  Star, 
+  GitFork, 
+  Folder, 
+  AlertCircle, 
+  CheckCircle2, 
+  ArrowRight, 
+  Sparkles, 
+  Smartphone, 
+  Monitor, 
+  Layers, 
+  Globe, 
+  ChevronRight,
+  Shield,
+  Target,
+  UserCheck,
+  Cpu,
+  Info
+} from 'lucide-react';
 
 const Github = (props) => (
-  <svg viewBox="0 0 24 24" width={props.size || 24} height={props.size || 24} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg viewBox="0 0 24 24" width={props.size || 20} height={props.size || 20} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
     <path d="M9 18c-4.51 2-5-2-7-2" />
   </svg>
@@ -18,15 +39,158 @@ const LANGUAGE_COLORS = {
   "C++": "#f34b7d",
   C: "#555555",
   "C#": "#178600",
-  Ruby: "#701516",
-  Go: "#00ADD8",
-  PHP: "#4F5D95",
-  Swift: "#F05138",
+  Dart: "#00b4ab",
   Kotlin: "#A97BFF",
-  Rust: "#dea584",
   Shell: "#89e051"
 };
 
+// 4 Primary Case Studies ordered strictly by importance
+const CASE_STUDIES = [
+  {
+    id: 'talentai',
+    rank: 1,
+    title: 'TalentAI',
+    subtitle: 'AI-Powered Recruitment & Screening Platform',
+    summary: 'Full-stack enterprise hiring ecosystem pairing Google Gemini AI candidate screening with automated scheduling and notification pipelines.',
+    problem: 'Traditional recruiting suffers from manual resume backlogs, inconsistent evaluation criteria across hiring managers, and fragmented communication channels leading to candidate drop-off.',
+    whatIBuilt: 'Architected and built a multi-portal recruitment platform with role-based workflows for Candidates, Recruiters, Hiring Managers, and Admins. Developed an automated resume-to-job matching pipeline powered by Google Gemini AI, integrated calendar-based interview scheduling, and engineered background services for automated SMS and email notifications.',
+    role: 'Full-Stack Architect & Lead Developer (Backend API, Frontend SPA, AI Pipeline)',
+    techStack: ['ASP.NET Core', 'Angular', 'TypeScript', 'MySQL', 'Entity Framework Core', 'JWT', 'Gemini API', 'Twilio', 'MailKit'],
+    achievements: [
+      'Implemented role-based JWT authentication and authorization covering 4 distinct user roles with strict API endpoint permission guards.',
+      'Integrated Google Gemini AI for automated candidate screening and qualification matching against job requisitions, reducing initial resume review overhead [add measurable result].',
+      'Engineered an automated background notification worker using MailKit and Twilio to dispatch interview reminders, improving candidate attendance rate by [add measurable result].'
+    ],
+    mockupType: 'browser',
+    mockupUrl: 'https://talentai.preview/recruiter/screening',
+    imagePlaceholder: '[screenshot needed: TalentAI candidate evaluation & AI match dashboard]',
+    links: {
+      demo: '#',
+      demoLabel: 'Demo Link [add live demo URL]',
+      github: 'https://github.com/theekshanathushan/TalentAI',
+      githubLabel: 'GitHub Repo'
+    },
+    badge: 'Flagship Platform'
+  },
+  {
+    id: 'agriai',
+    rank: 2,
+    title: 'AgriAI',
+    subtitle: 'Smart Agriculture & Native-Language Farming Agent',
+    summary: 'Cross-platform mobile farming assistant empowering smallholders with AI leaf disease diagnosis, a native-language conversational agent, weather alerts, and crop market pricing.',
+    problem: 'Smallholder and regional farmers suffer severe crop yield losses due to delayed disease identification, linguistic barriers in existing digital agtech solutions, and volatile marketplace pricing.',
+    whatIBuilt: 'Designed and developed a cross-platform Flutter application featuring an AI crop health scanner for instant disease diagnosis, an interactive advisory agent supporting native-language voice and text queries (Sinhala & English), localized weather alert triggers, and an agricultural market price aggregation board.',
+    role: 'Mobile Application Engineer & AI Integration Lead',
+    techStack: ['Flutter', 'Dart', 'Gemini API', 'AI Vision', 'REST APIs', 'Weather APIs'],
+    achievements: [
+      'Integrated an on-device/cloud vision pipeline to analyze plant leaf imagery and deliver instant disease diagnostics with treatment guidelines [add measurable result].',
+      'Built a localized conversational advisory agent fluent in local agricultural terminology and native languages to make agtech guidance accessible to non-technical farmers.',
+      'Implemented real-time market price aggregation and predictive weather alert feeds, helping farmers optimize harvest and sales timing by [add measurable result].'
+    ],
+    mockupType: 'phone',
+    mockupUrl: 'agriai://dashboard/scanner',
+    imagePlaceholder: '[screenshot needed: AgriAI leaf disease scanner & native advisory assistant]',
+    links: {
+      demo: '#',
+      demoLabel: 'Demo Link [add APK / demo URL]',
+      github: 'https://github.com/theekshanathushan/AgriAI',
+      githubLabel: 'GitHub Repo'
+    },
+    badge: 'Mobile & AI Vision'
+  },
+  {
+    id: 'novaexplorer',
+    rank: 3,
+    title: 'NovaExplorer',
+    subtitle: 'NASA Educational Spacecraft & Mission Explorer',
+    summary: 'Interactive NASA educational web application visualizing deep-space missions, interplanetary trajectories, and telemetry archives.',
+    problem: 'Rich astronomical datasets and historical spacecraft mission records are scattered across fragmented legacy portals, making them inaccessible and unengaging for students and space enthusiasts.',
+    whatIBuilt: 'Developed a high-performance web experience that queries NASA Open APIs to render interactive timelines of historical and active space missions, high-resolution celestial photography, and planetary telemetry explorers.',
+    role: 'Frontend Engineer & Interface Designer',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'NASA Open APIs', 'Vercel'],
+    achievements: [
+      'Successfully deployed to production at novaexplorer.vercel.app, achieving [add measurable result] Lighthouse performance rating on desktop.',
+      'Integrated NASA Open APIs to curate and cache real-time mission telemetry, Mars rover photography, and astronomical catalog archives.',
+      'Engineered responsive interactive timelines and orbital mission exploration modules, increasing average user session engagement to [add measurable result].'
+    ],
+    mockupType: 'browser',
+    mockupUrl: 'https://novaexplorer.vercel.app',
+    imagePlaceholder: '[screenshot needed: NovaExplorer mission visualization & NASA telemetry explorer]',
+    links: {
+      demo: 'https://novaexplorer.vercel.app',
+      demoLabel: 'Live at novaexplorer.vercel.app',
+      github: 'https://github.com/theekshanathushan/NovaExplorer',
+      githubLabel: 'GitHub Repo'
+    },
+    badge: 'Live on Vercel'
+  },
+  {
+    id: 'ignitx',
+    rank: 4,
+    title: 'IgnitX by Hutch Hackathon: Track A',
+    subtitle: 'Root-Cause AI Engine for Self-Care Platforms',
+    summary: 'Intelligent root-cause diagnosis engine built for Hutch IgnitX to predict user friction, analyze distress signals, and recommend proactive self-care interventions.',
+    problem: 'Self-care applications often fail to retain users because they log complaints after churn has already happened, treating surface symptoms rather than diagnosing underlying friction drivers.',
+    whatIBuilt: 'Engineered an AI-driven root-cause analytical engine for Track A that ingests customer interaction logs, patterns user mood/behavioral signals, identifies root drop-off drivers, and prescribes targeted self-care remediation actions.',
+    role: 'Hackathon Competitor & Backend AI Engineer',
+    techStack: ['Python', 'REST APIs', 'Predictive Analytics', 'AI / LLM Engine', 'Telemetry Processing'],
+    achievements: [
+      'Formulated an end-to-end diagnostic pipeline during the hackathon sprint to isolate root causes behind user self-care drop-offs with [add measurable result] precision.',
+      'Designed automated recommendation heuristic workflows delivering tailored intervention plans and habit recovery paths.',
+      'Pitched and demonstrated the live proof-of-concept prototype to the Hutch industry judging panel, ranking among [add measurable result].'
+    ],
+    mockupType: 'browser',
+    mockupUrl: 'https://ignitx-selfcare-ai.demo',
+    imagePlaceholder: '[screenshot needed: IgnitX Track A root-cause AI dashboard & diagnostic telemetry]',
+    links: {
+      demo: '#',
+      demoLabel: 'Demo Link [add prototype URL]',
+      github: 'https://github.com/theekshanathushan/IgnitX-TrackA',
+      githubLabel: 'GitHub Repo'
+    },
+    badge: 'Hackathon Track A'
+  }
+];
+
+// Secondary Verified Projects
+const MORE_PROJECTS = [
+  {
+    id: 'careconnect',
+    title: 'CareConnect Application',
+    category: 'Healthcare & Disaster Relief',
+    summary: 'Crisis coordination and medical consulting system connecting displaced individuals, donors, and relief teams with live geographic operations mapping.',
+    role: 'Full-Stack Developer (Spring Boot, Java 17, MySQL, WebSockets, Leaflet.js)',
+    techStack: ['Spring Boot', 'Java 17', 'MySQL', 'WebSockets', 'JavaScript', 'Leaflet.js'],
+    achievements: [
+      'Built a crisis coordination platform connecting displaced persons, donors, and government relief officials.',
+      'Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active supply donors.',
+      'Developed real-time chat functionality, donation processing, and a centralized resource allocation dashboard.'
+    ],
+    links: {
+      demo: 'https://github.com/theekshanathushan/CareConnect-application',
+      github: 'https://github.com/theekshanathushan/CareConnect-application'
+    }
+  },
+  {
+    id: 'moodmirror',
+    title: 'MoodMirror Platform',
+    category: 'Mental Wellness & Reflection',
+    summary: 'Comprehensive mental health web application featuring daily mood reflection, interactive trend analytics, and guided coping workflows.',
+    role: 'Frontend Architect (React, TypeScript, Recharts, Framer Motion, Web Notifications)',
+    techStack: ['React', 'TypeScript', 'Recharts', 'Web Notification API', 'RLS', 'Framer Motion'],
+    achievements: [
+      'Architected interactive wellness modules for journaling, habit tracking, and guided coping exercises (e.g., box breathing).',
+      'Developed an analytics dashboard using Recharts to visualize long-term mood patterns, emotion distribution, and habit streaks.',
+      'Engineered client-side push reminders via Web Notification API to foster consistent daily reflection habits without backend overhead.'
+    ],
+    links: {
+      demo: 'https://github.com/theekshanathushan/Moodmirror',
+      github: 'https://github.com/theekshanathushan/Moodmirror'
+    }
+  }
+];
+
+// Fallback Repositories (non-forks only)
 const FALLBACK_REPOS = [
   {
     id: 1263633291,
@@ -36,6 +200,7 @@ const FALLBACK_REPOS = [
     language: "HTML",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-06-09T08:11:58Z"
   },
   {
@@ -46,6 +211,7 @@ const FALLBACK_REPOS = [
     language: "TypeScript",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-06-14T06:17:52Z"
   },
   {
@@ -56,6 +222,7 @@ const FALLBACK_REPOS = [
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-06-15T15:16:01Z"
   },
   {
@@ -66,6 +233,7 @@ const FALLBACK_REPOS = [
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-06-03T08:21:00Z"
   },
   {
@@ -76,6 +244,7 @@ const FALLBACK_REPOS = [
     language: "Kotlin",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-05-16T17:03:05Z"
   },
   {
@@ -86,17 +255,8 @@ const FALLBACK_REPOS = [
     language: "CSS",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2025-10-11T09:39:05Z"
-  },
-  {
-    id: 1074531327,
-    name: "Final-assignment-web-course",
-    description: "This is my final assignment in the Web Design for Beginners course.",
-    html_url: "https://github.com/theekshanathushan/Final-assignment-web-course",
-    language: "CSS",
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: "2026-05-25T14:44:48Z"
   },
   {
     id: 1240656305,
@@ -106,165 +266,66 @@ const FALLBACK_REPOS = [
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
+    fork: false,
     updated_at: "2026-05-16T12:29:49Z"
   }
 ];
 
-const PROJECTS_DATA = [
-  {
-    id: 1,
-    title: "CareConnect Application",
-    category: "web",
-    tags: ["Spring Boot", "Java", "HTML5", "CSS3", "JavaScript"],
-    description: "A full-stack medical consulting and care management web platform.",
-    detailedDesc: "CareConnect is a robust healthcare management system designed to coordinate care. It couples a secure Spring Boot MVC backend engine with custom HTML/CSS responsive user screens, enabling medical history tracking and service coordination.",
-    features: ["Spring Boot MVC backend architecture", "Custom semantic HTML/CSS styling structures", "Secure session handling and record storage", "Database persistence for patient data integration"],
-    visualIcon: <Laptop size={40} />,
-    color: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
-    demoLink: "https://github.com/theekshanathushan/CareConnect-application",
-    codeLink: "https://github.com/theekshanathushan/CareConnect-application"
-  },
-  {
-    id: 2,
-    title: "Moodmirror Platform",
-    category: "web",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    description: "An interactive, mood-reflective application designed to gauge and mirror emotions.",
-    detailedDesc: "Moodmirror is a modern, responsive web application built with TypeScript and React. It utilizes interactive visual components to help users reflect on, gauge, and visualize their daily emotional trends.",
-    features: ["TypeScript type-safe system architecture", "Interactive mood selection dashboard interface", "Responsive Tailwind CSS layouts and structures", "Vite ultra-fast hot module replacement dev environment"],
-    visualIcon: <Eye size={40} />,
-    color: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-    demoLink: "https://github.com/theekshanathushan/Moodmirror",
-    codeLink: "https://github.com/theekshanathushan/Moodmirror"
-  },
-  {
-    id: 3,
-    title: "GitHub Profile README Generator",
-    category: "creative",
-    tags: ["Markdown", "HTML", "Creative Tools", "Documentation"],
-    description: "A tool to quickly build and customize a high-impact GitHub profile README.",
-    detailedDesc: "Enhance your GitHub profile visibility with this personalized README generator. It provides a simple, structured form interface to output professional markdown cards, widgets, social badges, and stats templates instantly.",
-    features: ["High-impact visual profile designs and components", "Instant markdown template copy-to-clipboard integration", "Integration helpers for custom badges and developer stats", "User-friendly form inputs with live markdown formatting"],
-    visualIcon: <Folder size={40} />,
-    color: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-    demoLink: "https://github.com/theekshanathushan/profile-readme-generator",
-    codeLink: "https://github.com/theekshanathushan/profile-readme-generator"
-  },
-  {
-    id: 4,
-    title: "Creative Developer Portfolio",
-    category: "web",
-    tags: ["React", "Vite", "Glassmorphism", "Lucide Icons"],
-    description: "A high-fidelity glassmorphic developer portfolio showcasing projects and an interactive CV.",
-    detailedDesc: "This website itself! Built with React, Vite, and custom CSS. It features custom theme accents, background grid overlay effects, custom follow cursor particles, and a print-optimized interactive CV modal.",
-    features: ["Dynamic theme accent colors selection utility", "Print-optimized dual-view CV modal integration", "Glassmorphism card UI layouts and layouts", "Interactive canvas particle physics background framework"],
-    visualIcon: <Laptop size={40} />,
-    color: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-    demoLink: "https://theekshanathushan.github.io/my-portfolio/",
-    codeLink: "https://github.com/theekshanathushan/my-portfolio"
-  },
-  {
-    id: 5,
-    title: "Beacon Mobile Utility",
-    category: "mobile",
-    tags: ["Android", "BLE Proximity", "Kotlin/Java", "Mobile Services"],
-    description: "A proximity scanning mobile app that detects and interacts with BLE beacons.",
-    detailedDesc: "Beacon App is a lightweight native Android service environment engineered to interface with Bluetooth Low Energy (BLE) transmitters. It scans proximity beacons, processes signal indicators (RSSI), and handles notifications.",
-    features: ["Bluetooth Low Energy signal scanning", "Real-time proximity and distance estimations", "Custom action handlers for device event triggers", "Optimized background location performance"],
-    visualIcon: <Smartphone size={40} />,
-    color: "linear-gradient(135deg, #ff007f 0%, #7f00ff 100%)",
-    demoLink: "https://github.com/theekshanathushan/Beacon_App",
-    codeLink: "https://github.com/theekshanathushan/Beacon_App"
-  },
-  {
-    id: 6,
-    title: "Business Showcase Web Platform",
-    category: "web",
-    tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-    description: "A professional service presentation website featuring custom interactive components.",
-    detailedDesc: "This is a premium, high-fidelity landing page system built from the ground up using clean CSS structure and custom JavaScript interactions. It serves to showcase corporate services, improve online conversion rates, and run smoothly across all modern screen resolutions.",
-    features: ["Fully responsive layouts and responsive grid maps", "Clean typography hierarchy and structural grids", "Interactive CSS glassmorphism cards and visual headers", "Vanilla JS animations and navigation helpers"],
-    visualIcon: <Laptop size={40} />,
-    color: "linear-gradient(135deg, #ffb703 0%, #fb8500 100%)",
-    demoLink: "https://github.com/theekshanathushan/Business-web-page",
-    codeLink: "https://github.com/theekshanathushan/Business-web-page"
-  },
-  {
-    id: 7,
-    title: "Web Course Final Capstone",
-    category: "creative",
-    tags: ["Web Design", "UI/UX Layout", "HTML5", "CSS3 Canvas"],
-    description: "A creative design capstone showcasing semantic front-end fundamentals.",
-    detailedDesc: "Representing the cumulative final design project for the Web Design for Beginners course, this project demonstrates clean semantic document layouts, interactive grids, fluid design structures, and creative styling components.",
-    features: ["Semantic HTML5 standard design frameworks", "Pixel-perfect CSS styling templates", "Interactive media query adaptions for modern viewing", "Intuitive user experience focus and navigation grids"],
-    visualIcon: <AudioLines size={40} />,
-    color: "linear-gradient(135deg, #b5179e 0%, #7209b7 100%)",
-    demoLink: "https://github.com/theekshanathushan/Final-assignment-web-course",
-    codeLink: "https://github.com/theekshanathushan/Final-assignment-web-course"
-  },
-  {
-    id: 8,
-    title: "RESTful API Test Harness",
-    category: "web",
-    tags: ["Node.js", "Express", "REST APIs", "JavaScript"],
-    description: "A clean API endpoint engine to prototype and run testing scripts.",
-    detailedDesc: "Test_API is a modular backend utility designed to test route handling, middleware integration, error management, and standard JSON data responses during web development.",
-    features: ["Modular Express route architectures and layouts", "Structured JSON mock response definitions", "CORS policy handling configurations", "Rapid API testing templates and utilities"],
-    visualIcon: <Laptop size={40} />,
-    color: "linear-gradient(135deg, #6b7280 0%, #4b5563 100%)",
-    demoLink: "https://github.com/theekshanathushan/Test_API",
-    codeLink: "https://github.com/theekshanathushan/Test_API"
-  }
-];
-
 export default function Projects() {
-  const [projectType, setProjectType] = useState('featured'); // 'featured' | 'github'
-  const [filter, setFilter] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeTab, setActiveTab] = useState('featured'); // 'featured' | 'github'
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
 
-  // GitHub integration state
+  // GitHub state
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('updated');
+  const [sortBy, setSortBy] = useState('updated'); // 'updated' | 'stars'
+
+  // Disable body scroll when modal is open
+  useEffect(() => {
+    if (selectedCaseStudy) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedCaseStudy]);
 
   const fetchGitHubRepos = async () => {
     setIsLoading(true);
     setIsOfflineMode(false);
     try {
       const res = await fetch('https://api.github.com/users/theekshanathushan/repos?sort=updated&per_page=100');
-      if (!res.ok) {
-        throw new Error('Failed to fetch repositories');
-      }
+      if (!res.ok) throw new Error('Failed to fetch repositories');
       const data = await res.json();
-      // Filter out own profile readme (theekshanathushan)
-      const cleanData = data.filter(repo => repo.name.toLowerCase() !== 'theekshanathushan');
+      
+      // Filter out own profile readme AND hide forks
+      const cleanData = data.filter(repo => 
+        repo.name.toLowerCase() !== 'theekshanathushan' && !repo.fork
+      );
       setRepos(cleanData);
     } catch (err) {
       console.error('Error fetching repositories: ', err);
-      // Fallback to static cache
-      setRepos(FALLBACK_REPOS);
+      setRepos(FALLBACK_REPOS.filter(r => !r.fork));
       setIsOfflineMode(true);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Trigger fetch once when switching to GitHub tab
   useEffect(() => {
-    if (projectType === 'github' && repos.length === 0) {
+    if (activeTab === 'github' && repos.length === 0) {
       fetchGitHubRepos();
     }
-  }, [projectType]);
+  }, [activeTab]);
 
-  const filteredProjects = filter === 'all' 
-    ? PROJECTS_DATA 
-    : PROJECTS_DATA.filter(p => p.category === filter);
-
-  // GitHub filter and sort logic
+  // GitHub filter and sort
   const filteredRepos = repos
     .filter(repo => {
+      if (repo.fork) return false; // Ensure forks are strictly hidden
       const term = searchQuery.toLowerCase();
       const nameMatch = repo.name?.toLowerCase().includes(term) || false;
       const descMatch = repo.description?.toLowerCase().includes(term) || false;
@@ -274,105 +335,255 @@ export default function Projects() {
     .sort((a, b) => {
       if (sortBy === 'stars') {
         return b.stargazers_count - a.stargazers_count;
-      } else if (sortBy === 'name') {
-        return a.name.localeCompare(b.name);
-      } else {
-        // default: updated
-        return new Date(b.updated_at) - new Date(a.updated_at);
       }
+      return new Date(b.updated_at) - new Date(a.updated_at);
     });
 
+  // Render mockups for cards & modal
+  const renderMockup = (item, isModal = false) => {
+    if (item.mockupType === 'phone') {
+      return (
+        <div className={`phone-mockup-frame ${isModal ? 'modal-phone' : ''}`}>
+          <div className="phone-notch">
+            <div className="phone-speaker"></div>
+            <div className="phone-camera"></div>
+          </div>
+          <div className="phone-screen">
+            <div className="phone-status-bar">
+              <span className="status-time">9:41</span>
+              <div className="status-icons">
+                <span className="status-dot"></span>
+                <span className="status-dot"></span>
+              </div>
+            </div>
+            <div className="mockup-content-slot">
+              <Smartphone size={isModal ? 32 : 24} className="mockup-slot-icon text-glow-accent" />
+              <span className="placeholder-badge">📱 Mockup Preview</span>
+              <p className="placeholder-text">{item.imagePlaceholder}</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
+        <div className="browser-header">
+          <div className="browser-dots">
+            <span className="dot dot-red"></span>
+            <span className="dot dot-yellow"></span>
+            <span className="dot dot-green"></span>
+          </div>
+          <div className="browser-url-bar">
+            <Globe size={11} className="url-icon" />
+            <span className="url-text">{item.mockupUrl}</span>
+          </div>
+        </div>
+        <div className="browser-viewport">
+          <div className="mockup-content-slot">
+            <Monitor size={isModal ? 36 : 26} className="mockup-slot-icon text-glow-accent" />
+            <span className="placeholder-badge">💻 Case Study View</span>
+            <p className="placeholder-text">{item.imagePlaceholder}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section projects-section">
       <div className="container">
         
+        {/* Section Header */}
         <div className="section-title-wrap">
-          <span className="section-subtitle">My Works</span>
-          <h2 className="section-title">
-            {projectType === 'featured' ? 'Featured Projects' : 'GitHub Repositories'}
-          </h2>
+          <span className="section-subtitle">Engineering Portfolio</span>
+          <h2 className="section-title">Case Studies & Projects</h2>
+          <p className="projects-lead-text">
+            Deep-dive case studies showcasing full-stack systems, mobile AI solutions, and open-source contributions.
+          </p>
         </div>
 
-        {/* Top Toggle Switch */}
+        {/* Tab Toggle Switch */}
         <div className="project-type-toggle-container">
           <div className="project-type-toggle glass-card">
             <button 
-              className={`type-toggle-btn ${projectType === 'featured' ? 'active' : ''}`}
-              onClick={() => setProjectType('featured')}
+              className={`type-toggle-btn ${activeTab === 'featured' ? 'active' : ''}`}
+              onClick={() => setActiveTab('featured')}
             >
-              Featured Works
+              <Sparkles size={16} />
+              <span>Featured Case Studies</span>
             </button>
             <button 
-              className={`type-toggle-btn ${projectType === 'github' ? 'active' : ''}`}
-              onClick={() => setProjectType('github')}
+              className={`type-toggle-btn ${activeTab === 'github' ? 'active' : ''}`}
+              onClick={() => setActiveTab('github')}
             >
-              GitHub Repositories
+              <Folder size={16} />
+              <span>GitHub Repositories</span>
             </button>
           </div>
         </div>
 
-        {projectType === 'featured' ? (
-          <>
-            {/* Filter Navigation */}
-            <div className="project-filters">
-              {['all', 'web', 'mobile', 'creative'].map((cat) => (
-                <button
-                  key={cat}
-                  className={`filter-btn ${filter === cat ? 'active' : ''}`}
-                  onClick={() => setFilter(cat)}
+        {activeTab === 'featured' ? (
+          <div className="case-studies-container">
+            
+            {/* 4 Primary Case Studies Grid */}
+            <div className="case-studies-grid">
+              {CASE_STUDIES.map((study) => (
+                <article 
+                  key={study.id} 
+                  className="case-study-card glass-card"
+                  onClick={() => setSelectedCaseStudy(study)}
                 >
-                  {cat.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Projects Grid */}
-            <div className="projects-grid">
-              {filteredProjects.map((project) => (
-                <div 
-                  key={project.id} 
-                  className="project-card glass-card"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  {/* Creative Project Visual Banner */}
-                  <div className="project-visual-header" style={{ background: project.color }}>
-                    <div className="project-mesh-blob"></div>
-                    <div className="project-card-icon">{project.visualIcon}</div>
-                    <div className="project-hover-overlay">
-                      <div className="overlay-btn glass-card">
-                        <Eye size={20} />
-                        <span>View Details</span>
-                      </div>
+                  {/* Top Mockup Slot */}
+                  <div className="card-mockup-wrapper">
+                    {renderMockup(study)}
+                    <div className="card-rank-badge">
+                      <span>#{study.rank}</span>
                     </div>
+                    {study.badge && (
+                      <div className="card-category-badge">
+                        <span>{study.badge}</span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Card Body */}
-                  <div className="project-card-body">
-                    <div className="project-tags">
-                      {project.tags.slice(0, 3).map((t, i) => (
-                        <span key={i} className="project-tag-pill">{t}</span>
+                  {/* Card Content Area */}
+                  <div className="case-study-body">
+                    
+                    <div className="case-study-titles">
+                      <h3 className="case-study-title">{study.title}</h3>
+                      <span className="case-study-subtitle">{study.subtitle}</span>
+                    </div>
+
+                    <p className="case-study-summary">{study.summary}</p>
+
+                    {/* Problem teaser */}
+                    <div className="case-study-problem-box">
+                      <Target size={14} className="problem-icon" />
+                      <p className="problem-text">
+                        <strong>The Problem:</strong> {study.problem}
+                      </p>
+                    </div>
+
+                    {/* Tech Stack Chips */}
+                    <div className="case-study-chips">
+                      {study.techStack.map((tech) => (
+                        <span key={tech} className="tech-chip">
+                          {tech}
+                        </span>
                       ))}
                     </div>
-                    <h4 className="project-title-text">{project.title}</h4>
-                    <p className="project-desc-short">{project.description}</p>
+
+                    {/* Card Actions */}
+                    <div className="case-study-actions" onClick={(e) => e.stopPropagation()}>
+                      <button 
+                        className="btn-read-case-study"
+                        onClick={() => setSelectedCaseStudy(study)}
+                      >
+                        <span>Case Study Details</span>
+                        <ChevronRight size={15} />
+                      </button>
+
+                      <div className="case-study-external-links">
+                        {study.links.demo && study.links.demo !== '#' && (
+                          <a 
+                            href={study.links.demo} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="external-icon-link"
+                            title="Open Live Demo"
+                          >
+                            <ExternalLink size={16} />
+                          </a>
+                        )}
+                        <a 
+                          href={study.links.github} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="external-icon-link"
+                          title="Open GitHub Repository"
+                        >
+                          <Github size={16} />
+                        </a>
+                      </div>
+                    </div>
+
                   </div>
-                </div>
+                </article>
               ))}
             </div>
-          </>
+
+            {/* Secondary "More Projects" Section */}
+            <div className="more-projects-section">
+              <div className="more-projects-header">
+                <Layers size={20} className="text-glow-accent" />
+                <h3 className="more-projects-title">More Projects</h3>
+                <span className="more-projects-divider"></span>
+              </div>
+
+              <div className="more-projects-grid">
+                {MORE_PROJECTS.map((proj) => (
+                  <div key={proj.id} className="secondary-project-card glass-card">
+                    <div className="secondary-card-head">
+                      <div>
+                        <span className="secondary-cat-badge">{proj.category}</span>
+                        <h4 className="secondary-title">{proj.title}</h4>
+                      </div>
+                      <div className="secondary-links">
+                        <a 
+                          href={proj.links.github} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="secondary-icon-btn"
+                          title="View Repository"
+                        >
+                          <Github size={16} />
+                        </a>
+                      </div>
+                    </div>
+
+                    <p className="secondary-summary">{proj.summary}</p>
+
+                    <div className="secondary-role-box">
+                      <UserCheck size={13} className="role-icon" />
+                      <span>{proj.role}</span>
+                    </div>
+
+                    <div className="secondary-chips">
+                      {proj.techStack.map(t => (
+                        <span key={t} className="tech-chip-sm">{t}</span>
+                      ))}
+                    </div>
+
+                    <ul className="secondary-bullets">
+                      {proj.achievements.map((a, i) => (
+                        <li key={i}>
+                          <CheckCircle2 size={13} className="bullet-check" />
+                          <span>{a}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         ) : (
+          /* GitHub Repositories Tab */
           <div className="github-section">
-            {/* Offline/Error Notification */}
+            
+            {/* Offline Alert */}
             {isOfflineMode && (
               <div className="github-alert glass-card">
                 <div className="alert-content">
                   <AlertCircle size={18} className="alert-icon" />
                   <span className="alert-text">
-                    Showing cached repositories. Latest live sync failed (rate limit reached or offline).
+                    Displaying cached original repositories. Live sync rate-limited or offline.
                   </span>
                 </div>
                 <button onClick={fetchGitHubRepos} className="alert-retry-btn" disabled={isLoading}>
-                  {isLoading ? 'Retrying...' : 'Retry Sync'}
+                  {isLoading ? 'Retrying...' : 'Retry Live Sync'}
                 </button>
               </div>
             )}
@@ -383,7 +594,7 @@ export default function Projects() {
                 <Search size={18} className="github-search-icon" />
                 <input 
                   type="text"
-                  placeholder="Search repository names or languages..."
+                  placeholder="Filter original repositories (forks hidden)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="github-search-input"
@@ -391,20 +602,19 @@ export default function Projects() {
               </div>
 
               <div className="github-sort-wrap">
-                <span className="github-sort-label">Sort By:</span>
+                <span className="github-sort-label">Sort:</span>
                 <select 
                   value={sortBy} 
                   onChange={(e) => setSortBy(e.target.value)}
                   className="github-sort-select"
                 >
-                  <option value="updated">Recent Update</option>
+                  <option value="updated">Recent Activity</option>
                   <option value="stars">Stars Count</option>
-                  <option value="name">Repo Name</option>
                 </select>
               </div>
             </div>
 
-            {/* Loader / Empty / Grid */}
+            {/* Repos Grid */}
             {isLoading ? (
               <div className="github-repos-grid">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -412,18 +622,18 @@ export default function Projects() {
                     <div className="skeleton-title"></div>
                     <div className="skeleton-desc-line-1"></div>
                     <div className="skeleton-desc-line-2"></div>
-                    <div className="skeleton-footer">
-                      <div className="skeleton-badge"></div>
-                      <div className="skeleton-badge"></div>
-                    </div>
                   </div>
                 ))}
               </div>
             ) : filteredRepos.length === 0 ? (
               <div className="github-empty glass-card">
-                <p>No repositories found matching your criteria.</p>
-                <button className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '13px', marginTop: '12px' }} onClick={() => { setSearchQuery(''); setSortBy('updated'); }}>
-                  Reset Search
+                <p>No original repositories match your search.</p>
+                <button 
+                  className="btn btn-secondary" 
+                  style={{ padding: '8px 16px', fontSize: '13px', marginTop: '12px' }} 
+                  onClick={() => setSearchQuery('')}
+                >
+                  Reset Filter
                 </button>
               </div>
             ) : (
@@ -438,7 +648,7 @@ export default function Projects() {
                       </div>
                       
                       <p className="repo-description">
-                        {repo.description || "No description provided. Click below to view code."}
+                        {repo.description || "No description provided."}
                       </p>
 
                       <div className="repo-tags-wrap">
@@ -451,9 +661,6 @@ export default function Projects() {
                         <span className="repo-stat-badge" title="Stars">
                           <Star size={12} fill={repo.stargazers_count > 0 ? "currentColor" : "none"} /> {repo.stargazers_count}
                         </span>
-                        <span className="repo-stat-badge" title="Forks">
-                          <GitFork size={12} /> {repo.forks_count}
-                        </span>
                       </div>
 
                       <div className="repo-footer">
@@ -462,9 +669,8 @@ export default function Projects() {
                           target="_blank" 
                           rel="noreferrer" 
                           className="repo-link-btn"
-                          title="View Source Code"
                         >
-                          Code <Github size={12} />
+                          Code <Github size={13} />
                         </a>
                         {repo.homepage && (
                           <a 
@@ -472,9 +678,8 @@ export default function Projects() {
                             target="_blank" 
                             rel="noreferrer" 
                             className="repo-link-btn demo-btn"
-                            title="View Live Demo"
                           >
-                            Live <ExternalLink size={12} />
+                            Live <ExternalLink size={13} />
                           </a>
                         )}
                       </div>
@@ -486,66 +691,143 @@ export default function Projects() {
           </div>
         )}
 
-        {/* Project Details Modal */}
-        {selectedProject && (
-          <div className="project-modal-backdrop" onClick={() => setSelectedProject(null)}>
-            <div className="project-modal-container glass-card" onClick={(e) => e.stopPropagation()}>
-              
-              {/* Close Button */}
-              <button className="modal-close-btn" onClick={() => setSelectedProject(null)}>
-                <X size={20} />
-              </button>
-
-              {/* Modal Banner Header */}
-              <div className="modal-visual-header" style={{ background: selectedProject.color }}>
-                <div className="project-mesh-blob"></div>
-                <div className="modal-header-content">
-                  {selectedProject.visualIcon}
-                  <h3>{selectedProject.title}</h3>
+        {/* Premium Case Study Detail Modal */}
+        {selectedCaseStudy && (
+          <div className="case-study-modal-backdrop" onClick={() => setSelectedCaseStudy(null)}>
+            <div 
+              className="case-study-modal-container glass-card"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header Bar */}
+              <div className="modal-top-bar">
+                <div className="modal-top-brand">
+                  <span className="modal-rank-badge">Case Study #{selectedCaseStudy.rank}</span>
+                  <span className="modal-badge-category">{selectedCaseStudy.badge}</span>
                 </div>
+                <button 
+                  className="modal-close-icon-btn"
+                  onClick={() => setSelectedCaseStudy(null)}
+                  aria-label="Close Case Study"
+                >
+                  <X size={20} />
+                </button>
               </div>
 
-              {/* Modal Content */}
-              <div className="modal-body">
-                <div className="modal-info-grid">
-                  
-                  {/* Summary Column */}
-                  <div className="modal-summary-col">
-                    <h4 className="modal-subtitle">Project Overview</h4>
-                    <p className="modal-desc">{selectedProject.detailedDesc}</p>
+              {/* Modal Scrollable Content */}
+              <div className="modal-scroll-body">
+                
+                {/* Title & Summary */}
+                <div className="modal-title-section">
+                  <h2 className="modal-main-title">{selectedCaseStudy.title}</h2>
+                  <p className="modal-main-subtitle">{selectedCaseStudy.subtitle}</p>
+                  <p className="modal-one-line-summary">{selectedCaseStudy.summary}</p>
+                </div>
 
-                    <h4 className="modal-subtitle">Technologies</h4>
-                    <div className="modal-tech-list">
-                      {selectedProject.tags.map((tag, idx) => (
-                        <span key={idx} className="modal-tech-tag">{tag}</span>
-                      ))}
+                {/* Mockup Preview Slot */}
+                <div className="modal-mockup-wrapper">
+                  {renderMockup(selectedCaseStudy, true)}
+                </div>
+
+                {/* Two Column Deep Dive Info */}
+                <div className="modal-detail-columns">
+                  
+                  {/* Left Column: Problem, What I Built & Role */}
+                  <div className="modal-detail-col">
+                    
+                    <div className="detail-section-block">
+                      <div className="detail-block-title">
+                        <Target size={16} className="text-glow-accent" />
+                        <h4>The Problem</h4>
+                      </div>
+                      <p className="detail-block-p">{selectedCaseStudy.problem}</p>
                     </div>
+
+                    <div className="detail-section-block">
+                      <div className="detail-block-title">
+                        <Cpu size={16} className="text-glow-accent" />
+                        <h4>What I Built</h4>
+                      </div>
+                      <p className="detail-block-p">{selectedCaseStudy.whatIBuilt}</p>
+                    </div>
+
+                    <div className="detail-section-block role-highlight-block">
+                      <div className="detail-block-title">
+                        <UserCheck size={16} className="text-glow-accent" />
+                        <h4>My Role</h4>
+                      </div>
+                      <p className="detail-role-p">{selectedCaseStudy.role}</p>
+                    </div>
+
                   </div>
 
-                  {/* Features Column */}
-                  <div className="modal-features-col">
-                    <h4 className="modal-subtitle">Key Features</h4>
-                    <ul className="modal-features-list">
-                      {selectedProject.features.map((feat, idx) => (
-                        <li key={idx} className="modal-feature-item">
-                          <span className="bullet-glow"></span>
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Right Column: Key Achievements, Tech Stack & Links */}
+                  <div className="modal-detail-col">
+                    
+                    <div className="detail-section-block">
+                      <div className="detail-block-title">
+                        <CheckCircle2 size={16} className="text-glow-accent" />
+                        <h4>3 Key Achievements</h4>
+                      </div>
+                      <ul className="modal-achievements-list">
+                        {selectedCaseStudy.achievements.map((ach, idx) => (
+                          <li key={idx} className="achievement-item">
+                            <span className="achievement-idx">{idx + 1}</span>
+                            <span className="achievement-text">
+                              {ach.includes('[add measurable result]') ? (
+                                <>
+                                  {ach.split('[add measurable result]')[0]}
+                                  <span className="measurable-placeholder-tag">[add measurable result]</span>
+                                  {ach.split('[add measurable result]')[1]}
+                                </>
+                              ) : (
+                                ach
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                    {/* CTAs */}
-                    <div className="modal-ctas">
-                      <a href={selectedProject.demoLink} target="_blank" rel="noreferrer" className="btn btn-primary">
-                        Live Preview <ExternalLink size={16} />
-                      </a>
-                      <a href={selectedProject.codeLink} target="_blank" rel="noreferrer" className="btn btn-secondary">
-                        View Code <Github size={16} />
+                    <div className="detail-section-block">
+                      <div className="detail-block-title">
+                        <Layers size={16} className="text-glow-accent" />
+                        <h4>Technologies Used</h4>
+                      </div>
+                      <div className="modal-tech-chips">
+                        {selectedCaseStudy.techStack.map(t => (
+                          <span key={t} className="modal-tech-chip">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* External CTAs */}
+                    <div className="modal-ctas-panel">
+                      {selectedCaseStudy.links.demo && (
+                        <a 
+                          href={selectedCaseStudy.links.demo} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="btn btn-primary"
+                        >
+                          <ExternalLink size={16} />
+                          <span>{selectedCaseStudy.links.demoLabel}</span>
+                        </a>
+                      )}
+                      <a 
+                        href={selectedCaseStudy.links.github} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="btn btn-secondary"
+                      >
+                        <Github size={16} />
+                        <span>{selectedCaseStudy.links.githubLabel}</span>
                       </a>
                     </div>
+
                   </div>
 
                 </div>
+
               </div>
 
             </div>
@@ -554,639 +836,1084 @@ export default function Projects() {
 
       </div>
 
+      {/* Embedded CSS for Projects & Case Studies */}
       <style>{`
-        .project-filters {
-          display: flex;
-          justify-content: center;
-          gap: 12px;
-          margin-bottom: 40px;
-        }
-        .filter-btn {
-          background: transparent;
-          border: none;
-          color: var(--text-muted);
-          font-family: var(--font-heading);
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          padding: 8px 16px;
-          border-radius: 6px;
-          transition: all 0.3s;
-        }
-        .filter-btn:hover {
-          color: var(--text-white);
-        }
-        .filter-btn.active {
-          color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.05);
-          box-shadow: inset 0 0 1px rgba(var(--accent-rgb), 0.3);
-        }
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 30px;
-        }
-        .project-card {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          text-align: left;
-        }
-        .project-visual-header {
-          height: 180px;
+        .projects-section {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .project-mesh-blob {
-          position: absolute;
-          width: 150px;
-          height: 150px;
-          background: rgba(255,255,255,0.15);
-          filter: blur(40px);
-          border-radius: 50%;
-        }
-        .project-card-icon {
-          color: var(--text-white);
-          z-index: 1;
-          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .project-hover-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(7, 7, 11, 0.75);
-          backdrop-filter: blur(6px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        .project-card:hover .project-hover-overlay {
-          opacity: 1;
-        }
-        .project-card:hover .project-card-icon {
-          transform: scale(0.9) translateY(-10px);
-        }
-        .overlay-btn {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 18px;
-          color: var(--text-white);
-          font-family: var(--font-heading);
-          font-size: 14px;
-          font-weight: 600;
-        }
-        .project-card-body {
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          flex-grow: 1;
-        }
-        .project-tags {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-        .project-tag-pill {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          padding: 2px 8px;
-          border-radius: 4px;
-          color: var(--text-muted);
-        }
-        .project-title-text {
-          font-size: 18px;
-          font-weight: 600;
-          color: var(--text-white);
-        }
-        .project-desc-short {
-          font-size: 14px;
-          color: var(--text-muted);
-          line-height: 1.5;
         }
 
-        /* Modal Overlay */
-        .project-modal-backdrop {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 2000;
-          background: rgba(4, 4, 7, 0.7);
-          backdrop-filter: blur(8px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          animation: fade-in 0.25s ease-out;
-        }
-        .project-modal-container {
-          width: 100%;
-          max-width: 800px;
-          max-height: 90vh;
-          overflow-y: auto;
-          background: var(--bg-card);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          position: relative;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-          animation: slide-up-scale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-close-btn {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          background: rgba(0,0,0,0.4);
-          border: 1px solid rgba(255,255,255,0.1);
-          color: var(--text-white);
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 10;
-          transition: all 0.2s;
-        }
-        .modal-close-btn:hover {
-          color: var(--accent);
-          border-color: var(--accent);
-        }
-        .modal-visual-header {
-          height: 220px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          padding: 0 40px;
-          color: var(--text-white);
-        }
-        .modal-header-content {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          z-index: 1;
-        }
-        .modal-header-content h3 {
-          font-size: 26px;
-          font-weight: 700;
-          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-        @media (max-width: 576px) {
-          .modal-header-content {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-          }
-          .modal-header-content h3 {
-            font-size: 20px;
-          }
-        }
-        .modal-body {
-          padding: 40px;
-          text-align: left;
-        }
-        .modal-info-grid {
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 40px;
-        }
-        @media (max-width: 768px) {
-          .modal-info-grid {
-            grid-template-columns: 1fr;
-            gap: 28px;
-          }
-        }
-        .modal-subtitle {
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--text-white);
-          margin-bottom: 12px;
-          font-family: var(--font-heading);
-          letter-spacing: 0.05em;
-        }
-        .modal-desc {
-          font-size: 14px;
+        .projects-lead-text {
           color: var(--text-muted);
+          font-size: 15px;
+          max-width: 640px;
+          text-align: center;
+          margin-top: -12px;
           line-height: 1.6;
-          margin-bottom: 24px;
-        }
-        .modal-tech-list {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-        .modal-tech-tag {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          background: rgba(var(--accent-rgb), 0.05);
-          border: 1px solid rgba(var(--accent-rgb), 0.2);
-          color: var(--accent);
-          padding: 4px 10px;
-          border-radius: 4px;
-        }
-        .modal-features-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          margin-bottom: 28px;
-        }
-        .modal-feature-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          font-size: 14px;
-          color: var(--text-light);
-          line-height: 1.4;
-        }
-        .bullet-glow {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: var(--accent);
-          box-shadow: 0 0 6px var(--accent);
-          margin-top: 7px;
-          flex-shrink: 0;
-        }
-        .modal-ctas {
-          display: flex;
-          gap: 12px;
-        }
-        .modal-ctas a {
-          flex-grow: 1;
-          justify-content: center;
-          padding: 10px 20px;
         }
 
-        @media (max-width: 768px) {
-          .projects-grid {
-            gap: 20px;
-          }
-          .modal-visual-header {
-            height: 160px;
-            padding: 0 24px;
-          }
-          .modal-body {
-            padding: 24px;
-          }
-          .modal-info-grid {
-            gap: 24px;
-          }
-        }
-        @media (max-width: 480px) {
-          .projects-grid {
-            grid-template-columns: 1fr;
-          }
-          .modal-ctas {
-            flex-direction: column;
-          }
-        }
-
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slide-up-scale {
-          from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.96);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        /* Sliding Toggle Switch for Projects View */
+        /* --- Toggle Bar --- */
         .project-type-toggle-container {
           display: flex;
           justify-content: center;
-          margin-bottom: 40px;
+          margin: 36px 0 48px;
         }
+
         .project-type-toggle {
-          display: flex;
-          padding: 4px;
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          border-radius: 30px;
+          display: inline-flex;
+          padding: 6px;
+          border-radius: 14px;
+          gap: 6px;
         }
+
         .type-toggle-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 22px;
+          border-radius: 10px;
           background: transparent;
-          border: none;
+          border: 1px solid transparent;
           color: var(--text-muted);
           font-family: var(--font-heading);
           font-size: 14px;
           font-weight: 600;
-          padding: 10px 24px;
-          border-radius: 26px;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          cursor: none;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: pointer;
         }
+
         .type-toggle-btn:hover {
           color: var(--text-white);
         }
+
         .type-toggle-btn.active {
-          color: var(--bg-dark);
-          background: var(--gradient-accent);
-          box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
-        }
-
-        /* GitHub Repos Section */
-        .github-section {
-          animation: fade-in 0.4s ease-out;
-        }
-
-        /* Alert and notification */
-        .github-alert {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 16px 24px;
-          margin-bottom: 24px;
-          border-color: rgba(239, 68, 68, 0.2);
-          background: rgba(239, 68, 68, 0.03);
-          border-radius: 12px;
-          flex-wrap: wrap;
-          gap: 16px;
-        }
-        .alert-content {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .alert-icon {
-          color: #ef4444;
-          flex-shrink: 0;
-        }
-        .alert-text {
-          font-size: 14px;
-          color: var(--text-light);
-          text-align: left;
-        }
-        .alert-retry-btn {
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          color: var(--text-white);
-          padding: 6px 14px;
-          border-radius: 6px;
-          font-size: 12px;
-          font-weight: 600;
-          cursor: none;
-          transition: all 0.2s;
-        }
-        .alert-retry-btn:hover:not(:disabled) {
-          border-color: var(--accent);
           color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.05);
+          background: rgba(var(--accent-rgb), 0.1);
+          border-color: rgba(var(--accent-rgb), 0.3);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Search and Sort controls */
-        .github-controls {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 16px 24px;
-          gap: 20px;
-          margin-bottom: 30px;
-          flex-wrap: wrap;
-        }
-        .github-search-wrap {
-          position: relative;
-          flex-grow: 1;
-          max-width: 500px;
-          display: flex;
-          align-items: center;
-        }
-        .github-search-icon {
-          position: absolute;
-          left: 16px;
-          color: var(--text-muted);
-          pointer-events: none;
-        }
-        .github-search-input {
-          width: 100%;
-          background: rgba(0, 0, 0, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          padding: 12px 16px 12px 48px;
-          border-radius: 10px;
-          color: var(--text-white);
-          font-size: 14px;
-          outline: none;
-          transition: all 0.3s;
-        }
-        .github-search-input:focus {
-          border-color: var(--accent);
-          box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.15);
-          background: rgba(0, 0, 0, 0.4);
-        }
-        .github-sort-wrap {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .github-sort-label {
-          font-size: 13px;
-          color: var(--text-muted);
-          font-family: var(--font-heading);
-          font-weight: 600;
-        }
-        .github-sort-select {
-          background: rgba(8, 8, 14, 0.8);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: var(--text-white);
-          padding: 10px 16px;
-          border-radius: 10px;
-          font-size: 13px;
-          outline: none;
-          transition: all 0.3s;
-          cursor: none;
-        }
-        .github-sort-select:focus {
-          border-color: var(--accent);
-        }
-
-        /* Repo Cards Grid */
-        .github-repos-grid {
+        /* --- Case Studies Grid --- */
+        .case-studies-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 24px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+          margin-bottom: 60px;
         }
 
-        /* Repo Card */
-        .github-repo-card {
-          padding: 24px;
+        @media (max-width: 960px) {
+          .case-studies-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .case-study-card {
+          border-radius: 20px;
+          overflow: hidden;
           display: flex;
           flex-direction: column;
-          text-align: left;
-          height: 100%;
-          min-height: 220px;
+          border: 1px solid var(--border-glass);
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+          cursor: pointer;
         }
-        .repo-header {
+
+        .case-study-card:hover {
+          transform: translateY(-8px);
+          border-color: rgba(var(--accent-rgb), 0.4);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(var(--accent-rgb), 0.15);
+        }
+
+        /* --- Mockup Frames --- */
+        .card-mockup-wrapper {
+          position: relative;
+          background: rgba(10, 10, 18, 0.7);
+          padding: 24px 24px 16px;
+          border-bottom: 1px solid var(--border-glass);
+          overflow: hidden;
+        }
+
+        .card-rank-badge {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.15);
+          border: 1px solid rgba(var(--accent-rgb), 0.3);
+          padding: 2px 8px;
+          border-radius: 6px;
+          z-index: 2;
+        }
+
+        .card-category-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 2px 8px;
+          border-radius: 6px;
+          z-index: 2;
+        }
+
+        /* Browser Mockup */
+        .browser-mockup-frame {
+          border-radius: 12px;
+          background: rgba(7, 7, 12, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          overflow: hidden;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .browser-header {
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-bottom: 12px;
+          padding: 8px 12px;
+          background: rgba(255, 255, 255, 0.03);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .repo-folder-icon {
-          color: var(--accent);
-          flex-shrink: 0;
+
+        .browser-dots {
+          display: flex;
+          gap: 6px;
         }
-        .repo-title {
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--text-white);
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .browser-url-bar {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.4);
+          padding: 3px 8px;
+          border-radius: 6px;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-muted);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
-        .repo-description {
-          font-size: 14px;
-          color: var(--text-muted);
-          line-height: 1.5;
-          margin-bottom: 20px;
-          flex-grow: 1;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .repo-tags-wrap {
+
+        .browser-viewport {
+          min-height: 140px;
           display: flex;
-          gap: 14px;
-          margin-bottom: 20px;
-          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          background: radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb), 0.04) 0%, transparent 80%);
+        }
+
+        /* Phone Mockup */
+        .phone-mockup-frame {
+          max-width: 200px;
+          margin: 0 auto;
+          border-radius: 22px;
+          border: 2px solid rgba(255, 255, 255, 0.15);
+          background: rgba(7, 7, 12, 0.95);
+          overflow: hidden;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .phone-notch {
+          height: 14px;
+          background: rgba(255, 255, 255, 0.03);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+        }
+
+        .phone-speaker {
+          width: 32px;
+          height: 3px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+        }
+
+        .phone-camera {
+          width: 5px;
+          height: 5px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+        }
+
+        .phone-screen {
+          min-height: 150px;
+          display: flex;
+          flex-direction: column;
+          background: radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb), 0.05) 0%, transparent 80%);
+        }
+
+        .phone-status-bar {
+          display: flex;
+          justify-content: space-between;
+          padding: 4px 10px;
+          font-family: var(--font-mono);
+          font-size: 8px;
+          color: var(--text-dark);
+        }
+
+        .status-icons {
+          display: flex;
+          gap: 3px;
+        }
+
+        .status-dot {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--text-dark);
+        }
+
+        .mockup-content-slot {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          text-align: center;
+          padding: 12px;
+        }
+
+        .placeholder-badge {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.1);
+          border: 1px solid rgba(var(--accent-rgb), 0.25);
+          padding: 2px 8px;
+          border-radius: 6px;
+        }
+
+        .placeholder-text {
           font-family: var(--font-mono);
           font-size: 11px;
           color: var(--text-muted);
+          max-width: 280px;
+          margin: 0;
+          line-height: 1.4;
         }
+
+        /* --- Case Study Body --- */
+        .case-study-body {
+          padding: 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          flex: 1;
+        }
+
+        .case-study-title {
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-white);
+          margin-bottom: 2px;
+        }
+
+        .case-study-subtitle {
+          font-family: var(--font-mono);
+          font-size: 12px;
+          color: var(--accent);
+          display: block;
+        }
+
+        .case-study-summary {
+          font-size: 14px;
+          color: var(--text-light);
+          line-height: 1.55;
+        }
+
+        .case-study-problem-box {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 12px 14px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.02);
+          border-left: 3px solid rgba(var(--accent-rgb), 0.6);
+        }
+
+        .problem-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .problem-text {
+          font-size: 12.5px;
+          color: var(--text-muted);
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .problem-text strong {
+          color: var(--text-light);
+        }
+
+        .case-study-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        .tech-chip {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-muted);
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border-glass);
+          padding: 3px 8px;
+          border-radius: 6px;
+          transition: border-color 0.2s, color 0.2s;
+        }
+
+        .case-study-card:hover .tech-chip {
+          border-color: rgba(var(--accent-rgb), 0.25);
+          color: var(--text-light);
+        }
+
+        .case-study-actions {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 14px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          margin-top: auto;
+        }
+
+        .btn-read-case-study {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: transparent;
+          border: none;
+          color: var(--accent);
+          font-family: var(--font-heading);
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+          padding: 4px 0;
+          transition: transform 0.2s;
+        }
+
+        .btn-read-case-study:hover {
+          transform: translateX(4px);
+        }
+
+        .case-study-external-links {
+          display: flex;
+          gap: 10px;
+        }
+
+        .external-icon-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
+          color: var(--text-light);
+          transition: all 0.2s;
+        }
+
+        .external-icon-link:hover {
+          color: var(--accent);
+          border-color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        /* --- "More Projects" Section --- */
+        .more-projects-section {
+          margin-top: 48px;
+        }
+
+        .more-projects-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .more-projects-title {
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--text-white);
+          white-space: nowrap;
+        }
+
+        .more-projects-divider {
+          flex: 1;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.06);
+        }
+
+        .more-projects-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+
+        @media (max-width: 800px) {
+          .more-projects-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .secondary-project-card {
+          padding: 24px;
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .secondary-project-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(var(--accent-rgb), 0.3);
+        }
+
+        .secondary-card-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .secondary-cat-badge {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.08);
+          padding: 2px 6px;
+          border-radius: 4px;
+          display: inline-block;
+          margin-bottom: 4px;
+        }
+
+        .secondary-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--text-white);
+        }
+
+        .secondary-icon-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
+          color: var(--text-light);
+          transition: all 0.2s;
+        }
+
+        .secondary-icon-btn:hover {
+          color: var(--accent);
+          border-color: var(--accent);
+        }
+
+        .secondary-summary {
+          font-size: 13.5px;
+          color: var(--text-muted);
+          line-height: 1.5;
+        }
+
+        .secondary-role-box {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 12px;
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.02);
+          padding: 6px 10px;
+          border-radius: 8px;
+          border: 1px dashed rgba(255, 255, 255, 0.08);
+        }
+
+        .role-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+        }
+
+        .secondary-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        .tech-chip-sm {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-muted);
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border-glass);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .secondary-bullets {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .secondary-bullets li {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 12px;
+          color: var(--text-muted);
+          line-height: 1.45;
+        }
+
+        .bullet-check {
+          color: #34d399;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        /* --- Case Study Detail Modal --- */
+        .case-study-modal-backdrop {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(4, 4, 8, 0.85);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          z-index: 2000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .case-study-modal-container {
+          max-width: 900px;
+          width: 100%;
+          max-height: 90vh;
+          border-radius: 20px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(var(--accent-rgb), 0.3);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(var(--accent-rgb), 0.15);
+          animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          background: rgba(11, 11, 20, 0.95);
+        }
+
+        .modal-top-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 24px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.02);
+        }
+
+        .modal-top-brand {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .modal-rank-badge {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.15);
+          padding: 3px 8px;
+          border-radius: 6px;
+        }
+
+        .modal-badge-category {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.06);
+          padding: 3px 8px;
+          border-radius: 6px;
+        }
+
+        .modal-close-icon-btn {
+          background: transparent;
+          border: none;
+          color: var(--text-muted);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px;
+          border-radius: 8px;
+          transition: all 0.2s;
+        }
+
+        .modal-close-icon-btn:hover {
+          color: var(--text-white);
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-scroll-body {
+          overflow-y: auto;
+          padding: 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .modal-main-title {
+          font-size: 28px;
+          font-weight: 800;
+          color: var(--text-white);
+          margin-bottom: 4px;
+        }
+
+        .modal-main-subtitle {
+          font-family: var(--font-mono);
+          font-size: 13px;
+          color: var(--accent);
+          margin-bottom: 10px;
+        }
+
+        .modal-one-line-summary {
+          font-size: 15px;
+          color: var(--text-light);
+          line-height: 1.6;
+        }
+
+        .modal-mockup-wrapper {
+          padding: 20px;
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .modal-browser .browser-viewport {
+          min-height: 200px;
+        }
+
+        .modal-phone .phone-screen {
+          min-height: 200px;
+        }
+
+        .modal-detail-columns {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 28px;
+        }
+
+        @media (max-width: 768px) {
+          .modal-detail-columns {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .modal-detail-col {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .detail-section-block {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .detail-block-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .detail-block-title h4 {
+          font-size: 15px;
+          font-weight: 700;
+          color: var(--text-white);
+          margin: 0;
+        }
+
+        .detail-block-p {
+          font-size: 13.5px;
+          color: var(--text-muted);
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .role-highlight-block {
+          background: rgba(var(--accent-rgb), 0.05);
+          border: 1px solid rgba(var(--accent-rgb), 0.2);
+          padding: 14px 16px;
+          border-radius: 12px;
+        }
+
+        .detail-role-p {
+          font-size: 13.5px;
+          color: var(--text-light);
+          font-weight: 600;
+          margin: 0;
+        }
+
+        .modal-achievements-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .achievement-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          font-size: 13px;
+          color: var(--text-light);
+          line-height: 1.5;
+        }
+
+        .achievement-idx {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: rgba(16, 185, 129, 0.15);
+          border: 1px solid #10b981;
+          color: #34d399;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 700;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+
+        .measurable-placeholder-tag {
+          display: inline-block;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: #fbbf24;
+          background: rgba(251, 191, 36, 0.15);
+          border: 1px dashed rgba(251, 191, 36, 0.4);
+          padding: 1px 6px;
+          border-radius: 4px;
+          margin: 0 4px;
+        }
+
+        .modal-tech-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .modal-tech-chip {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.08);
+          border: 1px solid rgba(var(--accent-rgb), 0.2);
+          padding: 4px 10px;
+          border-radius: 8px;
+        }
+
+        .modal-ctas-panel {
+          display: flex;
+          gap: 12px;
+          margin-top: 8px;
+          flex-wrap: wrap;
+        }
+
+        /* --- GitHub Repositories Section --- */
+        .github-alert {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 14px 20px;
+          margin-bottom: 24px;
+          border-left: 3px solid #ffb703;
+          border-radius: 12px;
+        }
+
+        .alert-content {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .alert-icon {
+          color: #ffb703;
+          flex-shrink: 0;
+        }
+
+        .alert-text {
+          font-size: 13px;
+          color: var(--text-light);
+        }
+
+        .alert-retry-btn {
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--border-glass);
+          color: var(--text-white);
+          padding: 6px 14px;
+          border-radius: 6px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+
+        .github-controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 14px 20px;
+          border-radius: 14px;
+          gap: 16px;
+          margin-bottom: 32px;
+          flex-wrap: wrap;
+        }
+
+        .github-search-wrap {
+          flex: 1;
+          min-width: 240px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .github-search-icon {
+          color: var(--text-muted);
+        }
+
+        .github-search-input {
+          background: transparent;
+          border: none;
+          color: var(--text-white);
+          font-family: var(--font-sans);
+          font-size: 14px;
+          width: 100%;
+          outline: none;
+        }
+
+        .github-search-input::placeholder {
+          color: var(--text-dark);
+        }
+
+        .github-sort-wrap {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .github-sort-label {
+          font-size: 13px;
+          color: var(--text-muted);
+        }
+
+        .github-sort-select {
+          background: rgba(0, 0, 0, 0.4);
+          border: 1px solid var(--border-glass);
+          color: var(--text-light);
+          padding: 6px 12px;
+          border-radius: 8px;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .github-repos-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 20px;
+        }
+
+        .github-repo-card {
+          padding: 22px;
+          border-radius: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .github-repo-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(var(--accent-rgb), 0.35);
+        }
+
+        .repo-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .repo-folder-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+        }
+
+        .repo-title {
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--text-white);
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .repo-description {
+          font-size: 13px;
+          color: var(--text-muted);
+          line-height: 1.5;
+          margin: 0;
+          flex: 1;
+        }
+
+        .repo-tags-wrap {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
         .repo-lang-badge {
           display: flex;
           align-items: center;
           gap: 6px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-light);
         }
+
         .lang-color-circle {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          display: inline-block;
         }
+
         .repo-stat-badge {
           display: flex;
           align-items: center;
           gap: 4px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-muted);
         }
+
         .repo-footer {
           display: flex;
-          gap: 12px;
-          border-top: 1px solid rgba(255, 255, 255, 0.04);
-          padding-top: 16px;
+          align-items: center;
+          gap: 10px;
+          padding-top: 12px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          margin-top: auto;
         }
+
         .repo-link-btn {
-          flex-grow: 1;
           display: inline-flex;
           align-items: center;
-          justify-content: center;
           gap: 6px;
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          color: var(--text-light);
-          padding: 8px 16px;
+          padding: 6px 12px;
           border-radius: 6px;
           font-size: 12px;
           font-weight: 600;
-          font-family: var(--font-heading);
           text-decoration: none;
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
           transition: all 0.2s;
-          cursor: none;
-        }
-        .repo-link-btn:hover {
-          color: var(--accent);
-          border-color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.04);
-        }
-        .repo-link-btn.demo-btn:hover {
-          color: var(--text-white);
-          background: var(--gradient-accent);
-          border-color: transparent;
-          box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.2);
         }
 
-        /* Repo Empty State */
+        .repo-link-btn:hover {
+          color: var(--text-white);
+          border-color: rgba(var(--accent-rgb), 0.4);
+          background: rgba(var(--accent-rgb), 0.08);
+        }
+
+        .repo-link-btn.demo-btn {
+          color: var(--accent);
+          border-color: rgba(var(--accent-rgb), 0.3);
+        }
+
         .github-empty {
-          padding: 60px 40px;
+          padding: 40px;
           text-align: center;
           color: var(--text-muted);
-          font-size: 15px;
         }
 
-        /* Skeletons */
+        /* --- Skeletons --- */
         .repo-card-skeleton {
-          padding: 24px;
-          height: 220px;
+          padding: 22px;
+          border-radius: 14px;
+          height: 180px;
           display: flex;
           flex-direction: column;
           gap: 12px;
-          animation: skeleton-pulse 1.5s infinite ease-in-out;
         }
+
         .skeleton-title {
-          height: 18px;
-          background: rgba(255, 255, 255, 0.08);
-          border-radius: 4px;
           width: 60%;
-        }
-        .skeleton-desc-line-1, .skeleton-desc-line-2 {
-          height: 12px;
-          background: rgba(255, 255, 255, 0.04);
-          border-radius: 3px;
-        }
-        .skeleton-desc-line-1 { width: 90%; margin-top: 10px; }
-        .skeleton-desc-line-2 { width: 75%; }
-        .skeleton-footer {
-          margin-top: auto;
-          display: flex;
-          gap: 10px;
-        }
-        .skeleton-badge {
-          height: 16px;
-          background: rgba(255, 255, 255, 0.06);
+          height: 18px;
+          background: rgba(255, 255, 255, 0.05);
           border-radius: 4px;
-          width: 50px;
         }
 
-        @keyframes skeleton-pulse {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 0.9; }
+        .skeleton-desc-line-1 {
+          width: 90%;
+          height: 12px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 4px;
         }
 
-        @media (max-width: 768px) {
-          .github-controls {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 16px;
-            padding: 16px;
+        .skeleton-desc-line-2 {
+          width: 70%;
+          height: 12px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 4px;
+        }
+
+        /* --- Animations --- */
+        @keyframes modalFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes modalScaleUp {
+          from {
+            opacity: 0;
+            transform: scale(0.95) translateY(12px);
           }
-          .github-search-wrap {
-            max-width: 100%;
-          }
-          .github-sort-wrap {
-            justify-content: space-between;
-          }
-          .github-sort-select {
-            flex-grow: 1;
-            text-align-last: right;
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
           }
         }
       `}</style>
