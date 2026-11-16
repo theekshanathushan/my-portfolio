@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Palette, Sparkles } from 'lucide-react';
+import { Menu, X, Palette } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -36,9 +36,9 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
     <nav className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-content">
         {/* Logo */}
-        <a href="#home" className="nav-logo">
-          <Sparkles size={20} className="logo-icon" />
-          <span>PORT<span className="text-glow-accent">FOLIO</span></span>
+        <a href="#home" className="nav-logo" aria-label="Theekshana Thushan">
+          <span className="logo-monogram">TT</span>
+          <span className="logo-name">Theekshana <span className="text-glow-accent">Thushan</span></span>
         </a>
 
         {/* Desktop Menu */}
@@ -154,17 +154,40 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 20px;
+          gap: 12px;
           color: var(--text-white);
           text-decoration: none;
-          letter-spacing: 0.05em;
+          transition: transform 0.25s ease;
         }
-        .logo-icon {
+        .nav-logo:hover {
+          transform: translateY(-1px);
+        }
+        .logo-monogram {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.16) 0%, rgba(var(--accent-rgb), 0.04) 100%);
+          border: 1.5px solid var(--accent);
           color: var(--accent);
-          filter: drop-shadow(0 0 5px var(--accent));
+          font-family: var(--font-mono);
+          font-weight: 700;
+          font-size: 15px;
+          letter-spacing: -0.5px;
+          box-shadow: 0 0 14px var(--accent-glow);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+        .nav-logo:hover .logo-monogram {
+          transform: rotate(-6deg) scale(1.08);
+          box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.45);
+        }
+        .logo-name {
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: 19px;
+          letter-spacing: -0.02em;
         }
         .nav-links-desktop {
           display: flex;

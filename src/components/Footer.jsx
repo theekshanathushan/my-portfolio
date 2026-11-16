@@ -31,11 +31,14 @@ export default function Footer() {
   return (
     <footer className="footer-wrap">
       <div className="container footer-container">
-        
+
         {/* Upper Layer */}
         <div className="footer-upper">
           <div className="footer-brand">
-            <span className="footer-logo">PORT<span className="text-glow-accent">FOLIO</span></span>
+            <div className="footer-brand-logo">
+              <span className="logo-monogram">TT</span>
+              <span className="footer-logo">Theekshana <span className="text-glow-accent">Thushan</span></span>
+            </div>
             <p className="footer-tagline">Crafting modern interactive experiences with precision & care.</p>
           </div>
 
@@ -68,9 +71,9 @@ export default function Footer() {
             Designed & Built with <Heart size={12} className="heart-icon" /> by Theekshana
           </span>
 
-          <button 
-            className="back-to-top-btn glass-card" 
-            onClick={scrollToTop} 
+          <button
+            className="back-to-top-btn glass-card"
+            onClick={scrollToTop}
             title="Back to Top"
           >
             <ArrowUp size={16} />
@@ -117,12 +120,33 @@ export default function Footer() {
             align-items: center;
           }
         }
+        .footer-brand-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .footer-brand .logo-monogram {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.16) 0%, rgba(var(--accent-rgb), 0.04) 100%);
+          border: 1.5px solid var(--accent);
+          color: var(--accent);
+          font-family: var(--font-mono);
+          font-weight: 700;
+          font-size: 13px;
+          letter-spacing: -0.5px;
+          box-shadow: 0 0 10px var(--accent-glow);
+        }
         .footer-logo {
           font-family: var(--font-heading);
           font-weight: 700;
           font-size: 18px;
           color: var(--text-white);
-          letter-spacing: 0.05em;
+          letter-spacing: -0.02em;
         }
         .footer-tagline {
           color: var(--text-muted);
