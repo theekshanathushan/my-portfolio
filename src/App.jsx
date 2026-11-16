@@ -7,8 +7,19 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CVModal from './components/CVModal';
+import CVPage from './components/CVPage';
 
 export default function App() {
+  // Routing State ('home' | 'cv')
+  const [currentRoute, setCurrentRoute] = useState(() => {
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    if (path.endsWith('/cv') || path === '/cv' || hash === '#/cv' || hash === '#cv') {
+      return 'cv';
+    }
+    return 'home';
+  });
+
   // Theme Accent State ('cyan', 'pink', 'gold')
   const [accent, setAccent] = useState(() => {
     return localStorage.getItem('portfolio-accent') || 'cyan';
@@ -21,6 +32,26 @@ export default function App() {
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [ringPos, setRingPos] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+
+  // Sync route changes
+  useEffect(() => {
+    const checkRoute = () => {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      if (path.endsWith('/cv') || path === '/cv' || hash === '#/cv' || hash === '#cv') {
+        setCurrentRoute('cv');
+      } else {
+        setCurrentRoute('home');
+      }
+    };
+
+    window.addEventListener('popstate', checkRoute);
+    window.addEventListener('hashchange', checkRoute);
+    return () => {
+      window.removeEventListener('popstate', checkRoute);
+      window.removeEventListener('hashchange', checkRoute);
+    };
+  }, []);
 
   // Sync Accent to DOM
   useEffect(() => {
@@ -46,7 +77,6 @@ export default function App() {
       setRingPos((prev) => {
         const dx = mousePos.x - prev.x;
         const dy = mousePos.y - prev.y;
-        // Ease factor (0.15 gives a smooth follow lag effect)
         return {
           x: prev.x + dx * 0.16,
           y: prev.y + dy * 0.16
@@ -65,7 +95,7 @@ export default function App() {
     const handleMouseLeave = () => setIsHovering(false);
 
     const updateHoverListeners = () => {
-      const targets = document.querySelectorAll('a, button, input, textarea, [role="button"], .project-card');
+      const targets = document.querySelectorAll('a, button, input, textarea, [role="button"], .project-card, .case-study-card');
       targets.forEach((el) => {
         el.addEventListener('mouseenter', handleMouseEnter);
         el.addEventListener('mouseleave', handleMouseLeave);
@@ -79,10 +109,7 @@ export default function App() {
       };
     };
 
-    // Run initially and set a small timeout to catch dynamically loaded items (like Modals)
     const cleanup = updateHoverListeners();
-    
-    // Set an interval to re-bind elements (handles dynamic changes)
     const interval = setInterval(updateHoverListeners, 1000);
 
     return () => {
@@ -90,6 +117,19 @@ export default function App() {
       clearInterval(interval);
     };
   }, []);
+
+  if (currentRoute === 'cv') {
+    return (
+      <div className="portfolio-app-root">
+        <CVPage 
+          onBack={() => {
+            window.location.hash = '#home';
+            setCurrentRoute('home');
+          }} 
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="portfolio-app-root">

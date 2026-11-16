@@ -393,3 +393,59 @@ h6 {
     font-size: 28px;
   }
 }
+
+/* --- Accessibility: Visible Focus Indicators (WCAG AA/AAA) --- */
+:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 12px var(--accent-glow) !important;
+}
+
+/* Skip to content link for keyboard & screen reader accessibility */
+.skip-to-content {
+  position: absolute;
+  top: -120px;
+  left: 20px;
+  background: var(--accent);
+  color: #07070b;
+  padding: 10px 18px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  z-index: 99999;
+  text-decoration: none;
+  transition: top 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.skip-to-content:focus {
+  top: 20px;
+}
+
+/* --- Accessibility: Prefers Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ambient-blob-1,
+  .ambient-blob-2 {
+    animation: none !important;
+    opacity: 0.08 !important;
+  }
+
+  .custom-cursor,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+
+  * {
+    cursor: auto !important;
+  }
+}

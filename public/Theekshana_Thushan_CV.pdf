@@ -1,0 +1,121 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 8380 >>
+stream
+BT /F2 17 Tf 0 0 0 rg 1 0 0 1 38 808 Tm (THEEKSHANA THUSHAN) Tj ET
+BT /F1 9.5 Tf 0.25 0.3 0.4 rg 1 0 0 1 38 795 Tm (Software Engineering Undergraduate | Full-Stack & AI Systems) Tj ET
+BT /F1 8 Tf 0.2 0.35 0.55 rg 1 0 0 1 38 784 Tm (theekshanathushan89@gmail.com   |   linkedin.com/in/theekshana-thushan-57b866328   |   github.com/theekshanathushan   |   theekshanathushan.dev) Tj ET
+0.5 w 0.82 0.82 0.82 RG 38 780 m 557 780 l S 0 0 0 RG
+BT /F2 9.5 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 764 Tm (PROFESSIONAL PROFILE) Tj ET
+0.75 w 0.75 0.75 0.75 RG 38 761 m 557 761 l S 0 0 0 RG
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 751 Tm (Software engineering undergraduate specializing in AI-integrated full-stack web platforms engineered with) Tj ET
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 741 Tm (ASP.NET Core, Angular, Spring Boot, React, and MySQL.) Tj ET
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 731 Tm (Architected and deployed production-ready applications featuring automated Gemini AI screening pipelines,) Tj ET
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 721 Tm (stateless JWT authorization, and real-time WebSocket communication.) Tj ET
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 711 Tm (Delivers reliable software with clean layered architecture and test-driven workflows, targeting high-impact) Tj ET
+BT /F1 8.2 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 701 Tm (software engineering internship and graduate roles.) Tj ET
+BT /F2 9.5 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 677 Tm (TECHNICAL SKILLS) Tj ET
+0.75 w 0.75 0.75 0.75 RG 38 674 m 557 674 l S 0 0 0 RG
+BT /F2 8.2 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 664 Tm (Languages:) Tj ET
+BT /F1 8.2 Tf 0.2 0.2 0.2 rg 1 0 0 1 143 664 Tm (Java \(17/21\), TypeScript, JavaScript \(ES6+\), C#, Dart, HTML5, CSS3) Tj ET
+BT /F2 8.2 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 653.5 Tm (Backend & Systems:) Tj ET
+BT /F1 8.2 Tf 0.2 0.2 0.2 rg 1 0 0 1 143 653.5 Tm (Spring Boot, ASP.NET Core, Entity Framework Core, JWT Authentication, RESTful APIs, WebSockets) Tj ET
+BT /F2 8.2 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 643 Tm (Frontend & Mobile:) Tj ET
+BT /F1 8.2 Tf 0.2 0.2 0.2 rg 1 0 0 1 143 643 Tm (Angular, React, Flutter, Tailwind CSS, Recharts, Framer Motion) Tj ET
+BT /F2 8.2 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 632.5 Tm (Databases & Tools:) Tj ET
+BT /F1 8.2 Tf 0.2 0.2 0.2 rg 1 0 0 1 143 632.5 Tm (MySQL \(Relational Schema Design\), Git, GitHub, Vercel, Vite, Linux CLI) Tj ET
+BT /F2 8.2 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 622 Tm (AI & Integrations:) Tj ET
+BT /F1 8.2 Tf 0.2 0.2 0.2 rg 1 0 0 1 143 622 Tm (Google Gemini API, Twilio SMS API, MailKit, Leaflet.js, NASA Open APIs) Tj ET
+BT /F2 9.5 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 597.5 Tm (KEY PROJECTS) Tj ET
+0.75 w 0.75 0.75 0.75 RG 38 594.5 m 557 594.5 l S 0 0 0 RG
+BT /F2 8.7 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 584.5 Tm (TalentAI - AI-Powered Recruitment & Screening Platform) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 584.5 Tm (2026) Tj ET
+BT /F3 7.5 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 574.5 Tm (Tech Stack: ASP.NET Core, Angular, TypeScript, MySQL, Entity Framework Core, JWT, Gemini API, Twilio, MailKit) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 565 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 565 Tm (Architected multi-role portals for Candidates, Recruiters, Hiring Managers, and Admins with stateless JWT) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 556 Tm (authorization guards.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 547 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 547 Tm (Integrated Google Gemini AI for automated candidate screening and qualification matching against job) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 538 Tm (requisitions.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 529 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 529 Tm (Engineered background notification worker utilizing MailKit and Twilio to dispatch automated SMS and email) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 520 Tm (interview reminders.) Tj ET
+BT /F2 8.7 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 508.5 Tm (AgriAI - Smart Agriculture & Native-Language Farming Agent) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 508.5 Tm (2026) Tj ET
+BT /F3 7.5 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 498.5 Tm (Tech Stack: Flutter, Dart, Gemini API, Mobile AI Vision, REST APIs, Weather APIs) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 489 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 489 Tm (Developed mobile plant leaf scanner utilizing vision models to provide instant crop disease identification and) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 480 Tm (treatment guidance.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 471 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 471 Tm (Built interactive conversational advisory agent supporting natural language queries in native languages) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 462 Tm (\(Sinhala & English\).) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 453 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 453 Tm (Integrated real-time crop market pricing feeds and localized weather forecast alerts to optimize harvest) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 444 Tm (planning.) Tj ET
+BT /F2 8.7 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 432.5 Tm (NovaExplorer - NASA Educational Spacecraft & Mission Explorer) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 432.5 Tm (2026) Tj ET
+BT /F3 7.5 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 422.5 Tm (Tech Stack: React, TypeScript, Tailwind CSS, Vite, NASA Open APIs, Vercel \(Live at novaexplorer.vercel.app\)) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 413 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 413 Tm (Deployed to production at novaexplorer.vercel.app with optimized client caching and high Lighthouse) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 404 Tm (performance ratings.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 395 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 395 Tm (Integrated NASA Open APIs to fetch and curate real-time mission telemetry, Mars rover photography, and) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 386 Tm (astronomical archives.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 377 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 377 Tm (Engineered responsive interactive timelines and orbital mission visualization modules for seamless) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 368 Tm (cross-device exploration.) Tj ET
+BT /F2 8.7 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 356.5 Tm (CareConnect - Disaster Relief Support & Crisis Coordination System) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 356.5 Tm (2026) Tj ET
+BT /F3 7.5 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 346.5 Tm (Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 337 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 337 Tm (Developed full-stack crisis coordination platform linking relief volunteers, displaced individuals, and supply) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 328 Tm (donors.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 319 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 319 Tm (Integrated Leaflet.js to create a live geographic operations map tracking help requests and relief inventory) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 310 Tm (distribution.) Tj ET
+BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 301 Tm (*) Tj ET
+BT /F1 7.8 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 301 Tm (Implemented real-time WebSocket chat and a centralized resource allocation dashboard with role-based access.) Tj ET
+BT /F2 9.5 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 278 Tm (EDUCATION) Tj ET
+0.75 w 0.75 0.75 0.75 RG 38 275 m 557 275 l S 0 0 0 RG
+BT /F2 8.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 265 Tm (BSc \(Hons\) in Software Engineering) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 502 265 Tm (2023 - Present) Tj ET
+BT /F1 8.2 Tf 0.25 0.3 0.35 rg 1 0 0 1 38 255.5 Tm (Plymouth University \(via NSBM Green University\)) Tj ET
+BT /F3 7.5 Tf 0.35 0.35 0.4 rg 1 0 0 1 38 246.5 Tm (Relevant Coursework: Data Structures & Algorithms, Object-Oriented Development \(Java/C#\), Database Systems \(MySQL\), Software Engineering Principles) Tj ET
+BT /F2 8.5 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 236.5 Tm (G.C.E. Advanced Level - Physical Science Stream) Tj ET
+BT /F2 8.2 Tf 0.35 0.4 0.45 rg 1 0 0 1 535 236.5 Tm (2022) Tj ET
+BT /F1 8 Tf 0.3 0.3 0.3 rg 1 0 0 1 38 227.5 Tm (Subjects: Combined Mathematics, Physics, and Information & Communication Technology \(ICT\)) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000267 00000 n 
+0000008699 00000 n 
+0000008796 00000 n 
+0000008898 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+9003
+%%EOF

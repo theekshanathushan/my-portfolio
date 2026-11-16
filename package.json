@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-pdf.js && vite build",
+    "generate-pdf": "node scripts/generate-pdf.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",

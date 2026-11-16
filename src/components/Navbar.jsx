@@ -60,6 +60,7 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
               className="theme-palette-btn" 
               onClick={() => setIsPaletteOpen(!isPaletteOpen)}
               title="Change Accent Theme"
+              aria-label="Change Accent Theme"
             >
               <Palette size={18} />
             </button>
@@ -87,6 +88,7 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
           <button 
             className="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

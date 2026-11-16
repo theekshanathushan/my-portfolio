@@ -252,16 +252,16 @@ export default function Hero({ onOpenCV }) {
 
           {/* Social Links */}
           <div className="hero-socials">
-            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="GitHub">
+            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="GitHub" aria-label="GitHub Profile">
               <Github size={20} />
             </a>
-            <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="LinkedIn" aria-label="LinkedIn Profile">
               <Linkedin size={20} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="Twitter">
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-icon-btn glass-card" title="Twitter" aria-label="Twitter Profile">
               <Twitter size={20} />
             </a>
-            <a href="mailto:theekshanathushan89@gmail.com" className="social-icon-btn glass-card" title="Email">
+            <a href="mailto:theekshanathushan89@gmail.com" className="social-icon-btn glass-card" title="Email" aria-label="Send Email to Theekshana">
               <Mail size={20} />
             </a>
           </div>
@@ -281,7 +281,18 @@ export default function Hero({ onOpenCV }) {
           )}
 
           <div className={`hero-profile-image-container glass-card ${isSpeaking ? 'speaking' : ''}`}>
-            <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Theekshana Thushan Profile" className="hero-profile-image" />
+            <picture>
+              <source srcSet={`${import.meta.env.BASE_URL}profile.webp`} type="image/webp" />
+              <img 
+                src={`${import.meta.env.BASE_URL}profile.png`} 
+                alt="Theekshana Thushan, Software Engineering Student" 
+                width="280" 
+                height="280"
+                fetchPriority="high"
+                decoding="async"
+                className="hero-profile-image" 
+              />
+            </picture>
 
             {/* Sound indicator overlay (shown when NOT speaking) */}
             {!isSpeaking && (
@@ -515,6 +526,24 @@ export default function Hero({ onOpenCV }) {
           .audio-visualizer-rings {
             width: 220px;
             height: 220px;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 32px;
+          }
+          .hero-subtitle {
+            font-size: 20px;
+            min-height: 28px;
+          }
+          .hero-profile-image-container {
+            width: 180px;
+            height: 180px;
+          }
+          .hero-image-glow-ring,
+          .audio-visualizer-rings {
+            width: 200px;
+            height: 200px;
           }
         }
 

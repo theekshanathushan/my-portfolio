@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Terminal, Calendar, MapPin, Briefcase, Award } from 'lucide-react';
+import { content } from '../content';
 
-const BIO_TEXT = `I'm Theekshana, a Full-Stack Developer and UI/UX Designer based in Colombo, Sri Lanka. I thrive at the intersection of aesthetic design and robust systems development, building performant, user-centered web applications. With a solid engineering foundation, I enjoy translating complex business logic into intuitive, visually stunning digital experiences.`;
+const BIO_TEXT = `${content.profile.sentences[0]} ${content.profile.sentences[1]} ${content.profile.sentences[2]}`;
 
 const TERMINAL_TABS = [
   { id: 'bio', label: 'bio.json' },
@@ -11,22 +12,22 @@ const TERMINAL_TABS = [
 
 const TIMELINE_DATA = [
   {
-    role: "Full-Stack Developer & UI/UX Designer",
-    company: "Ceylon Tech Labs",
+    role: "Full-Stack & AI Systems Developer",
+    company: "TalentAI & Academic Projects",
     period: "2024 - Present",
-    desc: "Developing performant React and Node.js applications, building secure backend architectures, and designing intuitive user interfaces in Figma."
-  },
-  {
-    role: "Associate Software Engineer",
-    company: "Apex Digital Solutions",
-    period: "2022 - 2024",
-    desc: "Built scalable RESTful APIs, designed client portal mockups, and coordinated database migration pipelines using MongoDB."
+    desc: "Architecting multi-role platforms with ASP.NET Core, Angular, and Spring Boot. Integrating Google Gemini AI screening workflows, JWT authentication, and automated notifications."
   },
   {
     role: "BSc (Hons) in Software Engineering",
-    company: "NSBM Green University",
-    period: "2020 - 2024",
-    desc: "Studied advanced programming, system design patterns, user-experience design, and graduated with a solid engineering foundation."
+    company: "Plymouth University (via NSBM Green University)",
+    period: "2023 - Present",
+    desc: "Rigorous coursework in Data Structures & Algorithms, Object-Oriented Software Design, Database Systems (MySQL), and distributed system engineering."
+  },
+  {
+    role: "G.C.E. Advanced Level - Physical Science",
+    company: "Secondary Education",
+    period: "2022",
+    desc: "Studied Combined Mathematics, Physics, and Information & Communication Technology (ICT) with distinction."
   }
 ];
 
@@ -37,24 +38,24 @@ export default function About() {
     switch (activeTab) {
       case 'bio':
         return JSON.stringify({
-          name: "Theekshana Thushan",
-          role: "Full-Stack Developer & UI/UX Designer",
+          name: content.personal.name,
+          role: "Software Engineering Student | Full-Stack & AI Systems",
           location: "Colombo, Sri Lanka",
-          philosophy: "Bridging the gap between beautiful visuals and high-performance backend systems.",
-          passions: ["Clean Code", "API Architecture", "Design Systems", "UI Micro-Interactions"]
+          focus: "Engineering reliable full-stack applications with clean layered architecture.",
+          coreStack: ["ASP.NET Core", "Spring Boot", "Angular", "React", "MySQL"]
         }, null, 2);
       case 'skills':
         return JSON.stringify({
-          coreValues: ["User Centricity", "Semantic Standards", "Scalable Patterns"],
-          hobbies: ["Photography", "Generative Graphics", "Exploring Tech Trends"],
-          coffeeConsumption: "Balanced"
+          coreValues: ["Clean Architecture", "Stateless Security (JWT)", "Measurable Outcomes"],
+          interests: ["Generative AI Pipelines", "Mobile Cross-Platform (Flutter)", "Cloud Deployment"],
+          status: "Open to Software Engineering Internships & Graduate Roles"
         }, null, 2);
       case 'contact':
         return JSON.stringify({
-          email: "theekshanathushan89@gmail.com",
-          github: "github.com/theekshanathushan",
-          linkedin: "linkedin.com/in/theekshana-thushan-57b866328",
-          status: "Available for freelance projects & full-time roles"
+          email: content.personal.email,
+          linkedin: content.personal.linkedinUrl,
+          github: content.personal.githubUrl,
+          portfolio: content.personal.portfolioUrl
         }, null, 2);
       default:
         return '';
@@ -116,7 +117,7 @@ export default function About() {
           {/* Column 2: Glassmorphic Experience Timeline */}
           <div className="about-column timeline-column">
             <h3 className="timeline-section-heading">
-              <Briefcase size={20} className="timeline-heading-icon" /> Work Experience
+              <Briefcase size={20} className="timeline-heading-icon" /> Experience & Milestones
             </h3>
             
             <div className="timeline">

@@ -43,16 +43,16 @@ export default function Footer() {
           </div>
 
           <div className="footer-socials">
-            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="footer-social-icon" title="GitHub">
+            <a href="https://github.com/theekshanathushan" target="_blank" rel="noreferrer" className="footer-social-icon" title="GitHub" aria-label="GitHub Profile">
               <Github size={18} />
             </a>
-            <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="footer-social-icon" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/theekshana-thushan-57b866328" target="_blank" rel="noreferrer" className="footer-social-icon" title="LinkedIn" aria-label="LinkedIn Profile">
               <Linkedin size={18} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="footer-social-icon" title="Twitter">
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="footer-social-icon" title="Twitter" aria-label="Twitter Profile">
               <Twitter size={18} />
             </a>
-            <a href="mailto:theekshanathushan89@gmail.com" className="footer-social-icon" title="Email">
+            <a href="mailto:theekshanathushan89@gmail.com" className="footer-social-icon" title="Email" aria-label="Send Email">
               <Mail size={18} />
             </a>
           </div>
@@ -75,6 +75,7 @@ export default function Footer() {
             className="back-to-top-btn glass-card"
             onClick={scrollToTop}
             title="Back to Top"
+            aria-label="Back to Top"
           >
             <ArrowUp size={16} />
           </button>
