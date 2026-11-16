@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { 
   ExternalLink, 
   X, 
@@ -15,12 +15,21 @@ import {
   Layers, 
   Globe, 
   ChevronRight,
-  Shield,
-  Target,
-  UserCheck,
-  Cpu,
-  Info
+  Shield, 
+  Target, 
+  UserCheck, 
+  Cpu, 
+  Info,
+  Users,
+  User,
+  SlidersHorizontal,
+  RotateCcw,
+  ChevronDown,
+  ChevronUp,
+  Tag,
+  Check
 } from 'lucide-react';
+import { PROJECTS_DATA } from '../data/content';
 
 const Github = (props) => (
   <svg viewBox="0 0 24 24" width={props.size || 20} height={props.size || 20} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -43,152 +52,6 @@ const LANGUAGE_COLORS = {
   Kotlin: "#A97BFF",
   Shell: "#89e051"
 };
-
-// 4 Primary Case Studies ordered strictly by importance
-const CASE_STUDIES = [
-  {
-    id: 'talentai',
-    rank: 1,
-    title: 'TalentAI',
-    subtitle: 'AI-Powered Recruitment & Screening Platform',
-    summary: 'Full-stack enterprise hiring ecosystem pairing Google Gemini AI candidate screening with automated scheduling and notification pipelines.',
-    problem: 'Traditional recruiting suffers from manual resume backlogs, inconsistent evaluation criteria across hiring managers, and fragmented communication channels leading to candidate drop-off.',
-    whatIBuilt: 'Architected and built a multi-portal recruitment platform with role-based workflows for Candidates, Recruiters, Hiring Managers, and Admins. Developed an automated resume-to-job matching pipeline powered by Google Gemini AI, integrated calendar-based interview scheduling, and engineered background services for automated SMS and email notifications.',
-    role: 'Full-Stack Architect & Lead Developer (Backend API, Frontend SPA, AI Pipeline)',
-    techStack: ['ASP.NET Core', 'Angular', 'TypeScript', 'MySQL', 'Entity Framework Core', 'JWT', 'Gemini API', 'Twilio', 'MailKit'],
-    achievements: [
-      'Implemented role-based JWT authentication and authorization covering 4 distinct user roles with strict API endpoint permission guards.',
-      'Integrated Google Gemini AI for automated candidate screening and qualification matching against job requisitions, reducing initial resume review overhead [add measurable result].',
-      'Engineered an automated background notification worker using MailKit and Twilio to dispatch interview reminders, improving candidate attendance rate by [add measurable result].'
-    ],
-    mockupType: 'browser',
-    mockupUrl: 'https://talentai.preview/recruiter/screening',
-    imagePlaceholder: '[screenshot needed: TalentAI candidate evaluation & AI match dashboard]',
-    links: {
-      demo: '#',
-      demoLabel: 'Demo Link [add live demo URL]',
-      github: 'https://github.com/theekshanathushan/TalentAI',
-      githubLabel: 'GitHub Repo'
-    },
-    badge: 'Flagship Platform'
-  },
-  {
-    id: 'agriai',
-    rank: 2,
-    title: 'AgriAI',
-    subtitle: 'Smart Agriculture & Native-Language Farming Agent',
-    summary: 'Cross-platform mobile farming assistant empowering smallholders with AI leaf disease diagnosis, a native-language conversational agent, weather alerts, and crop market pricing.',
-    problem: 'Smallholder and regional farmers suffer severe crop yield losses due to delayed disease identification, linguistic barriers in existing digital agtech solutions, and volatile marketplace pricing.',
-    whatIBuilt: 'Designed and developed a cross-platform Flutter application featuring an AI crop health scanner for instant disease diagnosis, an interactive advisory agent supporting native-language voice and text queries (Sinhala & English), localized weather alert triggers, and an agricultural market price aggregation board.',
-    role: 'Mobile Application Engineer & AI Integration Lead',
-    techStack: ['Flutter', 'Dart', 'Gemini API', 'AI Vision', 'REST APIs', 'Weather APIs'],
-    achievements: [
-      'Integrated an on-device/cloud vision pipeline to analyze plant leaf imagery and deliver instant disease diagnostics with treatment guidelines [add measurable result].',
-      'Built a localized conversational advisory agent fluent in local agricultural terminology and native languages to make agtech guidance accessible to non-technical farmers.',
-      'Implemented real-time market price aggregation and predictive weather alert feeds, helping farmers optimize harvest and sales timing by [add measurable result].'
-    ],
-    mockupType: 'phone',
-    mockupUrl: 'agriai://dashboard/scanner',
-    imagePlaceholder: '[screenshot needed: AgriAI leaf disease scanner & native advisory assistant]',
-    links: {
-      demo: '#',
-      demoLabel: 'Demo Link [add APK / demo URL]',
-      github: 'https://github.com/theekshanathushan/AgriAI',
-      githubLabel: 'GitHub Repo'
-    },
-    badge: 'Mobile & AI Vision'
-  },
-  {
-    id: 'novaexplorer',
-    rank: 3,
-    title: 'NovaExplorer',
-    subtitle: 'NASA Educational Spacecraft & Mission Explorer',
-    summary: 'Interactive NASA educational web application visualizing deep-space missions, interplanetary trajectories, and telemetry archives.',
-    problem: 'Rich astronomical datasets and historical spacecraft mission records are scattered across fragmented legacy portals, making them inaccessible and unengaging for students and space enthusiasts.',
-    whatIBuilt: 'Developed a high-performance web experience that queries NASA Open APIs to render interactive timelines of historical and active space missions, high-resolution celestial photography, and planetary telemetry explorers.',
-    role: 'Frontend Engineer & Interface Designer',
-    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'NASA Open APIs', 'Vercel'],
-    achievements: [
-      'Successfully deployed to production at novaexplorer.vercel.app, achieving [add measurable result] Lighthouse performance rating on desktop.',
-      'Integrated NASA Open APIs to curate and cache real-time mission telemetry, Mars rover photography, and astronomical catalog archives.',
-      'Engineered responsive interactive timelines and orbital mission exploration modules, increasing average user session engagement to [add measurable result].'
-    ],
-    mockupType: 'browser',
-    mockupUrl: 'https://novaexplorer.vercel.app',
-    imagePlaceholder: '[screenshot needed: NovaExplorer mission visualization & NASA telemetry explorer]',
-    links: {
-      demo: 'https://novaexplorer.vercel.app',
-      demoLabel: 'Live at novaexplorer.vercel.app',
-      github: 'https://github.com/theekshanathushan/NovaExplorer',
-      githubLabel: 'GitHub Repo'
-    },
-    badge: 'Live on Vercel'
-  },
-  {
-    id: 'ignitx',
-    rank: 4,
-    title: 'IgnitX by Hutch Hackathon: Track A',
-    subtitle: 'Root-Cause AI Engine for Self-Care Platforms',
-    summary: 'Intelligent root-cause diagnosis engine built for Hutch IgnitX to predict user friction, analyze distress signals, and recommend proactive self-care interventions.',
-    problem: 'Self-care applications often fail to retain users because they log complaints after churn has already happened, treating surface symptoms rather than diagnosing underlying friction drivers.',
-    whatIBuilt: 'Engineered an AI-driven root-cause analytical engine for Track A that ingests customer interaction logs, patterns user mood/behavioral signals, identifies root drop-off drivers, and prescribes targeted self-care remediation actions.',
-    role: 'Hackathon Competitor & Backend AI Engineer',
-    techStack: ['Python', 'REST APIs', 'Predictive Analytics', 'AI / LLM Engine', 'Telemetry Processing'],
-    achievements: [
-      'Formulated an end-to-end diagnostic pipeline during the hackathon sprint to isolate root causes behind user self-care drop-offs with [add measurable result] precision.',
-      'Designed automated recommendation heuristic workflows delivering tailored intervention plans and habit recovery paths.',
-      'Pitched and demonstrated the live proof-of-concept prototype to the Hutch industry judging panel, ranking among [add measurable result].'
-    ],
-    mockupType: 'browser',
-    mockupUrl: 'https://ignitx-selfcare-ai.demo',
-    imagePlaceholder: '[screenshot needed: IgnitX Track A root-cause AI dashboard & diagnostic telemetry]',
-    links: {
-      demo: '#',
-      demoLabel: 'Demo Link [add prototype URL]',
-      github: 'https://github.com/theekshanathushan/IgnitX-TrackA',
-      githubLabel: 'GitHub Repo'
-    },
-    badge: 'Hackathon Track A'
-  }
-];
-
-// Secondary Verified Projects
-const MORE_PROJECTS = [
-  {
-    id: 'careconnect',
-    title: 'CareConnect Application',
-    category: 'Healthcare & Disaster Relief',
-    summary: 'Crisis coordination and medical consulting system connecting displaced individuals, donors, and relief teams with live geographic operations mapping.',
-    role: 'Full-Stack Developer (Spring Boot, Java 17, MySQL, WebSockets, Leaflet.js)',
-    techStack: ['Spring Boot', 'Java 17', 'MySQL', 'WebSockets', 'JavaScript', 'Leaflet.js'],
-    achievements: [
-      'Built a crisis coordination platform connecting displaced persons, donors, and government relief officials.',
-      'Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active supply donors.',
-      'Developed real-time chat functionality, donation processing, and a centralized resource allocation dashboard.'
-    ],
-    links: {
-      demo: 'https://github.com/theekshanathushan/CareConnect-application',
-      github: 'https://github.com/theekshanathushan/CareConnect-application'
-    }
-  },
-  {
-    id: 'moodmirror',
-    title: 'MoodMirror Platform',
-    category: 'Mental Wellness & Reflection',
-    summary: 'Comprehensive mental health web application featuring daily mood reflection, interactive trend analytics, and guided coping workflows.',
-    role: 'Frontend Architect (React, TypeScript, Recharts, Framer Motion, Web Notifications)',
-    techStack: ['React', 'TypeScript', 'Recharts', 'Web Notification API', 'RLS', 'Framer Motion'],
-    achievements: [
-      'Architected interactive wellness modules for journaling, habit tracking, and guided coping exercises (e.g., box breathing).',
-      'Developed an analytics dashboard using Recharts to visualize long-term mood patterns, emotion distribution, and habit streaks.',
-      'Engineered client-side push reminders via Web Notification API to foster consistent daily reflection habits without backend overhead.'
-    ],
-    links: {
-      demo: 'https://github.com/theekshanathushan/Moodmirror',
-      github: 'https://github.com/theekshanathushan/Moodmirror'
-    }
-  }
-];
 
 // Fallback Repositories (non-forks only)
 const FALLBACK_REPOS = [
@@ -272,8 +135,14 @@ const FALLBACK_REPOS = [
 ];
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState('featured'); // 'featured' | 'github'
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
+  // Main view switcher ('projects' | 'github')
+  const [activeView, setActiveView] = useState('projects');
+
+  // Selected project for deep-dive modal
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Expander for tech chips (> 8)
+  const [showAllTechs, setShowAllTechs] = useState(false);
 
   // GitHub state
   const [repos, setRepos] = useState([]);
@@ -282,9 +151,105 @@ export default function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('updated'); // 'updated' | 'stars'
 
+  // --- 1. URL Query State Sync (?type=group&tech=react,angular) ---
+  const [selectedType, setSelectedType] = useState(() => {
+    if (typeof window === 'undefined') return 'all';
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const typeParam = params.get('type')?.toLowerCase();
+      if (typeParam === 'group') return 'group';
+      if (typeParam === 'individual') return 'individual';
+    } catch {
+      // Fallback
+    }
+    return 'all';
+  });
+
+  const [selectedTechs, setSelectedTechs] = useState(() => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const techParam = params.get('tech');
+      if (!techParam) return [];
+      const techList = techParam.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+      
+      // Match case-insensitively with actual tech names in PROJECTS_DATA
+      const canonicalMap = {};
+      PROJECTS_DATA.forEach(p => {
+        p.techStack.forEach(t => {
+          canonicalMap[t.toLowerCase()] = t;
+        });
+      });
+
+      return techList.map(t => canonicalMap[t] || t).filter(Boolean);
+    } catch {
+      return [];
+    }
+  });
+
+  // Sync state to URL Query
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      
+      // Sync Type
+      if (selectedType && selectedType !== 'all') {
+        params.set('type', selectedType);
+      } else {
+        params.delete('type');
+      }
+
+      // Sync Techs
+      if (selectedTechs.length > 0) {
+        params.set('tech', selectedTechs.map(t => t.toLowerCase()).join(','));
+      } else {
+        params.delete('tech');
+      }
+
+      const newQuery = params.toString();
+      const newRelativePathQuery = window.location.pathname + (newQuery ? `?${newQuery}` : '') + window.location.hash;
+      
+      if (window.location.search !== (newQuery ? `?${newQuery}` : '')) {
+        window.history.replaceState(null, '', newRelativePathQuery);
+      }
+    } catch (e) {
+      console.warn('URL sync failed:', e);
+    }
+  }, [selectedType, selectedTechs]);
+
+  // Handle browser back/forward buttons (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const typeParam = params.get('type')?.toLowerCase();
+        setSelectedType(typeParam === 'group' || typeParam === 'individual' ? typeParam : 'all');
+
+        const techParam = params.get('tech');
+        if (techParam) {
+          const techList = techParam.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+          const canonicalMap = {};
+          PROJECTS_DATA.forEach(p => {
+            p.techStack.forEach(t => {
+              canonicalMap[t.toLowerCase()] = t;
+            });
+          });
+          setSelectedTechs(techList.map(t => canonicalMap[t] || t).filter(Boolean));
+        } else {
+          setSelectedTechs([]);
+        }
+      } catch (e) {
+        console.warn('Popstate sync failed:', e);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   // Disable body scroll when modal is open
   useEffect(() => {
-    if (selectedCaseStudy) {
+    if (selectedProject) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -292,8 +257,124 @@ export default function Projects() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [selectedCaseStudy]);
+  }, [selectedProject]);
 
+  // --- 2. Filter Calculations & Combinations ---
+
+  // Unique tech stacks sorted by frequency across all projects
+  const allUniqueTechs = useMemo(() => {
+    const frequency = {};
+    PROJECTS_DATA.forEach(project => {
+      project.techStack.forEach(tech => {
+        frequency[tech] = (frequency[tech] || 0) + 1;
+      });
+    });
+
+    return Object.keys(frequency).sort((a, b) => {
+      if (frequency[b] !== frequency[a]) {
+        return frequency[b] - frequency[a]; // most used first
+      }
+      return a.localeCompare(b);
+    });
+  }, []);
+
+  // Filtered projects: combines Type filter + Multi-Select Tech Stack (AND logic)
+  const filteredProjects = useMemo(() => {
+    return PROJECTS_DATA.filter(project => {
+      // 1. Type filter match
+      if (selectedType !== 'all' && project.type !== selectedType) {
+        return false;
+      }
+      // 2. Tech stack match: Project must contain ALL selected tech stack chips
+      if (selectedTechs.length > 0) {
+        const hasAllSelectedTechs = selectedTechs.every(reqTech => 
+          project.techStack.some(t => t.toLowerCase() === reqTech.toLowerCase())
+        );
+        if (!hasAllSelectedTechs) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [selectedType, selectedTechs]);
+
+  // Row 1 Type counts based on current tech filters
+  const typeCounts = useMemo(() => {
+    const techMatches = (proj) => {
+      if (selectedTechs.length === 0) return true;
+      return selectedTechs.every(reqTech => 
+        proj.techStack.some(t => t.toLowerCase() === reqTech.toLowerCase())
+      );
+    };
+
+    const matchingProjects = PROJECTS_DATA.filter(techMatches);
+    return {
+      all: matchingProjects.length,
+      group: matchingProjects.filter(p => p.type === 'group').length,
+      individual: matchingProjects.filter(p => p.type === 'individual').length,
+    };
+  }, [selectedTechs]);
+
+  // Meta for each tech chip: calculates match count if added/active, and disables if 0 results
+  const getTechChipMeta = (tech) => {
+    const isSelected = selectedTechs.some(t => t.toLowerCase() === tech.toLowerCase());
+
+    if (isSelected) {
+      return {
+        count: filteredProjects.length,
+        disabled: false,
+        isSelected: true
+      };
+    }
+
+    // How many projects would match if this tech is added to current filters?
+    const potentialTechs = [...selectedTechs, tech];
+    const wouldMatchCount = PROJECTS_DATA.filter(project => {
+      if (selectedType !== 'all' && project.type !== selectedType) {
+        return false;
+      }
+      return potentialTechs.every(reqTech => 
+        project.techStack.some(t => t.toLowerCase() === reqTech.toLowerCase())
+      );
+    }).length;
+
+    return {
+      count: wouldMatchCount,
+      disabled: wouldMatchCount === 0,
+      isSelected: false
+    };
+  };
+
+  // Visible tech chips: top 8 by default, or all when expanded, plus any active tech outside top 8
+  const visibleTechs = useMemo(() => {
+    if (showAllTechs) return allUniqueTechs;
+    const top8 = allUniqueTechs.slice(0, 8);
+    // Ensure any currently selected tech is always visible even if outside top 8
+    const extraSelected = selectedTechs.filter(t => !top8.some(item => item.toLowerCase() === t.toLowerCase()));
+    return [...top8, ...extraSelected];
+  }, [showAllTechs, allUniqueTechs, selectedTechs]);
+
+  // Toggle tech chip in multi-select array
+  const toggleTech = (tech) => {
+    setSelectedTechs(prev => {
+      const exists = prev.some(t => t.toLowerCase() === tech.toLowerCase());
+      if (exists) {
+        return prev.filter(t => t.toLowerCase() !== tech.toLowerCase());
+      } else {
+        return [...prev, tech];
+      }
+    });
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSelectedType('all');
+    setSelectedTechs([]);
+  };
+
+  const hasActiveFilters = selectedType !== 'all' || selectedTechs.length > 0;
+
+  // --- GitHub Repo Fetching ---
   const fetchGitHubRepos = async () => {
     setIsLoading(true);
     setIsOfflineMode(false);
@@ -302,7 +383,6 @@ export default function Projects() {
       if (!res.ok) throw new Error('Failed to fetch repositories');
       const data = await res.json();
       
-      // Filter out own profile readme AND hide forks
       const cleanData = data.filter(repo => 
         repo.name.toLowerCase() !== 'theekshanathushan' && !repo.fork
       );
@@ -317,15 +397,14 @@ export default function Projects() {
   };
 
   useEffect(() => {
-    if (activeTab === 'github' && repos.length === 0) {
+    if (activeView === 'github' && repos.length === 0) {
       fetchGitHubRepos();
     }
-  }, [activeTab]);
+  }, [activeView]);
 
-  // GitHub filter and sort
   const filteredRepos = repos
     .filter(repo => {
-      if (repo.fork) return false; // Ensure forks are strictly hidden
+      if (repo.fork) return false;
       const term = searchQuery.toLowerCase();
       const nameMatch = repo.name?.toLowerCase().includes(term) || false;
       const descMatch = repo.description?.toLowerCase().includes(term) || false;
@@ -339,9 +418,9 @@ export default function Projects() {
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
 
-  // Render high-fidelity realistic mockups for cards & modal
+  // --- Render Interactive Mockups for Cards & Modal ---
   const renderMockup = (item, isModal = false) => {
-    // 1. TalentAI: Rich Recruiter & AI Match Workspace Preview
+    // 1. TalentAI
     if (item.id === 'talentai') {
       return (
         <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
@@ -353,7 +432,7 @@ export default function Projects() {
             </div>
             <div className="browser-url-bar">
               <Globe size={11} className="url-icon" />
-              <span className="url-text">{item.mockupUrl}</span>
+              <span className="url-text">{item.mockupUrl || 'https://talentai.preview/recruiter/screening'}</span>
             </div>
           </div>
           <div className="browser-viewport talentai-preview">
@@ -396,7 +475,7 @@ export default function Projects() {
       );
     }
 
-    // 2. AgriAI: Leaf Disease Vision Scanner & Voice Agent
+    // 2. AgriAI
     if (item.id === 'agriai') {
       return (
         <div className={`phone-mockup-frame ${isModal ? 'modal-phone' : ''}`}>
@@ -443,7 +522,7 @@ export default function Projects() {
       );
     }
 
-    // 3. NovaExplorer: NASA Deep-Space Missions & Telemetry Explorer
+    // 3. NovaExplorer
     if (item.id === 'novaexplorer') {
       return (
         <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
@@ -455,7 +534,7 @@ export default function Projects() {
             </div>
             <div className="browser-url-bar">
               <Globe size={11} className="url-icon" />
-              <span className="url-text">{item.mockupUrl}</span>
+              <span className="url-text">{item.mockupUrl || 'https://novaexplorer.vercel.app'}</span>
             </div>
           </div>
           <div className="browser-viewport nova-preview">
@@ -505,7 +584,122 @@ export default function Projects() {
       );
     }
 
-    // 4. IgnitX Track A: Root-Cause AI Engine
+    // 4. IgnitX Track A
+    if (item.id === 'ignitx') {
+      return (
+        <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
+          <div className="browser-header">
+            <div className="browser-dots">
+              <span className="dot dot-red"></span>
+              <span className="dot dot-yellow"></span>
+              <span className="dot dot-green"></span>
+            </div>
+            <div className="browser-url-bar">
+              <Globe size={11} className="url-icon" />
+              <span className="url-text">ignitx.hutch-hackathon.ai/track-a</span>
+            </div>
+          </div>
+          <div className="browser-viewport ignitx-preview">
+            <div className="mockup-ui-topbar">
+              <div className="mockup-ui-brand">
+                <span className="ui-brand-badge" style={{ color: '#f59e0b' }}>Hutch IgnitX</span>
+                <span className="ui-role-label">Track A: Root-Cause AI</span>
+              </div>
+              <div className="mockup-metric-pill" style={{ color: '#10b981' }}>
+                <span>🏆 Hackathon Entry</span>
+              </div>
+            </div>
+
+            <div className="mockup-ui-card ignitx-ui-card">
+              <div className="ignitx-status-row">
+                <strong>Telemetry Friction Diagnostics</strong>
+                <span className="ignitx-live-badge">Heuristic Active</span>
+              </div>
+              <div className="ignitx-metrics-row">
+                <div className="ignitx-metric">
+                  <span className="m-label">Dropout Risk</span>
+                  <div className="m-track"><div className="m-fill" style={{ width: '14%' }}></div></div>
+                  <span className="m-val" style={{ color: '#10b981' }}>14% (Minimal)</span>
+                </div>
+                <div className="ignitx-metric">
+                  <span className="m-label">Isolated Root Cause</span>
+                  <span className="m-cause">Friction in morning self-care onboarding step</span>
+                </div>
+              </div>
+              <div className="ignitx-intervention-pill">
+                <CheckCircle2 size={12} className="text-glow-accent" />
+                <span>Prescription: Trigger adaptive coping prompt</span>
+              </div>
+            </div>
+
+            <div className="mockup-footer-cue">
+              <span>🏆 [Hutch IgnitX Hackathon Prototype]</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 5. CareConnect
+    if (item.id === 'careconnect') {
+      return (
+        <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
+          <div className="browser-header">
+            <div className="browser-dots">
+              <span className="dot dot-red"></span>
+              <span className="dot dot-yellow"></span>
+              <span className="dot dot-green"></span>
+            </div>
+            <div className="browser-url-bar">
+              <Globe size={11} className="url-icon" />
+              <span className="url-text">careconnect.relief-ops.org/dashboard</span>
+            </div>
+          </div>
+          <div className="browser-viewport careconnect-preview">
+            <div className="mockup-ui-topbar">
+              <div className="mockup-ui-brand">
+                <span className="ui-brand-badge" style={{ color: '#10b981' }}>CareConnect</span>
+                <span className="ui-role-label">Disaster Relief Operations</span>
+              </div>
+              <div className="mockup-metric-pill" style={{ color: '#10b981' }}>
+                <span>🚨 Active Dispatch</span>
+              </div>
+            </div>
+
+            <div className="mockup-ui-card">
+              <div className="care-status-row">
+                <span className="care-zone-title">Leaflet Geographic Operations Grid</span>
+                <span className="care-live-tag">Live Geo-Tracking</span>
+              </div>
+              <div className="care-telemetry-row">
+                <div className="telemetry-box">
+                  <span className="t-label">Active Zones</span>
+                  <span className="t-val">12</span>
+                </div>
+                <div className="telemetry-box">
+                  <span className="t-label">Donors Matched</span>
+                  <span className="t-val text-glow-accent">184</span>
+                </div>
+                <div className="telemetry-box">
+                  <span className="t-label">WebSocket Latency</span>
+                  <span className="t-val">32ms</span>
+                </div>
+              </div>
+              <div className="care-dispatch-banner">
+                <CheckCircle2 size={12} className="text-glow-accent" />
+                <span>Emergency resource allocation synchronized via Spring Boot backend.</span>
+              </div>
+            </div>
+
+            <div className="mockup-footer-cue">
+              <span>🗺️ [CareConnect Disaster Relief Platform]</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 6. MoodMirror
     return (
       <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
         <div className="browser-header">
@@ -516,44 +710,47 @@ export default function Projects() {
           </div>
           <div className="browser-url-bar">
             <Globe size={11} className="url-icon" />
-            <span className="url-text">ignitx.hutch-hackathon.ai/track-a</span>
+            <span className="url-text">moodmirror.wellness.app/analytics</span>
           </div>
         </div>
-        <div className="browser-viewport ignitx-preview">
+        <div className="browser-viewport moodmirror-preview">
           <div className="mockup-ui-topbar">
             <div className="mockup-ui-brand">
-              <span className="ui-brand-badge" style={{ color: '#f59e0b' }}>Hutch IgnitX</span>
-              <span className="ui-role-label">Track A: Root-Cause AI</span>
+              <span className="ui-brand-badge" style={{ color: '#c084fc' }}>MoodMirror</span>
+              <span className="ui-role-label">Mental Wellness Hub</span>
             </div>
-            <div className="mockup-metric-pill" style={{ color: '#10b981' }}>
-              <span>🏆 Hackathon Entry</span>
+            <div className="mockup-metric-pill" style={{ color: '#c084fc' }}>
+              <span>✨ 14-Day Streak</span>
             </div>
           </div>
 
-          <div className="mockup-ui-card ignitx-ui-card">
-            <div className="ignitx-status-row">
-              <strong>Telemetry Friction Diagnostics</strong>
-              <span className="ignitx-live-badge">Heuristic Active</span>
+          <div className="mockup-ui-card">
+            <div className="mood-stats-row">
+              <span className="mood-chart-title">Long-Term Mood Analytics (Recharts)</span>
+              <span className="mood-score-tag">Positive (78%)</span>
             </div>
-            <div className="ignitx-metrics-row">
-              <div className="ignitx-metric">
-                <span className="m-label">Dropout Risk</span>
-                <div className="m-track"><div className="m-fill" style={{ width: '14%' }}></div></div>
-                <span className="m-val" style={{ color: '#10b981' }}>14% (Minimal)</span>
+            <div className="mood-bars-grid">
+              <div className="mood-bar-item">
+                <span className="mood-label">Calm</span>
+                <div className="m-track"><div className="m-fill" style={{ width: '85%', background: '#38bdf8' }}></div></div>
               </div>
-              <div className="ignitx-metric">
-                <span className="m-label">Isolated Root Cause</span>
-                <span className="m-cause">Friction in morning self-care onboarding step</span>
+              <div className="mood-bar-item">
+                <span className="mood-label">Focus</span>
+                <div className="m-track"><div className="m-fill" style={{ width: '70%', background: '#a855f7' }}></div></div>
+              </div>
+              <div className="mood-bar-item">
+                <span className="mood-label">Joy</span>
+                <div className="m-track"><div className="m-fill" style={{ width: '92%', background: '#10b981' }}></div></div>
               </div>
             </div>
-            <div className="ignitx-intervention-pill">
-              <CheckCircle2 size={12} className="text-glow-accent" />
-              <span>Prescription: Trigger adaptive coping prompt</span>
+            <div className="mood-routine-pill">
+              <Sparkles size={11} className="text-glow-accent" />
+              <span>Push Notification Scheduled: 8:00 PM Mindful Reflection</span>
             </div>
           </div>
 
           <div className="mockup-footer-cue">
-            <span>🏆 [Hutch IgnitX Hackathon Prototype]</span>
+            <span>📊 [MoodMirror Wellness Analytics Platform]</span>
           </div>
         </div>
       </div>
@@ -573,170 +770,363 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Tab Toggle Switch */}
-        <div className="project-type-toggle-container">
-          <div className="project-type-toggle glass-card">
+        {/* View Switcher: Curated Projects vs GitHub Repositories */}
+        <div className="view-mode-toggle-wrap">
+          <div className="view-mode-toggle glass-card" role="tablist" aria-label="Project view mode">
             <button 
-              className={`type-toggle-btn ${activeTab === 'featured' ? 'active' : ''}`}
-              onClick={() => setActiveTab('featured')}
+              role="tab"
+              aria-selected={activeView === 'projects'}
+              className={`view-mode-btn ${activeView === 'projects' ? 'active' : ''}`}
+              onClick={() => setActiveView('projects')}
             >
-              <Sparkles size={16} />
-              <span>Featured Case Studies</span>
+              <Sparkles size={15} />
+              <span>Curated Projects ({PROJECTS_DATA.length})</span>
             </button>
             <button 
-              className={`type-toggle-btn ${activeTab === 'github' ? 'active' : ''}`}
-              onClick={() => setActiveTab('github')}
+              role="tab"
+              aria-selected={activeView === 'github'}
+              className={`view-mode-btn ${activeView === 'github' ? 'active' : ''}`}
+              onClick={() => setActiveView('github')}
             >
-              <Folder size={16} />
+              <Folder size={15} />
               <span>GitHub Repositories</span>
             </button>
           </div>
         </div>
 
-        {activeTab === 'featured' ? (
-          <div className="case-studies-container">
+        {activeView === 'projects' ? (
+          <div className="projects-filtering-system">
             
-            {/* 4 Primary Case Studies Grid */}
-            <div className="case-studies-grid">
-              {CASE_STUDIES.map((study) => (
-                <article 
-                  key={study.id} 
-                  className="case-study-card glass-card"
-                  onClick={() => setSelectedCaseStudy(study)}
-                >
-                  {/* Top Mockup Slot */}
-                  <div className="card-mockup-wrapper">
-                    {renderMockup(study)}
-                    <div className="card-rank-badge">
-                      <span>#{study.rank}</span>
-                    </div>
-                    {study.badge && (
-                      <div className="card-category-badge">
-                        <span>{study.badge}</span>
-                      </div>
-                    )}
+            {/* === FILTER CONTROL PANEL (Premium Dark UI) === */}
+            <div className="filter-dashboard-card glass-card">
+              
+              {/* Row 1: Segmented Control (All | Group | Individual) */}
+              <div className="filter-row-primary">
+                <div className="filter-segment-group" role="group" aria-label="Filter projects by structure">
+                  <button
+                    type="button"
+                    className={`segment-btn ${selectedType === 'all' ? 'active' : ''}`}
+                    onClick={() => setSelectedType('all')}
+                    aria-pressed={selectedType === 'all'}
+                  >
+                    <span>All Projects</span>
+                    <span className="segment-badge">{typeCounts.all}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`segment-btn ${selectedType === 'group' ? 'active' : ''}`}
+                    onClick={() => setSelectedType('group')}
+                    aria-pressed={selectedType === 'group'}
+                  >
+                    <Users size={14} className="segment-icon" />
+                    <span>Group Projects</span>
+                    <span className="segment-badge">{typeCounts.group}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`segment-btn ${selectedType === 'individual' ? 'active' : ''}`}
+                    onClick={() => setSelectedType('individual')}
+                    aria-pressed={selectedType === 'individual'}
+                  >
+                    <User size={14} className="segment-icon" />
+                    <span>Individual Projects</span>
+                    <span className="segment-badge">{typeCounts.individual}</span>
+                  </button>
+                </div>
+
+                {/* Reset Filters Action Button */}
+                {hasActiveFilters && (
+                  <button 
+                    type="button"
+                    className="btn-clear-filters"
+                    onClick={clearFilters}
+                    aria-label="Clear all applied filters"
+                  >
+                    <RotateCcw size={13} />
+                    <span>Clear filters</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Row 2: Tech Stack Multi-Select Filter Chips */}
+              <div className="filter-row-secondary">
+                <div className="tech-filter-header">
+                  <div className="tech-filter-title">
+                    <SlidersHorizontal size={13} className="text-glow-accent" />
+                    <span>Filter by Tech Stack (Multi-Select • AND logic):</span>
                   </div>
+                  {allUniqueTechs.length > 8 && (
+                    <button
+                      type="button"
+                      className="tech-expand-toggle-btn"
+                      onClick={() => setShowAllTechs(!showAllTechs)}
+                      aria-expanded={showAllTechs}
+                    >
+                      {showAllTechs ? (
+                        <>
+                          <span>Show top 8</span>
+                          <ChevronUp size={13} />
+                        </>
+                      ) : (
+                        <>
+                          <span>Show all ({allUniqueTechs.length})</span>
+                          <ChevronDown size={13} />
+                        </>
+                      )}
+                    </button>
+                  )}
+                </div>
 
-                  {/* Card Content Area */}
-                  <div className="case-study-body">
-                    
-                    <div className="case-study-titles">
-                      <h3 className="case-study-title">{study.title}</h3>
-                      <span className="case-study-subtitle">{study.subtitle}</span>
-                    </div>
+                {/* Horizontal Scroll / Wrap Tech Chips Container */}
+                <div 
+                  className="tech-chips-scroll-container" 
+                  role="group" 
+                  aria-label="Filter projects by technology stack"
+                >
+                  {visibleTechs.map((tech) => {
+                    const meta = getTechChipMeta(tech);
+                    return (
+                      <button
+                        key={tech}
+                        type="button"
+                        className={`tech-filter-chip ${meta.isSelected ? 'selected' : ''} ${meta.disabled ? 'disabled' : ''}`}
+                        onClick={() => !meta.disabled && toggleTech(tech)}
+                        disabled={meta.disabled}
+                        aria-pressed={meta.isSelected}
+                        aria-disabled={meta.disabled}
+                        title={meta.disabled ? `No matching projects using ${tech} with current filters` : `Filter by ${tech}`}
+                      >
+                        {meta.isSelected && <Check size={12} className="chip-check-icon" />}
+                        <span className="chip-label">{tech}</span>
+                        <span className="chip-count-bubble">{meta.count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                    <p className="case-study-summary">{study.summary}</p>
+                {/* Active Filter Summary Strip */}
+                {hasActiveFilters && (
+                  <div className="active-filters-summary-bar">
+                    <div className="active-tags-cluster">
+                      <span className="active-summary-label">Active:</span>
+                      
+                      {selectedType !== 'all' && (
+                        <span className="active-pill">
+                          <span>{selectedType === 'group' ? 'Group Projects' : 'Individual Projects'}</span>
+                          <button 
+                            type="button" 
+                            className="remove-pill-btn" 
+                            onClick={() => setSelectedType('all')}
+                            aria-label={`Remove ${selectedType} filter`}
+                          >
+                            <X size={11} />
+                          </button>
+                        </span>
+                      )}
 
-                    {/* Problem teaser */}
-                    <div className="case-study-problem-box">
-                      <Target size={14} className="problem-icon" />
-                      <p className="problem-text">
-                        <strong>The Problem:</strong> {study.problem}
-                      </p>
-                    </div>
-
-                    {/* Tech Stack Chips */}
-                    <div className="case-study-chips">
-                      {study.techStack.map((tech) => (
-                        <span key={tech} className="tech-chip">
-                          {tech}
+                      {selectedTechs.map(tech => (
+                        <span key={tech} className="active-pill tech-pill">
+                          <span>{tech}</span>
+                          <button 
+                            type="button" 
+                            className="remove-pill-btn" 
+                            onClick={() => toggleTech(tech)}
+                            aria-label={`Remove ${tech} filter`}
+                          >
+                            <X size={11} />
+                          </button>
                         </span>
                       ))}
                     </div>
 
-                    {/* Card Actions */}
-                    <div className="case-study-actions" onClick={(e) => e.stopPropagation()}>
-                      <button 
-                        className="btn-read-case-study"
-                        onClick={() => setSelectedCaseStudy(study)}
-                      >
-                        <span>Case Study Details</span>
-                        <ChevronRight size={15} />
-                      </button>
-
-                      <div className="case-study-external-links">
-                        {study.links.demo && study.links.demo !== '#' && (
-                          <a 
-                            href={study.links.demo} 
-                            target="_blank" 
-                            rel="noreferrer" 
-                            className="external-icon-link"
-                            title="Open Live Demo"
-                          >
-                            <ExternalLink size={16} />
-                          </a>
-                        )}
-                        <a 
-                          href={study.links.github} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="external-icon-link"
-                          title="Open GitHub Repository"
-                        >
-                          <Github size={16} />
-                        </a>
-                      </div>
+                    <div className="results-counter-indicator">
+                      <span>Showing <strong>{filteredProjects.length}</strong> of {PROJECTS_DATA.length} projects</span>
                     </div>
-
                   </div>
-                </article>
-              ))}
-            </div>
+                )}
 
-            {/* Secondary "More Projects" Section */}
-            <div className="more-projects-section">
-              <div className="more-projects-header">
-                <Layers size={20} className="text-glow-accent" />
-                <h3 className="more-projects-title">More Projects</h3>
-                <span className="more-projects-divider"></span>
               </div>
 
-              <div className="more-projects-grid">
-                {MORE_PROJECTS.map((proj) => (
-                  <div key={proj.id} className="secondary-project-card glass-card">
-                    <div className="secondary-card-head">
-                      <div>
-                        <span className="secondary-cat-badge">{proj.category}</span>
-                        <h4 className="secondary-title">{proj.title}</h4>
+            </div>
+
+            {/* === PROJECTS GRID === */}
+            {filteredProjects.length > 0 ? (
+              <div className="case-studies-grid">
+                {filteredProjects.map((project, idx) => (
+                  <article 
+                    key={project.id} 
+                    className="case-study-card glass-card project-animated-entry"
+                    style={{ animationDelay: `${idx * 0.06}s` }}
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    {/* Top Mockup Slot */}
+                    <div className="card-mockup-wrapper">
+                      {renderMockup(project)}
+                      
+                      {/* Structure Type Badge (Group or Individual) */}
+                      <div className="card-type-badge-pill">
+                        {project.type === 'group' ? (
+                          <span className="type-badge group" title={`Group Project (${project.teamSize || 4} members)`}>
+                            <Users size={11} />
+                            <span>Group {project.teamSize ? `• ${project.teamSize}` : ''}</span>
+                          </span>
+                        ) : (
+                          <span className="type-badge individual" title="Individual Project">
+                            <User size={11} />
+                            <span>Individual</span>
+                          </span>
+                        )}
                       </div>
-                      <div className="secondary-links">
-                        <a 
-                          href={proj.links.github} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="secondary-icon-btn"
-                          title="View Repository"
+
+                      {/* Rank or Category Badge */}
+                      {project.rank ? (
+                        <div className="card-rank-badge">
+                          <span>#{project.rank}</span>
+                        </div>
+                      ) : (
+                        <div className="card-rank-badge secondary">
+                          <span>{project.category}</span>
+                        </div>
+                      )}
+
+                      {project.badge && (
+                        <div className="card-category-badge">
+                          <span>{project.badge}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card Content Area */}
+                    <div className="case-study-body">
+                      
+                      <div className="case-study-titles">
+                        <div className="title-and-year-row">
+                          <h3 className="case-study-title">{project.title}</h3>
+                          <span className="project-year-pill">{project.year}</span>
+                        </div>
+                        <span className="case-study-subtitle">{project.subtitle}</span>
+                      </div>
+
+                      <p className="case-study-summary">{project.summary}</p>
+
+                      {/* Role Highlight */}
+                      <div className="card-role-strip">
+                        <UserCheck size={13} className="role-icon" />
+                        <span><strong>Role:</strong> {project.role}</span>
+                      </div>
+
+                      {/* Problem or Highlight Teaser */}
+                      {project.problem ? (
+                        <div className="case-study-problem-box">
+                          <Target size={14} className="problem-icon" />
+                          <p className="problem-text">
+                            <strong>The Problem:</strong> {project.problem}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="case-study-problem-box highlight">
+                          <CheckCircle2 size={14} className="problem-icon" />
+                          <p className="problem-text">
+                            <strong>Core Focus:</strong> {project.achievements[0]}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Clickable Tech Stack Chips */}
+                      <div className="case-study-chips" role="group" aria-label="Project technologies">
+                        {project.techStack.map((tech) => {
+                          const isActive = selectedTechs.some(t => t.toLowerCase() === tech.toLowerCase());
+                          return (
+                            <button
+                              key={tech}
+                              type="button"
+                              className={`tech-chip-interactive ${isActive ? 'active' : ''}`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleTech(tech);
+                              }}
+                              aria-pressed={isActive}
+                              title={`Filter projects by ${tech}`}
+                            >
+                              {tech}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Card Actions */}
+                      <div className="case-study-actions" onClick={(e) => e.stopPropagation()}>
+                        <button 
+                          type="button"
+                          className="btn-read-case-study"
+                          onClick={() => setSelectedProject(project)}
+                          aria-label={`Open details for ${project.title}`}
                         >
-                          <Github size={16} />
-                        </a>
+                          <span>Case Study Details</span>
+                          <ChevronRight size={15} />
+                        </button>
+
+                        <div className="case-study-external-links">
+                          {project.links.demo && project.links.demo !== '#' && (
+                            <a 
+                              href={project.links.demo} 
+                              target="_blank" 
+                              rel="noreferrer" 
+                              className="external-icon-link"
+                              title="Open Live Demo"
+                            >
+                              <ExternalLink size={16} />
+                            </a>
+                          )}
+                          {project.links.github && (
+                            <a 
+                              href={project.links.github} 
+                              target="_blank" 
+                              rel="noreferrer" 
+                              className="external-icon-link"
+                              title="Open GitHub Repository"
+                            >
+                              <Github size={16} />
+                            </a>
+                          )}
+                        </div>
                       </div>
+
                     </div>
-
-                    <p className="secondary-summary">{proj.summary}</p>
-
-                    <div className="secondary-role-box">
-                      <UserCheck size={13} className="role-icon" />
-                      <span>{proj.role}</span>
-                    </div>
-
-                    <div className="secondary-chips">
-                      {proj.techStack.map(t => (
-                        <span key={t} className="tech-chip-sm">{t}</span>
-                      ))}
-                    </div>
-
-                    <ul className="secondary-bullets">
-                      {proj.achievements.map((a, i) => (
-                        <li key={i}>
-                          <CheckCircle2 size={13} className="bullet-check" />
-                          <span>{a}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  </article>
                 ))}
               </div>
-            </div>
+            ) : (
+              /* Friendly Empty State */
+              <div className="projects-empty-state glass-card">
+                <div className="empty-icon-wrap">
+                  <SlidersHorizontal size={40} className="empty-sliders-icon text-glow-accent" />
+                </div>
+                <h3 className="empty-state-title">No matching projects found</h3>
+                <p className="empty-state-desc">
+                  No projects match your current filter combination of{' '}
+                  <span className="empty-highlight">
+                    {selectedType !== 'all' ? (selectedType === 'group' ? 'Group Projects' : 'Individual Projects') : 'All Projects'}
+                  </span>
+                  {selectedTechs.length > 0 && (
+                    <>
+                      {' '}and technology stack{' '}
+                      <span className="empty-highlight">{selectedTechs.join(' + ')}</span>
+                    </>
+                  )}.
+                </p>
+                <button 
+                  type="button" 
+                  className="btn btn-primary empty-reset-btn"
+                  onClick={clearFilters}
+                >
+                  <RotateCcw size={16} />
+                  <span>Reset All Filters</span>
+                </button>
+              </div>
+            )}
 
           </div>
         ) : (
@@ -758,89 +1148,90 @@ export default function Projects() {
               </div>
             )}
 
-            {/* Search & Sort Panel */}
-            <div className="github-controls glass-card">
-              <div className="github-search-wrap">
-                <Search size={18} className="github-search-icon" />
+            {/* Repos Controls */}
+            <div className="repos-controls-bar">
+              <div className="search-box-wrap glass-card">
+                <Search size={16} className="search-icon" />
                 <input 
-                  type="text"
-                  placeholder="Filter original repositories (forks hidden)..."
+                  type="text" 
+                  placeholder="Filter repositories by name or tech..." 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="github-search-input"
+                  className="repo-search-input"
                 />
+                {searchQuery && (
+                  <button className="search-clear-btn" onClick={() => setSearchQuery('')}>
+                    <X size={14} />
+                  </button>
+                )}
               </div>
 
-              <div className="github-sort-wrap">
-                <span className="github-sort-label">Sort:</span>
+              <div className="sort-box-wrap">
+                <label htmlFor="repo-sort-select" className="sort-label">Sort by:</label>
                 <select 
+                  id="repo-sort-select"
                   value={sortBy} 
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="github-sort-select"
+                  onChange={(e) => setSortBy(e.target.value)} 
+                  className="repo-sort-select glass-card"
                 >
-                  <option value="updated">Recent Activity</option>
-                  <option value="stars">Stars Count</option>
+                  <option value="updated">Recently Updated</option>
+                  <option value="stars">Most Stars</option>
                 </select>
               </div>
             </div>
 
             {/* Repos Grid */}
             {isLoading ? (
-              <div className="github-repos-grid">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="repo-card-skeleton glass-card">
-                    <div className="skeleton-title"></div>
-                    <div className="skeleton-desc-line-1"></div>
-                    <div className="skeleton-desc-line-2"></div>
-                  </div>
-                ))}
+              <div className="repos-loading-state">
+                <div className="loading-spinner"></div>
+                <p>Syncing public GitHub repositories...</p>
               </div>
             ) : filteredRepos.length === 0 ? (
-              <div className="github-empty glass-card">
-                <p>No original repositories match your search.</p>
-                <button 
-                  className="btn btn-secondary" 
-                  style={{ padding: '8px 16px', fontSize: '13px', marginTop: '12px' }} 
-                  onClick={() => setSearchQuery('')}
-                >
-                  Reset Filter
-                </button>
+              <div className="repos-empty-state glass-card">
+                <Folder size={36} className="empty-icon text-glow-accent" />
+                <p>No non-fork repositories found matching your query.</p>
               </div>
             ) : (
-              <div className="github-repos-grid">
-                {filteredRepos.map((repo) => {
-                  const langColor = LANGUAGE_COLORS[repo.language] || "#8b5cf6";
+              <div className="repos-grid">
+                {filteredRepos.map(repo => {
+                  const langColor = LANGUAGE_COLORS[repo.language] || '#8b949e';
                   return (
-                    <div key={repo.id} className="github-repo-card glass-card">
+                    <div key={repo.id} className="repo-card glass-card">
                       <div className="repo-header">
-                        <Folder size={18} className="repo-folder-icon" />
-                        <h4 className="repo-title" title={repo.name}>{repo.name}</h4>
+                        <div className="repo-title-wrap">
+                          <Folder size={18} className="repo-folder-icon" />
+                          <h4 className="repo-name" title={repo.name}>{repo.name}</h4>
+                        </div>
+                        <div className="repo-stars">
+                          <Star size={13} className="star-icon" />
+                          <span>{repo.stargazers_count}</span>
+                        </div>
                       </div>
-                      
-                      <p className="repo-description">
-                        {repo.description || "No description provided."}
+
+                      <p className="repo-desc">
+                        {repo.description || "Open-source software engineering repository."}
                       </p>
 
-                      <div className="repo-tags-wrap">
+                      <div className="repo-footer">
                         {repo.language && (
-                          <span className="repo-lang-badge">
-                            <span className="lang-color-circle" style={{ backgroundColor: langColor }}></span>
-                            {repo.language}
-                          </span>
+                          <div className="repo-language">
+                            <span className="lang-color-dot" style={{ backgroundColor: langColor }}></span>
+                            <span className="lang-name">{repo.language}</span>
+                          </div>
                         )}
-                        <span className="repo-stat-badge" title="Stars">
-                          <Star size={12} fill={repo.stargazers_count > 0 ? "currentColor" : "none"} /> {repo.stargazers_count}
+                        <span className="repo-updated-time">
+                          Updated {new Date(repo.updated_at).toLocaleDateString()}
                         </span>
                       </div>
 
-                      <div className="repo-footer">
+                      <div className="repo-links-row">
                         <a 
                           href={repo.html_url} 
                           target="_blank" 
                           rel="noreferrer" 
                           className="repo-link-btn"
                         >
-                          Code <Github size={13} />
+                          <Github size={14} /> View Code
                         </a>
                         {repo.homepage && (
                           <a 
@@ -861,22 +1252,34 @@ export default function Projects() {
           </div>
         )}
 
-        {/* Premium Case Study Detail Modal */}
-        {selectedCaseStudy && (
-          <div className="case-study-modal-backdrop" onClick={() => setSelectedCaseStudy(null)}>
+        {/* Premium Project Deep-Dive Modal */}
+        {selectedProject && (
+          <div className="case-study-modal-backdrop" onClick={() => setSelectedProject(null)}>
             <div 
               className="case-study-modal-container glass-card"
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-project-title"
             >
               {/* Modal Header Bar */}
               <div className="modal-top-bar">
                 <div className="modal-top-brand">
-                  <span className="modal-rank-badge">Case Study #{selectedCaseStudy.rank}</span>
-                  <span className="modal-badge-category">{selectedCaseStudy.badge}</span>
+                  {selectedProject.rank ? (
+                    <span className="modal-rank-badge">Case Study #{selectedProject.rank}</span>
+                  ) : (
+                    <span className="modal-rank-badge secondary">{selectedProject.category}</span>
+                  )}
+                  <span className="modal-badge-category">
+                    {selectedProject.type === 'group' 
+                      ? `Group Project (${selectedProject.teamSize || 4} members)` 
+                      : 'Individual Project'}
+                  </span>
                 </div>
                 <button 
+                  type="button"
                   className="modal-close-icon-btn"
-                  onClick={() => setSelectedCaseStudy(null)}
+                  onClick={() => setSelectedProject(null)}
                   aria-label="Close Case Study"
                 >
                   <X size={20} />
@@ -888,14 +1291,17 @@ export default function Projects() {
                 
                 {/* Title & Summary */}
                 <div className="modal-title-section">
-                  <h2 className="modal-main-title">{selectedCaseStudy.title}</h2>
-                  <p className="modal-main-subtitle">{selectedCaseStudy.subtitle}</p>
-                  <p className="modal-one-line-summary">{selectedCaseStudy.summary}</p>
+                  <div className="modal-title-row">
+                    <h2 id="modal-project-title" className="modal-main-title">{selectedProject.title}</h2>
+                    <span className="modal-year-tag">{selectedProject.year}</span>
+                  </div>
+                  <p className="modal-main-subtitle">{selectedProject.subtitle}</p>
+                  <p className="modal-one-line-summary">{selectedProject.summary}</p>
                 </div>
 
                 {/* Mockup Preview Slot */}
                 <div className="modal-mockup-wrapper">
-                  {renderMockup(selectedCaseStudy, true)}
+                  {renderMockup(selectedProject, true)}
                 </div>
 
                 {/* Two Column Deep Dive Info */}
@@ -904,28 +1310,37 @@ export default function Projects() {
                   {/* Left Column: Problem, What I Built & Role */}
                   <div className="modal-detail-col">
                     
-                    <div className="detail-section-block">
-                      <div className="detail-block-title">
-                        <Target size={16} className="text-glow-accent" />
-                        <h4>The Problem</h4>
+                    {selectedProject.problem && (
+                      <div className="detail-section-block">
+                        <div className="detail-block-title">
+                          <Target size={16} className="text-glow-accent" />
+                          <h4>The Problem</h4>
+                        </div>
+                        <p className="detail-block-p">{selectedProject.problem}</p>
                       </div>
-                      <p className="detail-block-p">{selectedCaseStudy.problem}</p>
-                    </div>
+                    )}
 
-                    <div className="detail-section-block">
-                      <div className="detail-block-title">
-                        <Cpu size={16} className="text-glow-accent" />
-                        <h4>What I Built</h4>
+                    {selectedProject.whatIBuilt && (
+                      <div className="detail-section-block">
+                        <div className="detail-block-title">
+                          <Cpu size={16} className="text-glow-accent" />
+                          <h4>What I Built</h4>
+                        </div>
+                        <p className="detail-block-p">{selectedProject.whatIBuilt}</p>
                       </div>
-                      <p className="detail-block-p">{selectedCaseStudy.whatIBuilt}</p>
-                    </div>
+                    )}
 
                     <div className="detail-section-block role-highlight-block">
                       <div className="detail-block-title">
                         <UserCheck size={16} className="text-glow-accent" />
-                        <h4>My Role</h4>
+                        <h4>My Role & Project Type</h4>
                       </div>
-                      <p className="detail-role-p">{selectedCaseStudy.role}</p>
+                      <p className="detail-role-p">
+                        <strong>Role:</strong> {selectedProject.role}
+                      </p>
+                      <p className="detail-structure-p">
+                        <strong>Classification:</strong> {selectedProject.type === 'group' ? `Group Project (Team size: ${selectedProject.teamSize || 4})` : 'Individual Project'}
+                      </p>
                     </div>
 
                   </div>
@@ -936,10 +1351,10 @@ export default function Projects() {
                     <div className="detail-section-block">
                       <div className="detail-block-title">
                         <CheckCircle2 size={16} className="text-glow-accent" />
-                        <h4>3 Key Achievements</h4>
+                        <h4>Key Engineering Achievements</h4>
                       </div>
                       <ul className="modal-achievements-list">
-                        {selectedCaseStudy.achievements.map((ach, idx) => (
+                        {selectedProject.achievements.map((ach, idx) => (
                           <li key={idx} className="achievement-item">
                             <span className="achievement-idx">{idx + 1}</span>
                             <span className="achievement-text">
@@ -964,7 +1379,7 @@ export default function Projects() {
                         <h4>Technologies Used</h4>
                       </div>
                       <div className="modal-tech-chips">
-                        {selectedCaseStudy.techStack.map(t => (
+                        {selectedProject.techStack.map(t => (
                           <span key={t} className="modal-tech-chip">{t}</span>
                         ))}
                       </div>
@@ -972,26 +1387,28 @@ export default function Projects() {
 
                     {/* External CTAs */}
                     <div className="modal-ctas-panel">
-                      {selectedCaseStudy.links.demo && (
+                      {selectedProject.links.demo && selectedProject.links.demo !== '#' && (
                         <a 
-                          href={selectedCaseStudy.links.demo} 
+                          href={selectedProject.links.demo} 
                           target="_blank" 
                           rel="noreferrer" 
                           className="btn btn-primary"
                         >
                           <ExternalLink size={16} />
-                          <span>{selectedCaseStudy.links.demoLabel}</span>
+                          <span>{selectedProject.links.demoLabel || 'Live Demo'}</span>
                         </a>
                       )}
-                      <a 
-                        href={selectedCaseStudy.links.github} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="btn btn-secondary"
-                      >
-                        <Github size={16} />
-                        <span>{selectedCaseStudy.links.githubLabel}</span>
-                      </a>
+                      {selectedProject.links.github && (
+                        <a 
+                          href={selectedProject.links.github} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="btn btn-secondary"
+                        >
+                          <Github size={16} />
+                          <span>{selectedProject.links.githubLabel || 'View GitHub Repo'}</span>
+                        </a>
+                      )}
                     </div>
 
                   </div>
@@ -1006,7 +1423,7 @@ export default function Projects() {
 
       </div>
 
-      {/* Embedded CSS for Projects & Case Studies */}
+      {/* Embedded CSS for Projects & Filter Dashboard */}
       <style>{`
         .projects-section {
           position: relative;
@@ -1022,45 +1439,329 @@ export default function Projects() {
           line-height: 1.6;
         }
 
-        /* --- Toggle Bar --- */
-        .project-type-toggle-container {
+        /* --- View Mode Switcher --- */
+        .view-mode-toggle-wrap {
           display: flex;
           justify-content: center;
           margin: 20px 0 28px;
         }
 
-        .project-type-toggle {
+        .view-mode-toggle {
           display: inline-flex;
-          padding: 6px;
-          border-radius: 14px;
+          padding: 5px;
+          border-radius: 12px;
           gap: 6px;
         }
 
-        .type-toggle-btn {
+        .view-mode-btn {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 10px 22px;
-          border-radius: 10px;
+          padding: 8px 18px;
+          border-radius: 8px;
           background: transparent;
           border: 1px solid transparent;
           color: var(--text-muted);
           font-family: var(--font-heading);
-          font-size: 14px;
+          font-size: 13.5px;
           font-weight: 600;
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.25s ease;
           cursor: pointer;
         }
 
-        .type-toggle-btn:hover {
+        .view-mode-btn:hover {
           color: var(--text-white);
         }
 
-        .type-toggle-btn.active {
+        .view-mode-btn.active {
           color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.1);
-          border-color: rgba(var(--accent-rgb), 0.3);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          background: rgba(var(--accent-rgb), 0.12);
+          border-color: rgba(var(--accent-rgb), 0.35);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Filter Dashboard Panel --- */
+        .filter-dashboard-card {
+          margin-bottom: 32px;
+          padding: 20px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          border: 1px solid rgba(var(--accent-rgb), 0.18);
+          background: rgba(11, 11, 20, 0.7);
+        }
+
+        /* Row 1: Segmented Group/Individual Control */
+        .filter-row-primary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 14px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          padding-bottom: 16px;
+        }
+
+        .filter-segment-group {
+          display: inline-flex;
+          background: rgba(0, 0, 0, 0.4);
+          padding: 4px;
+          border-radius: 10px;
+          gap: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          flex-wrap: wrap;
+        }
+
+        .segment-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 7px;
+          background: transparent;
+          border: 1px solid transparent;
+          color: var(--text-muted);
+          font-family: var(--font-heading);
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .segment-btn:hover {
+          color: var(--text-white);
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .segment-btn.active {
+          background: rgba(var(--accent-rgb), 0.15);
+          color: var(--accent);
+          border-color: rgba(var(--accent-rgb), 0.4);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .segment-badge {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          padding: 1px 6px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-light);
+        }
+
+        .segment-btn.active .segment-badge {
+          background: rgba(var(--accent-rgb), 0.3);
+          color: var(--accent);
+        }
+
+        .btn-clear-filters {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 6px;
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid rgba(239, 68, 68, 0.3);
+          color: #f87171;
+          font-family: var(--font-mono);
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .btn-clear-filters:hover {
+          background: rgba(239, 68, 68, 0.2);
+          border-color: #ef4444;
+          color: #ffffff;
+        }
+
+        /* Row 2: Tech Stack Multi-Select Filter Chips */
+        .filter-row-secondary {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .tech-filter-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 12px;
+        }
+
+        .tech-filter-title {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: var(--font-mono);
+          font-weight: 600;
+          color: var(--text-light);
+        }
+
+        .tech-expand-toggle-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: transparent;
+          border: none;
+          color: var(--accent);
+          font-family: var(--font-mono);
+          font-size: 11.5px;
+          font-weight: 600;
+          cursor: pointer;
+          padding: 2px 4px;
+          transition: opacity 0.2s;
+        }
+
+        .tech-expand-toggle-btn:hover {
+          opacity: 0.8;
+          text-decoration: underline;
+        }
+
+        /* Tech Chips Container (Horizontal scrolling on mobile, wrap on desktop) */
+        .tech-chips-scroll-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          align-items: center;
+        }
+
+        @media (max-width: 768px) {
+          .tech-chips-scroll-container {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .tech-chips-scroll-container::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        .tech-filter-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 5px 11px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: var(--text-light);
+          font-family: var(--font-mono);
+          font-size: 11.5px;
+          cursor: pointer;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .tech-filter-chip:hover:not(:disabled) {
+          border-color: rgba(var(--accent-rgb), 0.5);
+          color: var(--text-white);
+          background: rgba(var(--accent-rgb), 0.08);
+          transform: translateY(-2px);
+        }
+
+        .tech-filter-chip.selected {
+          background: rgba(var(--accent-rgb), 0.18);
+          border-color: var(--accent);
+          color: var(--accent);
+          font-weight: 600;
+          box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2);
+        }
+
+        .tech-filter-chip.disabled {
+          opacity: 0.35;
+          cursor: not-allowed;
+          border-color: rgba(255, 255, 255, 0.04);
+          background: rgba(0, 0, 0, 0.2);
+          color: var(--text-dark);
+        }
+
+        .chip-check-icon {
+          color: var(--accent);
+        }
+
+        .chip-count-bubble {
+          font-size: 10px;
+          font-weight: 700;
+          padding: 1px 5px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.06);
+          color: var(--text-muted);
+        }
+
+        .tech-filter-chip.selected .chip-count-bubble {
+          background: rgba(var(--accent-rgb), 0.25);
+          color: var(--accent);
+        }
+
+        /* Active Filters Summary Strip */
+        .active-filters-summary-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 4px;
+          padding-top: 10px;
+          border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        }
+
+        .active-tags-cluster {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        .active-summary-label {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-muted);
+          margin-right: 4px;
+        }
+
+        .active-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 2px 8px;
+          border-radius: 6px;
+          background: rgba(var(--accent-rgb), 0.12);
+          border: 1px solid rgba(var(--accent-rgb), 0.3);
+          color: var(--accent);
+          font-family: var(--font-mono);
+          font-size: 11px;
+        }
+
+        .remove-pill-btn {
+          background: transparent;
+          border: none;
+          color: var(--accent);
+          display: inline-flex;
+          align-items: center;
+          cursor: pointer;
+          padding: 0;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+
+        .remove-pill-btn:hover {
+          opacity: 1;
+        }
+
+        .results-counter-indicator {
+          font-family: var(--font-mono);
+          font-size: 11.5px;
+          color: var(--text-muted);
+        }
+
+        .results-counter-indicator strong {
+          color: var(--accent);
         }
 
         /* --- Case Studies Grid --- */
@@ -1068,7 +1769,7 @@ export default function Projects() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 32px;
-          margin-bottom: 60px;
+          margin-bottom: 40px;
         }
 
         @media (max-width: 960px) {
@@ -1087,13 +1788,28 @@ export default function Projects() {
           cursor: pointer;
         }
 
+        .project-animated-entry {
+          animation: cardEntryFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardEntryFade {
+          0% {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .case-study-card:hover {
           transform: translateY(-8px);
           border-color: rgba(var(--accent-rgb), 0.4);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(var(--accent-rgb), 0.15);
         }
 
-        /* --- Mockup Frames --- */
+        /* --- Mockup Frames & Card Badges --- */
         .card-mockup-wrapper {
           position: relative;
           background: rgba(10, 10, 18, 0.7);
@@ -1102,10 +1818,40 @@ export default function Projects() {
           overflow: hidden;
         }
 
-        .card-rank-badge {
+        .card-type-badge-pill {
           position: absolute;
           top: 14px;
           left: 14px;
+          z-index: 3;
+        }
+
+        .type-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-family: var(--font-mono);
+          font-size: 10.5px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 6px;
+        }
+
+        .type-badge.group {
+          background: rgba(56, 189, 248, 0.15);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          color: #38bdf8;
+        }
+
+        .type-badge.individual {
+          background: rgba(168, 85, 247, 0.15);
+          border: 1px solid rgba(168, 85, 247, 0.35);
+          color: #c084fc;
+        }
+
+        .card-rank-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 700;
@@ -1117,12 +1863,18 @@ export default function Projects() {
           z-index: 2;
         }
 
+        .card-rank-badge.secondary {
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.15);
+        }
+
         .card-category-badge {
           position: absolute;
-          top: 14px;
+          bottom: 12px;
           right: 14px;
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 600;
           color: var(--text-light);
           background: rgba(255, 255, 255, 0.08);
@@ -1633,20 +2385,137 @@ export default function Projects() {
           border-radius: 6px;
         }
 
-        /* --- Case Study Body --- */
-        .case-study-body {
-          padding: 28px;
+        /* CareConnect Mockup */
+        .careconnect-preview {
+          background: radial-gradient(circle at 40% 30%, rgba(16, 185, 129, 0.08) 0%, rgba(8, 12, 16, 0.95) 70%);
+        }
+
+        .care-status-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 11px;
+        }
+
+        .care-zone-title {
+          font-weight: 600;
+          color: var(--text-white);
+        }
+
+        .care-live-tag {
+          font-family: var(--font-mono);
+          font-size: 8.5px;
+          color: #10b981;
+          background: rgba(16, 185, 129, 0.15);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .care-telemetry-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+
+        .care-dispatch-banner {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 9.5px;
+          color: var(--text-light);
+          background: rgba(16, 185, 129, 0.08);
+          border-left: 2px solid #10b981;
+          padding: 5px 8px;
+          border-radius: 4px;
+        }
+
+        /* MoodMirror Mockup */
+        .moodmirror-preview {
+          background: radial-gradient(circle at 60% 30%, rgba(192, 132, 252, 0.08) 0%, rgba(12, 8, 18, 0.95) 70%);
+        }
+
+        .mood-stats-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 11px;
+        }
+
+        .mood-chart-title {
+          font-weight: 600;
+          color: var(--text-white);
+        }
+
+        .mood-score-tag {
+          font-family: var(--font-mono);
+          font-size: 8.5px;
+          color: #c084fc;
+          background: rgba(192, 132, 252, 0.15);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .mood-bars-grid {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 4px;
+        }
+
+        .mood-bar-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .mood-label {
+          font-family: var(--font-mono);
+          font-size: 8px;
+          color: var(--text-muted);
+          width: 32px;
+        }
+
+        .mood-routine-pill {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 9.5px;
+          color: #c084fc;
+          background: rgba(192, 132, 252, 0.08);
+          border: 1px solid rgba(192, 132, 252, 0.2);
+          padding: 4px 8px;
+          border-radius: 4px;
+        }
+
+        /* --- Case Study Body --- */
+        .case-study-body {
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
           flex: 1;
         }
 
+        .title-and-year-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+        }
+
         .case-study-title {
-          font-size: 22px;
+          font-size: 21px;
           font-weight: 700;
           color: var(--text-white);
           margin-bottom: 2px;
+        }
+
+        .project-year-pill {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-dark);
+          background: rgba(255, 255, 255, 0.04);
+          padding: 2px 7px;
+          border-radius: 4px;
         }
 
         .case-study-subtitle {
@@ -1657,19 +2526,39 @@ export default function Projects() {
         }
 
         .case-study-summary {
-          font-size: 14px;
+          font-size: 13.5px;
           color: var(--text-light);
           line-height: 1.55;
+        }
+
+        .card-role-strip {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 12px;
+          color: var(--text-muted);
+          background: rgba(255, 255, 255, 0.02);
+          padding: 6px 10px;
+          border-radius: 6px;
+        }
+
+        .role-icon {
+          color: var(--accent);
+          flex-shrink: 0;
         }
 
         .case-study-problem-box {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          padding: 12px 14px;
-          border-radius: 10px;
+          padding: 10px 12px;
+          border-radius: 8px;
           background: rgba(255, 255, 255, 0.02);
           border-left: 3px solid rgba(var(--accent-rgb), 0.6);
+        }
+
+        .case-study-problem-box.highlight {
+          border-left-color: #10b981;
         }
 
         .problem-icon {
@@ -1678,8 +2567,12 @@ export default function Projects() {
           margin-top: 2px;
         }
 
+        .case-study-problem-box.highlight .problem-icon {
+          color: #10b981;
+        }
+
         .problem-text {
-          font-size: 12.5px;
+          font-size: 12px;
           color: var(--text-muted);
           line-height: 1.5;
           margin: 0;
@@ -1689,26 +2582,36 @@ export default function Projects() {
           color: var(--text-light);
         }
 
+        /* Clickable Tech Stack Chips on Cards */
         .case-study-chips {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
         }
 
-        .tech-chip {
+        .tech-chip-interactive {
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 10.5px;
           color: var(--text-muted);
           background: rgba(255, 255, 255, 0.03);
           border: 1px solid var(--border-glass);
           padding: 3px 8px;
           border-radius: 6px;
-          transition: border-color 0.2s, color 0.2s;
+          transition: all 0.2s ease;
+          cursor: pointer;
         }
 
-        .case-study-card:hover .tech-chip {
-          border-color: rgba(var(--accent-rgb), 0.25);
-          color: var(--text-light);
+        .tech-chip-interactive:hover {
+          border-color: rgba(var(--accent-rgb), 0.4);
+          color: var(--text-white);
+          background: rgba(var(--accent-rgb), 0.06);
+        }
+
+        .tech-chip-interactive.active {
+          border-color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.15);
+          color: var(--accent);
+          font-weight: 600;
         }
 
         .case-study-actions {
@@ -1751,7 +2654,7 @@ export default function Projects() {
           width: 32px;
           height: 32px;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.04);
+          background: rgba(255, 255, 255, 0.03);
           border: 1px solid var(--border-glass);
           color: var(--text-light);
           transition: all 0.2s;
@@ -1759,196 +2662,96 @@ export default function Projects() {
 
         .external-icon-link:hover {
           color: var(--accent);
-          border-color: var(--accent);
+          border-color: rgba(var(--accent-rgb), 0.4);
           background: rgba(var(--accent-rgb), 0.1);
+          transform: scale(1.08);
         }
 
-        /* --- "More Projects" Section --- */
-        .more-projects-section {
-          margin-top: 48px;
-        }
-
-        .more-projects-header {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 24px;
-        }
-
-        .more-projects-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--text-white);
-          white-space: nowrap;
-        }
-
-        .more-projects-divider {
-          flex: 1;
-          height: 1px;
-          background: rgba(255, 255, 255, 0.06);
-        }
-
-        .more-projects-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-        }
-
-        @media (max-width: 800px) {
-          .more-projects-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        .secondary-project-card {
-          padding: 24px;
-          border-radius: 16px;
+        /* --- Empty State --- */
+        .projects-empty-state {
+          padding: 60px 32px;
+          text-align: center;
           display: flex;
           flex-direction: column;
-          gap: 14px;
-          transition: transform 0.25s, border-color 0.25s;
+          align-items: center;
+          gap: 16px;
+          max-width: 580px;
+          margin: 32px auto 48px;
         }
 
-        .secondary-project-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(var(--accent-rgb), 0.3);
-        }
-
-        .secondary-card-head {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: 12px;
-        }
-
-        .secondary-cat-badge {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          color: var(--accent);
+        .empty-icon-wrap {
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
           background: rgba(var(--accent-rgb), 0.08);
-          padding: 2px 6px;
-          border-radius: 4px;
-          display: inline-block;
-          margin-bottom: 4px;
-        }
-
-        .secondary-title {
-          font-size: 18px;
-          font-weight: 700;
-          color: var(--text-white);
-        }
-
-        .secondary-icon-btn {
-          display: inline-flex;
+          border: 1px solid rgba(var(--accent-rgb), 0.25);
+          display: flex;
           align-items: center;
           justify-content: center;
-          width: 30px;
-          height: 30px;
-          border-radius: 8px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid var(--border-glass);
-          color: var(--text-light);
-          transition: all 0.2s;
         }
 
-        .secondary-icon-btn:hover {
-          color: var(--accent);
-          border-color: var(--accent);
+        .empty-state-title {
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-white);
         }
 
-        .secondary-summary {
-          font-size: 13.5px;
+        .empty-state-desc {
+          font-size: 14px;
           color: var(--text-muted);
-          line-height: 1.5;
+          line-height: 1.6;
         }
 
-        .secondary-role-box {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 12px;
-          color: var(--text-light);
-          background: rgba(255, 255, 255, 0.02);
-          padding: 6px 10px;
-          border-radius: 8px;
-          border: 1px dashed rgba(255, 255, 255, 0.08);
-        }
-
-        .role-icon {
+        .empty-highlight {
           color: var(--accent);
-          flex-shrink: 0;
-        }
-
-        .secondary-chips {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-        }
-
-        .tech-chip-sm {
           font-family: var(--font-mono);
-          font-size: 10px;
-          color: var(--text-muted);
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid var(--border-glass);
-          padding: 2px 6px;
-          border-radius: 4px;
+          font-weight: 600;
         }
 
-        .secondary-bullets {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
+        .empty-reset-btn {
+          margin-top: 8px;
         }
 
-        .secondary-bullets li {
-          display: flex;
-          align-items: flex-start;
-          gap: 8px;
-          font-size: 12px;
-          color: var(--text-muted);
-          line-height: 1.45;
-        }
-
-        .bullet-check {
-          color: #34d399;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        /* --- Case Study Detail Modal --- */
+        /* --- Modal Styles --- */
         .case-study-modal-backdrop {
           position: fixed;
           top: 0;
           left: 0;
           width: 100vw;
           height: 100vh;
-          background: rgba(4, 4, 8, 0.85);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          z-index: 2000;
+          background: rgba(0, 0, 0, 0.82);
+          -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+          z-index: 10000;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 24px;
-          animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          animation: modalFadeIn 0.25s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         .case-study-modal-container {
-          max-width: 900px;
           width: 100%;
+          max-width: 900px;
           max-height: 90vh;
           border-radius: 20px;
-          overflow: hidden;
+          background: rgba(11, 11, 20, 0.98);
+          border: 1px solid rgba(var(--accent-rgb), 0.3);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(var(--accent-rgb), 0.15);
           display: flex;
           flex-direction: column;
-          border: 1px solid rgba(var(--accent-rgb), 0.3);
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(var(--accent-rgb), 0.15);
+          overflow: hidden;
           animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          background: rgba(11, 11, 20, 0.95);
+        }
+
+        @keyframes modalScaleUp {
+          from { transform: scale(0.96) translateY(10px); }
+          to { transform: scale(1) translateY(0); }
         }
 
         .modal-top-bar {
@@ -1972,57 +2775,84 @@ export default function Projects() {
           font-weight: 700;
           color: var(--accent);
           background: rgba(var(--accent-rgb), 0.15);
-          padding: 3px 8px;
+          border: 1px solid rgba(var(--accent-rgb), 0.35);
+          padding: 3px 10px;
           border-radius: 6px;
+        }
+
+        .modal-rank-badge.secondary {
+          color: #38bdf8;
+          background: rgba(56, 189, 248, 0.15);
+          border-color: rgba(56, 189, 248, 0.3);
         }
 
         .modal-badge-category {
           font-family: var(--font-mono);
           font-size: 11px;
           color: var(--text-light);
-          background: rgba(255, 255, 255, 0.06);
-          padding: 3px 8px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 3px 10px;
           border-radius: 6px;
         }
 
         .modal-close-icon-btn {
-          background: transparent;
-          border: none;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           color: var(--text-muted);
-          cursor: pointer;
+          width: 34px;
+          height: 34px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 6px;
-          border-radius: 8px;
+          cursor: pointer;
           transition: all 0.2s;
         }
 
         .modal-close-icon-btn:hover {
           color: var(--text-white);
-          background: rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.25);
         }
 
         .modal-scroll-body {
+          padding: 24px;
           overflow-y: auto;
-          padding: 32px;
           display: flex;
           flex-direction: column;
-          gap: 28px;
+          gap: 24px;
+        }
+
+        .modal-title-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
         }
 
         .modal-main-title {
-          font-size: 28px;
-          font-weight: 800;
+          font-size: 26px;
+          font-weight: 700;
           color: var(--text-white);
-          margin-bottom: 4px;
+          margin-bottom: 2px;
+        }
+
+        .modal-year-tag {
+          font-family: var(--font-mono);
+          font-size: 12px;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.1);
+          border: 1px solid rgba(var(--accent-rgb), 0.25);
+          padding: 2px 8px;
+          border-radius: 6px;
         }
 
         .modal-main-subtitle {
           font-family: var(--font-mono);
           font-size: 13px;
           color: var(--accent);
-          margin-bottom: 10px;
+          margin-bottom: 8px;
         }
 
         .modal-one-line-summary {
@@ -2032,24 +2862,17 @@ export default function Projects() {
         }
 
         .modal-mockup-wrapper {
-          padding: 20px;
+          border-radius: 14px;
+          overflow: hidden;
           background: rgba(0, 0, 0, 0.4);
-          border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .modal-browser .browser-viewport {
-          min-height: 200px;
-        }
-
-        .modal-phone .phone-screen {
-          min-height: 200px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 16px;
         }
 
         .modal-detail-columns {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 28px;
+          gap: 24px;
         }
 
         @media (max-width: 768px) {
@@ -2065,6 +2888,10 @@ export default function Projects() {
         }
 
         .detail-section-block {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 12px;
+          padding: 16px;
           display: flex;
           flex-direction: column;
           gap: 10px;
@@ -2077,74 +2904,71 @@ export default function Projects() {
         }
 
         .detail-block-title h4 {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 700;
           color: var(--text-white);
-          margin: 0;
+          letter-spacing: -0.01em;
         }
 
         .detail-block-p {
           font-size: 13.5px;
-          color: var(--text-muted);
+          color: var(--text-light);
           line-height: 1.6;
-          margin: 0;
         }
 
         .role-highlight-block {
-          background: rgba(var(--accent-rgb), 0.05);
-          border: 1px solid rgba(var(--accent-rgb), 0.2);
-          padding: 14px 16px;
-          border-radius: 12px;
+          border-left: 3px solid var(--accent);
         }
 
         .detail-role-p {
           font-size: 13.5px;
-          color: var(--text-light);
-          font-weight: 600;
-          margin: 0;
+          color: var(--accent);
+          line-height: 1.5;
+        }
+
+        .detail-structure-p {
+          font-size: 12.5px;
+          color: var(--text-muted);
+          font-family: var(--font-mono);
         }
 
         .modal-achievements-list {
           list-style: none;
-          padding: 0;
-          margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
         }
 
         .achievement-item {
           display: flex;
           align-items: flex-start;
-          gap: 12px;
+          gap: 10px;
           font-size: 13px;
           color: var(--text-light);
           line-height: 1.5;
         }
 
         .achievement-idx {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background: rgba(16, 185, 129, 0.15);
-          border: 1px solid #10b981;
-          color: #34d399;
+          background: rgba(var(--accent-rgb), 0.15);
+          color: var(--accent);
           font-family: var(--font-mono);
-          font-size: 10px;
+          font-size: 11px;
           font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           flex-shrink: 0;
-          margin-top: 1px;
+          margin-top: 2px;
         }
 
         .measurable-placeholder-tag {
-          display: inline-block;
           font-family: var(--font-mono);
           font-size: 11px;
           color: #fbbf24;
-          background: rgba(251, 191, 36, 0.15);
+          background: rgba(251, 191, 36, 0.12);
           border: 1px dashed rgba(251, 191, 36, 0.4);
           padding: 1px 6px;
           border-radius: 4px;
@@ -2154,147 +2978,155 @@ export default function Projects() {
         .modal-tech-chips {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
+          gap: 6px;
         }
 
         .modal-tech-chip {
           font-family: var(--font-mono);
-          font-size: 11px;
-          color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.08);
-          border: 1px solid rgba(var(--accent-rgb), 0.2);
+          font-size: 11.5px;
+          color: var(--text-light);
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 4px 10px;
-          border-radius: 8px;
+          border-radius: 6px;
         }
 
         .modal-ctas-panel {
           display: flex;
-          gap: 12px;
-          margin-top: 8px;
-          flex-wrap: wrap;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 4px;
         }
 
-        /* --- GitHub Repositories Section --- */
+        /* --- GitHub Repos Section --- */
+        .github-section {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
         .github-alert {
           display: flex;
-          justify-content: space-between;
           align-items: center;
+          justify-content: space-between;
           padding: 14px 20px;
-          margin-bottom: 24px;
-          border-left: 3px solid #ffb703;
-          border-radius: 12px;
+          background: rgba(245, 158, 11, 0.08);
+          border-left: 3px solid #f59e0b;
         }
 
         .alert-content {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
 
         .alert-icon {
-          color: #ffb703;
-          flex-shrink: 0;
+          color: #f59e0b;
         }
 
         .alert-text {
-          font-size: 13px;
+          font-size: 13.5px;
           color: var(--text-light);
         }
 
         .alert-retry-btn {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid var(--border-glass);
-          color: var(--text-white);
+          background: transparent;
+          border: 1px solid #f59e0b;
+          color: #f59e0b;
           padding: 6px 14px;
           border-radius: 6px;
+          font-family: var(--font-heading);
           font-size: 12px;
+          font-weight: 600;
           cursor: pointer;
         }
 
-        .github-controls {
+        .repos-controls-bar {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 14px 20px;
-          border-radius: 14px;
           gap: 16px;
-          margin-bottom: 32px;
           flex-wrap: wrap;
         }
 
-        .github-search-wrap {
+        .search-box-wrap {
           flex: 1;
-          min-width: 240px;
+          min-width: 260px;
           display: flex;
           align-items: center;
+          padding: 10px 16px;
           gap: 10px;
         }
 
-        .github-search-icon {
-          color: var(--text-muted);
+        .search-icon {
+          color: var(--text-dark);
         }
 
-        .github-search-input {
+        .repo-search-input {
+          flex: 1;
           background: transparent;
           border: none;
           color: var(--text-white);
           font-family: var(--font-sans);
           font-size: 14px;
-          width: 100%;
           outline: none;
         }
 
-        .github-search-input::placeholder {
+        .search-clear-btn {
+          background: transparent;
+          border: none;
           color: var(--text-dark);
+          cursor: pointer;
         }
 
-        .github-sort-wrap {
+        .sort-box-wrap {
           display: flex;
           align-items: center;
           gap: 8px;
         }
 
-        .github-sort-label {
-          font-size: 13px;
+        .sort-label {
+          font-family: var(--font-mono);
+          font-size: 12px;
           color: var(--text-muted);
         }
 
-        .github-sort-select {
-          background: rgba(0, 0, 0, 0.4);
+        .repo-sort-select {
+          padding: 8px 14px;
+          background: rgba(13, 13, 23, 0.8);
           border: 1px solid var(--border-glass);
-          color: var(--text-light);
-          padding: 6px 12px;
-          border-radius: 8px;
+          color: var(--text-white);
           font-family: var(--font-sans);
           font-size: 13px;
+          border-radius: 8px;
           outline: none;
           cursor: pointer;
         }
 
-        .github-repos-grid {
+        .repos-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: 20px;
         }
 
-        .github-repo-card {
-          padding: 22px;
-          border-radius: 14px;
+        .repo-card {
+          padding: 20px;
           display: flex;
           flex-direction: column;
           gap: 12px;
-          transition: transform 0.25s, border-color 0.25s;
-        }
-
-        .github-repo-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(var(--accent-rgb), 0.35);
         }
 
         .repo-header {
           display: flex;
           align-items: center;
-          gap: 10px;
+          justify-content: space-between;
+        }
+
+        .repo-title-wrap {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          overflow: hidden;
         }
 
         .repo-folder-icon {
@@ -2302,82 +3134,86 @@ export default function Projects() {
           flex-shrink: 0;
         }
 
-        .repo-title {
+        .repo-name {
           font-size: 16px;
           font-weight: 700;
           color: var(--text-white);
-          margin: 0;
+          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          white-space: nowrap;
         }
 
-        .repo-description {
-          font-size: 13px;
-          color: var(--text-muted);
-          line-height: 1.5;
-          margin: 0;
-          flex: 1;
-        }
-
-        .repo-tags-wrap {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .repo-lang-badge {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          color: var(--text-light);
-        }
-
-        .lang-color-circle {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-        }
-
-        .repo-stat-badge {
+        .repo-stars {
           display: flex;
           align-items: center;
           gap: 4px;
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 12px;
           color: var(--text-muted);
+        }
+
+        .star-icon {
+          color: #eab308;
+        }
+
+        .repo-desc {
+          font-size: 13px;
+          color: var(--text-muted);
+          line-height: 1.5;
+          flex-grow: 1;
         }
 
         .repo-footer {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding-top: 12px;
+          justify-content: space-between;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-dark);
+          padding-top: 8px;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
-          margin-top: auto;
+        }
+
+        .repo-language {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .lang-color-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
+
+        .repo-links-row {
+          display: flex;
+          gap: 10px;
+          margin-top: 4px;
         }
 
         .repo-link-btn {
+          flex: 1;
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 6px;
-          padding: 6px 12px;
+          padding: 8px;
           border-radius: 6px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
+          color: var(--text-light);
+          font-family: var(--font-heading);
           font-size: 12px;
           font-weight: 600;
           text-decoration: none;
-          color: var(--text-light);
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid var(--border-glass);
           transition: all 0.2s;
         }
 
         .repo-link-btn:hover {
           color: var(--text-white);
           border-color: rgba(var(--accent-rgb), 0.4);
-          background: rgba(var(--accent-rgb), 0.08);
+          background: rgba(var(--accent-rgb), 0.1);
         }
 
         .repo-link-btn.demo-btn {
@@ -2385,58 +3221,28 @@ export default function Projects() {
           border-color: rgba(var(--accent-rgb), 0.3);
         }
 
-        .github-empty {
-          padding: 40px;
+        .repos-loading-state,
+        .repos-empty-state {
+          padding: 60px;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
           color: var(--text-muted);
         }
 
-        /* --- Skeletons --- */
-        .repo-card-skeleton {
-          padding: 22px;
-          border-radius: 14px;
-          height: 180px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
+        .loading-spinner {
+          width: 36px;
+          height: 36px;
+          border: 3px solid rgba(var(--accent-rgb), 0.15);
+          border-top-color: var(--accent);
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
         }
 
-        .skeleton-title {
-          width: 60%;
-          height: 18px;
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 4px;
-        }
-
-        .skeleton-desc-line-1 {
-          width: 90%;
-          height: 12px;
-          background: rgba(255, 255, 255, 0.03);
-          border-radius: 4px;
-        }
-
-        .skeleton-desc-line-2 {
-          width: 70%;
-          height: 12px;
-          background: rgba(255, 255, 255, 0.03);
-          border-radius: 4px;
-        }
-
-        /* --- Animations --- */
-        @keyframes modalFadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes modalScaleUp {
-          from {
-            opacity: 0;
-            transform: scale(0.95) translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </section>

@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Hackathons from './components/Hackathons';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CVModal from './components/CVModal';
@@ -85,6 +86,7 @@ export default function App() {
         <About />
         <Skills />
         <Projects />
+        <Hackathons />
         <Contact />
       </main>
 
