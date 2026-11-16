@@ -50,24 +50,15 @@ body[data-accent="gold"] {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none;
-  /* Hide default cursor to use custom magnetic cursor */
 }
 
-/* Ensure default cursors are shown on mobile/touch interfaces or screen widths <= 768px */
-@media (hover: none), (max-width: 768px) {
-  * {
-    cursor: auto !important;
-  }
+a, button, select, input, textarea, [role="button"] {
+  cursor: pointer;
+}
 
-  a, button, select, input, textarea, [role="button"] {
-    cursor: pointer !important;
-  }
-
-  .custom-cursor,
-  .custom-cursor-ring {
-    display: none !important;
-  }
+.custom-cursor,
+.custom-cursor-ring {
+  display: none !important;
 }
 
 html {
@@ -239,7 +230,7 @@ h6 {
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: none;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
@@ -296,13 +287,19 @@ h6 {
 }
 
 .section {
-  padding: 100px 0;
+  padding: 64px 0;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 44px 0;
+  }
 }
 
 .section-title-wrap {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,19 +308,21 @@ h6 {
 .section-subtitle {
   font-family: var(--font-mono);
   color: var(--accent);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: block;
 }
 
 .section-title {
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 38px;
+  font-weight: 800;
   position: relative;
   display: inline-block;
-  padding-bottom: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .section-title::after {
@@ -332,7 +331,7 @@ h6 {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 54px;
   height: 3px;
   background: var(--gradient-accent);
   border-radius: 2px;

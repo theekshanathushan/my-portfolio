@@ -339,16 +339,72 @@ export default function Projects() {
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
 
-  // Render mockups for cards & modal
+  // Render high-fidelity realistic mockups for cards & modal
   const renderMockup = (item, isModal = false) => {
-    if (item.mockupType === 'phone') {
+    // 1. TalentAI: Rich Recruiter & AI Match Workspace Preview
+    if (item.id === 'talentai') {
+      return (
+        <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
+          <div className="browser-header">
+            <div className="browser-dots">
+              <span className="dot dot-red"></span>
+              <span className="dot dot-yellow"></span>
+              <span className="dot dot-green"></span>
+            </div>
+            <div className="browser-url-bar">
+              <Globe size={11} className="url-icon" />
+              <span className="url-text">{item.mockupUrl}</span>
+            </div>
+          </div>
+          <div className="browser-viewport talentai-preview">
+            <div className="mockup-ui-topbar">
+              <div className="mockup-ui-brand">
+                <span className="ui-brand-badge">TalentAI</span>
+                <span className="ui-role-label">Recruiter Portal</span>
+              </div>
+              <div className="mockup-metric-pill">
+                <Sparkles size={11} className="text-glow-accent" />
+                <span>94% Gemini Match</span>
+              </div>
+            </div>
+
+            <div className="mockup-ui-card">
+              <div className="ui-candidate-row">
+                <div className="ui-avatar">TT</div>
+                <div className="ui-candidate-info">
+                  <span className="ui-cand-title">Senior Full-Stack Applicant</span>
+                  <span className="ui-cand-sub">Screening Status: Highly Recommended</span>
+                </div>
+              </div>
+              <div className="ui-tags-cluster">
+                <span className="ui-micro-tag">ASP.NET Core</span>
+                <span className="ui-micro-tag">Angular</span>
+                <span className="ui-micro-tag">JWT</span>
+                <span className="ui-micro-tag">MySQL</span>
+              </div>
+              <div className="ui-ai-summary-bar">
+                <Cpu size={12} className="ai-bar-icon" />
+                <span>Gemini: Verified proficiency in clean architecture, microservices, and automated workers.</span>
+              </div>
+            </div>
+
+            <div className="mockup-footer-cue">
+              <span>📷 [Replace with screenshot anytime]</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 2. AgriAI: Leaf Disease Vision Scanner & Voice Agent
+    if (item.id === 'agriai') {
       return (
         <div className={`phone-mockup-frame ${isModal ? 'modal-phone' : ''}`}>
           <div className="phone-notch">
             <div className="phone-speaker"></div>
             <div className="phone-camera"></div>
           </div>
-          <div className="phone-screen">
+          <div className="phone-screen agriai-screen">
             <div className="phone-status-bar">
               <span className="status-time">9:41</span>
               <div className="status-icons">
@@ -356,16 +412,100 @@ export default function Projects() {
                 <span className="status-dot"></span>
               </div>
             </div>
-            <div className="mockup-content-slot">
-              <Smartphone size={isModal ? 32 : 24} className="mockup-slot-icon text-glow-accent" />
-              <span className="placeholder-badge">📱 Mockup Preview</span>
-              <p className="placeholder-text">{item.imagePlaceholder}</p>
+            
+            <div className="agri-viewfinder">
+              <div className="agri-reticle">
+                <span className="reticle-bracket top-l"></span>
+                <span className="reticle-bracket top-r"></span>
+                <span className="reticle-bracket btm-l"></span>
+                <span className="reticle-bracket btm-r"></span>
+                <span className="agri-leaf-icon">🌿</span>
+                <span className="agri-scan-label">Leaf Vision Scanner</span>
+              </div>
+            </div>
+
+            <div className="agri-diagnosis-card">
+              <div className="agri-diag-head">
+                <span className="diag-dot"></span>
+                <strong>Early Blight Identified (92%)</strong>
+              </div>
+              <span className="agri-diag-tip">Rx: Apply organic copper fungicide</span>
+              <div className="agri-audio-badge">
+                <span>🎙️ Native Voice Agent (Sinhala / EN)</span>
+              </div>
+            </div>
+
+            <div className="mockup-footer-cue">
+              <span>📱 [Replace with screenshot anytime]</span>
             </div>
           </div>
         </div>
       );
     }
 
+    // 3. NovaExplorer: NASA Deep-Space Missions & Telemetry Explorer
+    if (item.id === 'novaexplorer') {
+      return (
+        <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
+          <div className="browser-header">
+            <div className="browser-dots">
+              <span className="dot dot-red"></span>
+              <span className="dot dot-yellow"></span>
+              <span className="dot dot-green"></span>
+            </div>
+            <div className="browser-url-bar">
+              <Globe size={11} className="url-icon" />
+              <span className="url-text">{item.mockupUrl}</span>
+            </div>
+          </div>
+          <div className="browser-viewport nova-preview">
+            <div className="mockup-ui-topbar">
+              <div className="mockup-ui-brand">
+                <span className="ui-brand-badge" style={{ color: '#00f2fe' }}>NovaExplorer</span>
+                <span className="ui-role-label">NASA Telemetry Portal</span>
+              </div>
+              <div className="mockup-metric-pill" style={{ color: '#38bdf8' }}>
+                <span>🛰️ Live on Vercel</span>
+              </div>
+            </div>
+
+            <div className="mockup-ui-card nova-ui-card">
+              <div className="nova-head-row">
+                <span className="nova-tag">Mars 2020 Mission</span>
+                <strong>Perseverance Rover — Jezero Crater</strong>
+              </div>
+              <div className="nova-telemetry-grid">
+                <div className="telemetry-box">
+                  <span className="t-label">Sol</span>
+                  <span className="t-val">1042</span>
+                </div>
+                <div className="telemetry-box">
+                  <span className="t-label">Telemetry</span>
+                  <span className="t-val text-glow-accent">Nominal</span>
+                </div>
+                <div className="telemetry-box">
+                  <span className="t-label">Raw Photos</span>
+                  <span className="t-val">4,200+</span>
+                </div>
+              </div>
+              <div className="nova-orbit-track">
+                <span className="orbit-step active">Launch</span>
+                <span className="orbit-sep">➔</span>
+                <span className="orbit-step active">Cruise</span>
+                <span className="orbit-sep">➔</span>
+                <span className="orbit-step active">Martian Surface</span>
+              </div>
+            </div>
+
+            <div className="mockup-footer-cue">
+              <span>💻 [Live at novaexplorer.vercel.app]</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 4. IgnitX Track A: Root-Cause AI Engine
     return (
       <div className={`browser-mockup-frame ${isModal ? 'modal-browser' : ''}`}>
         <div className="browser-header">
@@ -376,14 +516,44 @@ export default function Projects() {
           </div>
           <div className="browser-url-bar">
             <Globe size={11} className="url-icon" />
-            <span className="url-text">{item.mockupUrl}</span>
+            <span className="url-text">ignitx.hutch-hackathon.ai/track-a</span>
           </div>
         </div>
-        <div className="browser-viewport">
-          <div className="mockup-content-slot">
-            <Monitor size={isModal ? 36 : 26} className="mockup-slot-icon text-glow-accent" />
-            <span className="placeholder-badge">💻 Case Study View</span>
-            <p className="placeholder-text">{item.imagePlaceholder}</p>
+        <div className="browser-viewport ignitx-preview">
+          <div className="mockup-ui-topbar">
+            <div className="mockup-ui-brand">
+              <span className="ui-brand-badge" style={{ color: '#f59e0b' }}>Hutch IgnitX</span>
+              <span className="ui-role-label">Track A: Root-Cause AI</span>
+            </div>
+            <div className="mockup-metric-pill" style={{ color: '#10b981' }}>
+              <span>🏆 Hackathon Entry</span>
+            </div>
+          </div>
+
+          <div className="mockup-ui-card ignitx-ui-card">
+            <div className="ignitx-status-row">
+              <strong>Telemetry Friction Diagnostics</strong>
+              <span className="ignitx-live-badge">Heuristic Active</span>
+            </div>
+            <div className="ignitx-metrics-row">
+              <div className="ignitx-metric">
+                <span className="m-label">Dropout Risk</span>
+                <div className="m-track"><div className="m-fill" style={{ width: '14%' }}></div></div>
+                <span className="m-val" style={{ color: '#10b981' }}>14% (Minimal)</span>
+              </div>
+              <div className="ignitx-metric">
+                <span className="m-label">Isolated Root Cause</span>
+                <span className="m-cause">Friction in morning self-care onboarding step</span>
+              </div>
+            </div>
+            <div className="ignitx-intervention-pill">
+              <CheckCircle2 size={12} className="text-glow-accent" />
+              <span>Prescription: Trigger adaptive coping prompt</span>
+            </div>
+          </div>
+
+          <div className="mockup-footer-cue">
+            <span>🏆 [Hutch IgnitX Hackathon Prototype]</span>
           </div>
         </div>
       </div>
@@ -847,7 +1017,8 @@ export default function Projects() {
           font-size: 15px;
           max-width: 640px;
           text-align: center;
-          margin-top: -12px;
+          margin-top: 12px;
+          margin-bottom: 0;
           line-height: 1.6;
         }
 
@@ -855,7 +1026,7 @@ export default function Projects() {
         .project-type-toggle-container {
           display: flex;
           justify-content: center;
-          margin: 36px 0 48px;
+          margin: 20px 0 28px;
         }
 
         .project-type-toggle {
@@ -1011,17 +1182,153 @@ export default function Projects() {
         }
 
         .browser-viewport {
-          min-height: 140px;
+          min-height: 190px;
+          display: flex;
+          flex-direction: column;
+          padding: 14px 16px;
+          background: rgba(8, 10, 18, 0.9);
+        }
+
+        /* Mockup UI Topbar */
+        .mockup-ui-topbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 12px;
+        }
+
+        .mockup-ui-brand {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .ui-brand-badge {
+          font-family: var(--font-heading);
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--accent);
+        }
+
+        .ui-role-label {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-muted);
+        }
+
+        .mockup-metric-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          color: var(--accent);
+          background: rgba(var(--accent-rgb), 0.12);
+          border: 1px solid rgba(var(--accent-rgb), 0.3);
+          padding: 3px 8px;
+          border-radius: 999px;
+        }
+
+        /* Mockup UI Card inside Browser */
+        .mockup-ui-card {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 10px;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .ui-candidate-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .ui-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.3), rgba(var(--accent-rgb), 0.05));
+          border: 1px solid rgba(var(--accent-rgb), 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
-          background: radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb), 0.04) 0%, transparent 80%);
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--accent);
+          flex-shrink: 0;
         }
 
-        /* Phone Mockup */
+        .ui-candidate-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .ui-cand-title {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--text-white);
+        }
+
+        .ui-cand-sub {
+          font-size: 10px;
+          color: #10b981;
+          font-family: var(--font-mono);
+        }
+
+        .ui-tags-cluster {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+
+        .ui-micro-tag {
+          font-size: 9.5px;
+          font-family: var(--font-mono);
+          padding: 2px 7px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--text-light);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ui-ai-summary-bar {
+          display: flex;
+          align-items: flex-start;
+          gap: 6px;
+          font-size: 10.5px;
+          color: var(--text-light);
+          line-height: 1.4;
+          background: rgba(var(--accent-rgb), 0.06);
+          padding: 7px 10px;
+          border-radius: 6px;
+          border-left: 2px solid var(--accent);
+        }
+
+        .ai-bar-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+
+        .mockup-footer-cue {
+          margin-top: 8px;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-dark);
+          text-align: center;
+        }
+
+        /* Phone Mockup Frame */
         .phone-mockup-frame {
-          max-width: 200px;
+          max-width: 220px;
           margin: 0 auto;
           border-radius: 22px;
           border: 2px solid rgba(255, 255, 255, 0.15);
@@ -1053,13 +1360,6 @@ export default function Projects() {
           border-radius: 50%;
         }
 
-        .phone-screen {
-          min-height: 150px;
-          display: flex;
-          flex-direction: column;
-          background: radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb), 0.05) 0%, transparent 80%);
-        }
-
         .phone-status-bar {
           display: flex;
           justify-content: space-between;
@@ -1081,34 +1381,256 @@ export default function Projects() {
           background: var(--text-dark);
         }
 
-        .mockup-content-slot {
-          flex: 1;
+        /* AgriAI Screen */
+        .agriai-screen {
+          min-height: 190px;
+          padding: 8px 10px 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          background: linear-gradient(180deg, #09130d 0%, #060a08 100%);
+        }
+
+        .agri-viewfinder {
+          position: relative;
+          height: 72px;
+          border-radius: 10px;
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px dashed rgba(16, 185, 129, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .agri-reticle {
+          position: relative;
+          width: 54px;
+          height: 44px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          text-align: center;
-          padding: 12px;
         }
 
-        .placeholder-badge {
+        .reticle-bracket {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-color: #10b981;
+          border-style: solid;
+        }
+
+        .reticle-bracket.top-l { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .reticle-bracket.top-r { top: 0; right: 0; border-width: 2px 2px 0 0; }
+        .reticle-bracket.btm-l { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+        .reticle-bracket.btm-r { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+        .agri-leaf-icon {
+          font-size: 16px;
+          line-height: 1;
+        }
+
+        .agri-scan-label {
           font-family: var(--font-mono);
-          font-size: 10px;
+          font-size: 7.5px;
+          color: #10b981;
+          margin-top: 2px;
+        }
+
+        .agri-diagnosis-card {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          border-radius: 8px;
+          padding: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .agri-diag-head {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 9.5px;
+          color: #10b981;
+        }
+
+        .diag-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #10b981;
+          flex-shrink: 0;
+        }
+
+        .agri-diag-tip {
+          font-size: 8.5px;
+          color: var(--text-muted);
+        }
+
+        .agri-audio-badge {
+          font-family: var(--font-mono);
+          font-size: 8px;
           color: var(--accent);
           background: rgba(var(--accent-rgb), 0.1);
-          border: 1px solid rgba(var(--accent-rgb), 0.25);
-          padding: 2px 8px;
-          border-radius: 6px;
+          padding: 2px 6px;
+          border-radius: 4px;
+          width: fit-content;
+          margin-top: 2px;
         }
 
-        .placeholder-text {
-          font-family: var(--font-mono);
+        /* NovaExplorer Screen */
+        .nova-preview {
+          background: radial-gradient(circle at 70% 30%, rgba(0, 242, 254, 0.08) 0%, rgba(8, 10, 20, 0.95) 70%);
+        }
+
+        .nova-ui-card {
+          gap: 8px;
+        }
+
+        .nova-head-row {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
           font-size: 11px;
-          color: var(--text-muted);
-          max-width: 280px;
-          margin: 0;
-          line-height: 1.4;
+          color: var(--text-white);
+        }
+
+        .nova-tag {
+          font-family: var(--font-mono);
+          font-size: 9px;
+          color: #38bdf8;
+        }
+
+        .nova-telemetry-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+
+        .telemetry-box {
+          background: rgba(0, 0, 0, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 6px;
+          padding: 5px 4px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .t-label {
+          font-family: var(--font-mono);
+          font-size: 7.5px;
+          color: var(--text-dark);
+        }
+
+        .t-val {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 700;
+          color: var(--text-white);
+        }
+
+        .nova-orbit-track {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 4px 6px;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 6px;
+          font-family: var(--font-mono);
+          font-size: 8px;
+        }
+
+        .orbit-step.active {
+          color: #00f2fe;
+          font-weight: 600;
+        }
+
+        .orbit-sep {
+          color: var(--text-dark);
+          font-size: 7px;
+        }
+
+        /* IgnitX Screen */
+        .ignitx-preview {
+          background: radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.06) 0%, rgba(8, 10, 18, 0.95) 70%);
+        }
+
+        .ignitx-ui-card {
+          gap: 8px;
+        }
+
+        .ignitx-status-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 10.5px;
+          color: var(--text-white);
+        }
+
+        .ignitx-live-badge {
+          font-family: var(--font-mono);
+          font-size: 8.5px;
+          color: #10b981;
+          background: rgba(16, 185, 129, 0.12);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .ignitx-metrics-row {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .ignitx-metric {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .m-label {
+          font-family: var(--font-mono);
+          font-size: 7.5px;
+          color: var(--text-dark);
+        }
+
+        .m-track {
+          height: 4px;
+          border-radius: 2px;
+          background: rgba(255, 255, 255, 0.08);
+          overflow: hidden;
+        }
+
+        .m-fill {
+          height: 100%;
+          background: #10b981;
+          border-radius: 2px;
+        }
+
+        .m-val {
+          font-family: var(--font-mono);
+          font-size: 8.5px;
+          font-weight: 600;
+        }
+
+        .m-cause {
+          font-size: 9.5px;
+          color: var(--text-light);
+        }
+
+        .ignitx-intervention-pill {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 9px;
+          color: #f59e0b;
+          background: rgba(245, 158, 11, 0.08);
+          border: 1px solid rgba(245, 158, 11, 0.2);
+          padding: 4px 8px;
+          border-radius: 6px;
         }
 
         /* --- Case Study Body --- */

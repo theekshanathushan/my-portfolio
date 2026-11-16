@@ -434,15 +434,16 @@ export default function Contact() {
           font-size: 15px;
           max-width: 680px;
           text-align: center;
-          margin-top: -12px;
+          margin-top: 12px;
+          margin-bottom: 0;
           line-height: 1.6;
         }
 
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr 1.2fr;
-          gap: 40px;
-          margin-top: 48px;
+          gap: 32px;
+          margin-top: 24px;
           align-items: flex-start;
         }
 

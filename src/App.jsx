@@ -28,11 +28,6 @@ export default function App() {
   // CV Modal State
   const [isCVOpen, setIsCVOpen] = useState(false);
 
-  // Custom Cursor Coordinates
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-  const [ringPos, setRingPos] = useState({ x: -100, y: -100 });
-  const [isHovering, setIsHovering] = useState(false);
-
   // Sync route changes
   useEffect(() => {
     const checkRoute = () => {
@@ -59,65 +54,6 @@ export default function App() {
     localStorage.setItem('portfolio-accent', accent);
   }, [accent]);
 
-  // Track Mouse Movements for Cursor
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Smooth Ring Follow Lag
-  useEffect(() => {
-    let animationFrameId;
-    
-    const updateRing = () => {
-      setRingPos((prev) => {
-        const dx = mousePos.x - prev.x;
-        const dy = mousePos.y - prev.y;
-        return {
-          x: prev.x + dx * 0.16,
-          y: prev.y + dy * 0.16
-        };
-      });
-      animationFrameId = requestAnimationFrame(updateRing);
-    };
-
-    animationFrameId = requestAnimationFrame(updateRing);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [mousePos]);
-
-  // Attach Hover Observers to Links & Buttons
-  useEffect(() => {
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
-
-    const updateHoverListeners = () => {
-      const targets = document.querySelectorAll('a, button, input, textarea, [role="button"], .project-card, .case-study-card');
-      targets.forEach((el) => {
-        el.addEventListener('mouseenter', handleMouseEnter);
-        el.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      return () => {
-        targets.forEach((el) => {
-          el.removeEventListener('mouseenter', handleMouseEnter);
-          el.removeEventListener('mouseleave', handleMouseLeave);
-        });
-      };
-    };
-
-    const cleanup = updateHoverListeners();
-    const interval = setInterval(updateHoverListeners, 1000);
-
-    return () => {
-      cleanup();
-      clearInterval(interval);
-    };
-  }, []);
-
   if (currentRoute === 'cv') {
     return (
       <div className="portfolio-app-root">
@@ -133,17 +69,6 @@ export default function App() {
 
   return (
     <div className="portfolio-app-root">
-      
-      {/* Custom Cursor */}
-      <div 
-        className={`custom-cursor ${isHovering ? 'hovering' : ''}`}
-        style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }}
-      />
-      <div 
-        className={`custom-cursor-ring ${isHovering ? 'hovering' : ''}`}
-        style={{ left: `${ringPos.x}px`, top: `${ringPos.y}px` }}
-      />
-
       {/* Grid Texturing & Floating Mesh Blobs */}
       <div className="ambient-bg">
         <div className="ambient-blob-1"></div>

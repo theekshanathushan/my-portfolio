@@ -296,9 +296,10 @@ export default function Skills() {
         .skills-lead-text {
           color: var(--text-muted);
           font-size: 15px;
-          max-width: 620px;
+          max-width: 640px;
           text-align: center;
-          margin-top: -12px;
+          margin-top: 12px;
+          margin-bottom: 0;
           line-height: 1.6;
         }
 
@@ -306,7 +307,7 @@ export default function Skills() {
         .tier-filter-container {
           display: flex;
           justify-content: center;
-          margin: 36px 0 48px;
+          margin: 24px 0 32px;
         }
 
         .tier-filter-pills {
