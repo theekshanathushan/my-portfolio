@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { content } from '../src/data/content.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,7 +40,6 @@ export function generateCVpdf() {
   const pageHeight = 841.89; // A4 height in pt
   const left = 38;
   const right = 557;
-  const contentWidth = right - left;
 
   let y = 808; // Start near top margin
   const ops = [];
@@ -54,146 +54,115 @@ export function generateCVpdf() {
   }
 
   function addSectionHeader(title) {
-    y -= 14;
-    addText(title, left, y, '/F2', 9.5, 0.05, 0.1, 0.2);
+    y -= 13;
+    addText(title, left, y, '/F2', 9.2, 0.05, 0.1, 0.2);
     y -= 3;
     drawLine(left, y, right, y, 0.75, 0.75);
-    y -= 10;
+    y -= 9;
   }
 
   // --- 1. HEADER (Single Column, Clean ATS Structure, No Phone/Address/DOB) ---
-  addText('THEEKSHANA THUSHAN', left, y, '/F2', 17, 0, 0, 0);
+  addText(content.personal.name.toUpperCase(), left, y, '/F2', 16, 0, 0, 0);
   y -= 13;
-  addText('Software Engineering Undergraduate | Full-Stack & AI Systems', left, y, '/F1', 9.5, 0.25, 0.3, 0.4);
+  addText(content.personal.tagline, left, y, '/F1', 9.2, 0.25, 0.3, 0.4);
   y -= 11;
   
   // Contact row (Links only)
-  const contactText = 'theekshanathushan89@gmail.com   |   linkedin.com/in/theekshana-thushan-57b866328   |   github.com/theekshanathushan   |   theekshanathushan.dev';
+  const contactText = `${content.personal.email}   |   ${content.personal.linkedinUrl.replace('https://www.', '').replace('https://', '')}   |   ${content.personal.githubUrl.replace('https://', '')}   |   ${content.personal.portfolioUrl.replace('https://', '')}`;
   addText(contactText, left, y, '/F1', 8, 0.2, 0.35, 0.55);
   y -= 4;
   drawLine(left, y, right, y, 0.82, 0.5);
   y -= 2;
 
-  // --- 2. PROFESSIONAL PROFILE (3 Sharp, Outcome-Focused Sentences) ---
+  // --- 2. PROFESSIONAL PROFILE (3 Sharp Sentences from content.ts) ---
   addSectionHeader('PROFESSIONAL PROFILE');
-  const profileSentences = [
-    "Software engineering undergraduate specializing in AI-integrated full-stack web platforms engineered with ASP.NET Core, Angular, Spring Boot, React, and MySQL.",
-    "Architected and deployed production-ready applications featuring automated Gemini AI screening pipelines, stateless JWT authorization, and real-time WebSocket communication.",
-    "Delivers reliable software with clean layered architecture and test-driven workflows, targeting high-impact software engineering internship and graduate roles."
-  ];
-
-  profileSentences.forEach((sentence) => {
-    const lines = wrapText(sentence, 112);
+  content.profile.sentences.forEach((sentence) => {
+    const lines = wrapText(sentence, 114);
     lines.forEach((line) => {
-      addText(line, left, y, '/F1', 8.2, 0.15, 0.15, 0.15);
-      y -= 10;
+      addText(line, left, y, '/F1', 8, 0.15, 0.15, 0.15);
+      y -= 9.5;
     });
   });
 
-  // --- 3. TECHNICAL SKILLS (Categorized Single-Column) ---
+  // --- 3. TECHNICAL SKILLS (Categorized from content.ts) ---
   addSectionHeader('TECHNICAL SKILLS');
-  const skillsData = [
-    { label: 'Languages', value: 'Java (17/21), TypeScript, JavaScript (ES6+), C#, Dart, HTML5, CSS3' },
-    { label: 'Backend & Systems', value: 'Spring Boot, ASP.NET Core, Entity Framework Core, JWT Authentication, RESTful APIs, WebSockets' },
-    { label: 'Frontend & Mobile', value: 'Angular, React, Flutter, Tailwind CSS, Recharts, Framer Motion' },
-    { label: 'Databases & Tools', value: 'MySQL (Relational Schema Design), Git, GitHub, Vercel, Vite, Linux CLI' },
-    { label: 'AI & Integrations', value: 'Google Gemini API, Twilio SMS API, MailKit, Leaflet.js, NASA Open APIs' }
-  ];
-
-  skillsData.forEach((s) => {
-    addText(s.label + ':', left, y, '/F2', 8.2, 0.1, 0.1, 0.1);
-    addText(s.value, left + 105, y, '/F1', 8.2, 0.2, 0.2, 0.2);
-    y -= 10.5;
+  content.skills.forEach((s) => {
+    addText(s.category + ':', left, y, '/F2', 8, 0.1, 0.1, 0.1);
+    addText(s.skills.join(', '), left + 105, y, '/F1', 8, 0.2, 0.2, 0.2);
+    y -= 9.5;
   });
 
-  // --- 4. KEY PROJECTS ---
+  // --- 4. KEY PROJECTS (Top Projects from content.ts) ---
   addSectionHeader('KEY PROJECTS');
+  const keyProjects = content.projects.slice(0, 3); // Flagship projects for single-page ATS limit
 
-  const projects = [
-    {
-      title: 'TalentAI - AI-Powered Recruitment & Screening Platform',
-      period: '2026',
-      tech: 'ASP.NET Core, Angular, TypeScript, MySQL, Entity Framework Core, JWT, Gemini API, Twilio, MailKit',
-      bullets: [
-        'Architected multi-role portals for Candidates, Recruiters, Hiring Managers, and Admins with stateless JWT authorization guards.',
-        'Integrated Google Gemini AI for automated candidate screening and qualification matching against job requisitions.',
-        'Engineered background notification worker utilizing MailKit and Twilio to dispatch automated SMS and email interview reminders.'
-      ]
-    },
-    {
-      title: 'AgriAI - Smart Agriculture & Native-Language Farming Agent',
-      period: '2026',
-      tech: 'Flutter, Dart, Gemini API, Mobile AI Vision, REST APIs, Weather APIs',
-      bullets: [
-        'Developed mobile plant leaf scanner utilizing vision models to provide instant crop disease identification and treatment guidance.',
-        'Built interactive conversational advisory agent supporting natural language queries in native languages (Sinhala & English).',
-        'Integrated real-time crop market pricing feeds and localized weather forecast alerts to optimize harvest planning.'
-      ]
-    },
-    {
-      title: 'NovaExplorer - NASA Educational Spacecraft & Mission Explorer',
-      period: '2026',
-      tech: 'React, TypeScript, Tailwind CSS, Vite, NASA Open APIs, Vercel (Live at novaexplorer.vercel.app)',
-      bullets: [
-        'Deployed to production at novaexplorer.vercel.app with optimized client caching and high Lighthouse performance ratings.',
-        'Integrated NASA Open APIs to fetch and curate real-time mission telemetry, Mars rover photography, and astronomical archives.',
-        'Engineered responsive interactive timelines and orbital mission visualization modules for seamless cross-device exploration.'
-      ]
-    },
-    {
-      title: 'CareConnect - Disaster Relief Support & Crisis Coordination System',
-      period: '2026',
-      tech: 'Java 17, Spring Boot, MySQL, WebSockets, JavaScript, Leaflet.js',
-      bullets: [
-        'Developed full-stack crisis coordination platform linking relief volunteers, displaced individuals, and supply donors.',
-        'Integrated Leaflet.js to create a live geographic operations map tracking help requests and relief inventory distribution.',
-        'Implemented real-time WebSocket chat and a centralized resource allocation dashboard with role-based access.'
-      ]
-    }
-  ];
-
-  projects.forEach((proj, pIdx) => {
+  keyProjects.forEach((proj, pIdx) => {
     // Project title & period
-    addText(proj.title, left, y, '/F2', 8.7, 0.05, 0.1, 0.2);
-    addText(proj.period, right - 25, y, '/F2', 8.2, 0.35, 0.4, 0.45);
-    y -= 10;
-
-    // Tech line
-    addText('Tech Stack: ' + proj.tech, left, y, '/F3', 7.5, 0.3, 0.35, 0.45);
+    addText(`${proj.title} — ${proj.subtitle}`, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
+    addText(proj.year || proj.period, right - 25, y, '/F2', 8, 0.35, 0.4, 0.45);
     y -= 9.5;
 
+    // Tech line
+    addText('Tech Stack: ' + proj.techStack.join(', '), left, y, '/F3', 7.5, 0.3, 0.35, 0.45);
+    y -= 9;
+
     // Bullets
-    proj.bullets.forEach((bullet) => {
+    const bulletsToRender = proj.bullets || proj.achievements;
+    bulletsToRender.slice(0, 2).forEach((bullet) => {
       addText('*', left + 3, y, '/F2', 7.5, 0.2, 0.4, 0.7);
-      const lines = wrapText(bullet, 110);
-      lines.forEach((l, lIdx) => {
-        addText(l, left + 12, y, '/F1', 7.8, 0.2, 0.2, 0.2);
-        y -= 9;
+      const lines = wrapText(bullet.replace(/\[.*?\]/g, '').trim(), 110);
+      lines.forEach((l) => {
+        addText(l, left + 12, y, '/F1', 7.6, 0.2, 0.2, 0.2);
+        y -= 8.5;
       });
     });
 
-    if (pIdx < projects.length - 1) {
-      y -= 2.5; // subtle gap between projects
+    if (pIdx < keyProjects.length - 1) {
+      y -= 2;
     }
   });
 
-  // --- 5. EDUCATION ---
+  // --- 5. HACKATHONS & COMPETITIVE SPRINTS (from content.ts) ---
+  if (content.hackathons && content.hackathons.length > 0) {
+    addSectionHeader('HACKATHONS & COMPETITIONS');
+    const firstHack = content.hackathons[0]; // IgnitX by Hutch
+    addText(`${firstHack.name} — ${firstHack.track}`, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
+    addText(firstHack.date.replace(/\[.*?\]/g, '2024'), right - 30, y, '/F2', 8, 0.35, 0.4, 0.45);
+    y -= 9;
+    addText(`Organizer: ${firstHack.organizer}   |   Role: ${firstHack.myRole}`, left, y, '/F3', 7.5, 0.3, 0.35, 0.45);
+    y -= 9;
+    const hackLines = wrapText(firstHack.summary, 110);
+    hackLines.forEach((hl) => {
+      addText(hl, left + 6, y, '/F1', 7.6, 0.2, 0.2, 0.2);
+      y -= 8.5;
+    });
+  }
+
+  // --- 6. CERTIFICATIONS & CREDENTIALS (from content.ts) ---
+  if (content.certifications && content.certifications.length > 0) {
+    addSectionHeader('CERTIFICATIONS & CREDENTIALS');
+    content.certifications.forEach((cert) => {
+      const cleanTitle = cert.title.replace(/\[.*?\]/g, '').trim() || 'Professional Credential Track';
+      const cleanIssuer = cert.issuer.replace(/\[.*?\]/g, '').trim() || 'Verified Provider';
+      addText(`${cleanTitle} — ${cleanIssuer}`, left, y, '/F2', 8.2, 0.05, 0.1, 0.2);
+      addText(`Category: ${cert.category}   |   Skills: ${cert.skills.slice(0, 3).join(', ')}`, left + 200, y, '/F1', 7.5, 0.3, 0.3, 0.3);
+      y -= 9;
+    });
+  }
+
+  // --- 7. EDUCATION (from content.ts) ---
   addSectionHeader('EDUCATION');
-
-  // Degree
-  addText('BSc (Hons) in Software Engineering', left, y, '/F2', 8.8, 0.05, 0.1, 0.2);
-  addText('2023 - Present', right - 55, y, '/F2', 8.2, 0.35, 0.4, 0.45);
-  y -= 9.5;
-  addText('Plymouth University (via NSBM Green University)', left, y, '/F1', 8.2, 0.25, 0.3, 0.35);
-  y -= 9;
-  addText('Relevant Coursework: Data Structures & Algorithms, Object-Oriented Development (Java/C#), Database Systems (MySQL), Software Engineering Principles', left, y, '/F3', 7.5, 0.35, 0.35, 0.4);
-  y -= 10;
-
-  // A/Levels
-  addText('G.C.E. Advanced Level - Physical Science Stream', left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
-  addText('2022', right - 22, y, '/F2', 8.2, 0.35, 0.4, 0.45);
-  y -= 9;
-  addText('Subjects: Combined Mathematics, Physics, and Information & Communication Technology (ICT)', left, y, '/F1', 8, 0.3, 0.3, 0.3);
+  content.education.forEach((edu) => {
+    addText(edu.degree, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
+    addText(edu.period, right - 55, y, '/F2', 8, 0.35, 0.4, 0.45);
+    y -= 9;
+    addText(edu.institution, left, y, '/F1', 8, 0.25, 0.3, 0.35);
+    y -= 8.5;
+    if (edu.keyModules) {
+      addText('Relevant Coursework: ' + edu.keyModules.join(', '), left, y, '/F3', 7.3, 0.35, 0.35, 0.4);
+      y -= 8.5;
+    }
+  });
 
   // Assemble valid PDF 1.4 objects
   const streamContent = ops.join('\n');

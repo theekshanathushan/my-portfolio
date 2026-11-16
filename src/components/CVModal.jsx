@@ -9,7 +9,9 @@ import {
   Code, 
   Globe, 
   FileText, 
-  ExternalLink 
+  ExternalLink,
+  Trophy,
+  Award
 } from 'lucide-react';
 import { content } from '../content';
 
@@ -237,6 +239,46 @@ export default function CVModal({ isOpen, onClose }) {
                     </div>
                   ))}
                 </div>
+
+                {/* Hackathons & Competitions */}
+                {content.hackathons && content.hackathons.length > 0 && (
+                  <div className="cv-section">
+                    <h3 className="cv-section-title">
+                      <Trophy size={16} className="cv-section-icon" /> Hackathons & Competitions
+                    </h3>
+                    {content.hackathons.map((hack, hIdx) => (
+                      <div key={hack.id || hIdx} className="cv-exp-item">
+                        <div className="cv-exp-header">
+                          <h4 className="cv-item-title">{hack.name} — {hack.track}</h4>
+                          <span className="cv-item-date">{hack.date}</span>
+                        </div>
+                        <p className="cv-item-subtitle">{hack.organizer} | Role: {hack.myRole}</p>
+                        <p className="cv-exp-desc">{hack.summary}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Certifications & Credentials */}
+                {content.certifications && content.certifications.length > 0 && (
+                  <div className="cv-section">
+                    <h3 className="cv-section-title">
+                      <Award size={16} className="cv-section-icon" /> Certifications & Credentials
+                    </h3>
+                    {content.certifications.map((cert, cIdx) => (
+                      <div key={cert.id || cIdx} className="cv-exp-item">
+                        <div className="cv-exp-header">
+                          <h4 className="cv-item-title">{cert.title}</h4>
+                          <span className="cv-item-date">{cert.issueDate}</span>
+                        </div>
+                        <p className="cv-item-subtitle">{cert.issuer} | Category: {cert.category}</p>
+                        {cert.skills && cert.skills.length > 0 && (
+                          <p className="cv-item-tech">Skills: {cert.skills.join(', ')}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
 
               </div>
 

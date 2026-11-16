@@ -15,12 +15,31 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Active Section Scroll Spy
+      const sectionIds = ['home', 'about', 'skills', 'projects', 'hackathons', 'certifications', 'contact'];
+      const scrollPos = window.scrollY + 180;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -45,11 +64,20 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
 
         {/* Desktop Menu */}
         <div className="nav-links-desktop">
-          {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const sectionId = link.href.replace('#', '');
+            const isActive = activeSection === sectionId;
+            return (
+              <a 
+                key={link.href} 
+                href={link.href} 
+                className={`nav-link ${isActive ? 'active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <a href="#cv" onClick={(e) => { e.preventDefault(); onOpenCV(); }} className="nav-link">
             Resume
           </a>
@@ -101,16 +129,21 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
       {isMobileMenuOpen && (
         <div className="mobile-nav-overlay glass-card">
           <div className="mobile-nav-links">
-            {NAV_LINKS.map((link) => (
-              <a 
-                key={link.href} 
-                href={link.href} 
-                className="mobile-nav-link"
-                onClick={handleLinkClick}
-              >
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <a 
+                  key={link.href} 
+                  href={link.href} 
+                  className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                  onClick={handleLinkClick}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <a 
               href="#cv" 
               className="mobile-nav-link"
@@ -214,6 +247,10 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
         .nav-link:hover {
           color: var(--text-white);
         }
+        .nav-link.active {
+          color: var(--accent);
+          font-weight: 600;
+        }
         .nav-link::after {
           content: '';
           position: absolute;
@@ -224,7 +261,8 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
           background: var(--gradient-accent);
           transition: width 0.3s;
         }
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
           width: 100%;
         }
         .nav-actions {
@@ -331,6 +369,12 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
         }
         .mobile-nav-link:hover {
           color: var(--accent);
+        }
+        .mobile-nav-link.active {
+          color: var(--accent);
+          font-weight: 700;
+          background: rgba(var(--accent-rgb), 0.08);
+          border-radius: 8px;
         }
         @keyframes slide-in {
           from {

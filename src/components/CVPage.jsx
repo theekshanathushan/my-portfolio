@@ -184,6 +184,44 @@ export default function CVPage({ onBack }) {
             </div>
           </section>
 
+          {/* Section: Hackathons & Competitions */}
+          {content.hackathons && content.hackathons.length > 0 && (
+            <section className="cv-doc-section">
+              <h2 className="cv-section-heading">HACKATHONS & SPRINT COMPETITIONS</h2>
+              <div className="cv-section-body cv-projects-list">
+                {content.hackathons.map((hack, hIdx) => (
+                  <article key={hack.id || hIdx} className="cv-project-entry">
+                    <div className="cv-project-header">
+                      <h3 className="cv-project-title">
+                        {hack.name} — {hack.track}
+                      </h3>
+                      <span className="cv-project-period">{hack.date}</span>
+                    </div>
+                    <p className="cv-project-tech">
+                      <strong>Organizer:</strong> {hack.organizer} | <strong>Role:</strong> {hack.myRole} | <strong>Result:</strong> {hack.result}
+                    </p>
+                    <p className="cv-edu-details">{hack.summary}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Section: Certifications & Credentials */}
+          {content.certifications && content.certifications.length > 0 && (
+            <section className="cv-doc-section">
+              <h2 className="cv-section-heading">CERTIFICATIONS & PROFESSIONAL CREDENTIALS</h2>
+              <div className="cv-section-body cv-skills-list">
+                {content.certifications.map((cert, cIdx) => (
+                  <div key={cert.id || cIdx} className="cv-skill-row">
+                    <span className="cv-skill-category">{cert.title} ({cert.issuer}):</span>
+                    <span className="cv-skill-items">Issued {cert.issueDate} | Skills: {cert.skills.join(', ')}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
         </article>
       </main>
 
