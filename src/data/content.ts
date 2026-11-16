@@ -539,5 +539,6 @@ export const content: PortfolioContent = {
     }
   ],
   projects: PROJECTS_DATA,
-  hackathons: HACKATHONS_DATA
+  hackathons: HACKATHONS_DATA,
+  certifications: CERTIFICATIONS_DATA
 };
