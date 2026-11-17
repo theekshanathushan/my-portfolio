@@ -21,11 +21,6 @@ export default function Certifications() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxCert, setLightboxCert] = useState(null);
 
-  // Gracefully hide component if array is empty
-  if (!CERTIFICATIONS_DATA || CERTIFICATIONS_DATA.length === 0) {
-    return null;
-  }
-
   // Handle ESC key for Lightbox
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -65,6 +60,11 @@ export default function Certifications() {
     if (selectedCategory === 'All') return CERTIFICATIONS_DATA;
     return CERTIFICATIONS_DATA.filter(c => c.category === selectedCategory);
   }, [selectedCategory]);
+
+  // Gracefully hide component if array is empty
+  if (!CERTIFICATIONS_DATA || CERTIFICATIONS_DATA.length === 0) {
+    return null;
+  }
 
   const getCategoryIcon = (category) => {
     switch (category) {

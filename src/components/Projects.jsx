@@ -398,9 +398,34 @@ export default function Projects() {
 
   useEffect(() => {
     if (activeView === 'github' && repos.length === 0) {
-      fetchGitHubRepos();
+      let isCancelled = false;
+      fetch('https://api.github.com/users/theekshanathushan/repos?sort=updated&per_page=100')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch repositories');
+          return res.json();
+        })
+        .then(data => {
+          if (!isCancelled) {
+            const cleanData = data.filter(repo => 
+              repo.name.toLowerCase() !== 'theekshanathushan' && !repo.fork
+            );
+            setRepos(cleanData);
+            setIsLoading(false);
+          }
+        })
+        .catch(err => {
+          if (!isCancelled) {
+            console.error('Error fetching repositories: ', err);
+            setRepos(FALLBACK_REPOS.filter(r => !r.fork));
+            setIsOfflineMode(true);
+            setIsLoading(false);
+          }
+        });
+      return () => {
+        isCancelled = true;
+      };
     }
-  }, [activeView]);
+  }, [activeView, repos.length]);
 
   const filteredRepos = repos
     .filter(repo => {
