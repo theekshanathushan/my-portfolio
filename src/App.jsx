@@ -16,7 +16,7 @@ const ActivitySection = lazy(() => import('./components/activity/ActivitySection
 
 function ActivityLoadingFallback() {
   return (
-    <section className="section" style={{ minHeight: '380px' }} aria-label="Loading coding activity...">
+    <section id="activity" className="section" style={{ minHeight: '380px' }} aria-label="Loading coding activity...">
       <div className="container">
         <div className="section-title-wrap">
           <span className="section-subtitle">ACTIVITY</span>

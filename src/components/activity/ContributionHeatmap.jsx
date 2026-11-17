@@ -111,21 +111,24 @@ export default function ContributionHeatmap({ days = [] }) {
   useEffect(() => {
     const el = scrollContainerRef.current;
     if (el) {
-      el.scrollLeft = el.scrollWidth;
+      const scrollToEnd = () => {
+        el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth);
+      };
+      scrollToEnd();
+      const timer = setTimeout(scrollToEnd, 150);
+      return () => clearTimeout(timer);
     }
   }, [weeksGrid]);
 
   const svgWidth = GUTTER_LEFT + 53 * STEP + 14;
   const svgHeight = GUTTER_TOP + 7 * STEP + 6;
 
-  const showTooltip = (day, event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const parentRect = scrollContainerRef.current?.getBoundingClientRect() || rect;
+  const showTooltip = (day, cellX, cellY) => {
     setTooltip({
       date: formatDateLabel(day.date),
       count: day.count,
-      x: rect.left - parentRect.left + scrollContainerRef.current.scrollLeft + CELL_SIZE / 2,
-      y: rect.top - parentRect.top - 8
+      x: cellX + CELL_SIZE / 2,
+      y: cellY - 6
     });
   };
 
@@ -201,9 +204,9 @@ export default function ContributionHeatmap({ days = [] }) {
                       tabIndex={0}
                       role="gridcell"
                       aria-label={ariaText}
-                      onMouseEnter={(e) => showTooltip(day, e)}
+                      onMouseEnter={() => showTooltip(day, x, y)}
                       onMouseLeave={hideTooltip}
-                      onFocus={(e) => showTooltip(day, e)}
+                      onFocus={() => showTooltip(day, x, y)}
                       onBlur={hideTooltip}
                     />
                   );
