@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Hackathons from './components/Hackathons';
 import Certifications from './components/Certifications';
+import ActivitySection from './components/activity/ActivitySection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CVModal from './components/CVModal';
@@ -89,6 +90,7 @@ export default function App() {
         <Projects />
         <Hackathons />
         <Certifications />
+        <ActivitySection />
         <Contact />
       </main>
 

@@ -5,7 +5,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/((?!assets/|Theekshana_Thushan_CV.pdf|.*\\..*).*)",
+      "source": "/((?!api/|assets/|Theekshana_Thushan_CV.pdf|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
