@@ -11,12 +11,6 @@ function esc(str) {
   return str.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 }
 
-// Approximate text width calculation for Helvetica (proportional widths)
-function getTextWidth(text, fontSize, isBold = false) {
-  const avgCharWidth = isBold ? 0.56 : 0.52;
-  return text.length * fontSize * avgCharWidth;
-}
-
 // Word wrap helper
 function wrapText(text, maxChars = 110) {
   const words = text.split(' ');
@@ -54,113 +48,139 @@ export function generateCVpdf() {
   }
 
   function addSectionHeader(title) {
-    y -= 13;
-    addText(title, left, y, '/F2', 9.2, 0.05, 0.1, 0.2);
+    y -= 12;
+    addText(title, left, y, '/F2', 9, 0.05, 0.1, 0.2);
     y -= 3;
     drawLine(left, y, right, y, 0.75, 0.75);
-    y -= 9;
+    y -= 8.5;
   }
 
-  // --- 1. HEADER (Single Column, Clean ATS Structure, No Phone/Address/DOB) ---
-  addText(content.personal.name.toUpperCase(), left, y, '/F2', 16, 0, 0, 0);
+  // --- 1. HEADER (Single Column, Clean ATS Structure) ---
+  addText(content.personal.name.toUpperCase(), left, y, '/F2', 15.5, 0, 0, 0);
   y -= 13;
-  addText(content.personal.tagline, left, y, '/F1', 9.2, 0.25, 0.3, 0.4);
+  addText(content.personal.tagline, left, y, '/F1', 9, 0.25, 0.3, 0.4);
   y -= 11;
   
-  // Contact row (Links only)
-  const contactText = `${content.personal.email}   |   ${content.personal.linkedinUrl.replace('https://www.', '').replace('https://', '')}   |   ${content.personal.githubUrl.replace('https://', '')}   |   ${content.personal.portfolioUrl.replace('https://', '')}`;
+  // Contact row (Clean text links for ATS parsers)
+  const email = content.personal.email;
+  const linkedin = content.personal.linkedinUrl.replace('https://www.', '').replace('https://', '');
+  const github = content.personal.githubUrl.replace('https://', '');
+  const portfolio = content.personal.portfolioUrl.replace('https://', '');
+  const contactText = `${email}   |   ${linkedin}   |   ${github}   |   ${portfolio}`;
   addText(contactText, left, y, '/F1', 8, 0.2, 0.35, 0.55);
   y -= 4;
   drawLine(left, y, right, y, 0.82, 0.5);
   y -= 2;
 
-  // --- 2. PROFESSIONAL PROFILE (3 Sharp Sentences from content.ts) ---
-  addSectionHeader('PROFESSIONAL PROFILE');
+  // --- 2. PROFESSIONAL SUMMARY (3 Sharp Action Sentences) ---
+  addSectionHeader('PROFESSIONAL SUMMARY');
   content.profile.sentences.forEach((sentence) => {
     const lines = wrapText(sentence, 114);
     lines.forEach((line) => {
-      addText(line, left, y, '/F1', 8, 0.15, 0.15, 0.15);
-      y -= 9.5;
+      addText(line, left, y, '/F1', 7.9, 0.15, 0.15, 0.15);
+      y -= 9.2;
     });
   });
 
-  // --- 3. TECHNICAL SKILLS (Categorized from content.ts) ---
+  // --- 3. TECHNICAL SKILLS (Categorized, Wrapped, Keyword-Dense) ---
   addSectionHeader('TECHNICAL SKILLS');
   content.skills.forEach((s) => {
-    addText(s.category + ':', left, y, '/F2', 8, 0.1, 0.1, 0.1);
-    addText(s.skills.join(', '), left + 105, y, '/F1', 8, 0.2, 0.2, 0.2);
-    y -= 9.5;
+    const catLabel = s.category + ':';
+    addText(catLabel, left, y, '/F2', 7.9, 0.1, 0.1, 0.1);
+    
+    // Indent skills list past longest category label
+    const startX = left + 108;
+    const maxChars = 94;
+    const skillLines = wrapText(s.skills.join(', '), maxChars);
+    skillLines.forEach((line, lineIdx) => {
+      if (lineIdx === 0) {
+        addText(line, startX, y, '/F1', 7.9, 0.2, 0.2, 0.2);
+      } else {
+        y -= 9;
+        addText(line, startX, y, '/F1', 7.9, 0.2, 0.2, 0.2);
+      }
+    });
+    y -= 9.2;
   });
 
-  // --- 4. KEY PROJECTS (Top Projects from content.ts) ---
+  // --- 4. KEY PROJECTS (Flagship Projects with Quantified Impact) ---
   addSectionHeader('KEY PROJECTS');
-  const keyProjects = content.projects.slice(0, 3); // Flagship projects for single-page ATS limit
+  // Flagship projects selected for maximum ATS coverage across stack:
+  const projectsToInclude = [
+    content.projects.find(p => p.id === 'talentai'),
+    content.projects.find(p => p.id === 'careconnect'),
+    content.projects.find(p => p.id === 'novaexplorer'),
+    content.projects.find(p => p.id === 'agriai')
+  ].filter(Boolean);
 
-  keyProjects.forEach((proj, pIdx) => {
-    // Project title & period
-    addText(`${proj.title} — ${proj.subtitle}`, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
+  projectsToInclude.forEach((proj, pIdx) => {
+    // Project title & year
+    addText(`${proj.title} — ${proj.subtitle}`, left, y, '/F2', 8.4, 0.05, 0.1, 0.2);
     addText(proj.year || proj.period, right - 25, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 9.5;
-
-    // Tech line
-    addText('Tech Stack: ' + proj.techStack.join(', '), left, y, '/F3', 7.5, 0.3, 0.35, 0.45);
     y -= 9;
 
-    // Bullets
+    // Tech line
+    addText('Tech Stack: ' + proj.techStack.join(', '), left, y, '/F3', 7.4, 0.3, 0.35, 0.45);
+    y -= 8.5;
+
+    // Bullets (action verb + metrics)
     const bulletsToRender = proj.bullets || proj.achievements;
     bulletsToRender.slice(0, 2).forEach((bullet) => {
       addText('*', left + 3, y, '/F2', 7.5, 0.2, 0.4, 0.7);
       const lines = wrapText(bullet.replace(/\[.*?\]/g, '').trim(), 110);
       lines.forEach((l) => {
-        addText(l, left + 12, y, '/F1', 7.6, 0.2, 0.2, 0.2);
-        y -= 8.5;
+        addText(l, left + 12, y, '/F1', 7.5, 0.2, 0.2, 0.2);
+        y -= 8.4;
       });
     });
 
-    if (pIdx < keyProjects.length - 1) {
+    if (pIdx < projectsToInclude.length - 1) {
       y -= 2;
     }
   });
 
-  // --- 5. HACKATHONS & COMPETITIVE SPRINTS (from content.ts) ---
+  // --- 5. HACKATHONS & COMPETITIVE SPRINTS ---
   if (content.hackathons && content.hackathons.length > 0) {
     addSectionHeader('HACKATHONS & COMPETITIONS');
     const firstHack = content.hackathons[0]; // IgnitX by Hutch
-    addText(`${firstHack.name} — ${firstHack.track}`, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
-    addText(firstHack.date.replace(/\[.*?\]/g, '2024'), right - 30, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 9;
-    addText(`Organizer: ${firstHack.organizer}   |   Role: ${firstHack.myRole}`, left, y, '/F3', 7.5, 0.3, 0.35, 0.45);
-    y -= 9;
+    addText(`${firstHack.name} — ${firstHack.track} (${firstHack.result})`, left, y, '/F2', 8.3, 0.05, 0.1, 0.2);
+    addText(firstHack.date, right - 25, y, '/F2', 8, 0.35, 0.4, 0.45);
+    y -= 8.8;
+    addText(`Organizer: ${firstHack.organizer}   |   Role: ${firstHack.myRole}`, left, y, '/F3', 7.4, 0.3, 0.35, 0.45);
+    y -= 8.5;
     const hackLines = wrapText(firstHack.summary, 110);
     hackLines.forEach((hl) => {
-      addText(hl, left + 6, y, '/F1', 7.6, 0.2, 0.2, 0.2);
-      y -= 8.5;
+      addText(hl, left + 6, y, '/F1', 7.5, 0.2, 0.2, 0.2);
+      y -= 8.4;
     });
   }
 
-  // --- 6. CERTIFICATIONS & CREDENTIALS (from content.ts) ---
+  // --- 6. CERTIFICATIONS & CREDENTIALS ---
   if (content.certifications && content.certifications.length > 0) {
     addSectionHeader('CERTIFICATIONS & CREDENTIALS');
     content.certifications.forEach((cert) => {
-      const cleanTitle = cert.title.replace(/\[.*?\]/g, '').trim() || 'Professional Credential Track';
-      const cleanIssuer = cert.issuer.replace(/\[.*?\]/g, '').trim() || 'Verified Provider';
-      addText(`${cleanTitle} — ${cleanIssuer}`, left, y, '/F2', 8.2, 0.05, 0.1, 0.2);
-      addText(`Category: ${cert.category}   |   Skills: ${cert.skills.slice(0, 3).join(', ')}`, left + 200, y, '/F1', 7.5, 0.3, 0.3, 0.3);
-      y -= 9;
+      addText(`${cert.title} — ${cert.issuer}`, left, y, '/F2', 8, 0.05, 0.1, 0.2);
+      addText(cert.issueDate, right - 25, y, '/F2', 7.8, 0.35, 0.4, 0.45);
+      y -= 8.2;
+      addText(`Skills: ${cert.skills.join(', ')}`, left + 8, y, '/F1', 7.3, 0.3, 0.3, 0.3);
+      y -= 8.5;
     });
   }
 
-  // --- 7. EDUCATION (from content.ts) ---
+  // --- 7. EDUCATION ---
   addSectionHeader('EDUCATION');
   content.education.forEach((edu) => {
-    addText(edu.degree, left, y, '/F2', 8.5, 0.05, 0.1, 0.2);
+    addText(edu.degree, left, y, '/F2', 8.4, 0.05, 0.1, 0.2);
     addText(edu.period, right - 55, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 9;
-    addText(edu.institution, left, y, '/F1', 8, 0.25, 0.3, 0.35);
-    y -= 8.5;
+    y -= 8.8;
+    addText(edu.institution, left, y, '/F1', 7.8, 0.25, 0.3, 0.35);
+    y -= 8.2;
     if (edu.keyModules) {
-      addText('Relevant Coursework: ' + edu.keyModules.join(', '), left, y, '/F3', 7.3, 0.35, 0.35, 0.4);
-      y -= 8.5;
+      const courseLines = wrapText('Relevant Coursework: ' + edu.keyModules.join(', '), 110);
+      courseLines.forEach((cl) => {
+        addText(cl, left, y, '/F3', 7.3, 0.35, 0.35, 0.4);
+        y -= 8.2;
+      });
     }
   });
 

@@ -183,10 +183,10 @@ export default function CVModal({ isOpen, onClose }) {
               {/* Left Column: Profile & Education */}
               <div className="cv-body-left">
                 
-                {/* Professional Profile (3 Sharp Outcome-Focused Sentences) */}
+                {/* Professional Summary (3 Sharp Outcome-Focused Sentences) */}
                 <div className="cv-section">
                   <h3 className="cv-section-title">
-                    <FileText size={16} className="cv-section-icon" /> Professional Profile
+                    <FileText size={16} className="cv-section-icon" /> Professional Summary
                   </h3>
                   <div className="cv-profile-box">
                     <p className="cv-desc-p">{content.profile.sentences[0]}</p>

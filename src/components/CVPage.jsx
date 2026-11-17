@@ -4,13 +4,7 @@ import {
   Download, 
   ArrowLeft, 
   Mail, 
-  Globe, 
-  ExternalLink, 
-  CheckCircle2, 
-  Briefcase, 
-  GraduationCap, 
-  Code2, 
-  FileText 
+  Globe 
 } from 'lucide-react';
 import { content } from '../content';
 
@@ -112,9 +106,9 @@ export default function CVPage({ onBack }) {
 
           <hr className="cv-doc-rule" />
 
-          {/* Section: Professional Profile (3 Outcome-Focused Sentences) */}
+          {/* Section: Professional Summary (3 Outcome-Focused Sentences) */}
           <section className="cv-doc-section">
-            <h2 className="cv-section-heading">PROFESSIONAL PROFILE</h2>
+            <h2 className="cv-section-heading">PROFESSIONAL SUMMARY</h2>
             <div className="cv-section-body">
               <p className="cv-profile-text">
                 {content.profile.sentences[0]}{' '}

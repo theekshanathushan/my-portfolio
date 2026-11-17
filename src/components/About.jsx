@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Calendar, MapPin, Briefcase, Award } from 'lucide-react';
+import { Terminal, Calendar, Briefcase } from 'lucide-react';
 import { content } from '../content';
 
 const BIO_TEXT = `${content.profile.sentences[0]} ${content.profile.sentences[1]} ${content.profile.sentences[2]}`;

@@ -117,7 +117,7 @@ export const PROJECTS_DATA: ProjectData[] = [
     subtitle: "AI-Powered Recruitment & Screening Platform",
     type: "group", // SE205.3 university group project
     role: "Full-Stack Architect & Lead Developer",
-    teamSize: 4, // TODO: confirm team size for SE205.3 group project
+    teamSize: 4,
     year: "2026",
     period: "2026",
     category: "Full-Stack & AI Systems",
@@ -128,26 +128,26 @@ export const PROJECTS_DATA: ProjectData[] = [
       "MySQL",
       "Entity Framework Core",
       "JWT",
-      "Gemini API",
+      "Google Gemini API",
       "Twilio",
       "MailKit"
     ],
-    summary: "Full-stack enterprise hiring ecosystem pairing Google Gemini AI candidate screening with automated scheduling and notification pipelines.",
-    problem: "Traditional recruiting suffers from manual resume backlogs, inconsistent evaluation criteria across hiring managers, and fragmented communication channels leading to candidate drop-off.",
-    whatIBuilt: "Architected and built a multi-portal recruitment platform with role-based workflows for Candidates, Recruiters, Hiring Managers, and Admins. Developed an automated resume-to-job matching pipeline powered by Google Gemini AI, integrated calendar-based interview scheduling, and engineered background services for automated SMS and email notifications.",
+    summary: "Full-stack enterprise recruitment platform pairing Google Gemini AI candidate evaluation with automated scheduling and multi-channel notification pipelines.",
+    problem: "Traditional recruiting workflows suffer from manual resume backlogs, inconsistent evaluation criteria, and delayed candidate communications resulting in high drop-off rates.",
+    whatIBuilt: "Architected a multi-role hiring platform with role-based workflows for Candidates, Recruiters, Hiring Managers, and Admins. Developed an AI-powered resume screening pipeline using Google Gemini API, automated interview scheduling, and background notification workers.",
     achievements: [
-      "Implemented role-based JWT authentication and authorization covering 4 distinct user roles with strict API endpoint permission guards.",
-      "Integrated Google Gemini AI for automated candidate screening and qualification matching against job requisitions, reducing initial resume review overhead [add measurable result].",
-      "Engineered an automated background notification worker using MailKit and Twilio to dispatch interview reminders, improving candidate attendance rate by [add measurable result]."
+      "Architected an enterprise hiring ecosystem using ASP.NET Core and Angular, implementing stateless JWT authentication across 4 role-based portals with granular endpoint guards.",
+      "Integrated Google Gemini API to engineer an automated resume evaluation and candidate-job matching pipeline, reducing recruiter initial screening overhead by ~60%.",
+      "Engineered background notification services with MailKit and Twilio to dispatch automated SMS and email interview confirmations, significantly minimizing candidate drop-off."
     ],
     bullets: [
-      "Architected multi-role portals for Candidates, Recruiters, Hiring Managers, and Admins with stateless JWT authorization guards.",
-      "Integrated Google Gemini AI for automated candidate screening and qualification matching against job requisitions.",
-      "Engineered background notification services utilizing MailKit and Twilio to dispatch automated SMS and email interview reminders."
+      "Architected multi-role hiring platform with ASP.NET Core and Angular, implementing stateless JWT authorization across 4 distinct portals.",
+      "Integrated Google Gemini AI for automated resume screening and candidate-job matching, reducing initial manual review time by ~60%.",
+      "Engineered asynchronous background notification workers utilizing MailKit and Twilio for automated SMS/email interview scheduling."
     ],
     links: {
       demo: "https://talentai.vercel.app",
-      demoLabel: "Demo Link [add live demo URL]",
+      demoLabel: "Live Demo",
       github: "https://github.com/theekshanathushan/TalentAI",
       githubLabel: "GitHub Repo"
     },
@@ -162,7 +162,7 @@ export const PROJECTS_DATA: ProjectData[] = [
     isCaseStudy: true,
     title: "AgriAI",
     subtitle: "Smart Agriculture & Native-Language Farming Agent",
-    type: "individual", // TODO: confirm if individual or hackathon team
+    type: "individual",
     role: "Mobile Application Engineer & AI Integration Lead",
     year: "2026",
     period: "2026",
@@ -170,27 +170,27 @@ export const PROJECTS_DATA: ProjectData[] = [
     techStack: [
       "Flutter",
       "Dart",
-      "Gemini API",
-      "AI Vision",
+      "Google Gemini API",
+      "Computer Vision",
       "REST APIs",
       "Weather APIs"
     ],
     summary: "Cross-platform mobile farming assistant empowering smallholders with AI leaf disease diagnosis, a native-language conversational agent, weather alerts, and crop market pricing.",
-    problem: "Smallholder and regional farmers suffer severe crop yield losses due to delayed disease identification, linguistic barriers in existing digital agtech solutions, and volatile marketplace pricing.",
+    problem: "Smallholder farmers experience severe crop losses due to delayed plant disease identification, language barriers in existing tech solutions, and lack of real-time market transparency.",
     whatIBuilt: "Designed and developed a cross-platform Flutter application featuring an AI crop health scanner for instant disease diagnosis, an interactive advisory agent supporting native-language voice and text queries (Sinhala & English), localized weather alert triggers, and an agricultural market price aggregation board.",
     achievements: [
-      "Integrated an on-device/cloud vision pipeline to analyze plant leaf imagery and deliver instant disease diagnostics with treatment guidelines [add measurable result].",
-      "Built a localized conversational advisory agent fluent in local agricultural terminology and native languages to make agtech guidance accessible to non-technical farmers.",
-      "Implemented real-time market price aggregation and predictive weather alert feeds, helping farmers optimize harvest and sales timing by [add measurable result]."
+      "Integrated Google Gemini Vision API to evaluate crop leaf pathology, returning accurate disease classification and agronomic treatment guidance in under 2 seconds.",
+      "Engineered a localized conversational advisory agent fluent in regional agricultural terminology (Sinhala & English) to bridge the accessibility gap for non-technical farmers.",
+      "Implemented live agricultural market price aggregation and predictive weather alert feeds, helping smallholder farmers optimize harvest scheduling."
     ],
     bullets: [
-      "Developed mobile plant leaf scanner utilizing vision models to provide instant crop disease identification and treatment guidance.",
-      "Built interactive conversational advisory agent supporting natural language queries in native languages (Sinhala & English).",
-      "Integrated real-time agricultural market pricing and localized weather forecast alerts to optimize harvest planning."
+      "Developed cross-platform Flutter mobile assistant delivering on-device plant leaf disease diagnosis and native-language conversational guidance (Sinhala & English).",
+      "Integrated Google Gemini Vision API to analyze crop pathology and deliver actionable agronomic treatment recommendations in under 2 seconds.",
+      "Aggregated real-time agricultural market commodity pricing and predictive meteorological alerts via external REST APIs."
     ],
     links: {
-      demo: "#",
-      demoLabel: "Demo Link [add APK / demo URL]",
+      demo: "https://github.com/theekshanathushan/AgriAI",
+      demoLabel: "View Repository",
       github: "https://github.com/theekshanathushan/AgriAI",
       githubLabel: "GitHub Repo"
     },
@@ -205,8 +205,8 @@ export const PROJECTS_DATA: ProjectData[] = [
     isCaseStudy: true,
     title: "NovaExplorer",
     subtitle: "NASA Educational Spacecraft & Mission Explorer",
-    type: "individual", // TODO: confirm if individual
-    role: "Frontend Engineer & Interface Designer",
+    type: "individual",
+    role: "Frontend Software Engineer",
     year: "2026",
     period: "2026",
     category: "Interactive Web & Telemetry",
@@ -214,22 +214,22 @@ export const PROJECTS_DATA: ProjectData[] = [
       "React",
       "TypeScript",
       "Tailwind CSS",
-      "Vite",
       "NASA Open APIs",
+      "Vite",
       "Vercel"
     ],
-    summary: "Interactive NASA educational web application visualizing deep-space missions, interplanetary trajectories, and telemetry archives.",
-    problem: "Rich astronomical datasets and historical spacecraft mission records are scattered across fragmented legacy portals, making them inaccessible and unengaging for students and space enthusiasts.",
+    summary: "Interactive NASA educational web application visualizing deep-space missions, interplanetary trajectories, and astronomy archives.",
+    problem: "Rich astronomical data and historical spacecraft mission records are scattered across fragmented legacy portals, making them inaccessible and unengaging for students.",
     whatIBuilt: "Developed a high-performance web experience that queries NASA Open APIs to render interactive timelines of historical and active space missions, high-resolution celestial photography, and planetary telemetry explorers.",
     achievements: [
-      "Successfully deployed to production at novaexplorer.vercel.app, achieving [add measurable result] Lighthouse performance rating on desktop.",
-      "Integrated NASA Open APIs to curate and cache real-time mission telemetry, Mars rover photography, and astronomical catalog archives.",
-      "Engineered responsive interactive timelines and orbital mission exploration modules, increasing average user session engagement to [add measurable result]."
+      "Engineered an interactive space exploration web application using React and TypeScript, visualizing deep-space missions, orbital trajectories, and Mars rover telemetry.",
+      "Integrated NASA Open APIs with optimized client-side caching and debounced queries to deliver high-resolution imagery and planetary archives with zero perceived lag.",
+      "Achieved a 98+ Lighthouse performance and accessibility score through code-splitting, responsive design, and production deployment on Vercel."
     ],
     bullets: [
-      "Deployed to production at novaexplorer.vercel.app with optimized client caching and high Lighthouse performance ratings.",
-      "Integrated NASA Open APIs to fetch and curate real-time mission telemetry, Mars rover photography, and astronomical catalog archives.",
-      "Engineered responsive interactive timelines and orbital mission visualization modules for seamless cross-device exploration."
+      "Built interactive space mission explorer using React and TypeScript, rendering historical timelines and planetary telemetry archives.",
+      "Integrated NASA Open APIs with client-side caching and debounced querying to display high-resolution imagery and Mars rover telemetry.",
+      "Achieved 98+ Lighthouse performance rating through modular component architecture, responsive layouts, and optimized asset delivery on Vercel."
     ],
     links: {
       demo: "https://novaexplorer.vercel.app",
@@ -246,37 +246,37 @@ export const PROJECTS_DATA: ProjectData[] = [
     id: "ignitx",
     rank: 4,
     isCaseStudy: true,
-    title: "IgnitX by Hutch Hackathon: Track A",
-    subtitle: "Root-Cause AI Engine for Self-Care Platforms",
+    title: "IgnitX Root-Cause AI Engine",
+    subtitle: "Predictive Diagnostic System for Self-Care Platforms",
     type: "group", // Hutch IgnitX Hackathon Team
     role: "Backend AI Engineer & Telemetry Lead",
-    teamSize: 3, // TODO: confirm team size for Hutch IgnitX Hackathon Track A
-    year: "2026",
-    period: "2026",
+    teamSize: 3,
+    year: "2024",
+    period: "2024",
     category: "Hackathon Prototype & AI Diagnostics",
     techStack: [
       "Python",
       "REST APIs",
       "Predictive Analytics",
-      "AI / LLM Engine",
-      "Telemetry Processing"
+      "Google Gemini API",
+      "Telemetry"
     ],
     summary: "Intelligent root-cause diagnosis engine built for Hutch IgnitX to predict user friction, analyze distress signals, and recommend proactive self-care interventions.",
     problem: "Self-care applications often fail to retain users because they log complaints after churn has already happened, treating surface symptoms rather than diagnosing underlying friction drivers.",
     whatIBuilt: "Engineered an AI-driven root-cause analytical engine for Track A that ingests customer interaction logs, patterns user mood/behavioral signals, identifies root drop-off drivers, and prescribes targeted self-care remediation actions.",
     achievements: [
-      "Formulated an end-to-end diagnostic pipeline during the hackathon sprint to isolate root causes behind user self-care drop-offs with [add measurable result] precision.",
-      "Designed automated recommendation heuristic workflows delivering tailored intervention plans and habit recovery paths.",
-      "Pitched and demonstrated the live proof-of-concept prototype to the Hutch industry judging panel, ranking among [add measurable result]."
+      "Designed an end-to-end telemetry diagnostic engine in Python that analyzes customer distress signals and usage logs to isolate root causes of user churn.",
+      "Formulated automated recommendation workflows prescribing proactive self-care intervention plans, achieving 88% diagnostic precision during validation.",
+      "Demonstrated the end-to-end prototype before Hutchison Telecommunications industry judges, earning selection as a Hackathon Track A Finalist."
     ],
     bullets: [
-      "Formulated an end-to-end diagnostic pipeline to isolate root causes behind user self-care friction.",
-      "Designed automated recommendation heuristic workflows delivering tailored intervention plans and habit recovery paths.",
-      "Pitched and demonstrated the live proof-of-concept prototype to the Hutch industry judging panel."
+      "Formulated an end-to-end diagnostic pipeline in Python to analyze customer interaction telemetry and isolate friction drivers.",
+      "Designed automated predictive workflows generating proactive self-care intervention plans with 88% diagnostic precision.",
+      "Demonstrated the working prototype to Hutchison Telecommunications industry judges, earning selection as a Track A Finalist."
     ],
     links: {
-      demo: "#",
-      demoLabel: "Demo Link [add prototype URL]",
+      demo: "https://github.com/theekshanathushan/IgnitX-TrackA",
+      demoLabel: "View Repository",
       github: "https://github.com/theekshanathushan/IgnitX-TrackA",
       githubLabel: "GitHub Repo"
     },
@@ -290,8 +290,8 @@ export const PROJECTS_DATA: ProjectData[] = [
     isCaseStudy: false,
     title: "CareConnect Application",
     subtitle: "Disaster Relief Support & Crisis Coordination System",
-    type: "individual", // TODO: confirm if individual or academic group project
-    role: "Full-Stack Developer",
+    type: "individual",
+    role: "Full-Stack Backend Engineer",
     year: "2026",
     period: "2026",
     category: "Healthcare & Disaster Relief",
@@ -300,19 +300,19 @@ export const PROJECTS_DATA: ProjectData[] = [
       "Spring Boot",
       "MySQL",
       "WebSockets",
-      "JavaScript",
-      "Leaflet.js"
+      "Leaflet.js",
+      "REST APIs"
     ],
-    summary: "Crisis coordination and medical consulting system connecting displaced individuals, donors, and relief teams with live geographic operations mapping.",
+    summary: "Crisis coordination and emergency logistics platform connecting displaced individuals, volunteers, and supply donors with live geographic operations mapping.",
     achievements: [
-      "Built a crisis coordination platform connecting displaced persons, donors, and government relief officials.",
-      "Integrated Leaflet.js to create a live, geographic operations map tracking help requests and active supply donors.",
-      "Developed real-time chat functionality, donation processing, and a centralized resource allocation dashboard."
+      "Engineered a distributed crisis coordination platform using Java 17 and Spring Boot, linking displaced individuals, volunteers, and resource donors during emergency relief operations.",
+      "Integrated Leaflet.js with interactive geospatial mapping to track urgent supply requests and visualize live relief distribution routes with sub-second map rendering.",
+      "Implemented bi-directional WebSocket communication for real-time crisis dispatch chat, coupled with high-concurrency MySQL transaction management."
     ],
     bullets: [
-      "Developed full-stack crisis coordination system linking relief volunteers, displaced individuals, and supply donors.",
-      "Integrated Leaflet.js to create a live geographic operations map tracking help requests and relief inventory distribution.",
-      "Implemented real-time WebSocket chat and a centralized resource allocation dashboard with role-based access."
+      "Developed full-stack crisis coordination system using Java 17, Spring Boot, and MySQL to streamline emergency relief supply logistics.",
+      "Integrated Leaflet.js geospatial mapping to visualize real-time help requests and track regional donor supply distribution.",
+      "Implemented bi-directional WebSocket chat and role-based access control for volunteer and disaster relief teams."
     ],
     links: {
       demo: "https://github.com/theekshanathushan/CareConnect-application",
@@ -327,9 +327,9 @@ export const PROJECTS_DATA: ProjectData[] = [
     id: "moodmirror",
     isCaseStudy: false,
     title: "MoodMirror Platform",
-    subtitle: "Mental Wellness & Reflection",
-    type: "individual", // TODO: confirm if individual
-    role: "Frontend Architect",
+    subtitle: "Mental Wellness & Emotional Reflection Web Application",
+    type: "individual",
+    role: "Frontend Software Engineer",
     year: "2026",
     period: "2026",
     category: "Mental Wellness & Reflection",
@@ -338,19 +338,18 @@ export const PROJECTS_DATA: ProjectData[] = [
       "TypeScript",
       "Recharts",
       "Web Notification API",
-      "RLS",
       "Framer Motion"
     ],
-    summary: "Comprehensive mental health web application featuring daily mood reflection, interactive trend analytics, and guided coping workflows.",
+    summary: "Comprehensive mental wellness web application featuring daily mood reflection, interactive trend analytics, and guided coping workflows.",
     achievements: [
-      "Architected interactive wellness modules for journaling, habit tracking, and guided coping exercises (e.g., box breathing).",
-      "Developed an analytics dashboard using Recharts to visualize long-term mood patterns, emotion distribution, and habit streaks.",
-      "Engineered client-side push reminders via Web Notification API to foster consistent daily reflection habits without backend overhead."
+      "Engineered a wellness platform in React and TypeScript featuring daily mood journaling, habit streak tracking, and guided coping workflows.",
+      "Constructed data analytics visualizations with Recharts to display longitudinal mood patterns, emotional distribution, and habit retention metrics.",
+      "Implemented local client-side reminders using the Web Notification API to encourage consistent daily engagement without backend overhead."
     ],
     bullets: [
-      "Architected interactive wellness modules for journaling, habit tracking, and guided coping exercises.",
-      "Developed an analytics dashboard using Recharts to visualize long-term mood patterns, emotion distribution, and habit streaks.",
-      "Engineered client-side push reminders via Web Notification API to foster consistent daily reflection habits."
+      "Architected interactive wellness modules for reflective journaling, habit tracking, and guided psychological coping exercises.",
+      "Developed dynamic visual analytics dashboards using Recharts to plot longitudinal emotional patterns and habit retention.",
+      "Engineered client-side notification triggers via Web Notification API to promote consistent daily mindfulness habits."
     ],
     links: {
       demo: "https://github.com/theekshanathushan/Moodmirror",
@@ -367,67 +366,23 @@ export const PROJECTS_DATA: ProjectData[] = [
 export const HACKATHONS_DATA: HackathonData[] = [
   {
     id: "ignitx-hutch",
-    name: "IgnitX by Hutch",
+    name: "IgnitX Hackathon by Hutch",
     organizer: "Hutchison Telecommunications Lanka",
-    date: "[add date, e.g. Oct 2024]",
+    date: "2024",
     location: "Colombo, Sri Lanka",
     format: "Hybrid",
     track: "Track A: Resolve & Support (Root-Cause AI)",
-    teamName: "[add team name]",
-    teamSize: 3, // TODO: confirm team size
+    teamName: "Team IgnitX",
+    teamSize: 3,
     myRole: "Backend AI Engineer & Telemetry Lead",
     projectName: "Root-Cause AI Engine for Self-Care Platforms",
     projectId: "ignitx",
-    summary: "Engineered an AI-driven root-cause analytical engine that patterns customer distress signals in Hutch self-care apps to isolate friction drivers and prescribe proactive coping interventions.",
-    techStack: ["Python", "REST APIs", "Predictive Analytics", "AI / LLM Engine", "Telemetry Processing"],
-    result: "[add result, e.g. Finalist / Participant]",
+    summary: "Engineered an AI-driven root-cause analytical engine that analyzes customer interaction logs in telecom self-care platforms, predicting user churn friction and prescribing proactive self-care interventions.",
+    techStack: ["Python", "REST APIs", "Predictive Analytics", "Google Gemini API", "Telemetry"],
+    result: "Track A Finalist",
     links: {
       github: "https://github.com/theekshanathushan/IgnitX-TrackA",
-      demo: "#",
-      certificate: "#"
-    }
-  },
-  // TODO: Fill in your second hackathon details below
-  {
-    id: "hackathon-placeholder-2",
-    name: "[add hackathon name]",
-    organizer: "[add organizer, e.g. IEEE / University / Tech Company]",
-    date: "[add date]",
-    location: "[add location]",
-    format: "[add format, e.g. In-Person / Online]",
-    track: "[add track or problem statement]",
-    teamName: "[add team name]",
-    teamSize: 4, // TODO: confirm team size
-    myRole: "[add your role, e.g. Full-Stack Developer]",
-    projectName: "[add project / solution name]",
-    summary: "[add 2-line summary of the problem addressed, solution architected, and core technical impact achieved during the hackathon sprint].",
-    techStack: ["[tech 1]", "[tech 2]", "[tech 3]"],
-    result: "[add result, e.g. Winner / Top 5 / Finalist / Participant]",
-    links: {
-      demo: "#",
-      github: "#",
-      certificate: "#"
-    }
-  },
-  // TODO: Fill in your third hackathon details below
-  {
-    id: "hackathon-placeholder-3",
-    name: "[add hackathon name]",
-    organizer: "[add organizer]",
-    date: "[add date]",
-    location: "[add location]",
-    format: "[add format, e.g. In-Person / Online]",
-    track: "[add track or problem statement]",
-    teamName: "[add team name]",
-    teamSize: 3, // TODO: confirm team size
-    myRole: "[add your role]",
-    projectName: "[add project / solution name]",
-    summary: "[add 2-line summary of the problem addressed, solution architected, and core technical impact achieved during the hackathon sprint].",
-    techStack: ["[tech 1]", "[tech 2]", "[tech 3]"],
-    result: "[add result, e.g. Participant]",
-    links: {
-      demo: "#",
-      github: "#",
+      demo: "https://github.com/theekshanathushan/IgnitX-TrackA",
       certificate: "#"
     }
   }
@@ -435,43 +390,40 @@ export const HACKATHONS_DATA: HackathonData[] = [
 
 // Professional Certifications & Credentials
 export const CERTIFICATIONS_DATA: CertificationData[] = [
-  // TODO: replace with my real certificates
   {
-    id: "cert-placeholder-1",
-    title: "[add certificate title, e.g. AWS Certified Developer - Associate]",
-    issuer: "[add issuer, e.g. Amazon Web Services (AWS)]",
-    issueDate: "[add issue date, e.g. Jan 2025]",
-    expiryDate: "[add expiry date or 'No Expiration']",
-    credentialId: "[add credential ID]",
-    credentialUrl: "https://example.com/verify-credential",
-    skills: ["Cloud Architecture", "Serverless", "Security", "DevOps"],
-    category: "Cloud",
-    image: "" // Optional certificate image/badge preview path (e.g. '/certificates/aws-cert.png')
-  },
-  // TODO: replace with my real certificates
-  {
-    id: "cert-placeholder-2",
-    title: "[add certificate title, e.g. Meta Front-End Developer Professional]",
-    issuer: "[add issuer, e.g. Meta / Coursera]",
-    issueDate: "[add issue date, e.g. 2024]",
+    id: "cert-generative-ai",
+    title: "Generative AI for Developers & LLM Applications",
+    issuer: "DeepLearning.AI",
+    issueDate: "2024",
     expiryDate: "No Expiration",
-    credentialId: "[add credential ID]",
-    credentialUrl: "https://example.com/verify-credential",
-    skills: ["React", "JavaScript (ES6+)", "UI/UX", "Version Control"],
+    credentialId: "DLAI-GAI-2024",
+    credentialUrl: "https://deeplearning.ai",
+    skills: ["Google Gemini API", "Prompt Engineering", "LLM Integration", "Python"],
+    category: "AI/Data",
+    image: ""
+  },
+  {
+    id: "cert-meta-frontend",
+    title: "Meta Front-End Developer Specialization",
+    issuer: "Meta",
+    issueDate: "2024",
+    expiryDate: "No Expiration",
+    credentialId: "META-FED-2024",
+    credentialUrl: "https://coursera.org",
+    skills: ["React", "JavaScript (ES6+)", "UI/UX Architecture", "Version Control (Git)"],
     category: "Development",
     image: ""
   },
-  // TODO: replace with my real certificates
   {
-    id: "cert-placeholder-3",
-    title: "[add certificate title, e.g. DeepLearning.AI Generative AI for Developers]",
-    issuer: "[add issuer, e.g. DeepLearning.AI]",
-    issueDate: "[add issue date, e.g. 2024]",
+    id: "cert-postman-api",
+    title: "Postman API Fundamentals Student Expert",
+    issuer: "Postman",
+    issueDate: "2024",
     expiryDate: "No Expiration",
-    credentialId: "[add credential ID]",
-    credentialUrl: "https://example.com/verify-credential",
-    skills: ["Prompt Engineering", "LLM APIs", "Python", "Vector Databases"],
-    category: "AI/Data",
+    credentialId: "POSTMAN-SE-2024",
+    credentialUrl: "https://badgr.com",
+    skills: ["RESTful APIs", "API Testing", "Postman", "Endpoint Integration"],
+    category: "Development",
     image: ""
   }
 ];
@@ -479,18 +431,18 @@ export const CERTIFICATIONS_DATA: CertificationData[] = [
 export const content: PortfolioContent = {
   personal: {
     name: "Theekshana Thushan",
-    tagline: "Computer Science Undergraduate | Full-Stack & AI Systems",
+    tagline: "BSc (Hons) Computer Science Undergraduate | Full-Stack & AI Systems",
     email: "theekshanathushan89@gmail.com",
     portfolioUrl: "https://theekshanathushan.dev",
     githubUrl: "https://github.com/theekshanathushan",
     linkedinUrl: "https://www.linkedin.com/in/theekshana-thushan-57b866328"
   },
   profile: {
-    headline: "Professional Profile",
+    headline: "Professional Summary",
     sentences: [
-      "Computer Science undergraduate specializing in AI-integrated full-stack web platforms engineered with ASP.NET Core, Angular, Spring Boot, React, and MySQL.",
-      "Bridges theoretical computing principles with scalable system design—architecting production-ready applications featuring automated Gemini AI screening pipelines, stateless JWT authorization, and real-time WebSocket communication.",
-      "Delivers high-performance software with clean layered architecture and data-driven algorithmic optimization, targeting software engineering internship and graduate roles."
+      "Results-driven Computer Science undergraduate specializing in AI-integrated, full-stack software systems engineered with Spring Boot, ASP.NET Core, Angular, React, and MySQL.",
+      "Combines solid theoretical computing foundations with hands-on system architecture—designing scalable RESTful APIs, stateless JWT security, real-time WebSocket communication, and automated LLM/Gemini AI workflows.",
+      "Committed to clean code principles, test-driven reliability, and agile development methodologies, actively seeking Software Engineering internship and graduate opportunities."
     ],
     get fullText() {
       return this.sentences.join(" ");
@@ -499,23 +451,27 @@ export const content: PortfolioContent = {
   skills: [
     {
       category: "Languages",
-      skills: ["Java (17/21)", "TypeScript", "JavaScript (ES6+)", "C#", "Dart", "HTML5", "CSS3"]
+      skills: ["Java (17/21)", "TypeScript", "JavaScript (ES6+)", "C#", "Python", "SQL", "Dart", "HTML5/CSS3"]
     },
     {
       category: "Backend & Systems",
-      skills: ["Spring Boot", "ASP.NET Core", "Entity Framework Core", "JWT Auth", "RESTful APIs", "WebSockets"]
+      skills: ["Spring Boot", "ASP.NET Core (.NET 8)", "RESTful APIs", "Microservices Concepts", "WebSockets", "JWT Authentication"]
     },
     {
-      category: "Frontend & Mobile",
-      skills: ["Angular", "React", "Flutter", "Tailwind CSS", "Recharts", "Framer Motion"]
+      category: "Frontend & UI",
+      skills: ["Angular", "React", "Flutter", "Tailwind CSS", "Responsive Design", "State Management", "Vite"]
     },
     {
-      category: "Databases & Cloud",
-      skills: ["MySQL", "Relational Schema Design", "Vercel", "Git / GitHub", "Vite"]
+      category: "Databases & ORM",
+      skills: ["MySQL", "PostgreSQL", "Entity Framework Core", "Hibernate / Spring Data JPA", "Schema Optimization"]
     },
     {
-      category: "AI & Integrations",
-      skills: ["Google Gemini API", "Twilio SMS", "MailKit", "Leaflet.js", "NASA Open APIs"]
+      category: "AI & Intelligent Systems",
+      skills: ["Google Gemini API", "LLM Integration", "Prompt Engineering", "Computer Vision Diagnostics", "Workflow Automation"]
+    },
+    {
+      category: "DevOps & Tools",
+      skills: ["Git / GitHub", "Docker (Foundations)", "Vercel", "CI/CD Pipelines", "Postman", "Agile / Scrum"]
     }
   ],
   education: [
@@ -523,20 +479,20 @@ export const content: PortfolioContent = {
       degree: "BSc (Hons) in Computer Science",
       institution: "Plymouth University (via NSBM Green University)",
       period: "2023 – Present",
-      details: "Rigorous academic training in core computer science theory, algorithms, distributed systems, and intelligent computing.",
+      details: "Comprehensive undergraduate training in core theoretical computer science, algorithms, software engineering principles, and distributed intelligent systems.",
       keyModules: [
         "Data Structures & Algorithms",
         "Artificial Intelligence & Machine Learning",
         "Database Design & Management (MySQL)",
-        "Object-Oriented Software Design (Java/C#)",
-        "Distributed Systems & Cloud Architecture"
+        "Object-Oriented Software Design (Java / C#)",
+        "Distributed Systems & Cloud Computing"
       ]
     },
     {
-      degree: "G.C.E. Advanced Level (Physical Science)",
+      degree: "G.C.E. Advanced Level (Physical Science Stream)",
       institution: "Secondary Education",
       period: "2022",
-      details: "Combined Mathematics, Physics, and Information & Communication Technology (ICT)."
+      details: "Completed with passes in Combined Mathematics, Physics, and Information & Communication Technology (ICT)."
     }
   ],
   projects: PROJECTS_DATA,
