@@ -18,10 +18,10 @@ const TIMELINE_DATA = [
     desc: "Architecting multi-role platforms with ASP.NET Core, Angular, and Spring Boot. Integrating Google Gemini AI screening workflows, JWT authentication, and automated notifications."
   },
   {
-    role: "BSc (Hons) in Software Engineering",
+    role: "BSc (Hons) in Computer Science",
     company: "Plymouth University (via NSBM Green University)",
     period: "2023 - Present",
-    desc: "Rigorous coursework in Data Structures & Algorithms, Object-Oriented Software Design, Database Systems (MySQL), and distributed system engineering."
+    desc: "Rigorous coursework in Data Structures & Algorithms, Systems Architecture, Database Management (MySQL), and Artificial Intelligence."
   },
   {
     role: "G.C.E. Advanced Level - Physical Science",
@@ -39,16 +39,17 @@ export default function About() {
       case 'bio':
         return JSON.stringify({
           name: content.personal.name,
-          role: "Software Engineering Student | Full-Stack & AI Systems",
+          role: "Computer Science Undergraduate | Full-Stack & AI Systems",
+          degree: "BSc (Hons) in Computer Science",
           location: "Colombo, Sri Lanka",
-          focus: "Engineering reliable full-stack applications with clean layered architecture.",
+          focus: "Bridging computer science theory and intelligent algorithms with scalable full-stack software architecture.",
           coreStack: ["ASP.NET Core", "Spring Boot", "Angular", "React", "MySQL"]
         }, null, 2);
       case 'skills':
         return JSON.stringify({
-          coreValues: ["Clean Architecture", "Stateless Security (JWT)", "Measurable Outcomes"],
-          interests: ["Generative AI Pipelines", "Mobile Cross-Platform (Flutter)", "Cloud Deployment"],
-          status: "Open to Software Engineering Internships & Graduate Roles"
+          coreValues: ["Algorithmic Rigor", "Clean Layered Architecture", "Stateless Security (JWT)"],
+          interests: ["Generative AI Pipelines", "Distributed Systems", "Mobile Cross-Platform (Flutter)"],
+          status: "Open to Software Engineering & CS Internships / Graduate Roles"
         }, null, 2);
       case 'contact':
         return JSON.stringify({

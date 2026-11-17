@@ -285,7 +285,7 @@ export default function Hero({ onOpenCV }) {
               <source srcSet={`${import.meta.env.BASE_URL}profile.webp`} type="image/webp" />
               <img 
                 src={`${import.meta.env.BASE_URL}profile.png`} 
-                alt="Theekshana Thushan, Software Engineering Student" 
+                alt="Theekshana Thushan, Computer Science Student" 
                 width="280" 
                 height="280"
                 fetchPriority="high"

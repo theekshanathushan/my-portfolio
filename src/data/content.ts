@@ -479,7 +479,7 @@ export const CERTIFICATIONS_DATA: CertificationData[] = [
 export const content: PortfolioContent = {
   personal: {
     name: "Theekshana Thushan",
-    tagline: "Software Engineering Student | Full-Stack & AI Systems",
+    tagline: "Computer Science Undergraduate | Full-Stack & AI Systems",
     email: "theekshanathushan89@gmail.com",
     portfolioUrl: "https://theekshanathushan.dev",
     githubUrl: "https://github.com/theekshanathushan",
@@ -488,9 +488,9 @@ export const content: PortfolioContent = {
   profile: {
     headline: "Professional Profile",
     sentences: [
-      "Software engineering undergraduate specializing in AI-integrated full-stack web platforms engineered with ASP.NET Core, Angular, Spring Boot, React, and MySQL.",
-      "Architected and deployed production-ready applications featuring automated Gemini AI screening pipelines, stateless JWT authorization, and real-time WebSocket communication.",
-      "Delivers reliable software with clean layered architecture and test-driven workflows, targeting high-impact software engineering internship and graduate roles."
+      "Computer Science undergraduate specializing in AI-integrated full-stack web platforms engineered with ASP.NET Core, Angular, Spring Boot, React, and MySQL.",
+      "Bridges theoretical computing principles with scalable system design—architecting production-ready applications featuring automated Gemini AI screening pipelines, stateless JWT authorization, and real-time WebSocket communication.",
+      "Delivers high-performance software with clean layered architecture and data-driven algorithmic optimization, targeting software engineering internship and graduate roles."
     ],
     get fullText() {
       return this.sentences.join(" ");
@@ -520,15 +520,16 @@ export const content: PortfolioContent = {
   ],
   education: [
     {
-      degree: "BSc (Hons) in Software Engineering",
+      degree: "BSc (Hons) in Computer Science",
       institution: "Plymouth University (via NSBM Green University)",
       period: "2023 – Present",
-      details: "Focusing on enterprise full-stack development, distributed architectures, algorithms, and secure systems design.",
+      details: "Rigorous academic training in core computer science theory, algorithms, distributed systems, and intelligent computing.",
       keyModules: [
         "Data Structures & Algorithms",
-        "Object-Oriented Programming (Java/C#)",
+        "Artificial Intelligence & Machine Learning",
         "Database Design & Management (MySQL)",
-        "Software Engineering Principles"
+        "Object-Oriented Software Design (Java/C#)",
+        "Distributed Systems & Cloud Architecture"
       ]
     },
     {
