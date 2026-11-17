@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe';
 const PORT = 9222;
-const TARGET_URL = 'http://localhost:5173';
+const TARGET_URL = 'http://localhost:5174';
 const ARTIFACT_DIR = 'C:\\Users\\User\\.gemini\\antigravity\\brain\\4debe7fa-beba-4e6a-ab82-e1d7583a359d';
 
 async function sleep(ms) {
