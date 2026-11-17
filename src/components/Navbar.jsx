@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Palette } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Activity', href: '#activity' },
   { label: 'Projects', href: '#projects' },
   { label: 'Hackathons', href: '#hackathons' },
   { label: 'Certifications', href: '#certifications' },
-  { label: 'Activity', href: '#activity' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -23,7 +23,7 @@ export default function Navbar({ currentAccent, onAccentChange, onOpenCV }) {
       setIsScrolled(window.scrollY > 20);
 
       // Active Section Scroll Spy
-      const sectionIds = ['home', 'about', 'skills', 'projects', 'hackathons', 'certifications', 'activity', 'contact'];
+      const sectionIds = ['home', 'about', 'skills', 'activity', 'projects', 'hackathons', 'certifications', 'contact'];
       const scrollPos = window.scrollY + 180;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {

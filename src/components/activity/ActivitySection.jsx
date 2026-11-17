@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { RefreshCw, ExternalLink, AlertTriangle, Clock, Database } from 'lucide-react';
 import useActivity from './useActivity';
 import ActivityStats from './ActivityStats';
@@ -8,7 +9,7 @@ import LanguagesDonut from './LanguagesDonut';
 /**
  * Shimmer Loading Skeleton matching the final layout
  */
-function ActivitySkeleton() {
+export function ActivitySkeleton() {
   return (
     <div className="activity-skeleton-wrap" aria-label="Loading coding activity..." role="status">
       {/* 4 Stats Cards */}
@@ -174,7 +175,30 @@ function ActivitySkeleton() {
 }
 
 export default function ActivitySection() {
-  const { data, loading, error, refetch, lastUpdatedAgo, isFallback } = useActivity();
+  const sectionRef = useRef(null);
+  const [isNearViewport, setIsNearViewport] = useState(() => {
+    return typeof IntersectionObserver === 'undefined';
+  });
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const { data, loading, error, refetch, lastUpdatedAgo, isFallback } = useActivity(isNearViewport);
 
   // Screen-reader textual summary of live metrics
   const srSummary = data
@@ -184,7 +208,7 @@ export default function ActivitySection() {
     : '';
 
   return (
-    <section id="activity" className="section activity-section" aria-label="Coding Activity">
+    <section id="activity" ref={sectionRef} className="section activity-section" aria-label="Coding Activity">
       <div className="container">
         
         {/* Section Header */}

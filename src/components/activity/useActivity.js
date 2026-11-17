@@ -22,14 +22,16 @@ export function formatTimeAgo(isoString) {
 
 /**
  * Custom hook to fetch GitHub activity from /api/activity
+ * @param {boolean} enabled - Whether to fetch immediately or wait until triggered (e.g. when near viewport)
  */
-export function useActivity() {
+export function useActivity(enabled = true) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [fetchIndex, setFetchIndex] = useState(0);
 
   useEffect(() => {
+    if (!enabled) return;
     let isCancelled = false;
 
     fetch('/api/activity', {
@@ -59,7 +61,7 @@ export function useActivity() {
     return () => {
       isCancelled = true;
     };
-  }, [fetchIndex]);
+  }, [enabled, fetchIndex]);
 
   const refetch = useCallback(() => {
     setLoading(true);
@@ -72,7 +74,7 @@ export function useActivity() {
 
   return {
     data,
-    loading,
+    loading: enabled ? loading : true,
     error,
     refetch,
     lastUpdatedAgo,

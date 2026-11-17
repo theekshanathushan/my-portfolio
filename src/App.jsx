@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,11 +6,32 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Hackathons from './components/Hackathons';
 import Certifications from './components/Certifications';
-import ActivitySection from './components/activity/ActivitySection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CVModal from './components/CVModal';
 import CVPage from './components/CVPage';
+
+// Lazy-load Coding Activity section to optimize initial load & Lighthouse score
+const ActivitySection = lazy(() => import('./components/activity/ActivitySection'));
+
+function ActivityLoadingFallback() {
+  return (
+    <section className="section" style={{ minHeight: '380px' }} aria-label="Loading coding activity...">
+      <div className="container">
+        <div className="section-title-wrap">
+          <span className="section-subtitle">ACTIVITY</span>
+          <h2 className="section-title">Coding Activity</h2>
+        </div>
+        <div style={{
+          height: '240px',
+          background: 'rgba(13, 13, 23, 0.45)',
+          borderRadius: '16px',
+          border: '1px solid rgba(255, 255, 255, 0.05)'
+        }}></div>
+      </div>
+    </section>
+  );
+}
 
 export default function App() {
   // Routing State ('home' | 'cv')
@@ -87,10 +108,12 @@ export default function App() {
         <Hero onOpenCV={() => setIsCVOpen(true)} />
         <About />
         <Skills />
+        <Suspense fallback={<ActivityLoadingFallback />}>
+          <ActivitySection />
+        </Suspense>
         <Projects />
         <Hackathons />
         <Certifications />
-        <ActivitySection />
         <Contact />
       </main>
 

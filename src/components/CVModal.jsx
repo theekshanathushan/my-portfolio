@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { 
   X, 
   Download, 
@@ -32,6 +32,7 @@ const Linkedin = (props) => (
 
 export default function CVModal({ isOpen, onClose }) {
   const [activeView, setActiveView] = useState('interactive'); // 'interactive' | 'pdf'
+  const [contributionsCount, setContributionsCount] = useState(null);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -42,6 +43,27 @@ export default function CVModal({ isOpen, onClose }) {
     }
     return () => {
       document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  // Fetch GitHub telemetry once when modal is opened
+  useEffect(() => {
+    if (!isOpen) return;
+    let isCancelled = false;
+
+    fetch('/api/activity', { headers: { Accept: 'application/json' } })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (!isCancelled && json && typeof json.totalContributions === 'number' && json.totalContributions > 0) {
+          setContributionsCount(json.totalContributions);
+        }
+      })
+      .catch(() => {
+        // Silently ignore if API is unavailable; line remains hidden
+      });
+
+    return () => {
+      isCancelled = true;
     };
   }, [isOpen]);
 
@@ -142,6 +164,14 @@ export default function CVModal({ isOpen, onClose }) {
                   <Globe size={14} className="cv-icon" />
                   <a href={content.personal.portfolioUrl} target="_blank" rel="noreferrer">theekshanathushan.dev</a>
                 </div>
+                {contributionsCount > 0 && (
+                  <div className="cv-contact-item cv-activity-item" title="Verified GitHub contributions in the last 365 days">
+                    <span className="cv-activity-live-dot" aria-hidden="true"></span>
+                    <span className="cv-activity-text">
+                      <strong>{contributionsCount.toLocaleString()}</strong> GitHub contributions in the last year
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -513,6 +543,38 @@ export default function CVModal({ isOpen, onClose }) {
 
         .cv-contact-item a:hover {
           color: var(--accent);
+        }
+
+        .cv-activity-item {
+          color: var(--text-light);
+          grid-column: 1 / -1;
+          background: rgba(var(--accent-rgb), 0.05);
+          border: 1px solid rgba(var(--accent-rgb), 0.18);
+          border-radius: 6px;
+          padding: 4px 10px;
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          margin-top: 4px;
+        }
+
+        .cv-activity-live-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--accent);
+          box-shadow: 0 0 6px var(--accent);
+          flex-shrink: 0;
+        }
+
+        .cv-activity-text {
+          font-size: 11.5px;
+          color: var(--text-light);
+        }
+
+        .cv-activity-text strong {
+          color: var(--accent);
+          font-weight: 700;
         }
 
         .cv-icon {
