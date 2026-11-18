@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Calendar, Briefcase } from 'lucide-react';
+import { Terminal, Calendar, FolderGit2 } from 'lucide-react';
 import { content } from '../content';
 
 const BIO_TEXT = `${content.profile.sentences[0]} ${content.profile.sentences[1]} ${content.profile.sentences[2]}`;
@@ -115,10 +115,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* Column 2: Glassmorphic Experience Timeline */}
+          {/* Column 2: Glassmorphic Projects & Milestones Timeline */}
           <div className="about-column timeline-column">
             <h3 className="timeline-section-heading">
-              <Briefcase size={20} className="timeline-heading-icon" /> Experience & Milestones
+              <FolderGit2 size={20} className="timeline-heading-icon" /> My Projects and Milestones
             </h3>
             
             <div className="timeline">
