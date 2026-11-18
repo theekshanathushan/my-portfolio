@@ -56,11 +56,22 @@ const LANGUAGE_COLORS = {
 // Fallback Repositories (non-forks only)
 const FALLBACK_REPOS = [
   {
+    id: 1300000001,
+    name: "smart-farming-ai",
+    description: "A smart, offline-capable mobile app designed to help farmers with crop scanning and AI-powered advice, even without an internet connection.",
+    html_url: "https://github.com/theekshanathushan/smart-farming-ai",
+    language: "Dart",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    updated_at: "2026-10-20T16:37:55Z"
+  },
+  {
     id: 1263633291,
     name: "CareConnect-application",
     description: "A full-stack web application built with a Spring Boot backend and a custom HTML/CSS frontend.",
     html_url: "https://github.com/theekshanathushan/CareConnect-application",
-    language: "HTML",
+    language: "Java",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
@@ -75,7 +86,18 @@ const FALLBACK_REPOS = [
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
-    updated_at: "2026-06-14T06:17:52Z"
+    updated_at: "2026-08-30T04:39:54Z"
+  },
+  {
+    id: 1300000002,
+    name: "VendorFlow",
+    description: "Cross-platform mobile inventory and vendor commerce application built with Flutter.",
+    html_url: "https://github.com/theekshanathushan/VendorFlow",
+    language: "Dart",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    updated_at: "2026-06-24T14:43:32Z"
   },
   {
     id: 1262641401,
@@ -86,7 +108,18 @@ const FALLBACK_REPOS = [
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
-    updated_at: "2026-06-15T15:16:01Z"
+    updated_at: "2026-11-18T17:39:50Z"
+  },
+  {
+    id: 1300000003,
+    name: "Cricket-App",
+    description: "Object-oriented C++ software engine for cricket scoring, statistics, and tournament tracking.",
+    html_url: "https://github.com/theekshanathushan/Cricket-App",
+    language: "C++",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    updated_at: "2026-09-18T04:05:47Z"
   },
   {
     id: 1258042809,

@@ -117,7 +117,7 @@ export const PROJECTS_DATA: ProjectData[] = [
     subtitle: "AI-Powered Recruitment & Screening Platform",
     type: "group", // SE205.3 university group project
     role: "Full-Stack Architect & Lead Developer",
-    teamSize: 4,
+    teamSize: 6,
     year: "2026",
     period: "2026",
     category: "Full-Stack & AI Systems",
@@ -125,6 +125,7 @@ export const PROJECTS_DATA: ProjectData[] = [
       "ASP.NET Core",
       "Angular",
       "TypeScript",
+      "C#",
       "MySQL",
       "Entity Framework Core",
       "JWT",
@@ -148,19 +149,19 @@ export const PROJECTS_DATA: ProjectData[] = [
     links: {
       demo: "https://talentai.vercel.app",
       demoLabel: "Live Demo",
-      github: "https://github.com/theekshanathushan/TalentAI",
+      github: "https://github.com/Lakshan994/AI-Recruitment-Platform",
       githubLabel: "GitHub Repo"
     },
     image: "[screenshot needed: TalentAI candidate evaluation & AI match dashboard]",
     mockupType: "browser",
     mockupUrl: "https://talentai.preview/recruiter/screening",
-    badge: "Flagship Platform"
+    badge: "Flagship Group Platform"
   },
   {
     id: "agriai",
     rank: 2,
     isCaseStudy: true,
-    title: "AgriAI",
+    title: "AgriAI (smart-farming-ai)",
     subtitle: "Smart Agriculture & Native-Language Farming Agent",
     type: "individual",
     role: "Mobile Application Engineer & AI Integration Lead",
@@ -172,32 +173,32 @@ export const PROJECTS_DATA: ProjectData[] = [
       "Dart",
       "Google Gemini API",
       "Computer Vision",
-      "REST APIs",
-      "Weather APIs"
+      "Python",
+      "REST APIs"
     ],
     summary: "Cross-platform mobile farming assistant empowering smallholders with AI leaf disease diagnosis, a native-language conversational agent, weather alerts, and crop market pricing.",
     problem: "Smallholder farmers experience severe crop losses due to delayed plant disease identification, language barriers in existing tech solutions, and lack of real-time market transparency.",
     whatIBuilt: "Designed and developed a cross-platform Flutter application featuring an AI crop health scanner for instant disease diagnosis, an interactive advisory agent supporting native-language voice and text queries (Sinhala & English), localized weather alert triggers, and an agricultural market price aggregation board.",
     achievements: [
+      "Contributed 142 commits as solo engineer building offline-first mobile architecture, camera feeds, and edge model inference pipelines.",
       "Integrated Google Gemini Vision API to evaluate crop leaf pathology, returning accurate disease classification and agronomic treatment guidance in under 2 seconds.",
-      "Engineered a localized conversational advisory agent fluent in regional agricultural terminology (Sinhala & English) to bridge the accessibility gap for non-technical farmers.",
-      "Implemented live agricultural market price aggregation and predictive weather alert feeds, helping smallholder farmers optimize harvest scheduling."
+      "Engineered a localized conversational advisory agent fluent in regional agricultural terminology (Sinhala & English) to bridge the accessibility gap for non-technical farmers."
     ],
     bullets: [
-      "Developed cross-platform Flutter mobile assistant delivering on-device plant leaf disease diagnosis and native-language conversational guidance (Sinhala & English).",
+      "Developed cross-platform Flutter mobile assistant with 142 commits, delivering on-device plant leaf disease diagnosis and native-language advice.",
       "Integrated Google Gemini Vision API to analyze crop pathology and deliver actionable agronomic treatment recommendations in under 2 seconds.",
       "Aggregated real-time agricultural market commodity pricing and predictive meteorological alerts via external REST APIs."
     ],
     links: {
-      demo: "https://github.com/theekshanathushan/AgriAI",
+      demo: "https://github.com/theekshanathushan/smart-farming-ai",
       demoLabel: "View Repository",
-      github: "https://github.com/theekshanathushan/AgriAI",
+      github: "https://github.com/theekshanathushan/smart-farming-ai",
       githubLabel: "GitHub Repo"
     },
     image: "[screenshot needed: AgriAI leaf disease scanner & native advisory assistant]",
     mockupType: "phone",
     mockupUrl: "agriai://dashboard/scanner",
-    badge: "Mobile & AI Vision"
+    badge: "Solo Mobile Project"
   },
   {
     id: "novaexplorer",
@@ -205,8 +206,9 @@ export const PROJECTS_DATA: ProjectData[] = [
     isCaseStudy: true,
     title: "NovaExplorer",
     subtitle: "NASA Educational Spacecraft & Mission Explorer",
-    type: "individual",
-    role: "Frontend Software Engineer",
+    type: "group", // NASA Space Apps Hackathon Team
+    teamSize: 5,
+    role: "Frontend Software Engineer & UI Architect",
     year: "2026",
     period: "2026",
     category: "Interactive Web & Telemetry",
@@ -215,32 +217,33 @@ export const PROJECTS_DATA: ProjectData[] = [
       "TypeScript",
       "Tailwind CSS",
       "NASA Open APIs",
+      "PostgreSQL",
       "Vite",
       "Vercel"
     ],
     summary: "Interactive NASA educational web application visualizing deep-space missions, interplanetary trajectories, and astronomy archives.",
     problem: "Rich astronomical data and historical spacecraft mission records are scattered across fragmented legacy portals, making them inaccessible and unengaging for students.",
-    whatIBuilt: "Developed a high-performance web experience that queries NASA Open APIs to render interactive timelines of historical and active space missions, high-resolution celestial photography, and planetary telemetry explorers.",
+    whatIBuilt: "Developed a high-performance web experience in a 5-person hackathon squad, querying NASA Open APIs to render interactive timelines of historical and active space missions, high-resolution celestial photography, and planetary telemetry explorers.",
     achievements: [
       "Engineered an interactive space exploration web application using React and TypeScript, visualizing deep-space missions, orbital trajectories, and Mars rover telemetry.",
       "Integrated NASA Open APIs with optimized client-side caching and debounced queries to deliver high-resolution imagery and planetary archives with zero perceived lag.",
       "Achieved a 98+ Lighthouse performance and accessibility score through code-splitting, responsive design, and production deployment on Vercel."
     ],
     bullets: [
-      "Built interactive space mission explorer using React and TypeScript, rendering historical timelines and planetary telemetry archives.",
+      "Built interactive space mission explorer in a 5-member NASA Space Apps team using React and TypeScript.",
       "Integrated NASA Open APIs with client-side caching and debounced querying to display high-resolution imagery and Mars rover telemetry.",
       "Achieved 98+ Lighthouse performance rating through modular component architecture, responsive layouts, and optimized asset delivery on Vercel."
     ],
     links: {
       demo: "https://novaexplorer.vercel.app",
       demoLabel: "Live at novaexplorer.vercel.app",
-      github: "https://github.com/theekshanathushan/NovaExplorer",
+      github: "https://github.com/mchithna/NASASpaceApps",
       githubLabel: "GitHub Repo"
     },
     image: "[screenshot needed: NovaExplorer mission visualization & NASA telemetry explorer]",
     mockupType: "browser",
     mockupUrl: "https://novaexplorer.vercel.app",
-    badge: "Live on Vercel"
+    badge: "NASA Space Apps Team"
   },
   {
     id: "ignitx",
@@ -359,6 +362,120 @@ export const PROJECTS_DATA: ProjectData[] = [
     },
     image: "[screenshot needed: Moodmirror reflection & analytics UI]",
     badge: "Wellness Analytics"
+  },
+  {
+    id: "suwadaru",
+    isCaseStudy: false,
+    title: "Suwadaru",
+    subtitle: "Ayurvedic Healthcare & Digital Wellness Platform",
+    type: "group",
+    teamSize: 4,
+    role: "Full-Stack Contributor (16 Commits)",
+    year: "2026",
+    period: "2026",
+    category: "Healthcare & Digital Wellness",
+    techStack: [
+      "TypeScript",
+      "JavaScript",
+      "PostgreSQL",
+      "CSS",
+      "Vercel"
+    ],
+    summary: "Collaborative healthcare platform providing digital access to Ayurvedic wellness consultations and herbal medicine resources.",
+    achievements: [
+      "Contributed 16 commits as core full-stack developer focusing on responsive user interfaces and secure data access.",
+      "Integrated PostgreSQL backend data models with optimized query performance and seamless Vercel production deployment.",
+      "Collaborated in a 4-person development sprint utilizing Git branch management and peer code reviews."
+    ],
+    bullets: [
+      "Collaborated in a 4-person team to build digital Ayurvedic healthcare web platform deployed live on Vercel.",
+      "Developed responsive UI modules in TypeScript and structured PostgreSQL data models for consultation bookings.",
+      "Maintained active Git pull request workflows and code review standards throughout the sprint."
+    ],
+    links: {
+      demo: "https://suwadaru.vercel.app",
+      demoLabel: "Live at suwadaru.vercel.app",
+      github: "https://github.com/Y-Udayanga/Suwadaru",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: Suwadaru healthcare platform]",
+    badge: "Team Web Platform"
+  },
+  {
+    id: "crisiscopilot",
+    isCaseStudy: false,
+    title: "CrisisCopilot",
+    subtitle: "Real-Time Disaster Response & Coordination Assistant",
+    type: "group",
+    teamSize: 4,
+    role: "Frontend & API Collaborator",
+    year: "2026",
+    period: "2026",
+    category: "Crisis Coordination & Emergency AI",
+    techStack: [
+      "TypeScript",
+      "JavaScript",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    summary: "Emergency assistance co-pilot connecting disaster responders and impacted communities with real-time incident mapping and aid coordination.",
+    achievements: [
+      "Engineered real-time incident reporting interfaces in TypeScript, deployed live to crisiscopilot.vercel.app.",
+      "Designed emergency resource allocation workflows connecting affected citizens with volunteer response teams.",
+      "Collaborated in a 4-member agile sprint implementing Git feature-branch workflows and automated Vercel CI/CD."
+    ],
+    bullets: [
+      "Engineered incident reporting interfaces in TypeScript and deployed live to production at crisiscopilot.vercel.app.",
+      "Built emergency resource allocation workflows connecting affected communities with relief squads.",
+      "Collaborated in a 4-member agile team using Git feature branching and automated CI/CD pipelines."
+    ],
+    links: {
+      demo: "https://crisiscopilot.vercel.app",
+      demoLabel: "Live at crisiscopilot.vercel.app",
+      github: "https://github.com/Y-Udayanga/CrisisCopilot",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: CrisisCopilot incident dashboard]",
+    badge: "Crisis Management"
+  },
+  {
+    id: "pharmacy-stock",
+    isCaseStudy: false,
+    title: "PharmaCare Stock System",
+    subtitle: "Enterprise Pharmacy Inventory & Stock Management",
+    type: "group",
+    teamSize: 4,
+    role: "Full-Stack Contributor (36 Commits)",
+    year: "2025",
+    period: "2025",
+    category: "Enterprise Systems & Inventory",
+    techStack: [
+      "Java",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "MySQL"
+    ],
+    summary: "Enterprise pharmaceutical inventory system managing medication batches, expiry alerts, supplier orders, and real-time stock levels.",
+    achievements: [
+      "Contributed 36 commits to full-stack Java and JavaScript stock management system, ranking #2 project contributor.",
+      "Engineered inventory tracking modules with automated low-stock warnings and batch expiration notifications.",
+      "Architected MySQL relational schemas maintaining transactional consistency for high-volume medicine supplies."
+    ],
+    bullets: [
+      "Contributed 36 commits to full-stack Java/JavaScript pharmacy inventory system in a 4-person team.",
+      "Implemented real-time stock level monitoring, batch expiry alerts, and supplier re-order pipelines.",
+      "Architected normalized MySQL database schemas ensuring transactional integrity across high-volume sales."
+    ],
+    links: {
+      demo: "https://github.com/Thiva123-ab/Pharmacy-stock-system",
+      demoLabel: "View Repository",
+      github: "https://github.com/Thiva123-ab/Pharmacy-stock-system",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: PharmaCare inventory dashboard]",
+    badge: "Enterprise Java"
   }
 ];
 

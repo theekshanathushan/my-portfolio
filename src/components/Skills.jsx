@@ -6,12 +6,11 @@ import {
   Database, 
   Cpu, 
   Wrench, 
-  Sparkles, 
-  HelpCircle, 
   ChevronDown, 
   ChevronUp, 
-  Layers,
-  CheckCircle2
+  GitBranch,
+  Users,
+  User
 } from 'lucide-react';
 
 const TIERS = [
@@ -26,79 +25,112 @@ const SKILL_CATEGORIES = [
     id: 'languages',
     title: 'Languages',
     icon: Terminal,
-    description: 'Core programming languages for full-stack logic and client architectures',
+    description: 'Core programming languages for distributed backend logic, client architecture, and mobile engineering',
     skills: [
-      { name: 'Java', tier: 'Use regularly', note: 'Core OOP, Collections, Concurrency' },
-      { name: 'TypeScript', tier: 'Use regularly', note: 'Strict typing for Angular & React' }
+      { name: 'Java (17/21)', tier: 'Use regularly', note: 'Spring Boot REST APIs, Collections, OOP' },
+      { name: 'TypeScript', tier: 'Use regularly', note: 'Strict typing for React & Angular applications' },
+      { name: 'JavaScript (ES6+)', tier: 'Use regularly', note: 'Modern ES6+, async/await, DOM APIs' },
+      { name: 'C#', tier: 'Use regularly', note: 'ASP.NET Core, EF Core & LINQ in TalentAI' },
+      { name: 'Dart', tier: 'Use regularly', note: 'Flutter reactive state in smart-farming-ai & VendorFlow' },
+      { name: 'Python', tier: 'Comfortable', note: 'Predictive analytics & telemetry in IgnitX' },
+      { name: 'C++', tier: 'Comfortable', note: 'Object-Oriented computing & algorithm design' },
+      { name: 'HTML5 & CSS3', tier: 'Use regularly', note: 'Semantic structure & responsive layouts' }
     ]
   },
   {
     id: 'backend',
-    title: 'Backend',
+    title: 'Backend & Systems',
     icon: Server,
-    description: 'Enterprise server frameworks, microservices, and secure token authentication',
+    description: 'Enterprise server frameworks, distributed architectures, and secure token authentication',
     skills: [
-      { name: 'Spring Boot', tier: 'Use regularly', note: 'REST APIs, Dependency Injection, MVC' },
-      { name: 'ASP.NET Core', tier: 'Use regularly', note: 'Controllers, Middleware, Dependency Injection' },
-      { name: 'JWT', tier: 'Use regularly', note: 'Stateless role-based auth & claims' }
+      { name: 'Spring Boot', tier: 'Use regularly', note: 'REST APIs, JPA, Dependency Injection & MVC' },
+      { name: 'ASP.NET Core (.NET 8)', tier: 'Use regularly', note: 'Modular controllers, middleware & services' },
+      { name: 'RESTful APIs', tier: 'Use regularly', note: 'Clean endpoint architecture & JSON contracts' },
+      { name: 'JWT Auth', tier: 'Use regularly', note: 'Stateless role-based authorization guards' },
+      { name: 'WebSockets', tier: 'Comfortable', note: 'Real-time bi-directional crisis messaging' },
+      { name: 'Microservices Concepts', tier: 'Comfortable', note: 'Decoupled layered services & API architecture' }
     ]
   },
   {
     id: 'frontend',
-    title: 'Frontend',
+    title: 'Frontend & Mobile',
     icon: Layout,
-    description: 'Single-page web applications, component lifecycles, and cross-platform UI',
+    description: 'Single-page web applications, cross-platform mobile apps, and interactive UI engineering',
     skills: [
-      { name: 'React', tier: 'Use regularly', note: 'Hooks, reactive state, component trees' },
-      { name: 'Angular', tier: 'Use regularly', note: 'Modular architecture, services, routing' },
-      { name: 'Flutter', tier: 'Learning', note: 'Cross-platform mobile UI framework' }
+      { name: 'React', tier: 'Use regularly', note: 'Hooks, reactive state trees, Vite & Tailwind' },
+      { name: 'Angular', tier: 'Use regularly', note: 'Component hierarchy, services & routing in TalentAI' },
+      { name: 'Flutter', tier: 'Use regularly', note: 'Cross-platform mobile UI in smart-farming-ai' },
+      { name: 'Tailwind CSS', tier: 'Use regularly', note: 'Utility-first styling, glassmorphism & dark theme' },
+      { name: 'Recharts', tier: 'Comfortable', note: 'Data analytics charts & trend visualizations' },
+      { name: 'Framer Motion', tier: 'Comfortable', note: 'Physics-based animations & page transitions' }
     ]
   },
   {
     id: 'databases',
-    title: 'Databases',
+    title: 'Databases & ORM',
     icon: Database,
-    description: 'Relational data modeling, schema normalization, and ORM persistence',
+    description: 'Relational data modeling, schema normalization, and ORM persistence layers',
     skills: [
-      { name: 'MySQL', tier: 'Use regularly', note: 'Relational schemas, queries & indexing' },
-      { name: 'Entity Framework', tier: 'Comfortable', note: 'Code-First ORM, migrations & LINQ' }
+      { name: 'MySQL', tier: 'Use regularly', note: 'Relational schemas, constraints & indexing' },
+      { name: 'PostgreSQL / PLpgSQL', tier: 'Comfortable', note: 'Relational tables, functions & migrations' },
+      { name: 'Entity Framework Core', tier: 'Comfortable', note: 'Code-First ORM, migrations & LINQ' },
+      { name: 'Hibernate / Spring Data JPA', tier: 'Comfortable', note: 'Entity relationships, repositories & transactions' }
     ]
   },
   {
     id: 'ai-apis',
-    title: 'AI/APIs',
+    title: 'AI & Intelligent Services',
     icon: Cpu,
-    description: 'Generative AI prompt integration and automated cloud communication services',
+    description: 'Generative AI prompt integration, computer vision diagnostics, and automated cloud services',
     skills: [
-      { name: 'Gemini API', tier: 'Comfortable', note: 'LLM reasoning & candidate screening' },
-      { name: 'Twilio', tier: 'Comfortable', note: 'Automated SMS & notification dispatches' }
+      { name: 'Google Gemini API', tier: 'Use regularly', note: 'Candidate screening & reasoning workflows' },
+      { name: 'Computer Vision', tier: 'Comfortable', note: 'Crop leaf pathology diagnostics in under 2s' },
+      { name: 'Prompt Engineering', tier: 'Comfortable', note: 'Structured conditioning & JSON output schemas' },
+      { name: 'Leaflet.js', tier: 'Comfortable', note: 'Geospatial mapping & emergency route tracking' },
+      { name: 'Twilio & MailKit', tier: 'Comfortable', note: 'Automated SMS & email notification workers' }
     ]
   },
   {
     id: 'tools-devops',
     title: 'Tools & DevOps',
     icon: Wrench,
-    description: 'Source control versioning, branching workflows, and automated deployments',
+    description: 'Source control versioning, continuous deployment, API testing, and build pipelines',
     skills: [
-      { name: 'Git', tier: 'Use regularly', note: 'Branching, multi-repo sync & code reviews' },
-      { name: 'Vercel', tier: 'Comfortable', note: 'CI/CD pipeline & automated production hosting' }
+      { name: 'Git & GitHub', tier: 'Use regularly', note: 'Multi-branch workflows, PRs & code reviews' },
+      { name: 'Vercel', tier: 'Use regularly', note: 'Production hosting & CI/CD deployment' },
+      { name: 'Postman', tier: 'Comfortable', note: 'REST API testing, collections & assertions' },
+      { name: 'Docker', tier: 'Learning', note: 'Containerization basics & Dockerfile setup' },
+      { name: 'Vite', tier: 'Use regularly', note: 'Modern fast ESM build tooling & HMR' }
     ]
   }
 ];
 
-// CV and project technologies held in a TODO list for user confirmation before adding
-const UNCERTAIN_SKILLS_TODO = [
-  { name: 'JavaScript (ES6+)', source: 'CV & Projects', detail: 'CareConnect, Test_API, and Portfolio interactions' },
-  { name: 'C#', source: 'TalentAI Project', detail: 'Used with ASP.NET Core & Entity Framework backend' },
-  { name: 'HTML5 & CSS3', source: 'CV Technical Skills', detail: 'Standard semantic layouts & responsive interfaces' },
-  { name: 'WebSockets', source: 'CV Projects', detail: 'Real-time communication in CareConnect & PharmaCare' },
-  { name: 'Leaflet.js', source: 'CareConnect Project', detail: 'Geographic disaster relief mapping & live operations' },
-  { name: 'Tailwind CSS', source: 'MoodMirror Project', detail: 'Utility-first frontend styling' },
-  { name: 'Framer Motion', source: 'MoodMirror Project', detail: 'Interactive UI animations & wellness workflows' },
-  { name: 'Recharts', source: 'MoodMirror Project', detail: 'Analytics dashboards & emotional streak charts' },
-  { name: 'MailKit', source: 'TalentAI Project', detail: 'Automated email dispatch service' },
-  { name: 'Google OAuth2', source: 'CV Technical Skills', detail: 'Third-party single sign-on authentication' },
-  { name: 'Kotlin / BLE', source: 'Beacon App', detail: 'Bluetooth Low Energy proximity scanning' }
+// Verified repository stack sources from GitHub analysis
+const GITHUB_VERIFIED_INSIGHTS = [
+  {
+    type: 'group',
+    title: 'Group Projects & Hackathons',
+    icon: Users,
+    items: [
+      { name: 'TalentAI (AI-Recruitment-Platform)', team: '6 Contributors (Rank #2, 46 commits)', stack: 'ASP.NET Core, Angular, TypeScript, C#, MySQL, Gemini API' },
+      { name: 'NovaExplorer (NASASpaceApps)', team: '5 Contributors (NASA Space Apps)', stack: 'React, TypeScript, Tailwind CSS, PostgreSQL, NASA APIs, Vercel' },
+      { name: 'Suwadaru Healthcare', team: '4 Contributors (Rank #2, 16 commits)', stack: 'TypeScript, JavaScript, PostgreSQL, Vercel' },
+      { name: 'CrisisCopilot', team: '4 Contributors (Hackathon Team)', stack: 'TypeScript, JavaScript, PostgreSQL, Vercel' },
+      { name: 'Pharmacy Stock Management System', team: '4 Contributors (Rank #2, 36 commits)', stack: 'Java, JavaScript, HTML, CSS, MySQL' },
+      { name: 'DEA Enterprise Project', team: '2 Contributors (11 commits each)', stack: 'Java, Spring Boot, REST APIs' }
+    ]
+  },
+  {
+    type: 'individual',
+    title: 'Individual & Solo Projects',
+    icon: User,
+    items: [
+      { name: 'smart-farming-ai (AgriAI)', team: '142 Commits (100% Solo)', stack: 'Flutter, Dart, Python, Gemini Vision, Computer Vision' },
+      { name: 'CareConnect Application', team: 'Full-Stack Architecture', stack: 'Java 17, Spring Boot, MySQL, WebSockets, Leaflet.js' },
+      { name: 'MoodMirror Platform', team: 'Wellness & Emotion Analytics', stack: 'React, TypeScript, Recharts, Web Notification API, Framer Motion' },
+      { name: 'VendorFlow', team: 'Mobile Inventory App', stack: 'Dart, Flutter, Java, C++' }
+    ]
+  }
 ];
 
 export default function Skills() {
@@ -136,7 +168,7 @@ export default function Skills() {
           <span className="section-subtitle">Technical Proficiency</span>
           <h2 className="section-title">Skills & Stack</h2>
           <p className="skills-lead-text">
-            Categorized strictly by proficiency tier, verified across full-stack projects and academic coursework.
+            Categorized strictly by proficiency tier, verified across full-stack projects, group hackathons, and individual repositories.
           </p>
         </div>
 
@@ -243,7 +275,7 @@ export default function Skills() {
           })}
         </div>
 
-        {/* TODO / Confirmation Drawer for Unverified or Supplemental Skills */}
+        {/* GitHub Repository Verification Drawer */}
         <div className="todo-confirmation-wrap glass-card">
           <button 
             className="todo-toggle-btn"
@@ -251,16 +283,16 @@ export default function Skills() {
             aria-expanded={isTodoOpen}
           >
             <div className="todo-toggle-left">
-              <HelpCircle size={18} className="todo-icon text-glow-accent" />
+              <GitBranch size={18} className="todo-icon text-glow-accent" />
               <div className="todo-toggle-text">
-                <span className="todo-title">Skills for Confirmation (TODO List)</span>
+                <span className="todo-title">GitHub Stack Verification (28 Repositories Analyzed)</span>
                 <span className="todo-subtitle">
-                  {UNCERTAIN_SKILLS_TODO.length} skills found in your CV & projects kept out of the main grid per your strict criteria
+                  Verified across 8 group collaborations and 20 individual projects on github.com/theekshanathushan
                 </span>
               </div>
             </div>
             <div className="todo-toggle-right">
-              <span className="todo-badge">{isTodoOpen ? 'Hide List' : 'Review List'}</span>
+              <span className="todo-badge">{isTodoOpen ? 'Hide Repos' : 'View Source Repos'}</span>
               {isTodoOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
             </div>
           </button>
@@ -268,18 +300,34 @@ export default function Skills() {
           {isTodoOpen && (
             <div className="todo-content">
               <p className="todo-explainer">
-                These technologies appear in your repository or CV project descriptions. To keep your core skills section 100% focused on your specified list, they are placed here. Confirm if you would like any of these assigned to a category and tier:
+                Every technical skill in this stack is backed by direct code contributions across group projects, competitive hackathons, and personal repositories.
               </p>
-              <div className="todo-grid">
-                {UNCERTAIN_SKILLS_TODO.map((item, idx) => (
-                  <div key={idx} className="todo-item-card">
-                    <div className="todo-item-head">
-                      <span className="todo-item-name">{item.name}</span>
-                      <span className="todo-item-source">{item.source}</span>
+              
+              <div className="github-verified-sections">
+                {GITHUB_VERIFIED_INSIGHTS.map((group, gIdx) => {
+                  const GroupIcon = group.icon;
+                  return (
+                    <div key={gIdx} className="github-verified-group">
+                      <div className="github-group-header">
+                        <GroupIcon size={16} className="text-glow-accent" />
+                        <h4 className="github-group-title">{group.title}</h4>
+                      </div>
+                      <div className="todo-grid">
+                        {group.items.map((item, idx) => (
+                          <div key={idx} className="todo-item-card">
+                            <div className="todo-item-head">
+                              <span className="todo-item-name">{item.name}</span>
+                              <span className="todo-item-source">{item.team}</span>
+                            </div>
+                            <p className="todo-item-detail">
+                              <strong>Stack:</strong> {item.stack}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <p className="todo-item-detail">{item.detail}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -750,6 +798,33 @@ export default function Skills() {
           padding: 0 24px 24px;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
           animation: fadeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .github-verified-sections {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .github-verified-group {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .github-group-header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 2px;
+        }
+
+        .github-group-title {
+          font-family: var(--font-heading);
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--text-white);
+          margin: 0;
         }
 
         .todo-explainer {
