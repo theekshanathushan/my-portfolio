@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "node scripts/generate-pdf.js && vite build",
     "generate-pdf": "node scripts/generate-pdf.js",
+    "update-activity": "node scripts/fetch-activity.js",
     "lint": "eslint .",
     "test": "node scripts/test-activity.js",
     "test:activity": "node scripts/test-activity.js",

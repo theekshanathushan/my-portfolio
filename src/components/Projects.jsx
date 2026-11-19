@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   ExternalLink, 
   X, 
@@ -8,26 +8,20 @@ import {
   Folder, 
   AlertCircle, 
   CheckCircle2, 
-  ArrowRight, 
   Sparkles, 
-  Smartphone, 
-  Monitor, 
   Layers, 
   Globe, 
-  ChevronRight,
-  Shield, 
+  ChevronRight, 
   Target, 
   UserCheck, 
   Cpu, 
-  Info,
-  Users,
-  User,
-  SlidersHorizontal,
-  RotateCcw,
-  ChevronDown,
-  ChevronUp,
-  Tag,
-  Check
+  Users, 
+  User, 
+  SlidersHorizontal, 
+  RotateCcw, 
+  ChevronDown, 
+  ChevronUp, 
+  Check 
 } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/content';
 
@@ -53,117 +47,373 @@ const LANGUAGE_COLORS = {
   Shell: "#89e051"
 };
 
-// Fallback Repositories (non-forks only)
-const FALLBACK_REPOS = [
+// Group Collaboration Repositories (Hosted under organization/partner accounts)
+const COLLAB_REPOS = [
   {
-    id: 1300000001,
-    name: "smart-farming-ai",
-    description: "A smart, offline-capable mobile app designed to help farmers with crop scanning and AI-powered advice, even without an internet connection.",
-    html_url: "https://github.com/theekshanathushan/smart-farming-ai",
-    language: "Dart",
+    id: 990001,
+    name: "AI-Recruitment-Platform",
+    fullName: "Lakshan994/AI-Recruitment-Platform",
+    description: "Enterprise candidate screening platform pairing Google Gemini AI with role-based candidate workflows, automated scheduling, and SMS/email notifications.",
+    html_url: "https://github.com/Lakshan994/AI-Recruitment-Platform",
+    homepage: "https://talentai.vercel.app",
+    language: "C#",
+    stargazers_count: 2,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 6,
+    myRole: "Lead Full-Stack Architect (46 Commits)",
+    updated_at: "2026-11-15T14:20:00Z"
+  },
+  {
+    id: 990002,
+    name: "NASASpaceApps",
+    fullName: "mchithna/NASASpaceApps",
+    description: "NovaExplorer: Interactive deep-space explorer visualizing NASA missions, interplanetary trajectories, and rover telemetry.",
+    html_url: "https://github.com/mchithna/NASASpaceApps",
+    homepage: "https://novaexplorer.vercel.app",
+    language: "TypeScript",
+    stargazers_count: 3,
+    forks_count: 1,
+    fork: false,
+    isGroup: true,
+    teamSize: 5,
+    myRole: "Frontend Engineer & UI Architect",
+    updated_at: "2026-10-10T18:00:00Z"
+  },
+  {
+    id: 990003,
+    name: "Suwadaru",
+    fullName: "Y-Udayanga/Suwadaru",
+    description: "Ayurvedic Healthcare platform providing digital consultation bookings, patient health records, and herbal medicine resources.",
+    html_url: "https://github.com/Y-Udayanga/Suwadaru",
+    homepage: "https://suwadaru.vercel.app",
+    language: "TypeScript",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 4,
+    myRole: "Full-Stack Contributor (16 Commits)",
+    updated_at: "2026-10-05T12:00:00Z"
+  },
+  {
+    id: 990004,
+    name: "CrisisCopilot",
+    fullName: "Y-Udayanga/CrisisCopilot",
+    description: "Real-time disaster response assistant connecting impacted citizens, emergency responders, and relief supplies with live incident routing.",
+    html_url: "https://github.com/Y-Udayanga/CrisisCopilot",
+    homepage: "https://crisiscopilot.vercel.app",
+    language: "TypeScript",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 4,
+    myRole: "Frontend & API Collaborator",
+    updated_at: "2026-09-28T16:40:00Z"
+  },
+  {
+    id: 990005,
+    name: "Pharmacy-stock-system",
+    fullName: "Thiva123-ab/Pharmacy-stock-system",
+    description: "Enterprise pharmaceutical inventory & stock management platform with expiry warnings, supplier logistics, and sales analytics.",
+    html_url: "https://github.com/Thiva123-ab/Pharmacy-stock-system",
+    language: "Java",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 4,
+    myRole: "Core Full-Stack Contributor (36 Commits)",
+    updated_at: "2025-11-20T10:00:00Z"
+  },
+  {
+    id: 990006,
+    name: "DEA-Spring-Boot-Project",
+    fullName: "Thiva123-ab/DEA-Spring-Boot-Project",
+    description: "Distributed Enterprise Architecture backend implementing modular Spring Boot microservices, Spring Data JPA, and transactional MySQL integrity.",
+    html_url: "https://github.com/Thiva123-ab/DEA-Spring-Boot-Project",
+    language: "Java",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 2,
+    myRole: "Backend Architect (11 Commits)",
+    updated_at: "2025-10-15T08:30:00Z"
+  },
+  {
+    id: 990007,
+    name: "hack-to-night",
+    fullName: "mchithna/hack-to-night",
+    description: "Live hackathon coordination platform with participant team matchmaking, submission judging, and Dockerized environments.",
+    html_url: "https://github.com/mchithna/hack-to-night",
+    homepage: "https://hack-to-night.vercel.app",
+    language: "TypeScript",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 4,
+    myRole: "Full-Stack Contributor",
+    updated_at: "2026-10-18T20:15:00Z"
+  },
+  {
+    id: 990008,
+    name: "Debugliya",
+    fullName: "Y-Udayanga/Debugliya",
+    description: "Developer community knowledge exchange hub and technical discussions portal deployed live on Vercel.",
+    html_url: "https://github.com/Y-Udayanga/Debugliya",
+    homepage: "https://debugliya.vercel.app",
+    language: "TypeScript",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 4,
+    myRole: "Frontend Contributor",
+    updated_at: "2026-09-12T11:00:00Z"
+  },
+  {
+    id: 990009,
+    name: "Beacon",
+    fullName: "Y-Udayanga/Beacon",
+    description: "Companion telemetry and sensor interface system for BLE beacons and spatial device interactions.",
+    html_url: "https://github.com/Y-Udayanga/Beacon",
+    language: "TypeScript",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: true,
+    teamSize: 2,
+    myRole: "Hardware & Telemetry Engineer",
+    updated_at: "2026-05-18T14:00:00Z"
+  },
+  {
+    id: 990010,
+    name: "Sample-AI-Recruitment-Platform",
+    fullName: "Tharaka234/Sample-AI-Recruitment-Platform",
+    description: "Modular architectural specification and reference implementation for automated candidate screening workflows.",
+    html_url: "https://github.com/Tharaka234/Sample-AI-Recruitment-Platform",
+    language: "C#",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: true,
+    teamSize: 3,
+    myRole: "Architecture Contributor",
+    updated_at: "2026-04-10T09:00:00Z"
+  }
+];
+
+// Fallback Repositories (All 28+ Active Repositories: Personal, Group Collaborations, and Forks)
+const FALLBACK_REPOS = [
+  ...COLLAB_REPOS,
+  {
+    id: 1300000001,
+    name: "smart-farming-ai",
+    description: "Smart, offline-capable mobile app with 142 commits helping smallholder farmers with AI leaf disease scanning, native-language advice, and market prices.",
+    html_url: "https://github.com/theekshanathushan/smart-farming-ai",
+    language: "Dart",
+    stargazers_count: 1,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
     updated_at: "2026-10-20T16:37:55Z"
   },
   {
     id: 1263633291,
     name: "CareConnect-application",
-    description: "A full-stack web application built with a Spring Boot backend and a custom HTML/CSS frontend.",
+    description: "Full-stack disaster relief coordination platform built with Java 17, Spring Boot, Leaflet.js geospatial mapping, and WebSockets.",
     html_url: "https://github.com/theekshanathushan/CareConnect-application",
     language: "Java",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-06-09T08:11:58Z"
   },
   {
     id: 1268861203,
     name: "Moodmirror",
-    description: "An interactive, mood-reflective application designed to gauge and mirror emotions.",
+    description: "Interactive mental wellness platform featuring emotional trend analytics, Recharts visualizations, and daily mindfulness notifications.",
     html_url: "https://github.com/theekshanathushan/Moodmirror",
     language: "TypeScript",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-08-30T04:39:54Z"
   },
   {
     id: 1300000002,
     name: "VendorFlow",
-    description: "Cross-platform mobile inventory and vendor commerce application built with Flutter.",
+    description: "Cross-platform mobile inventory and retail merchant commerce application built with Flutter, Dart, Java, and SQLite.",
     html_url: "https://github.com/theekshanathushan/VendorFlow",
     language: "Dart",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-06-24T14:43:32Z"
   },
   {
     id: 1262641401,
     name: "my-portfolio",
-    description: "Modern glassmorphism portfolio built with React and Vite showing interactive 3D particle elements.",
+    description: "Modern glassmorphism engineering portfolio built with React and Vite featuring automated GitHub telemetry and dynamic project exploration.",
     html_url: "https://github.com/theekshanathushan/my-portfolio",
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
-    updated_at: "2026-11-18T17:39:50Z"
+    isGroup: false,
+    updated_at: "2026-11-19T00:38:50Z"
   },
   {
     id: 1300000003,
     name: "Cricket-App",
-    description: "Object-oriented C++ software engine for cricket scoring, statistics, and tournament tracking.",
+    description: "Object-oriented C++ software engine for cricket scoring, statistics, run-rate projection, and tournament standings.",
     html_url: "https://github.com/theekshanathushan/Cricket-App",
     language: "C++",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-09-18T04:05:47Z"
-  },
-  {
-    id: 1258042809,
-    name: "profile-readme-generator",
-    description: "Enhance your GitHub profile with this amazing tool, which allows you to create a personalized README quickly and easily.",
-    html_url: "https://github.com/theekshanathushan/profile-readme-generator",
-    language: "JavaScript",
-    stargazers_count: 0,
-    forks_count: 0,
-    fork: false,
-    updated_at: "2026-06-03T08:21:00Z"
   },
   {
     id: 1240854412,
     name: "Beacon_App",
-    description: "A proximity scanning mobile app that detects and interacts with BLE beacons.",
+    description: "Proximity scanning mobile app built with Kotlin detecting and interacting with Bluetooth Low Energy (BLE) hardware beacons.",
     html_url: "https://github.com/theekshanathushan/Beacon_App",
     language: "Kotlin",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-05-16T17:03:05Z"
+  },
+  {
+    id: 1258042809,
+    name: "profile-readme-generator",
+    description: "Customized GitHub profile README dynamic generator with personalized statistics, badges, and automated templates.",
+    html_url: "https://github.com/theekshanathushan/profile-readme-generator",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: true,
+    isGroup: false,
+    updated_at: "2026-06-03T08:21:00Z"
+  },
+  {
+    id: 1300000004,
+    name: "crud_app",
+    description: "Cross-platform mobile CRUD state and SQLite persistence engine built with Flutter and Dart.",
+    html_url: "https://github.com/theekshanathushan/crud_app",
+    language: "Dart",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: true,
+    isGroup: false,
+    updated_at: "2026-06-03T08:00:00Z"
+  },
+  {
+    id: 1300000005,
+    name: "todoapp",
+    description: "Object-oriented C++ productivity and task scheduling application featuring command-line prioritization.",
+    html_url: "https://github.com/theekshanathushan/todoapp",
+    language: "C++",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: true,
+    isGroup: false,
+    updated_at: "2026-05-20T10:00:00Z"
   },
   {
     id: 1074059326,
     name: "Business-web-page",
-    description: "A professional business web page built using HTML, CSS, and JavaScript to promote business services and improve online presence.",
+    description: "Professional business website built using modern HTML5, CSS3, and JavaScript.",
     html_url: "https://github.com/theekshanathushan/Business-web-page",
     language: "CSS",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2025-10-11T09:39:05Z"
+  },
+  {
+    id: 1300000006,
+    name: "Udari-Prabath-Wedding",
+    description: "Modern bespoke event website with interactive invitations and responsive mobile styling.",
+    html_url: "https://github.com/theekshanathushan/Udari-Prabath-Wedding",
+    homepage: "https://udari-prabath-wedding.vercel.app",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
+    updated_at: "2026-10-25T11:00:00Z"
   },
   {
     id: 1240656305,
     name: "Test_API",
-    description: "RESTful API test engine for route prototyping and route debugging.",
+    description: "RESTful API test engine for mock endpoints and backend route debugging.",
     html_url: "https://github.com/theekshanathushan/Test_API",
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
     fork: false,
+    isGroup: false,
     updated_at: "2026-05-16T12:29:49Z"
+  },
+  {
+    id: 1300000007,
+    name: "MLH-repo-management",
+    description: "Major League Hacking repository management and workflow automation scripts.",
+    html_url: "https://github.com/theekshanathushan/MLH-repo-management",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
+    updated_at: "2026-04-12T08:00:00Z"
+  },
+  {
+    id: 1300000008,
+    name: "MLH-practise",
+    description: "MLH hackathon coding challenges, algorithm exercises, and technical sprint exercises.",
+    html_url: "https://github.com/theekshanathushan/MLH-practise",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
+    updated_at: "2026-04-05T09:00:00Z"
+  },
+  {
+    id: 1300000009,
+    name: "MAT_inclass02",
+    description: "Mathematical computing and algorithm implementation in Java for academic coursework.",
+    html_url: "https://github.com/theekshanathushan/MAT_inclass02",
+    language: "Java",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
+    updated_at: "2026-03-15T10:00:00Z"
+  },
+  {
+    id: 1300000010,
+    name: "Final-assignment-web-course",
+    description: "Comprehensive web engineering course assignment demonstrating semantic HTML5, CSS responsive layouts, and DOM manipulation.",
+    html_url: "https://github.com/theekshanathushan/Final-assignment-web-course",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    fork: false,
+    isGroup: false,
+    updated_at: "2026-02-28T14:00:00Z"
   }
 ];
 
@@ -183,6 +433,7 @@ export default function Projects() {
   const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('updated'); // 'updated' | 'stars'
+  const [repoCategoryFilter, setRepoCategoryFilter] = useState('all'); // 'all' | 'group' | 'personal' | 'fork'
 
   // --- 1. URL Query State Sync (?type=group&tech=react,angular) ---
   const [selectedType, setSelectedType] = useState(() => {
@@ -416,13 +667,24 @@ export default function Projects() {
       if (!res.ok) throw new Error('Failed to fetch repositories');
       const data = await res.json();
       
-      const cleanData = data.filter(repo => 
-        repo.name.toLowerCase() !== 'theekshanathushan' && !repo.fork
-      );
-      setRepos(cleanData);
+      const cleanData = data
+        .filter(repo => repo.name.toLowerCase() !== 'theekshanathushan')
+        .map(repo => {
+          const found = FALLBACK_REPOS.find(f => f.name.toLowerCase() === repo.name.toLowerCase());
+          return {
+            ...repo,
+            isGroup: false,
+            homepage: repo.homepage || found?.homepage,
+            description: repo.description || found?.description
+          };
+        });
+      
+      const existingNames = new Set(cleanData.map(r => r.name.toLowerCase()));
+      const uniqueCollabs = COLLAB_REPOS.filter(c => !existingNames.has(c.name.toLowerCase()));
+      setRepos([...uniqueCollabs, ...cleanData]);
     } catch (err) {
       console.error('Error fetching repositories: ', err);
-      setRepos(FALLBACK_REPOS.filter(r => !r.fork));
+      setRepos(FALLBACK_REPOS);
       setIsOfflineMode(true);
     } finally {
       setIsLoading(false);
@@ -439,17 +701,27 @@ export default function Projects() {
         })
         .then(data => {
           if (!isCancelled) {
-            const cleanData = data.filter(repo => 
-              repo.name.toLowerCase() !== 'theekshanathushan' && !repo.fork
-            );
-            setRepos(cleanData);
+            const cleanData = data
+              .filter(repo => repo.name.toLowerCase() !== 'theekshanathushan')
+              .map(repo => {
+                const found = FALLBACK_REPOS.find(f => f.name.toLowerCase() === repo.name.toLowerCase());
+                return {
+                  ...repo,
+                  isGroup: false,
+                  homepage: repo.homepage || found?.homepage,
+                  description: repo.description || found?.description
+                };
+              });
+            const existingNames = new Set(cleanData.map(r => r.name.toLowerCase()));
+            const uniqueCollabs = COLLAB_REPOS.filter(c => !existingNames.has(c.name.toLowerCase()));
+            setRepos([...uniqueCollabs, ...cleanData]);
             setIsLoading(false);
           }
         })
         .catch(err => {
           if (!isCancelled) {
             console.error('Error fetching repositories: ', err);
-            setRepos(FALLBACK_REPOS.filter(r => !r.fork));
+            setRepos(FALLBACK_REPOS);
             setIsOfflineMode(true);
             setIsLoading(false);
           }
@@ -460,21 +732,28 @@ export default function Projects() {
     }
   }, [activeView, repos.length]);
 
-  const filteredRepos = repos
-    .filter(repo => {
-      if (repo.fork) return false;
-      const term = searchQuery.toLowerCase();
-      const nameMatch = repo.name?.toLowerCase().includes(term) || false;
-      const descMatch = repo.description?.toLowerCase().includes(term) || false;
-      const langMatch = repo.language?.toLowerCase().includes(term) || false;
-      return nameMatch || descMatch || langMatch;
-    })
-    .sort((a, b) => {
-      if (sortBy === 'stars') {
-        return b.stargazers_count - a.stargazers_count;
-      }
-      return new Date(b.updated_at) - new Date(a.updated_at);
-    });
+  const filteredRepos = useMemo(() => {
+    return repos
+      .filter(repo => {
+        if (repoCategoryFilter === 'group' && !repo.isGroup) return false;
+        if (repoCategoryFilter === 'personal' && (repo.isGroup || repo.fork)) return false;
+        if (repoCategoryFilter === 'fork' && !repo.fork) return false;
+
+        if (!searchQuery.trim()) return true;
+        const term = searchQuery.toLowerCase();
+        const nameMatch = repo.name?.toLowerCase().includes(term) || false;
+        const descMatch = repo.description?.toLowerCase().includes(term) || false;
+        const langMatch = repo.language?.toLowerCase().includes(term) || false;
+        const roleMatch = repo.myRole?.toLowerCase().includes(term) || false;
+        return nameMatch || descMatch || langMatch || roleMatch;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'stars') {
+          return (b.stargazers_count || 0) - (a.stargazers_count || 0);
+        }
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      });
+  }, [repos, repoCategoryFilter, searchQuery, sortBy]);
 
   // --- Render Interactive Mockups for Cards & Modal ---
   const renderMockup = (item, isModal = false) => {
@@ -1206,13 +1485,45 @@ export default function Projects() {
               </div>
             )}
 
+            {/* Repos Category Sub-Tabs */}
+            <div className="repo-category-tabs">
+              <button 
+                type="button"
+                className={`repo-cat-tab ${repoCategoryFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setRepoCategoryFilter('all')}
+              >
+                All Repositories <span className="cat-count">({repos.length})</span>
+              </button>
+              <button 
+                type="button"
+                className={`repo-cat-tab ${repoCategoryFilter === 'group' ? 'active' : ''}`}
+                onClick={() => setRepoCategoryFilter('group')}
+              >
+                <Users size={14} className="tab-icon" /> Group Projects <span className="cat-count">({repos.filter(r => r.isGroup).length})</span>
+              </button>
+              <button 
+                type="button"
+                className={`repo-cat-tab ${repoCategoryFilter === 'personal' ? 'active' : ''}`}
+                onClick={() => setRepoCategoryFilter('personal')}
+              >
+                <User size={14} className="tab-icon" /> Personal Repos <span className="cat-count">({repos.filter(r => !r.isGroup && !r.fork).length})</span>
+              </button>
+              <button 
+                type="button"
+                className={`repo-cat-tab ${repoCategoryFilter === 'fork' ? 'active' : ''}`}
+                onClick={() => setRepoCategoryFilter('fork')}
+              >
+                <GitFork size={14} className="tab-icon" /> Forks <span className="cat-count">({repos.filter(r => r.fork).length})</span>
+              </button>
+            </div>
+
             {/* Repos Controls */}
             <div className="repos-controls-bar">
               <div className="search-box-wrap glass-card">
                 <Search size={16} className="search-icon" />
                 <input 
                   type="text" 
-                  placeholder="Filter repositories by name or tech..." 
+                  placeholder="Filter repositories by name, language, or team role..." 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="repo-search-input"
@@ -1247,7 +1558,7 @@ export default function Projects() {
             ) : filteredRepos.length === 0 ? (
               <div className="repos-empty-state glass-card">
                 <Folder size={36} className="empty-icon text-glow-accent" />
-                <p>No non-fork repositories found matching your query.</p>
+                <p>No repositories found matching your selected filters.</p>
               </div>
             ) : (
               <div className="repos-grid">
@@ -1255,10 +1566,29 @@ export default function Projects() {
                   const langColor = LANGUAGE_COLORS[repo.language] || '#8b949e';
                   return (
                     <div key={repo.id} className="repo-card glass-card">
+                      <div className="repo-type-badge-row">
+                        {repo.isGroup ? (
+                          <span className="repo-type-badge group">
+                            <Users size={11} /> Group Project ({repo.teamSize || 4} Members)
+                          </span>
+                        ) : repo.fork ? (
+                          <span className="repo-type-badge fork">
+                            <GitFork size={11} /> Forked & Customized
+                          </span>
+                        ) : (
+                          <span className="repo-type-badge personal">
+                            <User size={11} /> Personal Project
+                          </span>
+                        )}
+                        {repo.myRole && (
+                          <span className="repo-role-subtag" title={repo.myRole}>{repo.myRole}</span>
+                        )}
+                      </div>
+
                       <div className="repo-header">
                         <div className="repo-title-wrap">
                           <Folder size={18} className="repo-folder-icon" />
-                          <h4 className="repo-name" title={repo.name}>{repo.name}</h4>
+                          <h4 className="repo-name" title={repo.fullName || repo.name}>{repo.name}</h4>
                         </div>
                         <div className="repo-stars">
                           <Star size={13} className="star-icon" />
@@ -3159,6 +3489,105 @@ export default function Projects() {
           border-radius: 8px;
           outline: none;
           cursor: pointer;
+        }
+
+        .repo-category-tabs {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+
+        .repo-cat-tab {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px 16px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border-glass);
+          border-radius: 20px;
+          color: var(--text-muted);
+          font-family: var(--font-heading);
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .repo-cat-tab:hover {
+          color: var(--text-white);
+          border-color: rgba(var(--accent-rgb), 0.3);
+          background: rgba(var(--accent-rgb), 0.05);
+        }
+
+        .repo-cat-tab.active {
+          color: #030712;
+          background: var(--accent);
+          border-color: var(--accent);
+          box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.35);
+        }
+
+        .repo-cat-tab.active .cat-count {
+          color: #030712;
+          background: rgba(0, 0, 0, 0.15);
+        }
+
+        .cat-count {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          padding: 2px 6px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.06);
+          color: var(--text-light);
+        }
+
+        .repo-type-badge-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-bottom: 2px;
+        }
+
+        .repo-type-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          padding: 3px 9px;
+          border-radius: 6px;
+        }
+
+        .repo-type-badge.group {
+          background: rgba(56, 189, 248, 0.12);
+          border: 1px solid rgba(56, 189, 248, 0.3);
+          color: #38bdf8;
+        }
+
+        .repo-type-badge.personal {
+          background: rgba(74, 222, 128, 0.12);
+          border: 1px solid rgba(74, 222, 128, 0.3);
+          color: #4ade80;
+        }
+
+        .repo-type-badge.fork {
+          background: rgba(251, 146, 60, 0.12);
+          border: 1px solid rgba(251, 146, 60, 0.3);
+          color: #fb923c;
+        }
+
+        .repo-role-subtag {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-dark);
+          max-width: 170px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .repos-grid {

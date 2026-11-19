@@ -476,6 +476,268 @@ export const PROJECTS_DATA: ProjectData[] = [
     },
     image: "[screenshot needed: PharmaCare inventory dashboard]",
     badge: "Enterprise Java"
+  },
+  {
+    id: "dea-spring-boot",
+    isCaseStudy: false,
+    title: "DEA Enterprise Spring Boot Project",
+    subtitle: "Distributed Enterprise Architecture & RESTful Backend",
+    type: "group",
+    teamSize: 2,
+    role: "Backend Architect & Co-Developer (11 Commits)",
+    year: "2025",
+    period: "2025",
+    category: "Enterprise Backend & Architecture",
+    techStack: [
+      "Java",
+      "Spring Boot",
+      "Spring Data JPA",
+      "Hibernate",
+      "MySQL",
+      "REST APIs"
+    ],
+    summary: "Enterprise-grade distributed architecture backend implementing modular microservice design, JPA entity lifecycle management, and relational transaction safety.",
+    achievements: [
+      "Engineered decoupled service layers and repository abstractions with Spring Boot and Spring Data JPA.",
+      "Designed and optimized MySQL relational database schemas with foreign key constraints and transactional integrity.",
+      "Built and documented RESTful API endpoints validated through comprehensive Postman integration suites."
+    ],
+    bullets: [
+      "Architected enterprise distributed backend in a 2-person engineering team using Spring Boot and Hibernate.",
+      "Structured normalized MySQL data models and JPA repositories ensuring complete ACID compliance.",
+      "Developed robust REST API endpoints with status code handling and error interceptors."
+    ],
+    links: {
+      demo: "https://github.com/Thiva123-ab/DEA-Spring-Boot-Project",
+      demoLabel: "View Repository",
+      github: "https://github.com/Thiva123-ab/DEA-Spring-Boot-Project",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: DEA Spring Boot backend API architecture]",
+    badge: "Spring Boot Enterprise"
+  },
+  {
+    id: "hack-to-night",
+    isCaseStudy: false,
+    title: "Hack-To-Night Platform",
+    subtitle: "Hackathon Event Management & Live Submission Platform",
+    type: "group",
+    teamSize: 4,
+    role: "Full-Stack Contributor",
+    year: "2026",
+    period: "2026",
+    category: "Interactive Web & Event Tech",
+    techStack: [
+      "TypeScript",
+      "React",
+      "Docker",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    summary: "Collaborative event platform for registration, team matchmaking, and live submission judging during high-intensity hackathon sprints.",
+    achievements: [
+      "Contributed to dynamic event registration, participant team building, and submission workflows.",
+      "Integrated modern responsive UI with Tailwind CSS and deployed live to production on Vercel.",
+      "Containerized platform services with Docker ensuring consistent developer environments."
+    ],
+    bullets: [
+      "Engineered team matchmaking and project submission modules for hackathon participants.",
+      "Deployed responsive web application to production on Vercel with automated CI/CD checks.",
+      "Configured containerized development workflow using Docker."
+    ],
+    links: {
+      demo: "https://hack-to-night.vercel.app",
+      demoLabel: "Live at hack-to-night.vercel.app",
+      github: "https://github.com/mchithna/hack-to-night",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: Hack-to-Night event portal]",
+    badge: "Hackathon Web"
+  },
+  {
+    id: "debugliya",
+    isCaseStudy: false,
+    title: "Debugliya Community Platform",
+    subtitle: "Developer Collaboration & Tech Knowledge Hub",
+    type: "group",
+    teamSize: 4,
+    role: "Frontend Contributor",
+    year: "2026",
+    period: "2026",
+    category: "Community & Developer Ecosystem",
+    techStack: [
+      "TypeScript",
+      "CSS3",
+      "HTML5",
+      "Vercel"
+    ],
+    summary: "Tech community knowledge hub and engineering discussion board deployed live to foster developer collaboration.",
+    achievements: [
+      "Developed accessible community hub interface with fast loading metrics and responsive layouts.",
+      "Deployed to production on Vercel with high uptime and optimized asset bundling.",
+      "Maintained Git collaboration standards in a multi-developer team."
+    ],
+    bullets: [
+      "Built responsive community knowledge hub interfaces using TypeScript and modern CSS.",
+      "Configured automated Vercel deployment pipeline for real-time production updates."
+    ],
+    links: {
+      demo: "https://debugliya.vercel.app",
+      demoLabel: "Live at debugliya.vercel.app",
+      github: "https://github.com/Y-Udayanga/Debugliya",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: Debugliya platform]",
+    badge: "Community Web"
+  },
+  {
+    id: "vendorflow",
+    isCaseStudy: false,
+    title: "VendorFlow Commerce",
+    subtitle: "Cross-Platform Mobile Inventory & Merchant Commerce",
+    type: "individual",
+    role: "Mobile Software Engineer",
+    year: "2026",
+    period: "2026",
+    category: "Mobile & Retail Systems",
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Java",
+      "C++",
+      "SQLite"
+    ],
+    summary: "Cross-platform mobile application enabling micro-vendors and retailers to manage real-time inventory, generate digital invoices, and record daily transactions.",
+    achievements: [
+      "Architected responsive cross-platform mobile views using Flutter and Dart for high-speed offline operations.",
+      "Integrated local SQLite persistent storage for offline product catalogs and transaction logs.",
+      "Engineered native bridge interfaces with Java and C++ for hardware receipt printing and barcode scanning."
+    ],
+    bullets: [
+      "Developed offline-capable mobile commerce application using Flutter and Dart.",
+      "Implemented SQLite local storage for instant catalog indexing and offline order logging.",
+      "Designed clean modular state management architecture for rapid mobile checkout."
+    ],
+    links: {
+      demo: "https://github.com/theekshanathushan/VendorFlow",
+      demoLabel: "View Repository",
+      github: "https://github.com/theekshanathushan/VendorFlow",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: VendorFlow checkout UI]",
+    badge: "Mobile Commerce"
+  },
+  {
+    id: "cricket-app",
+    isCaseStudy: false,
+    title: "Cricket-App Engine",
+    subtitle: "High-Performance C++ Cricket Scoring & Tournament Engine",
+    type: "individual",
+    role: "Systems & Algorithm Developer",
+    year: "2025",
+    period: "2025",
+    category: "Algorithms & Systems Engineering",
+    techStack: [
+      "C++",
+      "OOP",
+      "Data Structures",
+      "Algorithms",
+      "File I/O"
+    ],
+    summary: "Object-oriented software engine for cricket match simulation, detailed statistical analysis, and tournament bracket tracking.",
+    achievements: [
+      "Engineered comprehensive object-oriented system modeling players, innings, dismissals, and strike rates.",
+      "Implemented efficient custom algorithms for run-rate calculation, player ranking, and tournament standings.",
+      "Designed robust file persistence mechanisms for match history and player career data."
+    ],
+    bullets: [
+      "Developed object-oriented C++ software engine for real-time match scoring and tournament bracket tracking.",
+      "Implemented algorithmic statistics computing run rates, Duckworth-Lewis projections, and player rankings.",
+      "Built persistent file-storage layer for career match logs and performance records."
+    ],
+    links: {
+      demo: "https://github.com/theekshanathushan/Cricket-App",
+      demoLabel: "View Repository",
+      github: "https://github.com/theekshanathushan/Cricket-App",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: Cricket-App console interface]",
+    badge: "C++ Systems"
+  },
+  {
+    id: "crud-app",
+    isCaseStudy: false,
+    title: "CRUD Mobile Architect",
+    subtitle: "Cross-Platform State & Persistent Storage Engine",
+    type: "individual",
+    role: "Mobile Developer",
+    year: "2026",
+    period: "2026",
+    category: "Mobile Architecture & Data Persistence",
+    techStack: [
+      "Flutter",
+      "Dart",
+      "C++",
+      "CMake",
+      "SQLite"
+    ],
+    summary: "Mobile data management platform showcasing reactive state architectures, structured SQLite schema migrations, and clean UI components.",
+    achievements: [
+      "Engineered reactive data binding between Dart UI widgets and local SQLite storage engines.",
+      "Implemented schema migration utilities and parameterized queries preventing data corruption.",
+      "Configured multi-platform build scripts using CMake and C++ native integrations."
+    ],
+    bullets: [
+      "Implemented reactive cross-platform CRUD mobile engine with Flutter and Dart.",
+      "Integrated SQLite database layer with migration scripts and parameterized transactions.",
+      "Configured cross-platform native builds across Android, Windows, and Linux."
+    ],
+    links: {
+      demo: "https://github.com/theekshanathushan/crud_app",
+      demoLabel: "View Repository",
+      github: "https://github.com/theekshanathushan/crud_app",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: CRUD app UI]",
+    badge: "Mobile Architecture"
+  },
+  {
+    id: "beacon-app",
+    isCaseStudy: false,
+    title: "Beacon Proximity System",
+    subtitle: "BLE Proximity Detection & Spatial Hardware Telemetry",
+    type: "group",
+    teamSize: 2,
+    role: "Mobile & Hardware Integration Engineer",
+    year: "2026",
+    period: "2026",
+    category: "IoT & Mobile Hardware",
+    techStack: [
+      "Kotlin",
+      "TypeScript",
+      "BLE",
+      "Android SDK",
+      "Proximity Sensors"
+    ],
+    summary: "Bluetooth Low Energy proximity scanning mobile app that detects and interacts with BLE beacons for spatial triggering and telemetry.",
+    achievements: [
+      "Built background BLE scanning service in Kotlin with minimal battery consumption and fast beacon discovery.",
+      "Integrated RSSI signal filtering and distance estimation algorithms for contextual indoor location triggers.",
+      "Collaborated on companion TypeScript interfaces for remote beacon configuration and telemetry logging."
+    ],
+    bullets: [
+      "Developed background Bluetooth Low Energy (BLE) scanning service in Kotlin with battery-efficient intervals.",
+      "Implemented RSSI filtering algorithms for accurate proximity estimation and notification triggers.",
+      "Collaborated on TypeScript telemetry dashboard for fleet beacon monitoring."
+    ],
+    links: {
+      demo: "https://github.com/theekshanathushan/Beacon_App",
+      demoLabel: "View Repository",
+      github: "https://github.com/theekshanathushan/Beacon_App",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: Beacon proximity scanner]",
+    badge: "BLE & Mobile IoT"
   }
 ];
 
