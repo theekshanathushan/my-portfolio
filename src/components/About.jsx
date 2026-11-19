@@ -12,6 +12,12 @@ const TERMINAL_TABS = [
 
 const TIMELINE_DATA = [
   {
+    role: "Hackathon Competitor & Award Winner",
+    company: "Buildathon 2026 & HackToNight 3.0",
+    period: "2026",
+    desc: "Awarded 🥉 3rd Place in the Google Gemini Track (120 teams) at Buildathon 2026 with Crisis Copilot, and secured 🏆 6th Place (Top 10 Finalist) at HackToNight 3.0."
+  },
+  {
     role: "Full-Stack & AI Systems Developer",
     company: "TalentAI & Academic Projects",
     period: "2024 - Present",

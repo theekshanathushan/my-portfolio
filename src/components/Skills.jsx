@@ -98,6 +98,7 @@ const SKILL_CATEGORIES = [
     skills: [
       { name: 'Git & GitHub', tier: 'Use regularly', note: 'Multi-branch workflows, PRs & code reviews' },
       { name: 'Vercel', tier: 'Use regularly', note: 'Production hosting & CI/CD deployment' },
+      { name: 'AWS Cloud (Foundations)', tier: 'Comfortable', note: 'EC2, S3, IAM & Cloud Core verified via KodeKloud' },
       { name: 'Postman', tier: 'Comfortable', note: 'REST API testing, collections & assertions' },
       { name: 'Docker', tier: 'Learning', note: 'Containerization basics & Dockerfile setup' },
       { name: 'Vite', tier: 'Use regularly', note: 'Modern fast ESM build tooling & HMR' }
@@ -114,8 +115,9 @@ const GITHUB_VERIFIED_INSIGHTS = [
     items: [
       { name: 'TalentAI (AI-Recruitment-Platform)', team: '6 Contributors (Rank #2, 46 commits)', stack: 'ASP.NET Core, Angular, TypeScript, C#, MySQL, Gemini API' },
       { name: 'NovaExplorer (NASASpaceApps)', team: '5 Contributors (NASA Space Apps)', stack: 'React, TypeScript, Tailwind CSS, PostgreSQL, NASA APIs, Vercel' },
+      { name: 'Crisis Copilot (Buildathon 2026)', team: 'Team HalfByte (🥉 3rd Place Gemini Track, 120 Teams)', stack: 'Google Gemini Multimodal API, React, TypeScript, Vercel' },
+      { name: 'HackToNight 3.0', team: 'Team HalfByte (🏆 6th Place / Top 10 Finalist)', stack: 'TypeScript, React, Docker, Tailwind CSS, Vercel' },
       { name: 'Suwadaru Healthcare', team: '4 Contributors (Rank #2, 16 commits)', stack: 'TypeScript, JavaScript, PostgreSQL, Vercel' },
-      { name: 'CrisisCopilot', team: '4 Contributors (Hackathon Team)', stack: 'TypeScript, JavaScript, PostgreSQL, Vercel' },
       { name: 'Pharmacy Stock Management System', team: '4 Contributors (Rank #2, 36 commits)', stack: 'Java, JavaScript, HTML, CSS, MySQL' },
       { name: 'DEA Enterprise Project', team: '2 Contributors (11 commits each)', stack: 'Java, Spring Boot, REST APIs' }
     ]

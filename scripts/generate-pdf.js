@@ -139,31 +139,42 @@ export function generateCVpdf() {
     }
   });
 
-  // --- 5. HACKATHONS & COMPETITIVE SPRINTS ---
+  // --- 5. HACKATHONS & COMPETITIONS ---
   if (content.hackathons && content.hackathons.length > 0) {
     addSectionHeader('HACKATHONS & COMPETITIONS');
-    const firstHack = content.hackathons[0]; // IgnitX by Hutch
-    addText(`${firstHack.name} — ${firstHack.track} (${firstHack.result})`, left, y, '/F2', 8.3, 0.05, 0.1, 0.2);
-    addText(firstHack.date, right - 25, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 8.8;
-    addText(`Organizer: ${firstHack.organizer}   |   Role: ${firstHack.myRole}`, left, y, '/F3', 7.4, 0.3, 0.35, 0.45);
-    y -= 8.5;
-    const hackLines = wrapText(firstHack.summary, 110);
-    hackLines.forEach((hl) => {
-      addText(hl, left + 6, y, '/F1', 7.5, 0.2, 0.2, 0.2);
+    const topHacks = content.hackathons.slice(0, 2);
+    topHacks.forEach((hack) => {
+      addText(`${hack.name} — ${hack.result}`, left, y, '/F2', 8.2, 0.05, 0.1, 0.2);
+      addText(hack.date, right - 35, y, '/F2', 7.8, 0.35, 0.4, 0.45);
+      y -= 8.6;
+      addText(`Organizer: ${hack.organizer}   |   Role: ${hack.myRole} (${hack.teamName})`, left, y, '/F3', 7.3, 0.3, 0.35, 0.45);
       y -= 8.4;
+      const hackSummary = wrapText(hack.summary, 110)[0];
+      if (hackSummary) {
+        addText(hackSummary, left + 6, y, '/F1', 7.3, 0.22, 0.22, 0.22);
+        y -= 8.4;
+      }
     });
   }
 
   // --- 6. CERTIFICATIONS & CREDENTIALS ---
   if (content.certifications && content.certifications.length > 0) {
     addSectionHeader('CERTIFICATIONS & CREDENTIALS');
-    content.certifications.forEach((cert) => {
-      addText(`${cert.title} — ${cert.issuer}`, left, y, '/F2', 8, 0.05, 0.1, 0.2);
-      addText(cert.issueDate, right - 25, y, '/F2', 7.8, 0.35, 0.4, 0.45);
+    // Top 5 industry credentials
+    const certsToInclude = [
+      content.certifications.find(c => c.id === 'cert-skillshare-devforge'),
+      content.certifications.find(c => c.id === 'cert-aws-beginner'),
+      content.certifications.find(c => c.id === 'cert-python-uom'),
+      content.certifications.find(c => c.id === 'cert-meta-frontend'),
+      content.certifications.find(c => c.id === 'cert-postman-api')
+    ].filter(Boolean);
+
+    certsToInclude.forEach((cert) => {
+      addText(`${cert.title} — ${cert.issuer}`, left, y, '/F2', 7.8, 0.05, 0.1, 0.2);
+      addText(cert.issueDate, right - 35, y, '/F2', 7.5, 0.35, 0.4, 0.45);
+      y -= 8.0;
+      addText(`Skills: ${cert.skills.join(', ')}`, left + 8, y, '/F1', 7.2, 0.3, 0.3, 0.3);
       y -= 8.2;
-      addText(`Skills: ${cert.skills.join(', ')}`, left + 8, y, '/F1', 7.3, 0.3, 0.3, 0.3);
-      y -= 8.5;
     });
   }
 

@@ -403,32 +403,37 @@ export const PROJECTS_DATA: ProjectData[] = [
   },
   {
     id: "crisiscopilot",
-    isCaseStudy: false,
-    title: "CrisisCopilot",
-    subtitle: "Real-Time Disaster Response & Coordination Assistant",
+    isCaseStudy: true,
+    rank: 5,
+    title: "Crisis Copilot",
+    subtitle: "Multimodal AI Emergency Response & Automated Triage Platform",
     type: "group",
     teamSize: 4,
-    role: "Frontend & API Collaborator",
+    role: "Full-Stack & Gemini AI Integration Engineer (Team HalfByte)",
     year: "2026",
     period: "2026",
     category: "Crisis Coordination & Emergency AI",
     techStack: [
+      "Google Gemini API",
       "TypeScript",
-      "JavaScript",
+      "React",
       "PostgreSQL",
       "Tailwind CSS",
       "Vercel"
     ],
-    summary: "Emergency assistance co-pilot connecting disaster responders and impacted communities with real-time incident mapping and aid coordination.",
+    summary: "Multimodal AI emergency response system securing 3rd Place in the Gemini Track (120 teams) at Buildathon 2026, delivering instant visual scene triage, 50+ language translation, and zero-minute first aid guidance.",
+    problem: "Emergency dispatch centers face extreme chaos during disasters with delayed caller explanations, linguistic barriers, and dispatch latency that cost critical lives.",
+    whatIBuilt: "Built Crisis Copilot in a 24-hour sprint with Team HalfByte: one-tap 'Panic Snap' photo/audio capture, Google Gemini multimodal visual scene triage, real-time 50+ language translation, and automated Level 4/5 unit dispatch.",
     achievements: [
-      "Engineered real-time incident reporting interfaces in TypeScript, deployed live to crisiscopilot.vercel.app.",
-      "Designed emergency resource allocation workflows connecting affected citizens with volunteer response teams.",
-      "Collaborated in a 4-member agile sprint implementing Git feature-branch workflows and automated Vercel CI/CD."
+      "Awarded 🥉 3rd Place in the Google Gemini Track and 16th Overall out of 120 competitive teams at Buildathon 2026 (Cursor & TechTalk360).",
+      "Integrated Google Gemini Multimodal Vision API to assess visual threat levels at emergency scenes in real-time, triaging high-priority incidents for dispatchers.",
+      "Engineered automated Zero-Minute First Aid recommendations delivering instant safety workflows to victims while emergency responders are en route.",
+      "Implemented real-time live translation supporting 50+ languages to eliminate critical communication barriers for emergency callers."
     ],
     bullets: [
-      "Engineered incident reporting interfaces in TypeScript and deployed live to production at crisiscopilot.vercel.app.",
-      "Built emergency resource allocation workflows connecting affected communities with relief squads.",
-      "Collaborated in a 4-member agile team using Git feature branching and automated CI/CD pipelines."
+      "Won 🥉 3rd Place (Gemini Track) & 16th Overall out of 120 teams at Buildathon 2026 with Crisis Copilot.",
+      "Integrated Google Gemini Multimodal API for real-time visual threat assessment, automated triage, and 50+ language translation.",
+      "Engineered Zero-Minute First Aid protocols and automated Level 4/5 emergency service dispatch workflows."
     ],
     links: {
       demo: "https://crisiscopilot.vercel.app",
@@ -437,7 +442,7 @@ export const PROJECTS_DATA: ProjectData[] = [
       githubLabel: "GitHub Repo"
     },
     image: "[screenshot needed: CrisisCopilot incident dashboard]",
-    badge: "Crisis Management"
+    badge: "🥉 3rd Place Gemini Track (120 Teams)"
   },
   {
     id: "pharmacy-stock",
@@ -523,7 +528,7 @@ export const PROJECTS_DATA: ProjectData[] = [
     subtitle: "Hackathon Event Management & Live Submission Platform",
     type: "group",
     teamSize: 4,
-    role: "Full-Stack Contributor",
+    role: "Full-Stack Engineer (Team HalfByte)",
     year: "2026",
     period: "2026",
     category: "Interactive Web & Event Tech",
@@ -534,16 +539,17 @@ export const PROJECTS_DATA: ProjectData[] = [
       "Tailwind CSS",
       "Vercel"
     ],
-    summary: "Collaborative event platform for registration, team matchmaking, and live submission judging during high-intensity hackathon sprints.",
+    summary: "Collaborative event platform engineered in a 12-hour intensive sprint by Team HalfByte, securing 6th Place among Top 10 teams at HackToNight 3.0.",
     achievements: [
-      "Contributed to dynamic event registration, participant team building, and submission workflows.",
-      "Integrated modern responsive UI with Tailwind CSS and deployed live to production on Vercel.",
-      "Containerized platform services with Docker ensuring consistent developer environments."
+      "Secured 🏆 6th Place (Top 10 Finalist) at HackToNight 3.0, an intensive 12-hour hackathon organized by the NSBM FOSS Community.",
+      "Engineered high-velocity event registration, team matchmaking, and live submission judging pipelines under tight deadlines.",
+      "Integrated modern responsive UI with Tailwind CSS and deployed live to production on Vercel with automated CI/CD.",
+      "Containerized platform services with Docker ensuring consistent multi-developer execution environments."
     ],
     bullets: [
-      "Engineered team matchmaking and project submission modules for hackathon participants.",
-      "Deployed responsive web application to production on Vercel with automated CI/CD checks.",
-      "Configured containerized development workflow using Docker."
+      "Won 🏆 6th Place (Top 10 Finalist) at HackToNight 3.0 intensive 12-hour hackathon by NSBM FOSS Community.",
+      "Engineered team matchmaking and project submission modules for hackathon participants under strict time constraints.",
+      "Deployed responsive web application to production on Vercel with automated CI/CD checks."
     ],
     links: {
       demo: "https://hack-to-night.vercel.app",
@@ -551,8 +557,8 @@ export const PROJECTS_DATA: ProjectData[] = [
       github: "https://github.com/mchithna/hack-to-night",
       githubLabel: "GitHub Repo"
     },
-    image: "[screenshot needed: Hack-to-Night event portal]",
-    badge: "Hackathon Web"
+    image: "/certificates/hacktonight-3-top10.jpg",
+    badge: "🏆 6th Place (Top 10) - HackToNight 3.0"
   },
   {
     id: "debugliya",
@@ -744,6 +750,70 @@ export const PROJECTS_DATA: ProjectData[] = [
 // Hackathon participation records and competition achievements
 export const HACKATHONS_DATA: HackathonData[] = [
   {
+    id: "buildathon-2026",
+    name: "Buildathon 2026 (24-Hour Competitive Sprint)",
+    organizer: "Cursor & TechTalk360",
+    date: "2026",
+    location: "Colombo, Sri Lanka",
+    format: "24-Hour In-Person Sprint",
+    track: "Google Gemini Multimodal AI Track",
+    teamName: "Team HalfByte",
+    teamSize: 4,
+    myRole: "Full-Stack & Gemini AI Integration Engineer",
+    projectName: "Crisis Copilot",
+    projectId: "crisiscopilot",
+    summary: "Competed against 120 teams to architect Crisis Copilot, an emergency co-pilot integrating Google Gemini API for real-time visual scene triage, 50+ language translation, and automated Level 4/5 dispatch.",
+    techStack: ["Google Gemini API", "TypeScript", "React", "PostgreSQL", "Tailwind CSS", "Vercel"],
+    result: "🥉 3rd Place (Gemini Track) & 16th Overall (120 Teams)",
+    links: {
+      github: "https://github.com/Y-Udayanga/CrisisCopilot",
+      demo: "https://crisiscopilot.vercel.app"
+    }
+  },
+  {
+    id: "hacktonight-3",
+    name: "HackToNight 3.0",
+    organizer: "NSBM FOSS Community & Faculty of Computing",
+    date: "June 19, 2026",
+    location: "NSBM Green University",
+    format: "12-Hour Intensive Hackathon (In-Person)",
+    track: "Open Innovation & FOSS Engineering",
+    teamName: "Team HalfByte",
+    teamSize: 4,
+    myRole: "Full-Stack Engineer (Team HalfByte)",
+    projectName: "Hack-To-Night Platform",
+    projectId: "hack-to-night",
+    summary: "Engineered high-velocity event coordination and submission system under intensive 12-hour constraints, securing 6th Place and ranking among the Top 10 teams out of all competitors.",
+    techStack: ["TypeScript", "React", "Docker", "Tailwind CSS", "Vercel"],
+    result: "🏆 6th Place (Top 10 Finalist)",
+    links: {
+      github: "https://github.com/mchithna/hack-to-night",
+      demo: "https://hack-to-night.vercel.app",
+      certificate: "/certificates/hacktonight-3-top10.jpg"
+    }
+  },
+  {
+    id: "nasa-space-apps-2026",
+    name: "NASA International Space Apps Challenge",
+    organizer: "NASA",
+    date: "2026",
+    location: "Global Virtual / Regional",
+    format: "48-Hour Global Hackathon",
+    track: "Space Exploration & Celestial Telemetry",
+    teamName: "NovaSquad",
+    teamSize: 5,
+    myRole: "Frontend UI Architect & Telemetry Lead",
+    projectName: "NovaExplorer",
+    projectId: "novaexplorer",
+    summary: "Visualized deep-space missions, interplanetary trajectories, and Mars rover telemetry querying NASA Open APIs in an interactive React application.",
+    techStack: ["React", "TypeScript", "NASA Open APIs", "Tailwind CSS", "Vite"],
+    result: "Global Participant & Regional Finalist",
+    links: {
+      github: "https://github.com/mchithna/NASASpaceApps",
+      demo: "https://novaexplorer.vercel.app"
+    }
+  },
+  {
     id: "ignitx-hutch",
     name: "IgnitX Hackathon by Hutch",
     organizer: "Hutchison Telecommunications Lanka",
@@ -769,6 +839,66 @@ export const HACKATHONS_DATA: HackathonData[] = [
 
 // Professional Certifications & Credentials
 export const CERTIFICATIONS_DATA: CertificationData[] = [
+  {
+    id: "cert-skillshare-devforge",
+    title: "Modern Full Stack Development Workshop – SkillShare DevForge",
+    issuer: "IEEE Student Branch of NSBM Green University",
+    issueDate: "June 04, 2026",
+    expiryDate: "No Expiration",
+    credentialId: "f1qp86Bqczmx+ssT4oEFJc4ySre4tUyjlJBpeVfVvw=",
+    credentialUrl: "#",
+    skills: ["Full-Stack Development", "AI-Assisted Development", "DevOps & CI/CD", "Industry Engineering Workflows"],
+    category: "Development",
+    image: "/certificates/skillshare-devforge.jpg"
+  },
+  {
+    id: "cert-aws-beginner",
+    title: "AWS For Beginners with Hands-On Labs",
+    issuer: "KodeKloud",
+    issueDate: "2026",
+    expiryDate: "No Expiration",
+    credentialId: "KK-AWS-BEGINNER",
+    credentialUrl: "https://kodekloud.com",
+    skills: ["AWS Core Services", "Cloud Computing", "EC2 & S3", "IAM & Cloud Security", "Hands-On Labs"],
+    category: "Cloud",
+    image: ""
+  },
+  {
+    id: "cert-python-uom",
+    title: "Python Programming Course",
+    issuer: "University of Moratuwa (Open Learning Platform)",
+    issueDate: "2026",
+    expiryDate: "No Expiration",
+    credentialId: "UOM-CODL-PYTHON",
+    credentialUrl: "https://open.uom.lk",
+    skills: ["Python Programming", "OOP in Python", "Data Structures", "Algorithmic Problem Solving"],
+    category: "Development",
+    image: ""
+  },
+  {
+    id: "cert-hacktonight-achievement",
+    title: "Certificate of Achievement – Top 10 (6th Place) at HackToNight 3.0",
+    issuer: "NSBM FOSS Community & Faculty of Computing",
+    issueDate: "June 19, 2026",
+    expiryDate: "No Expiration",
+    credentialId: "FOSS-HTN3-TOP10",
+    credentialUrl: "#",
+    skills: ["Rapid Prototyping", "Full-Stack Development", "Competitive Team Programming", "System Architecture"],
+    category: "Development",
+    image: "/certificates/hacktonight-3-top10.jpg"
+  },
+  {
+    id: "cert-ieee-day-volunteer",
+    title: "Certificate of Appreciation – Volunteer at IEEE Day 2026",
+    issuer: "IEEE Student Branch of NSBM Green University",
+    issueDate: "October 14, 2026",
+    expiryDate: "No Expiration",
+    credentialId: "IEEE-DAY-2026-VOLUNTEER",
+    credentialUrl: "#",
+    skills: ["Event Coordination", "Technical Community Leadership", "Teamwork & Communication", "Tech for Humanity"],
+    category: "Other",
+    image: "/certificates/ieee-day-2026.jpg"
+  },
   {
     id: "cert-generative-ai",
     title: "Generative AI for Developers & LLM Applications",
