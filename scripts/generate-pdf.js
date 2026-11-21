@@ -33,6 +33,17 @@ function wrapText(text, maxChars = 90) {
 }
 
 export function generateCVpdf() {
+  const assetPdf = path.resolve(__dirname, '../src/assets/Theekshana_CV.pdf');
+  if (fs.existsSync(assetPdf)) {
+    const pubDest = path.resolve(__dirname, '../public/Theekshana_Thushan_CV.pdf');
+    const pubAlt = path.resolve(__dirname, '../public/Theekshana_CV.pdf');
+    const pubCv = path.resolve(__dirname, '../public/cv.pdf');
+    fs.copyFileSync(assetPdf, pubDest);
+    fs.copyFileSync(assetPdf, pubAlt);
+    fs.copyFileSync(assetPdf, pubCv);
+    console.log(`Copied user-provided authentic CV from ${assetPdf} to public CV targets.`);
+    return;
+  }
   // ── Page dimensions (A4) ────────────────────────────────────────────────────
   const PW = 595.28;   // page width  pt
   const PH = 841.89;   // page height pt
