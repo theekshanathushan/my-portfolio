@@ -9,110 +9,170 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 12242 >>
+<< /Length 15754 >>
 stream
-BT /F2 15.5 Tf 0 0 0 rg 1 0 0 1 38 808 Tm (THEEKSHANA THUSHAN) Tj ET
-BT /F1 9 Tf 0.25 0.3 0.4 rg 1 0 0 1 38 795 Tm (BSc \(Hons\) Computer Science Undergraduate | Full-Stack & AI Systems) Tj ET
-BT /F1 8 Tf 0.2 0.35 0.55 rg 1 0 0 1 38 784 Tm (theekshanathushan89@gmail.com   |   linkedin.com/in/theekshana-thushan-57b866328   |   github.com/theekshanathushan   |   theekshanathushan.dev) Tj ET
-0.5 w 0.82 0.82 0.82 RG 38 780 m 557 780 l S 0 0 0 RG
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 766 Tm (PROFESSIONAL SUMMARY) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 763 m 557 763 l S 0 0 0 RG
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 754.5 Tm (Results-driven Computer Science undergraduate specializing in AI-integrated, full-stack software systems) Tj ET
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 745.3 Tm (engineered with Spring Boot, ASP.NET Core, Angular, React, and MySQL.) Tj ET
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 736.0999999999999 Tm (Combines solid theoretical computing foundations with hands-on system architecture—designing scalable RESTful) Tj ET
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 726.8999999999999 Tm (APIs, stateless JWT security, real-time WebSocket communication, and automated LLM/Gemini AI workflows.) Tj ET
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 717.6999999999998 Tm (Committed to clean code principles, test-driven reliability, and agile development methodologies, actively seeking) Tj ET
-BT /F1 7.9 Tf 0.15 0.15 0.15 rg 1 0 0 1 38 708.4999999999998 Tm (Software Engineering internship and graduate opportunities.) Tj ET
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 687.2999999999997 Tm (TECHNICAL SKILLS) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 684.2999999999997 m 557 684.2999999999997 l S 0 0 0 RG
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 675.7999999999997 Tm (Languages:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 675.7999999999997 Tm (Java \(17/21\), TypeScript, JavaScript \(ES6+\), C#, Python, SQL, Dart, HTML5/CSS3) Tj ET
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 666.5999999999997 Tm (Backend & Systems:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 666.5999999999997 Tm (Spring Boot, ASP.NET Core \(.NET 8\), RESTful APIs, Microservices Concepts, WebSockets, JWT) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 657.5999999999997 Tm (Authentication) Tj ET
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 648.3999999999996 Tm (Frontend & UI:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 648.3999999999996 Tm (Angular, React, Flutter, Tailwind CSS, Responsive Design, State Management, Vite) Tj ET
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 639.1999999999996 Tm (Databases & ORM:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 639.1999999999996 Tm (MySQL, PostgreSQL, Entity Framework Core, Hibernate / Spring Data JPA, Schema Optimization) Tj ET
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 629.9999999999995 Tm (AI & Intelligent Systems:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 629.9999999999995 Tm (Google Gemini API, LLM Integration, Prompt Engineering, Computer Vision Diagnostics, Workflow) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 620.9999999999995 Tm (Automation) Tj ET
-BT /F2 7.9 Tf 0.1 0.1 0.1 rg 1 0 0 1 38 611.7999999999995 Tm (DevOps & Tools:) Tj ET
-BT /F1 7.9 Tf 0.2 0.2 0.2 rg 1 0 0 1 146 611.7999999999995 Tm (Git / GitHub, Docker \(Foundations\), Vercel, CI/CD Pipelines, Postman, Agile / Scrum) Tj ET
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 590.5999999999995 Tm (KEY PROJECTS) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 587.5999999999995 m 557 587.5999999999995 l S 0 0 0 RG
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 579.0999999999995 Tm (TalentAI — AI-Powered Recruitment & Screening Platform) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 579.0999999999995 Tm (2026) Tj ET
-BT /F3 7.4 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 570.0999999999995 Tm (Tech Stack: ASP.NET Core, Angular, TypeScript, C#, MySQL, Entity Framework Core, JWT, Google Gemini API, Twilio, MailKit) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 561.5999999999995 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 561.5999999999995 Tm (Architected multi-role hiring platform with ASP.NET Core and Angular, implementing stateless JWT authorization) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 553.1999999999995 Tm (across 4 distinct portals.) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 544.7999999999995 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 544.7999999999995 Tm (Integrated Google Gemini AI for automated resume screening and candidate-job matching, reducing initial manual) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 536.3999999999995 Tm (review time by ~60%.) Tj ET
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 525.9999999999995 Tm (CareConnect Application — Disaster Relief Support & Crisis Coordination System) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 525.9999999999995 Tm (2026) Tj ET
-BT /F3 7.4 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 516.9999999999995 Tm (Tech Stack: Java 17, Spring Boot, MySQL, WebSockets, Leaflet.js, REST APIs) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 508.49999999999955 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 508.49999999999955 Tm (Developed full-stack crisis coordination system using Java 17, Spring Boot, and MySQL to streamline emergency) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 500.09999999999957 Tm (relief supply logistics.) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 491.6999999999996 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 491.6999999999996 Tm (Integrated Leaflet.js geospatial mapping to visualize real-time help requests and track regional donor supply) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 483.2999999999996 Tm (distribution.) Tj ET
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 472.89999999999964 Tm (NovaExplorer — NASA Educational Spacecraft & Mission Explorer) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 472.89999999999964 Tm (2026) Tj ET
-BT /F3 7.4 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 463.89999999999964 Tm (Tech Stack: React, TypeScript, Tailwind CSS, NASA Open APIs, PostgreSQL, Vite, Vercel) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 455.39999999999964 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 455.39999999999964 Tm (Built interactive space mission explorer in a 5-member NASA Space Apps team using React and TypeScript.) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 446.99999999999966 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 446.99999999999966 Tm (Integrated NASA Open APIs with client-side caching and debounced querying to display high-resolution imagery) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 438.5999999999997 Tm (and Mars rover telemetry.) Tj ET
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 428.1999999999997 Tm (AgriAI \(smart-farming-ai\) — Smart Agriculture & Native-Language Farming Agent) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 532 428.1999999999997 Tm (2026) Tj ET
-BT /F3 7.4 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 419.1999999999997 Tm (Tech Stack: Flutter, Dart, Google Gemini API, Computer Vision, Python, REST APIs) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 410.6999999999997 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 410.6999999999997 Tm (Developed cross-platform Flutter mobile assistant with 142 commits, delivering on-device plant leaf disease) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 402.2999999999997 Tm (diagnosis and native-language advice.) Tj ET
-BT /F2 7.5 Tf 0.2 0.4 0.7 rg 1 0 0 1 41 393.89999999999975 Tm (*) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 393.89999999999975 Tm (Integrated Google Gemini Vision API to analyze crop pathology and deliver actionable agronomic treatment) Tj ET
-BT /F1 7.5 Tf 0.2 0.2 0.2 rg 1 0 0 1 50 385.4999999999998 Tm (recommendations in under 2 seconds.) Tj ET
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 365.0999999999998 Tm (HACKATHONS & COMPETITIONS) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 362.0999999999998 m 557 362.0999999999998 l S 0 0 0 RG
-BT /F2 8.2 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 353.5999999999998 Tm (Buildathon 2026 \(24-Hour Competitive Sprint\) — 🥉 3rd Place \(Gemini Track\) & 16th Overall \(120 Teams\)) Tj ET
-BT /F2 7.8 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 353.5999999999998 Tm (2026) Tj ET
-BT /F3 7.3 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 344.9999999999998 Tm (Organizer: Cursor & TechTalk360   |   Role: Full-Stack & Gemini AI Integration Engineer \(Team HalfByte\)) Tj ET
-BT /F1 7.3 Tf 0.22 0.22 0.22 rg 1 0 0 1 44 336.5999999999998 Tm (Competed against 120 teams to architect Crisis Copilot, an emergency co-pilot integrating Google Gemini API) Tj ET
-BT /F2 8.2 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 328.1999999999998 Tm (HackToNight 3.0 — 🏆 6th Place \(Top 10 Finalist\)) Tj ET
-BT /F2 7.8 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 328.1999999999998 Tm (June 19, 2026) Tj ET
-BT /F3 7.3 Tf 0.3 0.35 0.45 rg 1 0 0 1 38 319.5999999999998 Tm (Organizer: NSBM FOSS Community & Faculty of Computing   |   Role: Full-Stack Engineer \(Team HalfByte\) \(Team HalfByte\)) Tj ET
-BT /F1 7.3 Tf 0.22 0.22 0.22 rg 1 0 0 1 44 311.1999999999998 Tm (Engineered high-velocity event coordination and submission system under intensive 12-hour constraints,) Tj ET
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 290.79999999999984 Tm (CERTIFICATIONS & CREDENTIALS) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 287.79999999999984 m 557 287.79999999999984 l S 0 0 0 RG
-BT /F2 7.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 279.29999999999984 Tm (Modern Full Stack Development Workshop – SkillShare DevForge — IEEE Student Branch of NSBM Green University) Tj ET
-BT /F2 7.5 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 279.29999999999984 Tm (June 04, 2026) Tj ET
-BT /F1 7.2 Tf 0.3 0.3 0.3 rg 1 0 0 1 46 271.29999999999984 Tm (Skills: Full-Stack Development, AI-Assisted Development, DevOps & CI/CD, Industry Engineering Workflows) Tj ET
-BT /F2 7.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 263.09999999999985 Tm (AWS For Beginners with Hands-On Labs — KodeKloud) Tj ET
-BT /F2 7.5 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 263.09999999999985 Tm (2026) Tj ET
-BT /F1 7.2 Tf 0.3 0.3 0.3 rg 1 0 0 1 46 255.09999999999985 Tm (Skills: AWS Core Services, Cloud Computing, EC2 & S3, IAM & Cloud Security, Hands-On Labs) Tj ET
-BT /F2 7.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 246.89999999999986 Tm (Python Programming Course — University of Moratuwa \(Open Learning Platform\)) Tj ET
-BT /F2 7.5 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 246.89999999999986 Tm (2026) Tj ET
-BT /F1 7.2 Tf 0.3 0.3 0.3 rg 1 0 0 1 46 238.89999999999986 Tm (Skills: Python Programming, OOP in Python, Data Structures, Algorithmic Problem Solving) Tj ET
-BT /F2 7.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 230.69999999999987 Tm (Meta Front-End Developer Specialization — Meta) Tj ET
-BT /F2 7.5 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 230.69999999999987 Tm (2024) Tj ET
-BT /F1 7.2 Tf 0.3 0.3 0.3 rg 1 0 0 1 46 222.69999999999987 Tm (Skills: React, JavaScript \(ES6+\), UI/UX Architecture, Version Control \(Git\)) Tj ET
-BT /F2 7.8 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 214.4999999999999 Tm (Postman API Fundamentals Student Expert — Postman) Tj ET
-BT /F2 7.5 Tf 0.35 0.4 0.45 rg 1 0 0 1 522 214.4999999999999 Tm (2024) Tj ET
-BT /F1 7.2 Tf 0.3 0.3 0.3 rg 1 0 0 1 46 206.4999999999999 Tm (Skills: RESTful APIs, API Testing, Postman, Endpoint Integration) Tj ET
-BT /F2 9 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 186.2999999999999 Tm (EDUCATION) Tj ET
-0.75 w 0.75 0.75 0.75 RG 38 183.2999999999999 m 557 183.2999999999999 l S 0 0 0 RG
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 174.7999999999999 Tm (BSc \(Hons\) in Computer Science) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 502 174.7999999999999 Tm (2023 – Present) Tj ET
-BT /F1 7.8 Tf 0.25 0.3 0.35 rg 1 0 0 1 38 165.9999999999999 Tm (Plymouth University \(via NSBM Green University\)) Tj ET
-BT /F3 7.3 Tf 0.35 0.35 0.4 rg 1 0 0 1 38 157.7999999999999 Tm (Relevant Coursework: Data Structures & Algorithms, Artificial Intelligence & Machine Learning, Database Design) Tj ET
-BT /F3 7.3 Tf 0.35 0.35 0.4 rg 1 0 0 1 38 149.5999999999999 Tm (& Management \(MySQL\), Object-Oriented Software Design \(Java / C#\), Distributed Systems & Cloud Computing) Tj ET
-BT /F2 8.4 Tf 0.05 0.1 0.2 rg 1 0 0 1 38 141.39999999999992 Tm (G.C.E. Advanced Level \(Physical Science Stream\)) Tj ET
-BT /F2 8 Tf 0.35 0.4 0.45 rg 1 0 0 1 502 141.39999999999992 Tm (2022) Tj ET
-BT /F1 7.8 Tf 0.25 0.3 0.35 rg 1 0 0 1 38 132.5999999999999 Tm (Secondary Education) Tj ET
+0.08 0.12 0.22 rg 0 0 178 841.89 re f 0 0 0 rg
+0.09 0.14 0.26 rg 0 746.89 595.28 95 re f 0 0 0 rg
+BT /F2 17 Tf 1 1 1 rg 1 0 0 1 16 809.89 Tm (THEEKSHANA THUSHAN) Tj ET
+BT /F3 8.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 16 795.89 Tm (BSc \(Hons\) Computer Science Undergraduate) Tj ET
+BT /F3 8.2 Tf 0.75 0.82 0.9 rg 1 0 0 1 16 785.39 Tm (Full-Stack & AI Systems) Tj ET
+BT /F1 7.5 Tf 0.8 0.88 0.95 rg 1 0 0 1 206 813.89 Tm (theekshanathushan89@gmail.com) Tj ET
+BT /F1 7.5 Tf 0.8 0.88 0.95 rg 1 0 0 1 206 802.89 Tm (linkedin.com/in/theekshana-thushan-57b866328) Tj ET
+BT /F1 7.5 Tf 0.8 0.88 0.95 rg 1 0 0 1 206 791.89 Tm (github.com/theekshanathushan) Tj ET
+BT /F1 7.5 Tf 0.8 0.88 0.95 rg 1 0 0 1 206 780.89 Tm (theekshanathushan.dev) Tj ET
+BT /F2 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 14 724.89 Tm (EDUCATION) Tj ET
+0.4 w 0.07 0.65 0.68 RG 14 721.89 m 168 721.89 l S 0 0 0 RG
+BT /F2 7 Tf 1 1 1 rg 1 0 0 1 14 713.89 Tm (BSc \(Hons\) in Computer) Tj ET
+BT /F2 7 Tf 1 1 1 rg 1 0 0 1 14 705.39 Tm (Science) Tj ET
+BT /F3 6.8 Tf 0.65 0.78 0.88 rg 1 0 0 1 14 696.89 Tm (2023 ? Present) Tj ET
+BT /F1 6.6 Tf 0.7 0.8 0.9 rg 1 0 0 1 14 689.39 Tm (Plymouth University \(via) Tj ET
+BT /F1 6.6 Tf 0.7 0.8 0.9 rg 1 0 0 1 14 681.89 Tm (NSBM Green University\)) Tj ET
+BT /F2 6.8 Tf 0.07 0.65 0.68 rg 1 0 0 1 14 674.39 Tm (GPA: 3.80 / 4.00) Tj ET
+BT /F2 7 Tf 1 1 1 rg 1 0 0 1 14 663.39 Tm (G.C.E. Advanced Level) Tj ET
+BT /F2 7 Tf 1 1 1 rg 1 0 0 1 14 654.89 Tm (\(Physical Science) Tj ET
+BT /F2 7 Tf 1 1 1 rg 1 0 0 1 14 646.39 Tm (Stream\)) Tj ET
+BT /F3 6.8 Tf 0.65 0.78 0.88 rg 1 0 0 1 14 637.89 Tm (2022) Tj ET
+BT /F1 6.6 Tf 0.7 0.8 0.9 rg 1 0 0 1 14 630.39 Tm (Secondary Education) Tj ET
+BT /F2 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 14 615.89 Tm (TECHNICAL SKILLS) Tj ET
+0.4 w 0.07 0.65 0.68 RG 14 612.89 m 168 612.89 l S 0 0 0 RG
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 604.89 Tm (Languages) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 597.39 Tm (Java \(17/21\), TypeScript,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 590.39 Tm (JavaScript \(ES6+\), C#,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 583.39 Tm (Python, SQL, Dart,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 576.39 Tm (HTML5/CSS3) Tj ET
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 567.39 Tm (Backend & Systems) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 559.89 Tm (Spring Boot, ASP.NET Core) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 552.89 Tm (\(.NET 8\), RESTful APIs,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 545.89 Tm (Microservices Concepts,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 538.89 Tm (WebSockets, JWT) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 531.89 Tm (Authentication) Tj ET
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 522.89 Tm (Frontend & UI) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 515.39 Tm (Angular, React, Flutter,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 508.39 Tm (Tailwind CSS, Responsive) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 501.39 Tm (Design, State Management,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 494.39 Tm (Vite) Tj ET
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 485.39 Tm (Databases & ORM) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 477.89 Tm (MySQL, PostgreSQL, Entity) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 470.89 Tm (Framework Core, Hibernate /) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 463.89 Tm (Spring Data JPA, Schema) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 456.89 Tm (Optimization) Tj ET
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 447.89 Tm (AI & Intelligent Systems) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 440.39 Tm (Google Gemini API, LLM) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 433.39 Tm (Integration, Prompt) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 426.39 Tm (Engineering, Computer) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 419.39 Tm (Vision Diagnostics,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 412.39 Tm (Workflow Automation) Tj ET
+BT /F2 6.8 Tf 0.78 0.88 0.96 rg 1 0 0 1 14 403.39 Tm (DevOps & Tools) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 395.89 Tm (Git / GitHub, Docker) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 388.89 Tm (\(Foundations\), Vercel,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 381.89 Tm (CI/CD Pipelines, Postman,) Tj ET
+BT /F1 6.3 Tf 0.72 0.82 0.9 rg 1 0 0 1 16 374.89 Tm (Agile / Scrum) Tj ET
+BT /F2 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 14 361.89 Tm (COMPETITIONS) Tj ET
+0.4 w 0.07 0.65 0.68 RG 14 358.89 m 168 358.89 l S 0 0 0 RG
+BT /F2 6.5 Tf 1 1 1 rg 1 0 0 1 14 350.89 Tm (Buildathon 2026) Tj ET
+BT /F3 6.3 Tf 0.07 0.65 0.68 rg 1 0 0 1 16 343.39 Tm (?? 3rd Place \(Gemini Track\) & 16th Overall \(120 Teams\)) Tj ET
+BT /F1 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 336.39 Tm (2026) Tj ET
+BT /F2 6.5 Tf 1 1 1 rg 1 0 0 1 14 327.39 Tm (HackToNight 3.0) Tj ET
+BT /F3 6.3 Tf 0.07 0.65 0.68 rg 1 0 0 1 16 319.89 Tm (?? 6th Place \(Top 10 Finalist\)) Tj ET
+BT /F1 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 312.89 Tm (June 19, 2026) Tj ET
+BT /F2 6.5 Tf 1 1 1 rg 1 0 0 1 14 303.89 Tm (NASA International Space) Tj ET
+BT /F2 6.5 Tf 1 1 1 rg 1 0 0 1 14 296.39 Tm (Apps Challenge) Tj ET
+BT /F3 6.3 Tf 0.07 0.65 0.68 rg 1 0 0 1 16 288.89 Tm (Global Participant & Regional Finalist) Tj ET
+BT /F1 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 281.89 Tm (2026) Tj ET
+BT /F2 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 14 268.89 Tm (CERTIFICATIONS) Tj ET
+0.4 w 0.07 0.65 0.68 RG 14 265.89 m 168 265.89 l S 0 0 0 RG
+BT /F2 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 257.89 Tm (Meta Front-End Developer) Tj ET
+BT /F1 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 250.69 Tm (Specialization) Tj ET
+BT /F3 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 243.49 Tm (Meta) Tj ET
+BT /F2 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 234.99 Tm (Postman API Fundamentals) Tj ET
+BT /F1 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 227.79000000000002 Tm (Student Expert) Tj ET
+BT /F3 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 220.59000000000003 Tm (Postman) Tj ET
+BT /F2 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 212.09000000000003 Tm (AWS For Beginners with) Tj ET
+BT /F1 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 204.89000000000004 Tm (Hands-On Labs) Tj ET
+BT /F3 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 197.69000000000005 Tm (KodeKloud) Tj ET
+BT /F2 6.3 Tf 0.9 0.93 0.97 rg 1 0 0 1 14 189.19000000000005 Tm (Python Programming Course) Tj ET
+BT /F3 6 Tf 0.6 0.72 0.82 rg 1 0 0 1 16 181.99000000000007 Tm (University of Moratuwa \(Open Learning Platform\)) Tj ET
+BT /F2 8.5 Tf 0.09 0.14 0.26 rg 1 0 0 1 196 724.89 Tm (PROFESSIONAL SUMMARY) Tj ET
+1 w 0.07 0.65 0.68 RG 196 721.89 m 579.28 721.89 l S 0 0 0 RG
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 712.89 Tm (Results-driven Computer Science undergraduate specializing in) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 704.09 Tm (AI-integrated, full-stack software systems engineered with Spring Boot,) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 695.2900000000001 Tm (ASP.NET Core, Angular, React, and MySQL.) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 686.4900000000001 Tm (Combines solid theoretical computing foundations with hands-on system) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 677.6900000000002 Tm (architecture?designing scalable RESTful APIs, stateless JWT security,) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 668.8900000000002 Tm (real-time WebSocket communication, and automated LLM/Gemini AI) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 660.0900000000003 Tm (workflows.) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 651.2900000000003 Tm (Committed to clean code principles, test-driven reliability, and agile) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 642.4900000000004 Tm (development methodologies, actively seeking Software Engineering) Tj ET
+BT /F1 7.6 Tf 0.12 0.14 0.18 rg 1 0 0 1 196 633.6900000000004 Tm (internship and graduate opportunities.) Tj ET
+BT /F2 8.5 Tf 0.09 0.14 0.26 rg 1 0 0 1 196 618.8900000000004 Tm (KEY PROJECTS) Tj ET
+1 w 0.07 0.65 0.68 RG 196 615.8900000000004 m 579.28 615.8900000000004 l S 0 0 0 RG
+BT /F2 8 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 606.8900000000004 Tm (TalentAI ? AI-Powered Recruitment & Screening Platform) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 557.28 606.8900000000004 Tm (2026) Tj ET
+BT /F3 7 Tf 0.3 0.4 0.55 rg 1 0 0 1 196 598.3900000000004 Tm (Full-Stack Architect & Lead Developer  |  Team: 6) Tj ET
+BT /F3 6.8 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 590.8900000000004 Tm (Stack: ASP.NET Core, Angular, TypeScript, C#, MySQL, Entity Framework Core) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 582.8900000000004 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 582.8900000000004 Tm (Architected multi-role hiring platform with ASP.NET Core and) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 574.8900000000004 Tm (Angular, implementing stateless JWT authorization across 4 distinct) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 566.8900000000004 Tm (portals.) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 558.8900000000004 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 558.8900000000004 Tm (Integrated Google Gemini AI for automated resume screening and) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 550.8900000000004 Tm (candidate-job matching, reducing initial manual review time by ~60%.) Tj ET
+BT /F2 8 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 539.8900000000004 Tm (Crisis Copilot ? Multimodal AI Emergency Response &) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 557.28 539.8900000000004 Tm (2026) Tj ET
+BT /F3 7 Tf 0.3 0.4 0.55 rg 1 0 0 1 196 531.3900000000004 Tm (Full-Stack & Gemini AI Integration Engineer \(Team HalfByte\)  |  Team: 4) Tj ET
+BT /F3 6.8 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 523.8900000000004 Tm (Stack: Google Gemini API, TypeScript, React, PostgreSQL, Tailwind CSS, Vercel) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 515.8900000000004 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 515.8900000000004 Tm (Won ?? 3rd Place \(Gemini Track\) & 16th Overall out of 120 teams at) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 507.89000000000044 Tm (Buildathon 2026 with Crisis Copilot.) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 499.89000000000044 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 499.89000000000044 Tm (Integrated Google Gemini Multimodal API for real-time visual threat) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 491.89000000000044 Tm (assessment, automated triage, and 50+ language translation.) Tj ET
+BT /F2 8 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 480.89000000000044 Tm (AgriAI \(smart-farming-ai\) ? Smart Agriculture &) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 557.28 480.89000000000044 Tm (2026) Tj ET
+BT /F3 7 Tf 0.3 0.4 0.55 rg 1 0 0 1 196 472.39000000000044 Tm (Mobile Application Engineer & AI Integration Lead) Tj ET
+BT /F3 6.8 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 464.89000000000044 Tm (Stack: Flutter, Dart, Google Gemini API, Computer Vision, Python, REST APIs) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 456.89000000000044 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 456.89000000000044 Tm (Developed cross-platform Flutter mobile assistant with 142 commits,) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 448.89000000000044 Tm (delivering on-device plant leaf disease diagnosis and) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 440.89000000000044 Tm (native-language advice.) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 432.89000000000044 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 432.89000000000044 Tm (Integrated Google Gemini Vision API to analyze crop pathology and) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 424.89000000000044 Tm (deliver actionable agronomic treatment recommendations in under 2) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 416.89000000000044 Tm (seconds.) Tj ET
+BT /F2 8 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 405.89000000000044 Tm (CareConnect Application ? Disaster Relief Support & Crisis) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 557.28 405.89000000000044 Tm (2026) Tj ET
+BT /F3 7 Tf 0.3 0.4 0.55 rg 1 0 0 1 196 397.39000000000044 Tm (Full-Stack Backend Engineer) Tj ET
+BT /F3 6.8 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 389.89000000000044 Tm (Stack: Java 17, Spring Boot, MySQL, WebSockets, Leaflet.js, REST APIs) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 381.89000000000044 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 381.89000000000044 Tm (Developed full-stack crisis coordination system using Java 17,) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 373.89000000000044 Tm (Spring Boot, and MySQL to streamline emergency relief supply) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 365.89000000000044 Tm (logistics.) Tj ET
+BT /F2 7.5 Tf 0.07 0.65 0.68 rg 1 0 0 1 198 357.89000000000044 Tm (>) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 357.89000000000044 Tm (Integrated Leaflet.js geospatial mapping to visualize real-time help) Tj ET
+BT /F1 7.3 Tf 0.14 0.16 0.2 rg 1 0 0 1 207 349.89000000000044 Tm (requests and track regional donor supply distribution.) Tj ET
+BT /F2 8.5 Tf 0.09 0.14 0.26 rg 1 0 0 1 196 335.89000000000044 Tm (HACKATHONS & ACHIEVEMENTS) Tj ET
+1 w 0.07 0.65 0.68 RG 196 332.89000000000044 m 579.28 332.89000000000044 l S 0 0 0 RG
+BT /F2 7.9 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 323.89000000000044 Tm (Buildathon 2026) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 549.28 323.89000000000044 Tm (2026) Tj ET
+BT /F3 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 315.39000000000044 Tm (?? 3rd Place \(Gemini Track\) & 16th Overall \(120 Teams\)) Tj ET
+BT /F1 6.8 Tf 0.3 0.38 0.5 rg 1 0 0 1 291 315.39000000000044 Tm (Team: Team HalfByte  |  Cursor & TechTalk360) Tj ET
+BT /F1 7 Tf 0.18 0.2 0.25 rg 1 0 0 1 202 307.89000000000044 Tm (Competed against 120 teams to architect Crisis Copilot, an emergency) Tj ET
+BT /F2 7.9 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 297.39000000000044 Tm (HackToNight 3.0) Tj ET
+BT /F2 7.3 Tf 0.35 0.4 0.45 rg 1 0 0 1 549.28 297.39000000000044 Tm (June 19, 2026) Tj ET
+BT /F3 7.2 Tf 0.07 0.65 0.68 rg 1 0 0 1 196 288.89000000000044 Tm (?? 6th Place \(Top 10 Finalist\)) Tj ET
+BT /F1 6.8 Tf 0.3 0.38 0.5 rg 1 0 0 1 291 288.89000000000044 Tm (Team: Team HalfByte  |  NSBM FOSS Community & Faculty of Computing) Tj ET
+BT /F1 7 Tf 0.18 0.2 0.25 rg 1 0 0 1 202 281.39000000000044 Tm (Engineered high-velocity event coordination and submission system under) Tj ET
+BT /F2 8.5 Tf 0.09 0.14 0.26 rg 1 0 0 1 196 266.89000000000044 Tm (CERTIFICATIONS & CREDENTIALS) Tj ET
+1 w 0.07 0.65 0.68 RG 196 263.89000000000044 m 579.28 263.89000000000044 l S 0 0 0 RG
+BT /F2 7.6 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 254.89000000000044 Tm (Modern Full Stack Development Workshop ? SkillShare DevForge) Tj ET
+BT /F2 7 Tf 0.35 0.4 0.45 rg 1 0 0 1 529.28 254.89000000000044 Tm (June 04, 2026) Tj ET
+BT /F1 6.8 Tf 0.3 0.38 0.5 rg 1 0 0 1 202 247.09000000000043 Tm (IEEE Student Branch of NSBM Green University  |  Skills: Full-Stack Development, AI-Assisted Development, DevOps & CI/CD) Tj ET
+BT /F2 7.6 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 238.09000000000043 Tm (Certificate of Achievement ? Top 10 \(6th Place\) at HackToNight 3.0) Tj ET
+BT /F2 7 Tf 0.35 0.4 0.45 rg 1 0 0 1 529.28 238.09000000000043 Tm (June 19, 2026) Tj ET
+BT /F1 6.8 Tf 0.3 0.38 0.5 rg 1 0 0 1 202 230.29000000000042 Tm (NSBM FOSS Community & Faculty of Computing  |  Skills: Rapid Prototyping, Full-Stack Development, Competitive Team Programming) Tj ET
+BT /F2 7.6 Tf 0.08 0.13 0.25 rg 1 0 0 1 196 221.29000000000042 Tm (Certificate of Appreciation ? Volunteer at IEEE Day 2026) Tj ET
+BT /F2 7 Tf 0.35 0.4 0.45 rg 1 0 0 1 529.28 221.29000000000042 Tm (October 14, 2026) Tj ET
+BT /F1 6.8 Tf 0.3 0.38 0.5 rg 1 0 0 1 202 213.4900000000004 Tm (IEEE Student Branch of NSBM Green University  |  Skills: Event Coordination, Technical Community Leadership, Teamwork & Communication) Tj ET
 endstream
 endobj
 5 0 obj
@@ -131,11 +191,11 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000267 00000 n 
-0000012562 00000 n 
-0000012659 00000 n 
-0000012761 00000 n 
+0000016074 00000 n 
+0000016171 00000 n 
+0000016273 00000 n 
 trailer
 << /Size 8 /Root 1 0 R >>
 startxref
-12866
+16378
 %%EOF

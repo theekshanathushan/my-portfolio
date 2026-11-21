@@ -8,15 +8,18 @@ const __dirname = path.dirname(__filename);
 
 // Helper to escape PDF string literal
 function esc(str) {
-  return str.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+  return String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+    .replace(/[^\x20-\x7E]/g, '?'); // strip non-ASCII safely
 }
 
 // Word wrap helper
-function wrapText(text, maxChars = 110) {
-  const words = text.split(' ');
+function wrapText(text, maxChars = 90) {
+  const words = String(text).split(' ');
   const lines = [];
   let currentLine = '';
-
   for (const word of words) {
     if ((currentLine + ' ' + word).trim().length <= maxChars) {
       currentLine = (currentLine + ' ' + word).trim();
@@ -30,204 +33,262 @@ function wrapText(text, maxChars = 110) {
 }
 
 export function generateCVpdf() {
-  const pageWidth = 595.28;  // A4 width in pt
-  const pageHeight = 841.89; // A4 height in pt
-  const left = 38;
-  const right = 557;
+  // ── Page dimensions (A4) ────────────────────────────────────────────────────
+  const PW = 595.28;   // page width  pt
+  const PH = 841.89;   // page height pt
 
-  let y = 808; // Start near top margin
+  // ── Layout constants ────────────────────────────────────────────────────────
+  const SIDEBAR_W   = 178;        // left sidebar width
+  const SIDE_X      = 14;         // sidebar inner left margin
+  const SIDE_RX     = SIDEBAR_W - 10; // sidebar inner right edge
+  const MAIN_X      = SIDEBAR_W + 18; // main column left
+  const MAIN_RX     = PW - 16;   // main column right edge
+  const MAIN_MW     = MAIN_RX - MAIN_X; // main column width
+
+  // ── Sidebar accent color (dark navy) ────────────────────────────────────────
+  const SB_R = 0.08, SB_G = 0.12, SB_B = 0.22;   // #141E38
+  // ── Accent teal (section headers on sidebar) ───────────────────────────────
+  const AC_R = 0.07, AC_G = 0.65, AC_B = 0.68;   // #12A6AD
+  // ── Main area header underline color ──────────────────────────────────────
+  const UL_R = 0.07, UL_G = 0.65, UL_B = 0.68;
+
   const ops = [];
 
-  // Helper primitives
-  function drawLine(x1, y1, x2, y2, gray = 0.8, lineWidth = 0.5) {
-    ops.push(`${lineWidth} w ${gray} ${gray} ${gray} RG ${x1} ${y1} m ${x2} ${y2} l S 0 0 0 RG`);
+  // ── Primitives ──────────────────────────────────────────────────────────────
+  function rect(x, y, w, h, r, g, b) {
+    ops.push(`${r} ${g} ${b} rg ${x} ${y} ${w} ${h} re f 0 0 0 rg`);
+  }
+  function line(x1, y1, x2, y2, r = 0.8, g = 0.8, b = 0.8, lw = 0.4) {
+    ops.push(`${lw} w ${r} ${g} ${b} RG ${x1} ${y1} m ${x2} ${y2} l S 0 0 0 RG`);
+  }
+  function text(str, x, y, font = '/F1', size = 8, r = 0, g = 0, b = 0) {
+    if (!str) return;
+    ops.push(`BT ${font} ${size} Tf ${r} ${g} ${b} rg 1 0 0 1 ${x} ${y} Tm (${esc(str)}) Tj ET`);
   }
 
-  function addText(text, x, curY, font = '/F1', size = 9, r = 0.1, g = 0.1, b = 0.1) {
-    ops.push(`BT ${font} ${size} Tf ${r} ${g} ${b} rg 1 0 0 1 ${x} ${curY} Tm (${esc(text)}) Tj ET`);
+  // ── Draw sidebar background ─────────────────────────────────────────────────
+  rect(0, 0, SIDEBAR_W, PH, SB_R, SB_G, SB_B);
+
+  // ── HEADER BLOCK (top strip across full width) ──────────────────────────────
+  const HDR_H = 95;
+  rect(0, PH - HDR_H, PW, HDR_H, 0.09, 0.14, 0.26);  // slightly lighter than sidebar
+
+  // Name
+  text(content.personal.name.toUpperCase(), SIDE_X + 2, PH - 32, '/F2', 17, 1, 1, 1);
+  // Tagline
+  const taglineParts = content.personal.tagline.split(' | ');
+  text(taglineParts[0], SIDE_X + 2, PH - 46, '/F3', 8.2, AC_R, AC_G, AC_B);
+  if (taglineParts[1]) {
+    text(taglineParts[1], SIDE_X + 2, PH - 56.5, '/F3', 8.2, 0.75, 0.82, 0.90);
   }
 
-  function addSectionHeader(title) {
-    y -= 12;
-    addText(title, left, y, '/F2', 9, 0.05, 0.1, 0.2);
-    y -= 3;
-    drawLine(left, y, right, y, 0.75, 0.75);
-    y -= 8.5;
+  // Contact icons area (right side of header)
+  const cx = MAIN_X + 10;
+  let cy = PH - 28;
+  const contItems = [
+    content.personal.email,
+    content.personal.linkedinUrl.replace('https://www.linkedin.com/in/', 'linkedin.com/in/'),
+    content.personal.githubUrl.replace('https://github.com/', 'github.com/'),
+    content.personal.portfolioUrl.replace('https://', ''),
+  ];
+  contItems.forEach(item => {
+    text(item, cx, cy, '/F1', 7.5, 0.80, 0.88, 0.95);
+    cy -= 11;
+  });
+
+  // ── SIDEBAR CONTENT ─────────────────────────────────────────────────────────
+  let sy = PH - HDR_H - 18;  // sidebar cursor
+
+  function sidebarSectionHeader(title) {
+    sy -= 4;
+    text(title.toUpperCase(), SIDE_X, sy, '/F2', 7.2, AC_R, AC_G, AC_B);
+    sy -= 3;
+    // underline
+    ops.push(`0.4 w ${AC_R} ${AC_G} ${AC_B} RG ${SIDE_X} ${sy} m ${SIDE_RX} ${sy} l S 0 0 0 RG`);
+    sy -= 8;
   }
 
-  // --- 1. HEADER (Single Column, Clean ATS Structure) ---
-  addText(content.personal.name.toUpperCase(), left, y, '/F2', 15.5, 0, 0, 0);
-  y -= 13;
-  addText(content.personal.tagline, left, y, '/F1', 9, 0.25, 0.3, 0.4);
-  y -= 11;
-  
-  // Contact row (Clean text links for ATS parsers)
-  const email = content.personal.email;
-  const linkedin = content.personal.linkedinUrl.replace('https://www.', '').replace('https://', '');
-  const github = content.personal.githubUrl.replace('https://', '');
-  const portfolio = content.personal.portfolioUrl.replace('https://', '');
-  const contactText = `${email}   |   ${linkedin}   |   ${github}   |   ${portfolio}`;
-  addText(contactText, left, y, '/F1', 8, 0.2, 0.35, 0.55);
-  y -= 4;
-  drawLine(left, y, right, y, 0.82, 0.5);
-  y -= 2;
+  // ── EDUCATION (sidebar) ────────────────────────────────────────────────────
+  sidebarSectionHeader('Education');
+  content.education.forEach(edu => {
+    const degLines = wrapText(edu.degree, 24);
+    degLines.forEach(dl => {
+      text(dl, SIDE_X, sy, '/F2', 7, 1, 1, 1);
+      sy -= 8.5;
+    });
+    text(edu.period, SIDE_X, sy, '/F3', 6.8, 0.65, 0.78, 0.88);
+    sy -= 7.5;
+    const instLines = wrapText(edu.institution, 26);
+    instLines.forEach(il => {
+      text(il, SIDE_X, sy, '/F1', 6.6, 0.70, 0.80, 0.90);
+      sy -= 7.5;
+    });
+    if (edu.degree.includes('BSc')) {
+      text('GPA: 3.80 / 4.00', SIDE_X, sy, '/F2', 6.8, AC_R, AC_G, AC_B);
+      sy -= 8;
+    }
+    sy -= 3;
+  });
 
-  // --- 2. PROFESSIONAL SUMMARY (3 Sharp Action Sentences) ---
-  addSectionHeader('PROFESSIONAL SUMMARY');
-  content.profile.sentences.forEach((sentence) => {
-    const lines = wrapText(sentence, 114);
-    lines.forEach((line) => {
-      addText(line, left, y, '/F1', 7.9, 0.15, 0.15, 0.15);
-      y -= 9.2;
+  // ── SKILLS (sidebar) ──────────────────────────────────────────────────────
+  sidebarSectionHeader('Technical Skills');
+  content.skills.forEach(sg => {
+    text(sg.category, SIDE_X, sy, '/F2', 6.8, 0.78, 0.88, 0.96);
+    sy -= 7.5;
+    const skillLines = wrapText(sg.skills.join(', '), 27);
+    skillLines.forEach(sl => {
+      text(sl, SIDE_X + 2, sy, '/F1', 6.3, 0.72, 0.82, 0.90);
+      sy -= 7;
+    });
+    sy -= 2;
+  });
+
+  // ── HACKATHONS SHORT (sidebar) ─────────────────────────────────────────────
+  sidebarSectionHeader('Competitions');
+  const topHacksShort = (content.hackathons || []).slice(0, 3);
+  topHacksShort.forEach(h => {
+    const nameLines = wrapText(h.name.replace(' (24-Hour Competitive Sprint)', ''), 25);
+    nameLines.forEach(nl => {
+      text(nl, SIDE_X, sy, '/F2', 6.5, 1, 1, 1);
+      sy -= 7.5;
+    });
+    text(h.result, SIDE_X + 2, sy, '/F3', 6.3, AC_R, AC_G, AC_B);
+    sy -= 7;
+    text(h.date, SIDE_X + 2, sy, '/F1', 6, 0.60, 0.72, 0.82);
+    sy -= 9;
+  });
+
+  // ── CERTIFICATIONS SHORT (sidebar) ────────────────────────────────────────
+  sidebarSectionHeader('Certifications');
+  const certsSide = [
+    content.certifications.find(c => c.id === 'cert-meta-frontend'),
+    content.certifications.find(c => c.id === 'cert-postman-api'),
+    content.certifications.find(c => c.id === 'cert-aws-beginner'),
+    content.certifications.find(c => c.id === 'cert-python-uom'),
+  ].filter(Boolean);
+  certsSide.forEach(cert => {
+    const ctLines = wrapText(cert.title, 26);
+    ctLines.forEach((cl, i) => {
+      text(cl, SIDE_X, sy, i === 0 ? '/F2' : '/F1', 6.3, 0.9, 0.93, 0.97);
+      sy -= 7.2;
+    });
+    text(cert.issuer, SIDE_X + 2, sy, '/F3', 6, 0.60, 0.72, 0.82);
+    sy -= 8.5;
+  });
+
+  // ── MAIN CONTENT ────────────────────────────────────────────────────────────
+  let my = PH - HDR_H - 16;
+
+  function mainSection(title) {
+    my -= 6;
+    text(title.toUpperCase(), MAIN_X, my, '/F2', 8.5, 0.09, 0.14, 0.26);
+    my -= 3;
+    line(MAIN_X, my, MAIN_RX, my, UL_R, UL_G, UL_B, 1.0);
+    my -= 9;
+  }
+
+  // ── PROFESSIONAL SUMMARY ───────────────────────────────────────────────────
+  mainSection('Professional Summary');
+  content.profile.sentences.forEach(sentence => {
+    const lines = wrapText(sentence, 72);
+    lines.forEach(l => {
+      text(l, MAIN_X, my, '/F1', 7.6, 0.12, 0.14, 0.18);
+      my -= 8.8;
     });
   });
 
-  // --- 3. TECHNICAL SKILLS (Categorized, Wrapped, Keyword-Dense) ---
-  addSectionHeader('TECHNICAL SKILLS');
-  content.skills.forEach((s) => {
-    const catLabel = s.category + ':';
-    addText(catLabel, left, y, '/F2', 7.9, 0.1, 0.1, 0.1);
-    
-    // Indent skills list past longest category label
-    const startX = left + 108;
-    const maxChars = 94;
-    const skillLines = wrapText(s.skills.join(', '), maxChars);
-    skillLines.forEach((line, lineIdx) => {
-      if (lineIdx === 0) {
-        addText(line, startX, y, '/F1', 7.9, 0.2, 0.2, 0.2);
-      } else {
-        y -= 9;
-        addText(line, startX, y, '/F1', 7.9, 0.2, 0.2, 0.2);
-      }
-    });
-    y -= 9.2;
-  });
-
-  // --- 4. KEY PROJECTS (Flagship Projects with Quantified Impact) ---
-  addSectionHeader('KEY PROJECTS');
-  // Flagship projects selected for maximum ATS coverage across stack:
+  // ── KEY PROJECTS ───────────────────────────────────────────────────────────
+  mainSection('Key Projects');
   const projectsToInclude = [
     content.projects.find(p => p.id === 'talentai'),
+    content.projects.find(p => p.id === 'crisiscopilot'),
+    content.projects.find(p => p.id === 'agriai'),
     content.projects.find(p => p.id === 'careconnect'),
-    content.projects.find(p => p.id === 'novaexplorer'),
-    content.projects.find(p => p.id === 'agriai')
   ].filter(Boolean);
 
   projectsToInclude.forEach((proj, pIdx) => {
-    // Project title & year
-    addText(`${proj.title} — ${proj.subtitle}`, left, y, '/F2', 8.4, 0.05, 0.1, 0.2);
-    addText(proj.year || proj.period, right - 25, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 9;
-
-    // Tech line
-    addText('Tech Stack: ' + proj.techStack.join(', '), left, y, '/F3', 7.4, 0.3, 0.35, 0.45);
-    y -= 8.5;
-
-    // Bullets (action verb + metrics)
-    const bulletsToRender = proj.bullets || proj.achievements;
-    bulletsToRender.slice(0, 2).forEach((bullet) => {
-      addText('*', left + 3, y, '/F2', 7.5, 0.2, 0.4, 0.7);
-      const lines = wrapText(bullet.replace(/\[.*?\]/g, '').trim(), 110);
-      lines.forEach((l) => {
-        addText(l, left + 12, y, '/F1', 7.5, 0.2, 0.2, 0.2);
-        y -= 8.4;
+    // Title row
+    const titleStr = `${proj.title}  —  ${proj.subtitle}`;
+    const titleLines = wrapText(titleStr, 60);
+    text(titleLines[0], MAIN_X, my, '/F2', 8, 0.08, 0.13, 0.25);
+    text(proj.year || proj.period, MAIN_RX - 22, my, '/F2', 7.3, 0.35, 0.40, 0.45);
+    my -= 8.5;
+    // Role tag
+    if (proj.role) {
+      text(proj.role + (proj.teamSize ? `  |  Team: ${proj.teamSize}` : ''), MAIN_X, my, '/F3', 7, 0.30, 0.40, 0.55);
+      my -= 7.5;
+    }
+    // Tech stack
+    text('Stack: ' + proj.techStack.slice(0, 6).join(', '), MAIN_X, my, '/F3', 6.8, UL_R, UL_G, UL_B);
+    my -= 8;
+    // Bullets
+    const bullets = (proj.bullets || proj.achievements || []).slice(0, 2);
+    bullets.forEach(b => {
+      ops.push(`BT /F2 7.5 Tf ${AC_R} ${AC_G} ${AC_B} rg 1 0 0 1 ${MAIN_X + 2} ${my} Tm (>) Tj ET`);
+      const lines = wrapText(b.replace(/\[.*?\]/g, '').trim(), 68);
+      lines.forEach((l, li) => {
+        text(l, MAIN_X + 11, my, '/F1', 7.3, 0.14, 0.16, 0.20);
+        my -= 8;
       });
     });
-
-    if (pIdx < projectsToInclude.length - 1) {
-      y -= 2;
-    }
+    if (pIdx < projectsToInclude.length - 1) my -= 3;
   });
 
-  // --- 5. HACKATHONS & COMPETITIONS ---
-  if (content.hackathons && content.hackathons.length > 0) {
-    addSectionHeader('HACKATHONS & COMPETITIONS');
-    const topHacks = content.hackathons.slice(0, 2);
-    topHacks.forEach((hack) => {
-      addText(`${hack.name} — ${hack.result}`, left, y, '/F2', 8.2, 0.05, 0.1, 0.2);
-      addText(hack.date, right - 35, y, '/F2', 7.8, 0.35, 0.4, 0.45);
-      y -= 8.6;
-      addText(`Organizer: ${hack.organizer}   |   Role: ${hack.myRole} (${hack.teamName})`, left, y, '/F3', 7.3, 0.3, 0.35, 0.45);
-      y -= 8.4;
-      const hackSummary = wrapText(hack.summary, 110)[0];
-      if (hackSummary) {
-        addText(hackSummary, left + 6, y, '/F1', 7.3, 0.22, 0.22, 0.22);
-        y -= 8.4;
-      }
-    });
-  }
-
-  // --- 6. CERTIFICATIONS & CREDENTIALS ---
-  if (content.certifications && content.certifications.length > 0) {
-    addSectionHeader('CERTIFICATIONS & CREDENTIALS');
-    // Top 5 industry credentials
-    const certsToInclude = [
-      content.certifications.find(c => c.id === 'cert-skillshare-devforge'),
-      content.certifications.find(c => c.id === 'cert-aws-beginner'),
-      content.certifications.find(c => c.id === 'cert-python-uom'),
-      content.certifications.find(c => c.id === 'cert-meta-frontend'),
-      content.certifications.find(c => c.id === 'cert-postman-api')
-    ].filter(Boolean);
-
-    certsToInclude.forEach((cert) => {
-      addText(`${cert.title} — ${cert.issuer}`, left, y, '/F2', 7.8, 0.05, 0.1, 0.2);
-      addText(cert.issueDate, right - 35, y, '/F2', 7.5, 0.35, 0.4, 0.45);
-      y -= 8.0;
-      addText(`Skills: ${cert.skills.join(', ')}`, left + 8, y, '/F1', 7.2, 0.3, 0.3, 0.3);
-      y -= 8.2;
-    });
-  }
-
-  // --- 7. EDUCATION ---
-  addSectionHeader('EDUCATION');
-  content.education.forEach((edu) => {
-    addText(edu.degree, left, y, '/F2', 8.4, 0.05, 0.1, 0.2);
-    addText(edu.period, right - 55, y, '/F2', 8, 0.35, 0.4, 0.45);
-    y -= 8.8;
-    addText(edu.institution, left, y, '/F1', 7.8, 0.25, 0.3, 0.35);
-    y -= 8.2;
-    if (edu.keyModules) {
-      const courseLines = wrapText('Relevant Coursework: ' + edu.keyModules.join(', '), 110);
-      courseLines.forEach((cl) => {
-        addText(cl, left, y, '/F3', 7.3, 0.35, 0.35, 0.4);
-        y -= 8.2;
-      });
+  // ── HACKATHONS & ACHIEVEMENTS ──────────────────────────────────────────────
+  mainSection('Hackathons & Achievements');
+  const topHacks = (content.hackathons || []).slice(0, 2);
+  topHacks.forEach((hack, hIdx) => {
+    text(`${hack.name.replace(' (24-Hour Competitive Sprint)', '')}`, MAIN_X, my, '/F2', 7.9, 0.08, 0.13, 0.25);
+    text(hack.date, MAIN_RX - 30, my, '/F2', 7.3, 0.35, 0.40, 0.45);
+    my -= 8.5;
+    text(hack.result, MAIN_X, my, '/F3', 7.2, UL_R, UL_G, UL_B);
+    text(`Team: ${hack.teamName}  |  ${hack.organizer}`, MAIN_X + 95, my, '/F1', 6.8, 0.30, 0.38, 0.50);
+    my -= 7.5;
+    const sumLine = wrapText(hack.summary, 72)[0];
+    if (sumLine) {
+      text(sumLine, MAIN_X + 6, my, '/F1', 7, 0.18, 0.20, 0.25);
+      my -= 8.5;
     }
+    if (hIdx < topHacks.length - 1) my -= 2;
   });
 
-  // Assemble valid PDF 1.4 objects
+  // ── CERTIFICATIONS ─────────────────────────────────────────────────────────
+  mainSection('Certifications & Credentials');
+  const mainCerts = [
+    content.certifications.find(c => c.id === 'cert-skillshare-devforge'),
+    content.certifications.find(c => c.id === 'cert-hacktonight-achievement'),
+    content.certifications.find(c => c.id === 'cert-ieee-day-volunteer'),
+  ].filter(Boolean);
+
+  mainCerts.forEach(cert => {
+    text(cert.title, MAIN_X, my, '/F2', 7.6, 0.08, 0.13, 0.25);
+    text(cert.issueDate, MAIN_RX - 50, my, '/F2', 7, 0.35, 0.40, 0.45);
+    my -= 7.8;
+    text(`${cert.issuer}  |  Skills: ${cert.skills.slice(0, 3).join(', ')}`, MAIN_X + 6, my, '/F1', 6.8, 0.30, 0.38, 0.50);
+    my -= 9;
+  });
+
+  // ── Assemble PDF 1.4 ────────────────────────────────────────────────────────
   const streamContent = ops.join('\n');
   const streamLength = Buffer.byteLength(streamContent, 'utf8');
 
   const objects = [];
-  function addObj(str) {
-    objects.push(str);
-    return objects.length;
-  }
+  function addObj(str) { objects.push(str); return objects.length; }
 
-  // 1: Catalog
   addObj('<< /Type /Catalog /Pages 2 0 R >>');
-  // 2: Pages
   addObj('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
-  // 3: Page (A4)
-  addObj(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> >>`);
-  // 4: Content stream
+  addObj(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PW} ${PH}] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> >>`);
   addObj(`<< /Length ${streamLength} >>\nstream\n${streamContent}\nendstream`);
-  // 5: Font F1 (Helvetica Regular)
   addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
-  // 6: Font F2 (Helvetica Bold)
   addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
-  // 7: Font F3 (Helvetica Oblique)
   addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>');
 
   let pdf = '%PDF-1.4\n';
   const offsets = [0];
-
   objects.forEach((obj, idx) => {
     offsets.push(Buffer.byteLength(pdf, 'utf8'));
     pdf += `${idx + 1} 0 obj\n${obj}\nendobj\n`;
   });
-
   const xrefOffset = Buffer.byteLength(pdf, 'utf8');
   pdf += `xref\n0 ${objects.length + 1}\n`;
   pdf += '0000000000 65535 f \n';
@@ -238,7 +299,7 @@ export function generateCVpdf() {
 
   const outputPath = path.resolve(__dirname, '../public/Theekshana_Thushan_CV.pdf');
   fs.writeFileSync(outputPath, pdf, 'utf8');
-  console.log(`Searchable ATS-friendly PDF created successfully at: ${outputPath} (${pdf.length} bytes, Final Y: ${y.toFixed(1)})`);
+  console.log(`Modern two-column CV PDF created: ${outputPath} (${pdf.length} bytes, Main Y: ${my.toFixed(1)}, Sidebar Y: ${sy.toFixed(1)})`);
 }
 
 generateCVpdf();
