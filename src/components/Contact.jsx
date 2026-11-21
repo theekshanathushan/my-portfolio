@@ -42,7 +42,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
   const [statusMessage, setStatusMessage] = useState('');
 
-  const cvPdfPath = `${import.meta.env.BASE_URL}Theekshana_Thushan_CV.pdf`;
+  const cvPdfPath = `${import.meta.env.BASE_URL}Theekshana_CV.pdf`;
 
   const validateField = (name, value) => {
     let err = '';
@@ -253,7 +253,7 @@ export default function Contact() {
             <div className="cv-download-cta-wrap">
               <a 
                 href={cvPdfPath} 
-                download="Theekshana_Thushan_CV.pdf" 
+                download="Theekshana_CV.pdf" 
                 className="btn btn-primary cv-cta-btn"
                 title="Download Clean ATS-Friendly PDF"
               >

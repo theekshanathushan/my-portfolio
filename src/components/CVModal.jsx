@@ -3,36 +3,13 @@ import {
   X, 
   Download, 
   Printer, 
-  Mail, 
-  Briefcase, 
-  GraduationCap, 
-  Code, 
-  Globe, 
   FileText, 
-  ExternalLink,
-  Trophy,
-  Award
+  ExternalLink 
 } from 'lucide-react';
-import { content } from '../content';
-
-const Github = (props) => (
-  <svg viewBox="0 0 24 24" width={props.size || 16} height={props.size || 16} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const Linkedin = (props) => (
-  <svg viewBox="0 0 24 24" width={props.size || 16} height={props.size || 16} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
+import { cvData } from '../data/content';
 
 export default function CVModal({ isOpen, onClose }) {
   const [activeView, setActiveView] = useState('interactive'); // 'interactive' | 'pdf'
-  const [contributionsCount, setContributionsCount] = useState(null);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -46,41 +23,32 @@ export default function CVModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  // Fetch GitHub telemetry once when modal is opened
-  useEffect(() => {
-    if (!isOpen) return;
-    let isCancelled = false;
-
-    fetch('/api/activity', { headers: { Accept: 'application/json' } })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((json) => {
-        if (!isCancelled && json && typeof json.totalContributions === 'number' && json.totalContributions > 0) {
-          setContributionsCount(json.totalContributions);
-        }
-      })
-      .catch(() => {
-        // Silently ignore if API is unavailable; line remains hidden
-      });
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   const handlePrint = () => {
+    if (activeView === 'pdf') {
+      const iframe = document.querySelector('.cv-pdf-iframe');
+      if (iframe && iframe.contentWindow) {
+        try {
+          iframe.contentWindow.focus();
+          iframe.contentWindow.print();
+          return;
+        } catch {
+          // fallback to window.print()
+        }
+      }
+    }
     window.print();
   };
 
-  const cvPdfPath = `${import.meta.env.BASE_URL}Theekshana_Thushan_CV.pdf`;
+  const cvPdfPath = `${import.meta.env.BASE_URL}Theekshana_CV.pdf`;
 
   return (
     <div className="cv-modal-overlay" onClick={onClose}>
       <div className="cv-modal-card glass-card" onClick={(e) => e.stopPropagation()}>
         
-        {/* Header Action Panel */}
-        <div className="modal-actions-header">
+        {/* Header Action Panel (Hidden on Print) */}
+        <div className="modal-actions-header no-print">
           <div className="modal-actions-left">
             <div className="modal-actions-brand">
               <FileText size={18} className="text-glow-accent" />
@@ -122,7 +90,7 @@ export default function CVModal({ isOpen, onClose }) {
             
             <a 
               href={cvPdfPath} 
-              download="Theekshana_Thushan_CV.pdf" 
+              download="Theekshana_CV.pdf" 
               className="btn-action-icon btn-action-primary" 
               title="Download ATS-Friendly PDF"
             >
@@ -139,193 +107,135 @@ export default function CVModal({ isOpen, onClose }) {
         {/* CV Display Body */}
         {activeView === 'interactive' ? (
           <div className="cv-modal-content cv-printable-area">
-            
-            {/* Top Header */}
-            <div className="cv-header">
-              <div className="cv-header-text">
-                <h1 className="cv-name">{content.personal.name}</h1>
-                <p className="cv-title-sub">{content.personal.tagline}</p>
-              </div>
+            <article className="cv-document-sheet" id="cv-interactive-sheet">
               
-              <div className="cv-contact-grid">
-                <div className="cv-contact-item">
-                  <Mail size={14} className="cv-icon" />
-                  <a href={`mailto:${content.personal.email}`}>{content.personal.email}</a>
+              {/* Header */}
+              <header className="cv-doc-header">
+                <h1 className="cv-doc-name">{cvData.personal.fullName}</h1>
+                <p className="cv-doc-role">{cvData.personal.role}</p>
+                <div className="cv-doc-meta-line">
+                  <span>{cvData.personal.location}</span>
+                  <span className="sep">|</span>
+                  <a href={`mailto:${cvData.personal.email}`}>{cvData.personal.email}</a>
+                  <span className="sep">|</span>
+                  <a href={`tel:${cvData.personal.phone}`}>{cvData.personal.phone}</a>
+                  <span className="sep">|</span>
+                  <a href={cvData.personal.websiteUrl} target="_blank" rel="noreferrer">{cvData.personal.website}</a>
                 </div>
-                <div className="cv-contact-item">
-                  <Linkedin size={14} className="cv-icon" />
-                  <a href={content.personal.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn Profile</a>
+                <div className="cv-doc-meta-line">
+                  <a href={cvData.personal.linkedinUrl} target="_blank" rel="noreferrer">{cvData.personal.linkedin}</a>
+                  <span className="sep">|</span>
+                  <a href={cvData.personal.githubUrl} target="_blank" rel="noreferrer">{cvData.personal.github}</a>
                 </div>
-                <div className="cv-contact-item">
-                  <Github size={14} className="cv-icon" />
-                  <a href={content.personal.githubUrl} target="_blank" rel="noreferrer">github.com/theekshanathushan</a>
-                </div>
-                <div className="cv-contact-item">
-                  <Globe size={14} className="cv-icon" />
-                  <a href={content.personal.portfolioUrl} target="_blank" rel="noreferrer">theekshanathushan.dev</a>
-                </div>
-                {contributionsCount > 0 && (
-                  <div className="cv-contact-item cv-activity-item" title="Verified GitHub contributions in the last 365 days">
-                    <span className="cv-activity-live-dot" aria-hidden="true"></span>
-                    <span className="cv-activity-text">
-                      <strong>{contributionsCount.toLocaleString()}</strong> GitHub contributions in the last year
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
+              </header>
 
-            <div className="cv-divider"></div>
+              {/* Section: SUMMARY */}
+              <section className="cv-doc-section">
+                <h2 className="cv-sec-title">SUMMARY</h2>
+                <hr className="cv-sec-divider" />
+                <p className="cv-summary-text">{cvData.summary}</p>
+              </section>
 
-            {/* Two-Column Body Grid */}
-            <div className="cv-body-grid">
-              
-              {/* Left Column: Profile & Education */}
-              <div className="cv-body-left">
-                
-                {/* Professional Summary (3 Sharp Outcome-Focused Sentences) */}
-                <div className="cv-section">
-                  <h3 className="cv-section-title">
-                    <FileText size={16} className="cv-section-icon" /> Professional Summary
-                  </h3>
-                  <div className="cv-profile-box">
-                    <p className="cv-desc-p">{content.profile.sentences[0]}</p>
-                    <p className="cv-desc-p">{content.profile.sentences[1]}</p>
-                    <p className="cv-desc-p">{content.profile.sentences[2]}</p>
-                  </div>
-                </div>
-
-                {/* Education */}
-                <div className="cv-section">
-                  <h3 className="cv-section-title">
-                    <GraduationCap size={16} className="cv-section-icon" /> Education
-                  </h3>
-                  
-                  {content.education.map((edu, idx) => (
-                    <div key={idx} className="cv-exp-item">
-                      <div className="cv-exp-header">
-                        <h4 className="cv-item-title">{edu.degree}</h4>
-                        <span className="cv-item-date">{edu.period}</span>
-                      </div>
-                      <p className="cv-item-subtitle">{edu.institution}</p>
-                      {edu.details && <p className="cv-edu-p">{edu.details}</p>}
-                      {edu.keyModules && (
-                        <div className="cv-modules-wrap">
-                          <span className="cv-modules-label">Core Modules:</span>
-                          <ul className="cv-bullets-compact">
-                            {edu.keyModules.map((m, mIdx) => (
-                              <li key={mIdx}>{m}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+              {/* Section: EDUCATION */}
+              <section className="cv-doc-section">
+                <h2 className="cv-sec-title">EDUCATION</h2>
+                <hr className="cv-sec-divider" />
+                {cvData.education.map((edu, idx) => (
+                  <div key={idx} className="cv-edu-row">
+                    <div className="cv-edu-top">
+                      <span className="cv-edu-degree">{edu.degree}</span>
+                      <span className="cv-edu-period">{edu.period}</span>
                     </div>
-                  ))}
-                </div>
+                    <div className="cv-edu-inst">{edu.institution}</div>
+                  </div>
+                ))}
+              </section>
 
-                {/* Technical Skills Grouped */}
-                <div className="cv-section">
-                  <h3 className="cv-section-title">
-                    <Code size={16} className="cv-section-icon" /> Technical Stack
-                  </h3>
-                  <div className="cv-skills-stacked">
-                    {content.skills.map((group) => (
-                      <div key={group.category} className="cv-skill-group">
-                        <span className="cv-skill-group-name">{group.category}</span>
-                        <div className="cv-skills-tags-wrap">
-                          {group.skills.map(s => (
-                            <span key={s} className="cv-skill-tag">{s}</span>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+              {/* Section: SOFTWARE DEVELOPMENT SKILLS */}
+              <section className="cv-doc-section">
+                <h2 className="cv-sec-title">SOFTWARE DEVELOPMENT SKILLS</h2>
+                <hr className="cv-sec-divider" />
+                <div className="cv-skills-grid">
+                  <div className="cv-skills-col">
+                    <div className="cv-skill-item">
+                      <strong>Programming Languages:</strong> {cvData.skills.find(s => s.category.includes('Languages'))?.skills.join(', ')}
+                    </div>
+                    <div className="cv-skill-item">
+                      <strong>Backend Development:</strong> {cvData.skills.find(s => s.category.includes('Backend'))?.skills.join(', ')}
+                    </div>
+                    <div className="cv-skill-item">
+                      <strong>Dev Tools:</strong> {cvData.skills.find(s => s.category.includes('Dev Tools'))?.skills.join(', ')}
+                    </div>
+                  </div>
+                  <div className="cv-skills-col">
+                    <div className="cv-skill-item">
+                      <strong>Frontend & Mobile:</strong> {cvData.skills.find(s => s.category.includes('Frontend'))?.skills.join(', ')}
+                    </div>
+                    <div className="cv-skill-item">
+                      <strong>Databases:</strong> {cvData.skills.find(s => s.category.includes('Databases'))?.skills.join(', ')}
+                    </div>
+                    <div className="cv-skill-item">
+                      <strong>AI & ML:</strong> {cvData.skills.find(s => s.category.includes('AI & ML'))?.skills.join(', ')}
+                    </div>
                   </div>
                 </div>
+              </section>
 
-              </div>
-
-              {/* Right Column: Key Projects */}
-              <div className="cv-body-right">
-                
-                <div className="cv-section">
-                  <h3 className="cv-section-title">
-                    <Briefcase size={16} className="cv-section-icon" /> Key Projects
-                  </h3>
-
-                  {content.projects.map((project) => (
-                    <div key={project.id} className="cv-exp-item">
-                      <div className="cv-exp-header">
-                        <h4 className="cv-item-title">{project.title}: {project.subtitle}</h4>
-                        <span className="cv-item-date">{project.period}</span>
+              {/* Section: PROJECTS */}
+              <section className="cv-doc-section">
+                <h2 className="cv-sec-title">PROJECTS</h2>
+                <hr className="cv-sec-divider" />
+                <div className="cv-projects-list">
+                  {cvData.projects.map((proj) => (
+                    <article key={proj.id} className="cv-proj-entry">
+                      <div className="cv-proj-header">
+                        <div className="cv-proj-title-group">
+                          <strong className="cv-proj-title">{proj.title}</strong>{' '}
+                          <span className="cv-proj-tag">({proj.tag})</span>
+                        </div>
+                        <div className="cv-proj-links">
+                          {proj.demo && (
+                            <>
+                              <a href={proj.demo} target="_blank" rel="noreferrer" className="cv-proj-link">
+                                {proj.demoLabel || 'Demo'}
+                              </a>
+                              <span className="sep">|</span>
+                            </>
+                          )}
+                          <a href={proj.github} target="_blank" rel="noreferrer" className="cv-proj-link">
+                            {proj.githubLabel}
+                          </a>
+                        </div>
                       </div>
-                      <p className="cv-item-tech">
-                        Tech Stack: {project.techStack.join(', ')}
-                      </p>
-                      <ul className="cv-exp-bullets">
-                        {project.bullets.map((bullet, bIdx) => (
-                          <li key={bIdx}>{bullet}</li>
+
+                      <ul className="cv-proj-bullets">
+                        {proj.bullets.map((b, bIdx) => (
+                          <li key={bIdx}>{b}</li>
                         ))}
                       </ul>
-                    </div>
+
+                      <div className="cv-proj-tech">
+                        <strong>Tech Stack:</strong> {proj.techStack}
+                      </div>
+                    </article>
                   ))}
                 </div>
+              </section>
 
-                {/* Hackathons & Competitions */}
-                {content.hackathons && content.hackathons.length > 0 && (
-                  <div className="cv-section">
-                    <h3 className="cv-section-title">
-                      <Trophy size={16} className="cv-section-icon" /> Hackathons & Competitions
-                    </h3>
-                    {content.hackathons.map((hack, hIdx) => (
-                      <div key={hack.id || hIdx} className="cv-exp-item">
-                        <div className="cv-exp-header">
-                          <h4 className="cv-item-title">{hack.name} — {hack.track}</h4>
-                          <span className="cv-item-date">{hack.date}</span>
-                        </div>
-                        <p className="cv-item-subtitle">{hack.organizer} | Role: {hack.myRole}</p>
-                        <p className="cv-exp-desc">{hack.summary}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Certifications & Credentials */}
-                {content.certifications && content.certifications.length > 0 && (
-                  <div className="cv-section">
-                    <h3 className="cv-section-title">
-                      <Award size={16} className="cv-section-icon" /> Certifications & Credentials
-                    </h3>
-                    {content.certifications.map((cert, cIdx) => (
-                      <div key={cert.id || cIdx} className="cv-exp-item">
-                        <div className="cv-exp-header">
-                          <h4 className="cv-item-title">{cert.title}</h4>
-                          <span className="cv-item-date">{cert.issueDate}</span>
-                        </div>
-                        <p className="cv-item-subtitle">{cert.issuer} | Category: {cert.category}</p>
-                        {cert.skills && cert.skills.length > 0 && (
-                          <p className="cv-item-tech">Skills: {cert.skills.join(', ')}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-              </div>
-
-            </div>
+            </article>
           </div>
         ) : (
           /* Original PDF View */
           <div className="cv-pdf-viewer-wrap">
-            <div className="cv-pdf-toolbar">
-              <span>Displaying searchable ATS-compliant document (public/Theekshana_Thushan_CV.pdf)</span>
-              <a href={cvPdfPath} download="Theekshana_Thushan_CV.pdf" className="btn btn-primary btn-sm">
+            <div className="cv-pdf-toolbar no-print">
+              <span>Displaying authentic ATS-compliant document (Theekshana_CV.pdf)</span>
+              <a href={cvPdfPath} download="Theekshana_CV.pdf" className="btn btn-primary btn-sm">
                 <Download size={14} /> Download PDF
               </a>
             </div>
             <iframe 
               src={`${cvPdfPath}#toolbar=0&navpanes=0&scrollbar=1`}
-              title="Theekshana Thushan CV PDF"
+              title="Theekshana CV PDF"
               className="cv-pdf-iframe"
             />
           </div>
@@ -333,7 +243,7 @@ export default function CVModal({ isOpen, onClose }) {
 
       </div>
 
-      {/* Scoped CSS for CV Modal */}
+      {/* Scoped CSS for CV Modal and Print */}
       <style>{`
         .cv-modal-overlay {
           position: fixed;
@@ -354,27 +264,26 @@ export default function CVModal({ isOpen, onClose }) {
 
         .cv-modal-card {
           width: 100%;
-          max-width: 980px;
-          height: 90vh;
-          max-height: 950px;
-          border-radius: 20px;
+          max-width: 960px;
+          height: 92vh;
+          max-height: 960px;
+          border-radius: 16px;
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          background: rgba(12, 12, 22, 0.96);
-          border: 1px solid var(--border-glass-hover);
-          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(var(--accent-rgb), 0.12);
+          background: #0f111a;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85);
           animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- Header Actions --- */
         .modal-actions-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 16px 24px;
+          padding: 14px 20px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          background: rgba(255, 255, 255, 0.02);
+          background: rgba(255, 255, 255, 0.03);
           flex-wrap: wrap;
           gap: 12px;
         }
@@ -392,10 +301,10 @@ export default function CVModal({ isOpen, onClose }) {
         }
 
         .modal-actions-title {
-          font-family: var(--font-heading);
-          font-size: 16px;
+          font-family: inherit;
+          font-size: 15px;
           font-weight: 700;
-          color: var(--text-white);
+          color: #ffffff;
         }
 
         .cv-view-toggle {
@@ -403,7 +312,7 @@ export default function CVModal({ isOpen, onClose }) {
           padding: 3px;
           border-radius: 8px;
           gap: 4px;
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(0, 0, 0, 0.4);
         }
 
         .toggle-tab {
@@ -411,8 +320,7 @@ export default function CVModal({ isOpen, onClose }) {
           border-radius: 6px;
           background: transparent;
           border: none;
-          color: var(--text-muted);
-          font-family: var(--font-heading);
+          color: #94a3b8;
           font-size: 12px;
           font-weight: 600;
           cursor: pointer;
@@ -420,8 +328,8 @@ export default function CVModal({ isOpen, onClose }) {
         }
 
         .toggle-tab.active {
-          background: rgba(255, 255, 255, 0.1);
-          color: var(--text-white);
+          background: rgba(255, 255, 255, 0.12);
+          color: #ffffff;
         }
 
         .modal-actions-right {
@@ -434,13 +342,12 @@ export default function CVModal({ isOpen, onClose }) {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          padding: 7px 12px;
+          padding: 6px 12px;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid var(--border-glass);
-          color: var(--text-light);
-          font-family: var(--font-heading);
-          font-size: 12.5px;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: #e2e8f0;
+          font-size: 12px;
           font-weight: 600;
           text-decoration: none;
           cursor: pointer;
@@ -448,26 +355,26 @@ export default function CVModal({ isOpen, onClose }) {
         }
 
         .btn-action-icon:hover {
-          color: var(--accent);
-          border-color: var(--accent);
-          background: rgba(var(--accent-rgb), 0.08);
+          color: #38bdf8;
+          border-color: #38bdf8;
+          background: rgba(56, 189, 248, 0.1);
         }
 
         .btn-action-primary {
-          background: var(--gradient-accent);
-          color: var(--bg-dark);
+          background: #0284c7;
+          color: #ffffff;
           border: none;
         }
 
         .btn-action-primary:hover {
-          color: var(--bg-dark);
-          box-shadow: 0 0 15px var(--accent);
+          background: #0369a1;
+          color: #ffffff;
         }
 
         .btn-action-close {
           background: transparent;
           border: none;
-          color: var(--text-muted);
+          color: #94a3b8;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -478,281 +385,196 @@ export default function CVModal({ isOpen, onClose }) {
         }
 
         .btn-action-close:hover {
-          color: var(--text-white);
-          background: rgba(255, 255, 255, 0.08);
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.1);
         }
 
-        /* --- Interactive Content --- */
+        /* --- Interactive Content Sheet --- */
         .cv-modal-content {
           overflow-y: auto;
-          padding: 32px 36px;
+          padding: 24px 20px;
+          background: #0a0b12;
           display: flex;
-          flex-direction: column;
-          gap: 24px;
+          justify-content: center;
         }
 
-        .cv-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: 20px;
-          flex-wrap: wrap;
-        }
-
-        .cv-name {
-          font-size: 28px;
-          font-weight: 800;
-          color: var(--text-white);
-          margin-bottom: 4px;
-          text-transform: uppercase;
-          letter-spacing: -0.01em;
-        }
-
-        .cv-title-sub {
-          font-size: 13.5px;
-          color: var(--accent);
-          font-family: var(--font-mono);
-          margin: 0;
-        }
-
-        .cv-contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 8px 16px;
-        }
-
-        @media (max-width: 600px) {
-          .cv-contact-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        .cv-contact-item {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          color: var(--text-muted);
-        }
-
-        .cv-contact-item a {
-          color: var(--text-light);
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-
-        .cv-contact-item a:hover {
-          color: var(--accent);
-        }
-
-        .cv-activity-item {
-          color: var(--text-light);
-          grid-column: 1 / -1;
-          background: rgba(var(--accent-rgb), 0.05);
-          border: 1px solid rgba(var(--accent-rgb), 0.18);
+        .cv-document-sheet {
+          width: 100%;
+          max-width: 820px;
+          background: #ffffff;
+          color: #111827;
           border-radius: 6px;
-          padding: 4px 10px;
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          margin-top: 4px;
+          padding: 32px 36px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          line-height: 1.45;
+          font-size: 11px;
         }
 
-        .cv-activity-live-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--accent);
-          box-shadow: 0 0 6px var(--accent);
-          flex-shrink: 0;
-        }
-
-        .cv-activity-text {
-          font-size: 11.5px;
-          color: var(--text-light);
-        }
-
-        .cv-activity-text strong {
-          color: var(--accent);
-          font-weight: 700;
-        }
-
-        .cv-icon {
-          color: var(--accent);
-          flex-shrink: 0;
-        }
-
-        .cv-divider {
-          height: 1px;
-          background: rgba(255, 255, 255, 0.08);
-        }
-
-        /* Body Grid */
-        .cv-body-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.35fr;
-          gap: 32px;
-        }
-
-        @media (max-width: 768px) {
-          .cv-body-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        .cv-body-left, .cv-body-right {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-
-        .cv-section-title {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-          font-weight: 700;
-          color: var(--text-white);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          padding-bottom: 6px;
-          margin-bottom: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .cv-section-icon {
-          color: var(--accent);
-        }
-
-        .cv-profile-box {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .cv-desc-p {
-          font-size: 12.5px;
-          color: var(--text-light);
-          line-height: 1.55;
-          margin: 0;
-        }
-
-        .cv-exp-item {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+        .cv-doc-header {
+          text-align: center;
           margin-bottom: 14px;
         }
 
-        .cv-exp-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          gap: 8px;
+        .cv-doc-name {
+          font-size: 20px;
+          font-weight: 800;
+          color: #111827;
+          margin: 0 0 4px 0;
+          letter-spacing: -0.3px;
         }
 
-        .cv-item-title {
-          font-size: 13.5px;
+        .cv-doc-role {
+          font-size: 13px;
           font-weight: 700;
-          color: var(--text-white);
-          margin: 0;
+          color: #1f2937;
+          margin: 0 0 6px 0;
         }
 
-        .cv-item-date {
-          font-family: var(--font-mono);
-          font-size: 10.5px;
-          color: var(--accent);
-          white-space: nowrap;
-        }
-
-        .cv-item-subtitle {
-          font-size: 12px;
-          color: var(--text-muted);
-          margin: 0;
-        }
-
-        .cv-item-tech {
-          font-family: var(--font-mono);
-          font-size: 10.5px;
-          color: var(--text-muted);
-          font-style: italic;
-          margin: 2px 0 4px 0;
-        }
-
-        .cv-edu-p {
-          font-size: 11.5px;
-          color: var(--text-muted);
-          margin: 2px 0;
-        }
-
-        .cv-modules-wrap {
-          margin-top: 4px;
-        }
-
-        .cv-modules-label {
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--text-light);
-          display: block;
+        .cv-doc-meta-line {
+          font-size: 10px;
+          color: #4b5563;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 6px;
           margin-bottom: 2px;
         }
 
-        .cv-bullets-compact {
-          margin: 0;
-          padding-left: 16px;
+        .cv-doc-meta-line a {
+          color: #1d4ed8;
+          text-decoration: underline;
+        }
+
+        .sep {
+          color: #9ca3af;
+        }
+
+        .cv-doc-section {
+          margin-bottom: 12px;
+        }
+
+        .cv-sec-title {
           font-size: 11px;
-          color: var(--text-muted);
-          line-height: 1.45;
+          font-weight: 800;
+          color: #111827;
+          margin: 0 0 3px 0;
+          letter-spacing: 0.4px;
         }
 
-        .cv-exp-bullets {
-          margin: 0;
-          padding-left: 16px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+        .cv-sec-divider {
+          border: none;
+          border-top: 1px solid #111827;
+          margin: 0 0 6px 0;
         }
 
-        .cv-exp-bullets li {
-          font-size: 12px;
-          color: var(--text-light);
-          line-height: 1.5;
-        }
-
-        .cv-skills-stacked {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .cv-skill-group {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .cv-skill-group-name {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          color: var(--accent);
-          font-weight: 600;
-          text-transform: uppercase;
-        }
-
-        .cv-skills-tags-wrap {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 5px;
-        }
-
-        .cv-skill-tag {
-          font-family: var(--font-mono);
+        .cv-summary-text {
           font-size: 10px;
-          color: var(--text-light);
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid var(--border-glass);
-          padding: 2px 7px;
-          border-radius: 4px;
+          color: #1f2937;
+          margin: 0;
+          text-align: justify;
+          line-height: 1.4;
+        }
+
+        .cv-edu-row {
+          margin-bottom: 4px;
+        }
+
+        .cv-edu-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #111827;
+        }
+
+        .cv-edu-inst {
+          font-size: 10px;
+          color: #374151;
+        }
+
+        .cv-skills-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4px 20px;
+          font-size: 9.8px;
+          color: #1f2937;
+        }
+
+        .cv-skill-item {
+          margin-bottom: 4px;
+          line-height: 1.35;
+        }
+
+        .cv-skill-item strong {
+          color: #111827;
+        }
+
+        .cv-projects-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .cv-proj-entry {
+          margin-bottom: 2px;
+        }
+
+        .cv-proj-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 3px;
+        }
+
+        .cv-proj-title {
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #111827;
+        }
+
+        .cv-proj-tag {
+          font-size: 9.5px;
+          font-weight: 600;
+          color: #4b5563;
+        }
+
+        .cv-proj-links {
+          font-size: 9.5px;
+          display: flex;
+          gap: 5px;
+          align-items: center;
+        }
+
+        .cv-proj-link {
+          color: #1d4ed8;
+          text-decoration: underline;
+        }
+
+        .cv-proj-bullets {
+          margin: 0 0 3px 18px;
+          padding: 0;
+          font-size: 9.5px;
+          color: #1f2937;
+          line-height: 1.38;
+        }
+
+        .cv-proj-bullets li {
+          margin-bottom: 2px;
+        }
+
+        .cv-proj-tech {
+          font-size: 9.3px;
+          color: #374151;
+          margin-top: 1px;
+        }
+
+        .cv-proj-tech strong {
+          color: #111827;
         }
 
         /* --- PDF Viewer Pane --- */
@@ -770,10 +592,10 @@ export default function CVModal({ isOpen, onClose }) {
           align-items: center;
           justify-content: space-between;
           padding: 10px 20px;
-          background: rgba(255, 255, 255, 0.02);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          background: rgba(255, 255, 255, 0.04);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           font-size: 12px;
-          color: var(--text-muted);
+          color: #94a3b8;
         }
 
         .btn-sm {
@@ -801,6 +623,77 @@ export default function CVModal({ isOpen, onClose }) {
           to {
             opacity: 1;
             transform: scale(1) translateY(0);
+          }
+        }
+
+        /* --- Print Mode: Only the clean A4 CV Sheet prints --- */
+        @media print {
+          @page {
+            size: A4;
+            margin: 8mm;
+          }
+
+          body * {
+            visibility: hidden !important;
+          }
+
+          .cv-modal-overlay,
+          .cv-modal-card,
+          .cv-modal-content,
+          .cv-document-sheet,
+          .cv-document-sheet * {
+            visibility: visible !important;
+          }
+
+          .no-print,
+          .modal-actions-header,
+          .cv-view-toggle,
+          .navbar-container,
+          .custom-cursor,
+          .custom-cursor-ring,
+          .ambient-bg,
+          .footer-wrap {
+            display: none !important;
+          }
+
+          .cv-modal-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            background: #ffffff !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          .cv-modal-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            max-height: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: #ffffff !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          .cv-modal-content {
+            padding: 0 !important;
+            background: #ffffff !important;
+          }
+
+          .cv-document-sheet {
+            max-width: 100% !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            border: none !important;
+          }
+
+          a {
+            color: #000000 !important;
+            text-decoration: underline !important;
           }
         }
       `}</style>

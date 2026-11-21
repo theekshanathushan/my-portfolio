@@ -1053,3 +1053,167 @@ export const content: PortfolioContent = {
   hackathons: HACKATHONS_DATA,
   certifications: CERTIFICATIONS_DATA
 };
+
+// ── Verified Single-Page CV Data (Synchronized 1:1 with user's uploaded CV) ──
+export interface CVProject {
+  id: string;
+  title: string;
+  tag: string;
+  demo?: string;
+  demoLabel?: string;
+  github: string;
+  githubLabel: string;
+  bullets: string[];
+  techStack: string;
+}
+
+export interface CVData {
+  personal: {
+    name: string;
+    fullName: string;
+    role: string;
+    location: string;
+    email: string;
+    phone: string;
+    website: string;
+    websiteUrl: string;
+    linkedin: string;
+    linkedinUrl: string;
+    github: string;
+    githubUrl: string;
+  };
+  summary: string;
+  education: Array<{
+    degree: string;
+    institution: string;
+    period: string;
+  }>;
+  skills: Array<{
+    category: string;
+    skills: string[];
+  }>;
+  projects: CVProject[];
+}
+
+export const cvData: CVData = {
+  personal: {
+    name: "Theekshana Thushan",
+    fullName: "G. Theekshana Thushan Priyantha",
+    role: "Software Engineer Intern",
+    location: "Mathugama, Sri Lanka",
+    email: "theekshanathushan89@gmail.com",
+    phone: "0772921684",
+    website: "www.theekshanathushan.tech",
+    websiteUrl: "https://www.theekshanathushan.tech",
+    linkedin: "linkedin.com/in/theekshana-thushan-57b866328",
+    linkedinUrl: "https://www.linkedin.com/in/theekshana-thushan-57b866328",
+    github: "github.com/theekshanathushan",
+    githubUrl: "https://github.com/theekshanathushan"
+  },
+  summary:
+    "Computer Science undergraduate who builds cross-platform mobile apps with Flutter and full-stack web applications with Angular, React, ASP.NET Core and Spring Boot. Experienced in REST APIs, real-time features, offline-first architecture and integrating Gemini-powered AI features into real products.",
+  education: [
+    {
+      degree: "BSc (Hons) in Computer Science: GPA: 3.80",
+      institution: "NSBM Green University",
+      period: "June 2024 – December 2028"
+    }
+  ],
+  skills: [
+    {
+      category: "Programming Languages",
+      skills: ["Java", "Dart", "JavaScript", "TypeScript", "C#", "Python"]
+    },
+    {
+      category: "Frontend & Mobile",
+      skills: ["Flutter", "Angular", "React", "Next.js", "Tailwind CSS", "Leaflet"]
+    },
+    {
+      category: "Backend Development",
+      skills: ["Spring Boot", "ASP.NET Core", "FastAPI", "Node.js", "RESTful APIs", "WebSockets", "JWT"]
+    },
+    {
+      category: "Databases",
+      skills: ["MySQL", "PostgreSQL", "SQL Server", "SQLite", "MongoDB", "Firebase", "Supabase"]
+    },
+    {
+      category: "Dev Tools",
+      skills: ["Git", "Docker", "Maven", "Postman", "Playwright", "Vercel", "Railway"]
+    },
+    {
+      category: "AI & ML",
+      skills: ["Gemini API", "TensorFlow Lite", "LLM APIs (Anthropic)"]
+    }
+  ],
+  projects: [
+    {
+      id: "agriai",
+      title: "AgriAI – Smart Farming Assistant",
+      tag: "Mobile | Individual",
+      github: "https://github.com/theekshanathushan/smart-farming-ai",
+      githubLabel: "github.com/theekshanathushan/smart-farming-ai",
+      bullets: [
+        "Built an offline-first Flutter app with Drift (SQLite), Riverpod, GoRouter and Firebase phone-OTP auth with Firestore sync.",
+        "Built a hybrid crop-disease scanner: Gemini vision online, with an on-device TensorFlow Lite fallback offline.",
+        "Created a Sinhala/Tamil/English AI farming assistant streaming over SSE from FastAPI, with live GPS weather.",
+        "Added irrigation and fertilizer advisors, a pest knowledge base, a PDF-report ledger and a harvest marketplace.",
+        "Localized the UI (Sinhala, Tamil, English); added community and market-price screens and unit tests."
+      ],
+      techStack: "Flutter, Dart, Riverpod, Drift, GoRouter, TensorFlow Lite, Gemini API, Firebase, FastAPI, SQLAlchemy"
+    },
+    {
+      id: "stockpilot",
+      title: "StockPilot-LK – Smart Inventory Assistant",
+      tag: "Full Stack | Individual",
+      github: "https://github.com/theekshanathushan/StockPilot-LK",
+      githubLabel: "github.com/theekshanathushan/StockPilot-LK",
+      bullets: [
+        "Designed an inventory app for shops that tracks stock by brand and product and raises red low-stock alerts.",
+        "Automated supplier restock requests and linked stock levels to sales data so inventory updates after each sale."
+      ],
+      techStack: "Python, FastAPI, SQLAlchemy (async), SQLite/PostgreSQL, React 19, Vite, React Native (Expo), JWT, bcrypt, pytest."
+    },
+    {
+      id: "careconnect",
+      title: "CareConnect – Disaster Relief",
+      tag: "Full Stack | Individual",
+      github: "https://github.com/theekshanathushan/CareConnect-application",
+      githubLabel: "github.com/theekshanathushan/CareConnect-application",
+      bullets: [
+        "Built a role-based relief platform with four user portals and 30+ REST endpoints on Spring Boot.",
+        "Implemented real-time chat and notifications (Spring WebSocket/STOMP) and a live Leaflet case map.",
+        "Modelled 7 JPA entities on MySQL and added user management, activity logging and reporting.",
+        "Built 20+ vanilla-JavaScript pages for donors, displaced persons, officers and admins, served by Spring Boot."
+      ],
+      techStack: "Java 17, Spring Boot, Spring Data JPA, WebSocket, MySQL, Maven, Lombok, JavaScript, Leaflet"
+    },
+    {
+      id: "talentai",
+      title: "TalentAI – Recruitment Platform",
+      tag: "Full Stack | Team",
+      github: "https://github.com/Lakshan994/AI-Recruitment-Platform",
+      githubLabel: "github.com/Lakshan994/AI-Recruitment-Platform",
+      bullets: [
+        "Built the admin portal (six-member team): user/role management, permissions matrix, hiring-funnel analytics.",
+        "Contributed Gemini AI features (resume parsing, job matching, recommendations) and JWT-secured ASP.NET Core APIs.",
+        "Contributed MailKit/Twilio alerts with 24-hour interview reminders and a dark-theme design system."
+      ],
+      techStack: "Angular 19, TypeScript, Tailwind CSS, ASP.NET Core, EF Core, MySQL, JWT, Gemini API, MailKit, Twilio"
+    },
+    {
+      id: "novaexplorer",
+      title: "NovaExplorer",
+      tag: "Frontend | Team",
+      demo: "https://novaexplorer.vercel.app",
+      demoLabel: "novaexplorer.vercel.app",
+      github: "https://github.com/mchithna/NASASpaceApps",
+      githubLabel: "github.com/mchithna/NASASpaceApps",
+      bullets: [
+        "Contributed to a gamified web app on five NASA spacecraft missions for ages 10–17 with XP, ranks and achievements.",
+        "Built the dark mission-control UI (React 19, Tailwind CSS) and the “Ask Nova AI” Gemini chatbot with guardrails.",
+        "Supabase (PostgreSQL) auth with row-level security; tested with Vitest and Playwright; deployed on Vercel."
+      ],
+      techStack: "React 19, TypeScript, Vite, Tailwind CSS, React Router, Supabase, Gemini API, Vitest, Playwright, Vercel"
+    }
+  ]
+};
