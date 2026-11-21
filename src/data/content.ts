@@ -89,8 +89,11 @@ export interface CertificationData {
 export interface PortfolioContent {
   personal: {
     name: string;
+    fullName?: string;
     tagline: string;
     email: string;
+    phone?: string;
+    location?: string;
     portfolioUrl: string;
     githubUrl: string;
     linkedinUrl: string;
@@ -325,6 +328,45 @@ export const PROJECTS_DATA: ProjectData[] = [
     },
     image: "[screenshot needed: CareConnect live crisis relief map]",
     badge: "Disaster Relief"
+  },
+  {
+    id: "stockpilot",
+    isCaseStudy: false,
+    title: "StockPilot LK",
+    subtitle: "Smart Stock Management & POS System for Sri Lankan SMEs",
+    type: "individual",
+    role: "Full-Stack Developer",
+    year: "2026",
+    period: "2026",
+    category: "Business & Retail Systems",
+    techStack: [
+      "Java",
+      "Spring Boot",
+      "MySQL",
+      "React",
+      "TypeScript",
+      "REST APIs",
+      "JWT Authentication"
+    ],
+    summary: "Full-stack stock management and point-of-sale system tailored for Sri Lankan small-to-medium enterprises, featuring real-time inventory tracking, invoice generation, and sales analytics.",
+    achievements: [
+      "Engineered a full-stack stock management and POS system using Spring Boot and React with real-time inventory tracking and low-stock alerts.",
+      "Implemented JWT-secured REST APIs enabling multi-role access for owners, cashiers, and stock managers with granular permissions.",
+      "Built automated invoice generation and daily sales reporting dashboards to streamline business operations for local SMEs."
+    ],
+    bullets: [
+      "Developed full-stack POS and inventory management platform using Spring Boot, React, and MySQL for Sri Lankan SMEs.",
+      "Implemented JWT-secured multi-role REST APIs with real-time stock alerts and automated invoice generation.",
+      "Built sales analytics dashboards providing daily/monthly business performance insights."
+    ],
+    links: {
+      demo: "https://github.com/theekshanathushan/StockPilot-LK",
+      demoLabel: "View Repository",
+      github: "https://github.com/theekshanathushan/StockPilot-LK",
+      githubLabel: "GitHub Repo"
+    },
+    image: "[screenshot needed: StockPilot LK inventory dashboard]",
+    badge: "POS & Inventory"
   },
   {
     id: "moodmirror",
@@ -940,9 +982,12 @@ export const CERTIFICATIONS_DATA: CertificationData[] = [
 export const content: PortfolioContent = {
   personal: {
     name: "Theekshana Thushan",
+    fullName: "G. Theekshana Thushan Priyantha",
     tagline: "BSc (Hons) Computer Science Undergraduate | Full-Stack & AI Systems",
     email: "theekshanathushan89@gmail.com",
-    portfolioUrl: "https://theekshanathushan.dev",
+    phone: "+94 77 292 1684",
+    location: "Mathugama, Sri Lanka",
+    portfolioUrl: "https://www.theekshanathushan.tech",
     githubUrl: "https://github.com/theekshanathushan",
     linkedinUrl: "https://www.linkedin.com/in/theekshana-thushan-57b866328"
   },
